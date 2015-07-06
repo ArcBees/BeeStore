@@ -1,0 +1,109 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
+    <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+    <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageHomeResources"/>
+
+    <g:HTMLPanel>
+
+        <section class="{page.style.main_products}">
+            <div class="{page.style.main_products__left}">
+                <g:Image resource="{page.tshirt}"/>
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.main_products__right}">
+                <g:Image resource="{page.productBag}"/>
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bee
+                        <span>bag</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="{res.style.stripe} {res.style.txt_center} {page.style.shopping_by_product}">
+            <h2>shopping by products</h2>
+            <ul class="{page.style.products_list}">
+                <li><i class="{font.icons.iconGae}"></i>
+                    GAE
+                    <span>STUDIO</span>
+                </li>
+                <li><i class="{font.icons.iconJukito}"></i> JUKITO</li>
+                <li><i class="{font.icons.iconGwtp}"></i> GWTP</li>
+                <li><i class="{font.icons.iconArcbees}"></i> arcbees</li>
+                <li><i class="{font.icons.iconGquery}"></i> gQuery</li>
+                <li><i class="{font.icons.iconGsss}"></i> GSSS</li>
+                <li><i class="{font.icons.iconChosen}"></i> GWT
+                    <span>chosen</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="{res.style.stripe} {page.style.welcome}">
+            <h2>Welcome to the Beestore</h2>
+            <p>The Beestore is a study case from Arcbees
+                <span>to show our hive of products and branded gears. Enjoy!</span>
+            </p>
+            <button class="{comp.style.btn} {comp.style.btn_outline}" value="learn more">Learn more</button>
+        </section>
+        <section class="{page.style.products_items}">
+            <div class="{page.style.products_items__item}">
+                <div class="{page.style.product_items__img}">
+                    <g:Image resource="{page.productThermos}"/>
+                </div>
+
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.products_items__item}">
+                <div class="{page.style.product_items__img}">
+                    <g:Image resource="{page.productCase}"/>
+                </div>
+
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.products_items__item}">
+                <div class="{page.style.product_items__img}">
+                    <g:Image resource="{page.productUsb}"/>
+                </div>
+
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.products_items__item}">
+                <div class="{page.style.product_items__img}">
+                    <g:Image resource="{page.productCup}"/>
+                </div>
+
+                <div class="{page.style.product_items__info}">
+                    <div class="{page.style.product_items__name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.product_items__price}">35$</div>
+                </div>
+            </div>
+        </section>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

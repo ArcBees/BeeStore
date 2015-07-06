@@ -1,0 +1,128 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+
+    <g:HTMLPanel>
+        <header>
+            <div class="{res.style.header_top}">
+                <ul class="{res.style.mobile_display}">
+                    <li>
+                        <a class="{res.style.active}" href="#">
+                            <i class="{font.icons.iconDesktop}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconTabletDevice}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconPhoneDevice}"/>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="{res.style.header_developersPlatform}">
+                    <i class="{font.icons.iconInfoHexa}"/>
+                    DEVELOPPER'S PLATFORM
+                    <i class="{font.icons.iconArrowOutside}"/>
+                </div>
+            </div>
+
+            <div class="{res.style.header_bottom}">
+                <div class="menu">
+
+                </div>
+                <div class="{res.style.beestore_logo}">
+                    <g:Image resource="{res.beestoreLogo}"/>
+                </div>
+                <div class="{res.style.header_bottom__right}">
+                    <div class="{res.style.wishlist}">
+                        <i class="{font.icons.iconWhishlist}"/>
+                    </div>
+                    <div class="{res.style.cart}">
+                        <i class="{font.icons.iconCart}"/>
+                    </div>
+                    <ul class="{res.style.language}">
+                        <li class="{res.style.active}">ENG</li>
+                        <li>FR</li>
+                    </ul>
+                </div>
+            </div>
+
+        </header>
+
+        <g:SimplePanel ui:field="main"/>
+
+        <footer class="{res.grid.row} {res.style.clearfix}">
+            <div class="{res.style.backTop}">
+                <i ui:field="backTop" class="{font.icons.iconArrowDown}"></i>
+            </div>
+
+            <div class="{res.grid.col} {res.grid.col_1_3}">
+                <nav class="{res.style.footer_menu}">
+                    <ul>
+                        <li>Home</li>
+                        <li>Products</li>
+                        <li>Contact us</li>
+                    </ul>
+                </nav>
+
+                <p class="{res.style.case_study}">The Beestore is a study case from Arcbees
+                    <span>to show our hive of products and branded gears. Enjoy!</span>
+                </p>
+            </div>
+
+            <div class="{res.style.footer_logo_arcbees} {res.grid.col} {res.grid.col_1_3}">
+                <i class="{font.icons.iconArcbeesName}"/>
+            </div>
+
+            <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3}">
+                <ul class="{res.style.footer_contact__arcbees}">
+                    <li>Arcbees
+                        <i class="{font.icons.iconArrowOutside}"/>
+                    </li>
+                    <li>Developper's platform
+                        <i class="{font.icons.iconArrowOutside}"/>
+                    </li>
+                </ul>
+                <ul class="{res.style.footer_contact__social}">
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconTwitter}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconGPlus}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconLkd}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconWordpress}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconFb}"/>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="{font.icons.iconGitHub}"/>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

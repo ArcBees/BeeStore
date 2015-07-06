@@ -1,0 +1,170 @@
+@require "colors";
+
+/**
+ * HOME.GSS
+ * style of the home page
+ *
+ *
+ * - MAIN PRODUCT              Classes for main product -
+ * - SHOPPING BY PRODUCT       Classes for shopping by product - product icons -
+ * - WELCOME                   Classes for the welcome section -
+ * - PRODUCT                   Classes for products for sale
+ */
+
+/* -- SHOPPING BY PRODUCT
+------------------------ */
+
+.main_products {
+    display: table;
+    width: 100%;
+}
+
+.main_products__left,
+.main_products__right {
+    display: table-cell;
+    width: 50%;
+
+    position: relative;
+}
+
+.main_products__left {
+    background-color: #fbe605;
+}
+
+.main_products__left img,
+.main_products__right img {
+    display: block;
+    margin: 0 auto;
+}
+
+.main_products__left .product_items__info {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+}
+
+.main_products__right .product_items__info {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+}
+
+/* -- SHOPPING BY PRODUCT
+------------------------ */
+
+.shopping_by_product {
+    background-color: C_LIGHT;
+}
+
+ul.products_list {
+    display: table;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+ul.products_list li {
+    color: #ededed;
+    font-size: 3.5rem;
+    font-variant: small-caps;
+    line-height: 1;
+
+    display: table-cell;
+    width: calc(100% / 7);
+
+    vertical-align: top;
+}
+
+.products_list li span {
+    display: block;
+}
+
+.products_list li i {
+    font-size: 7rem;
+
+    display: block;
+
+    -webkit-transition: all .5s;
+}
+
+.products_list li:hover {
+    color: C_TEXT;
+}
+
+.products_list li:hover i {
+    font-size: 10rem;
+}
+
+/* -- WELCOME
+------------------------ */
+
+.welcome {
+    background-color: C_DARK;
+    color: C_TEXT_LIGHT;
+    text-align: center;
+}
+
+.welcome p {
+    margin-bottom: 27px;
+}
+
+.welcome p span {
+    display: block;
+}
+
+/* -- PRODUCT
+------------------------ */
+
+.products_items {
+    display: table;
+    width: 100%;
+}
+
+.products_items__item {
+    color: C_TEXT;
+
+    display: table-cell;
+    width: 25%;
+    padding: 100px 0;
+}
+
+.products_items__item:hover {
+    background-color: C_STRIPE_MEDIUM2;
+}
+
+.product_items__img {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+.product_items__info {
+    background-color: C_LIGHT;
+    font-family: 'geometria-bold';
+    text-align: center;
+    text-transform: uppercase;
+
+    display: block;
+    width: 140px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.product_items__name {
+    font-size: 3rem;
+    line-height: 1;
+
+    margin: 0 0 10px;
+}
+
+.product_items__name span {
+    display: block;
+}
+
+.product_items__price {
+    background-color: C_PRIMARY;
+    font-size: 2rem;
+
+    display: inline-block;
+    padding: 0px 5px;
+}

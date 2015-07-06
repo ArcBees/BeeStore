@@ -1,0 +1,262 @@
+@require "colors";
+
+/**
+ * LAYOUT.GSS
+ * Framework application style
+ *
+ *
+ * - TYPO
+ * - BASE
+ * - HEADER                    Style of elements in the header
+ * - MAIN CONTAINER            Style for the layout - container, wrapper, main sections, stripes
+ * - FOOTER                    Classes for differents elements
+ */
+
+/* -- TYPO
+------------------------ */
+
+h2 {
+    font-size: 4rem;
+    line-height: 1;
+    text-transform: uppercase;
+
+    margin-bottom: 0;
+}
+
+/* -- BASE
+------------------------ */
+
+body {
+    background-color: C_STRIPE_MEDIUM1;
+    font-family: 'geometria';
+}
+
+.stripe {
+    padding: 60px 0;
+
+    position: relative;
+}
+
+.stripe_light {
+    background-color: C_STRIPE_LIGHT;
+}
+
+.wrapper {
+    min-height: 100%;
+    width: 980px;
+    margin: 0 auto;
+}
+
+/* -- HEADER
+------------------------ */
+
+.header_top {
+    color: C_TEXT_LIGHT;
+    background-color: C_DARK;
+
+    position: relative;
+}
+
+.mobile_display {
+    display: inline-block;
+    margin: 0 0 0 30px;
+    padding: 0;
+}
+
+.mobile_display li {
+    font-size: 2.4rem;
+    line-height: 5rem;
+
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.mobile_display li a {
+    color: #818181;
+}
+
+.mobile_display li a:hover {
+    color: C_TEXT_LIGHT;
+}
+
+.mobile_display li a.active {
+    color: C_TEXT_LIGHT;
+    border-bottom: 5px solid #fbe605;
+
+    padding-bottom: 6px;
+}
+
+.header_developersPlatform {
+    font-size: 1.3rem;
+
+    position: absolute;
+    top: 16px;
+    right: 30px;
+}
+
+.header_developersPlatform i:first-of-type {
+    color: #6f6f6d;
+    font-size: 1.4rem;
+
+    margin-right: 25px;
+}
+
+.header_developersPlatform i:last-of-type:before {
+    font-size: 1rem;
+}
+
+.header_developersPlatform i:before {
+    margin-top: -4px;
+}
+
+.header_bottom {
+    background-color: C_LIGHT;
+
+    padding: 10px 0;
+
+    position: relative;
+}
+
+.beestore_logo {
+    width: 123px;
+    margin: 0 auto;
+}
+
+.header_bottom__right {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.wishlist,
+.cart {
+    font-size: 3rem;
+
+    display: inline-block;
+    margin-left: 35px;
+}
+
+.language {
+    display: inline-block;
+    margin: 0;
+}
+
+.language li {
+    color: #c7c5c5;
+    font-family: 'geometria-bold';
+
+    display: inline;
+    margin-left: 10px;
+}
+
+.language li.active {
+    color: C_TEXT;
+}
+
+/* -- FOOTER
+------------------------ */
+
+footer {
+    color: C_TEXT_LIGHT;
+    background-color: C_DARK;
+
+    padding: 35px 30px 20px;
+
+    position: relative;
+}
+
+
+.backTop i {
+    font-size: 2.5rem;
+    color: C_TEXT;
+
+    margin-left: -12px;
+
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    z-index: 9999;
+
+    cursor: pointer;
+
+    @mixin rotate(180deg);
+}
+
+.footer_menu li {
+    font-size: 1.4rem;
+    font-family: 'geometria-bold';
+    text-transform: uppercase;
+
+    display: inline;
+    margin-right: 60px;
+}
+
+.footer_menu li a {
+    color: C_TEXT_LIGHT;
+}
+
+.case_study {
+    color: #c6c6c6;
+    font-size: 1.4rem;
+    line-height: 1.25em;
+}
+
+.case_study span {
+    display: block;
+}
+
+.footer_logo_arcbees {
+    font-family: 'geometria-light';
+    font-size: 5.5rem;
+    text-align: center;
+}
+
+.footer_logo_arcbees i {
+    font-size: 10.25rem;
+    line-height: 1;
+
+    display: block;
+    margin: -32px 0 5px 0;
+}
+
+.footer_logo_arcbees p {
+    font-size: 2rem;
+    line-height: 1;
+
+    margin: -5px 0 0 0;
+}
+
+.footer_contact {
+    text-align: right;
+}
+
+.footer_contact__arcbees li {
+    font-size: 1.2rem;
+    font-family: 'geometria-bold';
+    text-transform: uppercase;
+
+    display: block;
+}
+
+.footer_contact__arcbees i:before {
+    font-size: 1.2rem;
+
+    vertical-align: text-top;
+}
+
+ul.footer_contact__social li {
+    font-size: 2.6rem;
+    line-height: 1;
+
+    display: inline-block;
+    padding: 0;
+    margin: 0 1px 0 0;
+}
+
+ul.footer_contact__social li a {
+    color: #333;
+}
+
+ul.footer_contact__social li a:hover {
+    color: C_TEXT_LIGHT;
+}
