@@ -7,7 +7,7 @@
     <g:HTMLPanel>
         <header>
             <div class="{res.style.header_top}">
-                <ul class="{res.style.mobile_display}">
+                <ul class="{res.style.resolution}">
                     <li>
                         <a class="{res.style.active}" href="#">
                             <i class="{font.icons.iconDesktop}"/>
@@ -36,10 +36,11 @@
                 <div class="menu">
 
                 </div>
-                <div class="{res.style.beestore_logo}">
+                <div class="{res.style.beeStoreLogo}">
                     <g:Image resource="{res.beestoreLogo}"/>
                 </div>
-                <div class="{res.style.header_bottom__right}">
+
+                <div class="{res.style.header_bottom_right}">
                     <div class="{res.style.wishlist}">
                         <i class="{font.icons.iconWhishlist}"/>
                     </div>
@@ -71,17 +72,17 @@
                     </ul>
                 </nav>
 
-                <p class="{res.style.case_study}">The Beestore is a study case from Arcbees
+                <p class="{res.style.caseStudy}">The Beestore is a study case from Arcbees
                     <span>to show our hive of products and branded gears. Enjoy!</span>
                 </p>
             </div>
 
-            <div class="{res.style.footer_logo_arcbees} {res.grid.col} {res.grid.col_1_3}">
+            <div class="{res.style.footer_logoArcbees} {res.grid.col} {res.grid.col_1_3}">
                 <i class="{font.icons.iconArcbeesName}"/>
             </div>
 
             <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3}">
-                <ul class="{res.style.footer_contact__arcbees}">
+                <ul class="{res.style.footer_contact_arcbees}">
                     <li>Arcbees
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
@@ -89,7 +90,7 @@
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
                 </ul>
-                <ul class="{res.style.footer_contact__social}">
+                <ul class="{res.style.footer_contact_social}">
                     <li>
                         <a href="#">
                             <i class="{font.icons.iconTwitter}"/>

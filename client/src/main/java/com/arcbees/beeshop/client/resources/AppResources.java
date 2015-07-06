@@ -1,3 +1,19 @@
+/*
+ * Copyright 2015 ArcBees Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package com.arcbees.beeshop.client.resources;
 
 import com.arcbees.gsss.grid.client.GridResources;
@@ -14,9 +30,9 @@ public interface AppResources extends ClientBundle {
 
         String footer_contact();
 
-        String footer_contact__arcbees();
+        String footer_contact_arcbees();
 
-        String footer_contact__social();
+        String footer_contact_social();
 
         String wrapper();
 
@@ -24,27 +40,25 @@ public interface AppResources extends ClientBundle {
 
         String header_bottom();
 
-        String header_bottom__right();
+        String header_bottom_right();
 
         String wishlist();
 
         String cart();
 
-        String beestore_logo();
+        String beeStoreLogo();
 
-        String mobile_display();
+        String resolution();
 
         String language();
 
         String footer_menu();
 
-        String footer_logo_arcbees();
+        String footer_logoArcbees();
 
         String clearfix();
 
-        String case_study();
-
-        String stripe_light();
+        String caseStudy();
 
         String txt_center();
 

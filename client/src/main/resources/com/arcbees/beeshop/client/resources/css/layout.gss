@@ -37,10 +37,6 @@ body {
     position: relative;
 }
 
-.stripe_light {
-    background-color: C_STRIPE_LIGHT;
-}
-
 .wrapper {
     min-height: 100%;
     width: 980px;
@@ -57,13 +53,13 @@ body {
     position: relative;
 }
 
-.mobile_display {
+.resolution {
     display: inline-block;
     margin: 0 0 0 30px;
     padding: 0;
 }
 
-.mobile_display li {
+.resolution > li {
     font-size: 2.4rem;
     line-height: 5rem;
 
@@ -71,15 +67,15 @@ body {
     margin-right: 15px;
 }
 
-.mobile_display li a {
+.resolution > li a {
     color: #818181;
 }
 
-.mobile_display li a:hover {
+.resolution > li > a:hover {
     color: C_TEXT_LIGHT;
 }
 
-.mobile_display li a.active {
+.resolution > li > a.active {
     color: C_TEXT_LIGHT;
     border-bottom: 5px solid #fbe605;
 
@@ -117,12 +113,12 @@ body {
     position: relative;
 }
 
-.beestore_logo {
+.beeStoreLogo {
     width: 123px;
     margin: 0 auto;
 }
 
-.header_bottom__right {
+.header_bottom_right {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -141,7 +137,7 @@ body {
     margin: 0;
 }
 
-.language li {
+.language > li {
     color: #c7c5c5;
     font-family: 'geometria-bold';
 
@@ -149,7 +145,7 @@ body {
     margin-left: 10px;
 }
 
-.language li.active {
+.language > li.active {
     color: C_TEXT;
 }
 
@@ -182,7 +178,7 @@ footer {
     @mixin rotate(180deg);
 }
 
-.footer_menu li {
+.footer_menu > li {
     font-size: 1.4rem;
     font-family: 'geometria-bold';
     text-transform: uppercase;
@@ -191,27 +187,27 @@ footer {
     margin-right: 60px;
 }
 
-.footer_menu li a {
+.footer_menu > li > a {
     color: C_TEXT_LIGHT;
 }
 
-.case_study {
+.caseStudy {
     color: #c6c6c6;
     font-size: 1.4rem;
     line-height: 1.25em;
 }
 
-.case_study span {
+.caseStudy span {
     display: block;
 }
 
-.footer_logo_arcbees {
+.footer_logoArcbees {
     font-family: 'geometria-light';
     font-size: 5.5rem;
     text-align: center;
 }
 
-.footer_logo_arcbees i {
+.footer_logoArcbees i {
     font-size: 10.25rem;
     line-height: 1;
 
@@ -219,7 +215,7 @@ footer {
     margin: -32px 0 5px 0;
 }
 
-.footer_logo_arcbees p {
+.footer_logoArcbees p {
     font-size: 2rem;
     line-height: 1;
 
@@ -230,7 +226,7 @@ footer {
     text-align: right;
 }
 
-.footer_contact__arcbees li {
+.footer_contact_arcbees > li {
     font-size: 1.2rem;
     font-family: 'geometria-bold';
     text-transform: uppercase;
@@ -238,13 +234,13 @@ footer {
     display: block;
 }
 
-.footer_contact__arcbees i:before {
+.footer_contact_arcbees i:before {
     font-size: 1.2rem;
 
     vertical-align: text-top;
 }
 
-ul.footer_contact__social li {
+.footer_contact_social > li {
     font-size: 2.6rem;
     line-height: 1;
 
@@ -253,10 +249,10 @@ ul.footer_contact__social li {
     margin: 0 1px 0 0;
 }
 
-ul.footer_contact__social li a {
+.footer_contact_social > li > a {
     color: #333;
 }
 
-ul.footer_contact__social li a:hover {
+.footer_contact_social > li > a:hover {
     color: C_TEXT_LIGHT;
 }
