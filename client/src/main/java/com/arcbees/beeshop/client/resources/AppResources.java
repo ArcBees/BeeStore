@@ -75,7 +75,7 @@ public interface AppResources extends ClientBundle {
     @Source("css/normalize.gss")
     Normalize normalize();
 
-    @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "css/colors.gss", "css/layout.gss", "css/style.gss"})
+    @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "css/colors.gss", "fonts/fonts.gss", "css/layout.gss", "css/style.gss"})
     Style style();
 
     @Source({"com/arcbees/gsss/grid/client/gridsettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})

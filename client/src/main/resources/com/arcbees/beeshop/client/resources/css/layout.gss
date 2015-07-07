@@ -1,3 +1,4 @@
+@require "fonts";
 @require "colors";
 
 /**
@@ -28,7 +29,7 @@ h2 {
 
 body {
     background-color: C_STRIPE_MEDIUM1;
-    font-family: 'geometria';
+    font-family: F_PRIMARY;
 }
 
 .stripe {
@@ -139,7 +140,7 @@ body {
 
 .language > li {
     color: #c7c5c5;
-    font-family: 'geometria-bold';
+    font-family: F_PRIMARY_BOLD;
 
     display: inline;
     margin-left: 10px;
@@ -178,16 +179,16 @@ footer {
     @mixin rotate(180deg);
 }
 
-.footer_menu > li {
+.footer_menu li {
     font-size: 1.4rem;
-    font-family: 'geometria-bold';
+    font-family: F_PRIMARY_BOLD;
     text-transform: uppercase;
 
     display: inline;
     margin-right: 60px;
 }
 
-.footer_menu > li > a {
+.footer_menu li > a {
     color: C_TEXT_LIGHT;
 }
 
@@ -202,7 +203,7 @@ footer {
 }
 
 .footer_logoArcbees {
-    font-family: 'geometria-light';
+    font-family: F_PRIMARY_LIGHT;
     font-size: 5.5rem;
     text-align: center;
 }
@@ -228,7 +229,7 @@ footer {
 
 .footer_contact_arcbees > li {
     font-size: 1.2rem;
-    font-family: 'geometria-bold';
+    font-family: F_PRIMARY_BOLD;
     text-transform: uppercase;
 
     display: block;

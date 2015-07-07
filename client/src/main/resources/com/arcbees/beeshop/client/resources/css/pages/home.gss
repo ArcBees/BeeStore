@@ -1,3 +1,4 @@
+@require "fonts";
 @require "colors";
 
 /**
@@ -141,7 +142,7 @@
 
 .itemForSale_info {
     background-color: C_LIGHT;
-    font-family: 'geometria-bold';
+    font-family: F_PRIMARY_BOLD;
     text-align: center;
     text-transform: uppercase;
 

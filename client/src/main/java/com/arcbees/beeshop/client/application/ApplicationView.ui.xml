@@ -27,7 +27,7 @@
 
                 <div class="{res.style.header_developersPlatform}">
                     <i class="{font.icons.iconInfoHexa}"/>
-                    DEVELOPPER'S PLATFORM
+                    DEVELOPER'S PLATFORM
                     <i class="{font.icons.iconArrowOutside}"/>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <li>Arcbees
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
-                    <li>Developper's platform
+                    <li>Developer's platform
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
                 </ul>

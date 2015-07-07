@@ -26,6 +26,9 @@ public interface FontResources extends ClientBundle {
     String MIME_TYPE_WOFF = "application/font-woff";
     String MIME_TYPE_SVG = "image/svg+xml";
 
+    public interface Font extends CssResource {
+    }
+
     public interface Icons extends CssResource {
         String iconArcbees();
 
@@ -156,6 +159,9 @@ public interface FontResources extends ClientBundle {
 
     @Source("fonts/icons/icons.gss")
     Icons icons();
+
+    @Source({"css/fonts.gss", "fonts/geometria/geometria.gss"})
+    Font font();
 
     @Source("fonts/icons/icons.ttf")
     DataResource iconsTtf();

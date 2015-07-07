@@ -16,21 +16,10 @@
 
 package com.arcbees.beeshop.client.resources;
 
-import javax.inject.Inject;
-
-public class ResourceLoader {
-    @Inject
-    ResourceLoader(
-            AppResources appResources,
-            FontResources fontResources,
-            ComponentsResources componentsResources,
-            PageHomeResources pageHomeResources) {
-        appResources.normalize().ensureInjected();
-        appResources.style().ensureInjected();
-        fontResources.icons().ensureInjected();
-        fontResources.font().ensureInjected();
-        appResources.grid().ensureInjected();
-        pageHomeResources.style().ensureInjected();
-        componentsResources.style().ensureInjected();
-    }
+public class Fonts {
+    /* -> App fonts -- */
+    public static final String F_PRIMARY = "\"geometria\", \"Helvetica\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_BOLD = "\"geometriaBold\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_LIGHT = "\"geometriaLight\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_LIGHT_ITALIC = "\"geometriaLightItalic\", Helvetica, Arial, sans-serif; font-weight: normal";
 }
