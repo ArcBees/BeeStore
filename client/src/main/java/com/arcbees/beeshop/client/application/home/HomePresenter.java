@@ -14,34 +14,33 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.application.home;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
+import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
-import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
-import com.gwtplatform.mvp.client.proxy.Proxy;
+import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
-    @ProxyStandard
-    @NoGatekeeper
-    interface MyProxy extends Proxy<ApplicationPresenter> {
-    }
-
-    public static final NestedSlot SLOT_MAIN = new NestedSlot();
-
+public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
     interface MyView extends View {
     }
 
+    @ProxyStandard
+    @NameToken(NameTokens.HOME)
+    interface MyProxy extends ProxyPlace<HomePresenter> {
+    }
+
     @Inject
-    ApplicationPresenter(
+    HomePresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
-        super(eventBus, view, proxy, RevealType.Root);
+        super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
     }
 }

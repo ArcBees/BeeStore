@@ -1,0 +1,172 @@
+@require "fonts";
+@require "colors";
+
+/**
+ * HOME.GSS
+ * style of the home page
+ *
+ *
+ * - MAIN PRODUCT              Classes for main product -
+ * - SHOPPING BY PRODUCT       Classes for shopping by product - product icons -
+ * - WELCOME                   Classes for the welcome section -
+ * - PRODUCT                   Classes for products for sale
+ */
+
+/* -- SHOPPING BY PRODUCT
+------------------------ */
+
+.mainProducts {
+    display: table;
+    width: 100%;
+}
+
+.mainProducts_left,
+.mainProducts_right {
+    display: table-cell;
+    width: 50%;
+
+    position: relative;
+}
+
+.mainProducts_left {
+    background-color: #fbe605;
+}
+
+.mainProducts_left img,
+.mainProducts_right img {
+    display: block;
+    margin: 0 auto;
+}
+
+.mainProducts_left .itemForSale_info {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+}
+
+.mainProducts_right .itemForSale_info {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+}
+
+/* -- SHOPPING BY PRODUCT
+------------------------ */
+
+.shoppingByProduct {
+    background-color: C_LIGHT;
+}
+
+.devProducts_list {
+    display: table;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.devProducts_list li {
+    color: #ededed;
+    font-size: 3.5rem;
+    font-variant: small-caps;
+    line-height: 1;
+
+    display: table-cell;
+    width: calc(100% / 7);
+
+    vertical-align: top;
+}
+
+.devProducts_list li span {
+    display: block;
+}
+
+.devProducts_list li i {
+    font-size: 7rem;
+
+    display: block;
+
+    -webkit-transition: all .5s;
+}
+
+.devProducts_list li:hover {
+    color: C_TEXT;
+}
+
+.devProducts_list li:hover i {
+    font-size: 10rem;
+}
+
+/* -- WELCOME
+------------------------ */
+
+.welcome {
+    background-color: C_DARK;
+    color: C_TEXT_LIGHT;
+    text-align: center;
+}
+
+.welcome > p {
+    margin-bottom: 27px;
+}
+
+.welcome > p > span {
+    display: block;
+}
+
+/* -- PRODUCT
+------------------------ */
+
+.itemsForSale {
+    display: table;
+    width: 100%;
+}
+
+.itemForSale {
+    color: C_TEXT;
+
+    display: table-cell;
+    width: 25%;
+    padding: 100px 0;
+}
+
+.itemForSale:hover {
+    background-color: C_STRIPE_MEDIUM2;
+}
+
+.itemForSale_img {
+    text-align: center;
+
+    display: block;
+    margin: 0 auto 55px auto;
+}
+
+.itemForSale_info {
+    background-color: C_LIGHT;
+    font-family: F_PRIMARY_BOLD;
+    text-align: center;
+    text-transform: uppercase;
+
+    display: block;
+    width: 140px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.itemForSale_info_name {
+    font-size: 3rem;
+    line-height: 1;
+
+    margin: 0 0 10px;
+}
+
+.itemForSale_info_name > span {
+    display: block;
+}
+
+.itemForSale_info_price {
+    background-color: C_PRIMARY;
+    font-size: 2rem;
+
+    display: inline-block;
+    padding: 0px 5px;
+}

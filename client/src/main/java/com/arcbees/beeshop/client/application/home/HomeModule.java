@@ -14,8 +14,14 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client;
+package com.arcbees.beeshop.client.application.home;
 
-public class NameTokens {
-    public static final String HOME = "!/home";
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+
+public class HomeModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        bindPresenter(HomePresenter.class, HomePresenter.MyView.class, HomeView.class,
+                HomePresenter.MyProxy.class);
+    }
 }

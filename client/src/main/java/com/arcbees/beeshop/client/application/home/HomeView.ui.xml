@@ -1,0 +1,104 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
+    <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+    <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageHomeResources"/>
+
+    <g:HTMLPanel>
+
+        <section class="{page.style.mainProducts}">
+            <div class="{page.style.mainProducts_left}">
+                <g:Image resource="{page.tshirt}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+
+            <div class="{page.style.mainProducts_right}">
+                <g:Image resource="{page.productBag}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bee
+                        <span>bag</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
+            <h2>shopping by products</h2>
+            <ul class="{page.style.devProducts_list}">
+                <li>
+                    <i class="{font.icons.iconGae}"></i>
+                    GAE
+                    <span>STUDIO</span>
+                </li>
+                <li><i class="{font.icons.iconJukito}"></i>JUKITO</li>
+                <li><i class="{font.icons.iconGwtp}"></i>GWTP</li>
+                <li><i class="{font.icons.iconArcbees}"></i>arcbees</li>
+                <li><i class="{font.icons.iconGquery}"></i>gQuery</li>
+                <li><i class="{font.icons.iconGsss}"></i>GSSS</li>
+                <li><i class="{font.icons.iconChosen}"></i> GWT<span>chosen</span></li>
+            </ul>
+        </section>
+
+        <section class="{res.style.stripe} {page.style.welcome}">
+            <h2>Welcome to the Beestore</h2>
+            <p>The Beestore is a study case from Arcbees
+                <span>to show our hive of products and branded gears. Enjoy!</span>
+            </p>
+            <button class="{comp.style.btn} {comp.style.btn_outline}" value="learn more">Learn more</button>
+        </section>
+
+        <section class="{page.style.itemsForSale}">
+            <div class="{page.style.itemForSale}">
+                <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productThermos}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.itemForSale}">
+                <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCase}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.itemForSale}">
+                <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productUsb}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+            <div class="{page.style.itemForSale}">
+                <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCup}"/>
+
+                <div class="{page.style.itemForSale_info}">
+                    <div class="{page.style.itemForSale_info_name}">Bees
+                        <span>shirt</span>
+                    </div>
+                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                </div>
+            </div>
+        </section>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

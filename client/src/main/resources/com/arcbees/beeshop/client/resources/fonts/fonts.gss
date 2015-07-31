@@ -1,0 +1,6 @@
+@provide 'fonts';
+
+@def F_PRIMARY                  eval("com.arcbees.beeshop.client.resources.Fonts.F_PRIMARY");
+@def F_PRIMARY_BOLD             eval("com.arcbees.beeshop.client.resources.Fonts.F_PRIMARY_BOLD");
+@def F_PRIMARY_LIGHT            eval("com.arcbees.beeshop.client.resources.Fonts.F_PRIMARY_LIGHT");
+@def F_PRIMARY_LIGHT_ITALIC     eval("com.arcbees.beeshop.client.resources.Fonts.F_PRIMARY_LIGHT_ITALIC");

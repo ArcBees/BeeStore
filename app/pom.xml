@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <artifactId>beeshop</artifactId>
-        <groupId>com.arcbees.beeshop</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-    </parent>
-
+    <groupId>com.arcbees.beeshop</groupId>
     <artifactId>app</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <properties>
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <gwt-maven-plugin.version>2.7.0</gwt-maven-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+
         <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
     </properties>
 
     <dependencies>
@@ -36,20 +38,63 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
 
                 <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
 
                 <configuration>
-                    <module>com.arcbees.beeshop.Production</module>
+                    <webappDirectory>${webappDirectory}</webappDirectory>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>${gwt-maven-plugin.version}</version>
+
+                <configuration>
+                    <extraJvmArgs>-Xss1024K -Xmx1024M -XX:MaxPermSize=512M -Duser.language=en -Duser.country=US
+                    </extraJvmArgs>
+                    <logLevel>INFO</logLevel>
+
+                    <copyWebapp>true</copyWebapp>
+                    <hostedWebapp>${webappDirectory}</hostedWebapp>
+                    <module>com.arcbees.beeshop.Production</module>
+
+                    <extraParam>true</extraParam>
+                    <extra>extras</extra>
+                    <optimizationLevel>9</optimizationLevel>
+                    <deploy>${project.build.directory}/gwtDeploy</deploy>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>resources</goal>
+                            <goal>compile</goal>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

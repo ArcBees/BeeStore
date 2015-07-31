@@ -3,8 +3,12 @@
         "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
 <module>
     <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint"/>
+    <inherits name="com.arcbees.gsss.grid.Grid"/>
+    <inherits name="com.google.gwt.query.Query"/>
 
     <extend-configuration-property name="gin.ginjector.modules" value="com.arcbees.beeshop.client.ClientModule"/>
 
     <source path="client"/>
+
+    <set-configuration-property name="CssResource.enableGss" value="true"/>
 </module>

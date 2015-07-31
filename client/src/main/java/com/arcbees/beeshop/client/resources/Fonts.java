@@ -14,8 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client;
+package com.arcbees.beeshop.client.resources;
 
-public class NameTokens {
-    public static final String HOME = "!/home";
+public class Fonts {
+    /* -> App fonts -- */
+    public static final String F_PRIMARY = "\"geometria\", \"Helvetica\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_BOLD = "\"geometriaBold\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_LIGHT = "\"geometriaLight\", Helvetica, Arial, sans-serif; font-weight: normal";
+    public static final String F_PRIMARY_LIGHT_ITALIC = "\"geometriaLightItalic\", Helvetica, Arial, sans-serif; font-weight: normal";
 }
