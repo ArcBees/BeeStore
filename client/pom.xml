@@ -17,7 +17,13 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <version>2.1.2</version>
+        </dependency>
 
+        <!-- GWTP -->
         <dependency>
             <groupId>com.gwtplatform</groupId>
             <artifactId>gwtp-mvp-client</artifactId>
@@ -27,6 +33,7 @@
             <artifactId>dispatch-rest-delegates</artifactId>
         </dependency>
 
+        <!-- OTHER -->
         <dependency>
             <groupId>com.arcbees.gss</groupId>
             <artifactId>gsss</artifactId>
@@ -34,6 +41,11 @@
         <dependency>
             <groupId>com.googlecode.gwtquery</groupId>
             <artifactId>gwtquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.vectomatic</groupId>
+            <artifactId>lib-gwt-svg</artifactId>
+            <version>0.5.9</version>
         </dependency>
     </dependencies>
 

@@ -1,0 +1,91 @@
+@require "fonts";
+@require "colors";
+
+/**
+ * PRODUCT.GSS
+ * style of the home page
+ *
+ *
+ * - PRODUCT                   Classes for products for sale
+ */
+
+/* -- PRODUCT
+------------------------ */
+.product {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.product_info {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+
+    vertical-align: top;
+}
+
+.product_nav {
+    text-transform: uppercase;
+
+    padding: 0;
+    margin: 15px 0 15px 30px;
+}
+
+.previous {
+    float: left;
+}
+
+.previous i:before,
+.next i:before {
+    font-size: 1.5rem;
+
+    margin: -3px 15px 0 0;
+
+    @mixin rotate(90deg);
+}
+
+.next {
+    float: right;
+}
+
+.next i:before {
+    margin: -3px 0 0 10px;
+
+    @mixin rotate(-90deg);
+}
+
+.previous,
+.next {
+    font-family: F_PRIMARY_BOLD;
+    font-size: 1.3rem;
+}
+
+.product_description {
+    background-color: C_LIGHT;
+    text-align: center;
+
+    height: 100%;
+}
+
+.product_description p span {
+    display: block;
+}
+
+.product_price {}
+
+.product_option {
+    margin: 0;
+    padding: 0;
+}
+
+.product_option > li {
+    display: inline-block;
+}
+
+.product_img {
+    display: inline-block;
+    width: 50%;
+
+    vertical-align: top;
+}

@@ -1,0 +1,80 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
+    <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+    <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageProductResources"/>
+
+    <g:HTMLPanel addStyleNames="{page.style.product}">
+
+        <div class="{page.style.product_info}">
+
+            <nav class="{page.style.product_nav} {res.style.clearfix}">
+                <ul class="">
+                    <li class="{page.style.previous}">
+                        <i class="{font.icons.iconArrowDown}"/>
+                        Back Home
+                    </li>
+                    <li class="{page.style.next}">
+                        Next Product
+                        <i class="{font.icons.iconArrowDown}"/>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="{page.style.product_description}">
+                <h2>Bee
+                    <span>bag</span>
+                </h2>
+                <p>Feel the beeway power taking control of you
+                    <span>and you will code like a crazy bee!</span>
+                </p>
+                <span class="{page.style.product_price}">20$</span>
+
+                <h3>option</h3>
+
+                <ul class="{page.style.product_option}">
+                    <li>
+                        <i class="{font.icons.iconGquery}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconGsss}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconChosen}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconArcbees}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconGwtp}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconJukito}"/>
+                    </li>
+                    <li>
+                        <i class="{font.icons.iconGae}"/>
+                    </li>
+                </ul>
+
+                <h3>size</h3>
+
+                <ul class="{page.style.product_option}">
+                    <li>S</li>
+                    <li>M</li>
+                    <li>L</li>
+                    <li>XL</li>
+                </ul>
+
+                <input type="number" class="{res.style.inputQuantity}" value="1"/>
+                <button class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
+                <i class="{font.icons.iconShare}"/>
+            </div>
+        </div>
+        <div class="{page.style.product_img}">
+            <g:Image resource="{page.productBag}"/>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

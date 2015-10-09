@@ -5,3 +5,30 @@
 .txt_center {
     text-align: center;
 }
+
+.inputQuantity {
+    color: C_TEXT;
+    line-height: 1;
+    font-family: F_PRIMARY;
+    font-size: 1.8rem;
+    text-align: center;
+    text-decoration: none;
+
+    display: inline-block;
+    margin-right: 13px;
+    width: 50px;
+    padding: 1.05rem;
+    min-height: 1em;
+    border: 4px solid C_DARK;
+
+    position: relative;
+    vertical-align: middle;
+
+    cursor: pointer;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
@@ -7,7 +8,7 @@
     <g:HTMLPanel>
         <header>
             <div class="{res.style.header_top}">
-                <ul class="{res.style.resolution}">
+                <ul class="{res.style.mobileDisplay}">
                     <li>
                         <a class="{res.style.active}" href="#">
                             <i class="{font.icons.iconDesktop}"/>
@@ -24,33 +25,45 @@
                         </a>
                     </li>
                 </ul>
-
                 <div class="{res.style.header_developersPlatform}">
                     <i class="{font.icons.iconInfoHexa}"/>
-                    DEVELOPER'S PLATFORM
+                    <span>DEVELOPPER'S PLATFORM</span>
                     <i class="{font.icons.iconArrowOutside}"/>
                 </div>
             </div>
 
-            <div class="{res.style.header_bottom}">
-                <div class="menu">
-
+            <div class="{res.style.header_bottom} {res.grid.row}">
+                <div class="{res.grid.col} {res.grid.col_4}">
+                    <nav class="{res.style.header_menu}">
+                        <ul>
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">Products</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact us</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="{res.style.beeStoreLogo}">
-                    <g:Image resource="{res.beestoreLogo}"/>
+                <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
+                    <svg:SVGImage resource="{res.logoBeestore}"/>
                 </div>
-
-                <div class="{res.style.header_bottom_right}">
-                    <div class="{res.style.wishlist}">
-                        <i class="{font.icons.iconWhishlist}"/>
+                <div class="{res.grid.col} {res.grid.col_4}">
+                    <div class="{res.style.header_bottom__right}">
+                        <div class="{res.style.wishlist}">
+                            <i class="{font.icons.iconWhishlist}"/>
+                        </div>
+                        <div class="{res.style.cart}">
+                            <i class="{font.icons.iconCart}"/>
+                        </div>
+                        <ul class="{res.style.language}">
+                            <li class="{res.style.active}">ENG</li>
+                            <li>FR</li>
+                        </ul>
                     </div>
-                    <div class="{res.style.cart}">
-                        <i class="{font.icons.iconCart}"/>
-                    </div>
-                    <ul class="{res.style.language}">
-                        <li class="{res.style.active}">ENG</li>
-                        <li>FR</li>
-                    </ul>
                 </div>
             </div>
 
@@ -66,13 +79,13 @@
             <div class="{res.grid.col} {res.grid.col_1_3}">
                 <nav class="{res.style.footer_menu}">
                     <ul>
-                        <li>Home</li>
-                        <li>Products</li>
-                        <li>Contact us</li>
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Products</a></li>
+                        <li><a href="">Contact us</a></li>
                     </ul>
                 </nav>
 
-                <p class="{res.style.caseStudy}">The Beestore is a study case from Arcbees
+                <p class="{res.style.footer_caseStudy}">The Beestore is a study case from Arcbees
                     <span>to show our hive of products and branded gears. Enjoy!</span>
                 </p>
             </div>
@@ -82,7 +95,7 @@
             </div>
 
             <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3}">
-                <ul class="{res.style.footer_contact_arcbees}">
+                <ul class="{res.style.footer_linkArcbees}">
                     <li>Arcbees
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
@@ -90,34 +103,34 @@
                         <i class="{font.icons.iconArrowOutside}"/>
                     </li>
                 </ul>
-                <ul class="{res.style.footer_contact_social}">
+                <ul class="{res.style.footer_linkSocial}">
                     <li>
-                        <a href="#">
+                        <a href="https://twitter.com/arcbees" target="_blank">
                             <i class="{font.icons.iconTwitter}"/>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://plus.google.com/+Arcbees" target="_blank">
                             <i class="{font.icons.iconGPlus}"/>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.linkedin.com/company/arcbees" target="_blank">
                             <i class="{font.icons.iconLkd}"/>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="http://blog.arcbees.com/" target="_blank">
                             <i class="{font.icons.iconWordpress}"/>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://www.facebook.com/arcbees" target="_blank">
                             <i class="{font.icons.iconFb}"/>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="https://github.com/ArcBees" target="_blank">
                             <i class="{font.icons.iconGitHub}"/>
                         </a>
                     </li>
