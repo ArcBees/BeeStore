@@ -187,7 +187,11 @@ body {
     margin-left: 10px;
 }
 
-.language li.active {
+.language li a {
+    color: #c7c5c5;
+}
+
+.language li.active a {
     color: C_TEXT;
 }
 

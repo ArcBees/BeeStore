@@ -60,8 +60,16 @@
                             <i class="{font.icons.iconCart}"/>
                         </div>
                         <ul class="{res.style.language}">
-                            <li class="{res.style.active}">ENG</li>
-                            <li>FR</li>
+                            <li class="{res.style.active}">
+                                <a href="#">ENG
+                                    <span class="{res.style.visuallyHidden}">LISH</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">FR
+                                    <span class="{res.style.visuallyHidden}">ANÇAIS</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -77,11 +85,17 @@
             </div>
 
             <div class="{res.grid.col} {res.grid.col_1_3}">
-                <nav class="{res.style.footer_menu}">
+                <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Products</a></li>
-                        <li><a href="">Contact us</a></li>
+                        <li>
+                            <a href="">Home</a>
+                        </li>
+                        <li>
+                            <a href="">Products</a>
+                        </li>
+                        <li>
+                            <a href="">Contact us</a>
+                        </li>
                     </ul>
                 </nav>
 
@@ -107,31 +121,37 @@
                     <li>
                         <a href="https://twitter.com/arcbees" target="_blank">
                             <i class="{font.icons.iconTwitter}"/>
+                            <span class="{res.style.visuallyHidden}">Twitter</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://plus.google.com/+Arcbees" target="_blank">
                             <i class="{font.icons.iconGPlus}"/>
+                            <span class="{res.style.visuallyHidden}">GPlus</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/company/arcbees" target="_blank">
                             <i class="{font.icons.iconLkd}"/>
+                            <span class="{res.style.visuallyHidden}">LinkedIn</span>
                         </a>
                     </li>
                     <li>
                         <a href="http://blog.arcbees.com/" target="_blank">
                             <i class="{font.icons.iconWordpress}"/>
+                            <span class="{res.style.visuallyHidden}">Wordpress</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://www.facebook.com/arcbees" target="_blank">
                             <i class="{font.icons.iconFb}"/>
+                            <span class="{res.style.visuallyHidden}">Facebook</span>
                         </a>
                     </li>
                     <li>
                         <a href="https://github.com/ArcBees" target="_blank">
                             <i class="{font.icons.iconGitHub}"/>
+                            <span class="{res.style.visuallyHidden}">Github</span>
                         </a>
                     </li>
                 </ul>

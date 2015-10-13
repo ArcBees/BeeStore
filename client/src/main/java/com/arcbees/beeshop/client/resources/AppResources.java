@@ -72,6 +72,8 @@ public interface AppResources extends ClientBundle {
         String backTop();
 
         String inputQuantity();
+
+        String visuallyHidden();
     }
 
     @Source("img/Beestore-logo.png")

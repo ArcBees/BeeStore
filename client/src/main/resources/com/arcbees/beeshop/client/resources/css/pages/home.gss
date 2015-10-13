@@ -1,16 +1,17 @@
-@require "fonts";
-@require "colors";
-
 /**
  * HOME.GSS
  * style of the home page
  *
  *
+ * - REQUIRED
  * - MAIN PRODUCT              Classes for main product -
  * - SHOPPING BY PRODUCT       Classes for shopping by product - product icons -
  * - WELCOME                   Classes for the welcome section -
  * - PRODUCT                   Classes for products for sale
  */
+
+@require "fonts";
+@require "colors";
 
 /* -- SHOPPING BY PRODUCT
 ------------------------ */

@@ -61,10 +61,10 @@
                 <h3>size</h3>
 
                 <ul class="{page.style.product_option}">
-                    <li>S</li>
-                    <li>M</li>
-                    <li>L</li>
-                    <li>XL</li>
+                    <li>S<span class="{res.style.visuallyHidden}">mall</span></li>
+                    <li>M<span class="{res.style.visuallyHidden}">edium</span></li>
+                    <li>L<span class="{res.style.visuallyHidden}">arge</span></li>
+                    <li>XL<span class="{res.style.visuallyHidden}">arge</span></li>
                 </ul>
 
                 <input type="number" class="{res.style.inputQuantity}" value="1"/>

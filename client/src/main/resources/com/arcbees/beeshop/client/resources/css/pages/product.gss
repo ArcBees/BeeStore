@@ -1,13 +1,14 @@
-@require "fonts";
-@require "colors";
-
 /**
  * PRODUCT.GSS
- * style of the home page
+ * style of the product page
  *
  *
+ * - REQUIRED
  * - PRODUCT                   Classes for products for sale
  */
+
+@require "fonts";
+@require "colors";
 
 /* -- PRODUCT
 ------------------------ */
