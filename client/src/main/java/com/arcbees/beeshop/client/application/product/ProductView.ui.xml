@@ -37,24 +37,31 @@
                 <ul class="{page.style.product_option}">
                     <li>
                         <i class="{font.icons.iconGquery}"/>
+                        <span class="{res.style.visuallyHidden}">gQuery</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconGsss}"/>
+                        <span class="{res.style.visuallyHidden}">Gsss</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconChosen}"/>
+                        <span class="{res.style.visuallyHidden}">Chosen</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconArcbees}"/>
+                        <span class="{res.style.visuallyHidden}">Arcbees</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconGwtp}"/>
+                        <span class="{res.style.visuallyHidden}">Gwtp</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconJukito}"/>
+                        <span class="{res.style.visuallyHidden}">Jukito</span>
                     </li>
                     <li>
                         <i class="{font.icons.iconGae}"/>
+                        <span class="{res.style.visuallyHidden}">Gae studio</span>
                     </li>
                 </ul>
 
