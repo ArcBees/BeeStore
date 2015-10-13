@@ -18,37 +18,35 @@ package com.arcbees.beeshop.client.resources;
 
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
+import com.google.gwt.resources.client.ImageResource;
 
-public interface ComponentsResources extends ClientBundle {
+public interface PageProductResources extends ClientBundle {
     interface Style extends CssResource {
+        String product_info();
 
-        String btn();
+        String product_nav();
 
-        String btn_outline();
+        String product();
 
-        String btn_small();
+        String product_img();
 
-        String btn_large();
+        String product_description();
 
-        String btn_wide();
+        String product_price();
 
-        String btn_primary();
+        String product_option();
 
-        String btn_secondary();
+        String previous();
 
-        String btn_content();
-
-        String btn_alert();
-
-        String btn_disabled();
-
-        String btns_group();
-
-        String btns_group__round();
+        String next();
     }
 
-    @Source({"css/colors.gss",
+    @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/colors.gss",
             "fonts/fonts.gss",
-            "css/btns.gss"})
+            "css/pages/product.gss"})
     Style style();
+
+    @Source("img/products/product-bag.png")
+    ImageResource productBag();
 }

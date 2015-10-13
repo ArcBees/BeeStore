@@ -14,19 +14,14 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.application.product;
 
-import com.arcbees.beeshop.client.application.home.HomeModule;
-import com.arcbees.beeshop.client.application.product.ProductModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public class ApplicationModule extends AbstractPresenterModule {
+public class ProductModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new HomeModule());
-        install(new ProductModule());
-
-        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-                ApplicationPresenter.MyProxy.class);
+        bindPresenter(ProductPresenter.class, ProductPresenter.MyView.class, ProductView.class,
+                ProductPresenter.MyProxy.class);
     }
 }

@@ -33,7 +33,7 @@
         </section>
 
         <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
-            <h2>shopping by products</h2>
+            <h3>shopping by products</h3>
             <ul class="{page.style.devProducts_list}">
                 <li>
                     <i class="{font.icons.iconGae}"></i>
@@ -54,7 +54,6 @@
             <p>The Beestore is a study case from Arcbees
                 <span>to show our hive of products and branded gears. Enjoy!</span>
             </p>
-            <button class="{comp.style.btn} {comp.style.btn_outline}" value="learn more">Learn more</button>
         </section>
 
         <section class="{page.style.itemsForSale}">
@@ -63,7 +62,7 @@
 
                 <div class="{page.style.itemForSale_info}">
                     <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>shirt</span>
+                        <span>Cup</span>
                     </div>
                     <div class="{page.style.itemForSale_info_price}">35$</div>
                 </div>
@@ -73,7 +72,7 @@
 
                 <div class="{page.style.itemForSale_info}">
                     <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>shirt</span>
+                        <span>Case</span>
                     </div>
                     <div class="{page.style.itemForSale_info_price}">35$</div>
                 </div>
@@ -83,7 +82,7 @@
 
                 <div class="{page.style.itemForSale_info}">
                     <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>shirt</span>
+                        <span>Key</span>
                     </div>
                     <div class="{page.style.itemForSale_info_price}">35$</div>
                 </div>
@@ -93,7 +92,7 @@
 
                 <div class="{page.style.itemForSale_info}">
                     <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>shirt</span>
+                        <span>Mug</span>
                     </div>
                     <div class="{page.style.itemForSale_info_price}">35$</div>
                 </div>

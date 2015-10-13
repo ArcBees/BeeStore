@@ -40,7 +40,7 @@ public interface FontResources extends ClientBundle {
 
         String iconChat();
 
-        String iconGwtOld();
+        String iconGwt();
 
         String iconArrowDown();
 
@@ -48,7 +48,7 @@ public interface FontResources extends ClientBundle {
 
         String iconArcbeesName();
 
-        String iconHeart();
+        String iconCoeur();
 
         String iconLkd();
 
@@ -64,13 +64,11 @@ public interface FontResources extends ClientBundle {
 
         String iconDevTime();
 
-        String iconknowledgeBase();
+        String iconKnowledgeBase();
 
         String iconGae();
 
-        String iconhexaEmpty();
-
-        String iconGwt();
+        String iconHexaEmpty();
 
         String iconWordpress();
 
@@ -140,7 +138,7 @@ public interface FontResources extends ClientBundle {
 
         String iconGwtp();
 
-        String iconhexagon();
+        String iconHexagon();
 
         String iconCart();
 
@@ -160,7 +158,7 @@ public interface FontResources extends ClientBundle {
     @Source("fonts/icons/icons.gss")
     Icons icons();
 
-    @Source({"css/fonts.gss", "fonts/geometria/geometria.gss"})
+    @Source({"fonts/fonts.gss", "fonts/geometria/geometria.gss"})
     Font font();
 
     @Source("fonts/icons/icons.ttf")

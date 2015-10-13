@@ -12,3 +12,9 @@
 @def C_STRIPE_MEDIUM4       eval("com.arcbees.beeshop.client.resources.Colors.C_STRIPE_MEDIUM4");
 @def C_STRIPE_DARK          eval("com.arcbees.beeshop.client.resources.Colors.C_STRIPE_DARK");
 @def C_STRIPE_COLORED       eval("com.arcbees.beeshop.client.resources.Colors.C_STRIPE_COLORED");
+@def C_PRODUCT_CHOSEN       eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_CHOSEN");
+@def C_PRODUCT_GAE          eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_GAE");
+@def C_PRODUCT_GWTP         eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_GWTP");
+@def C_PRODUCT_JUKITO       eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_JUKITO");
+@def C_PRODUCT_GQUERY       eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_GQUERY");
+@def C_PRODUCT_GSS          eval("com.arcbees.beeshop.client.resources.Colors.C_PRODUCT_ELASTIC");

@@ -42,5 +42,5 @@ public class Colors {
     public static final String C_PRODUCT_GWTP = "#f7941e";
     public static final String C_PRODUCT_JUKITO = "#ed1c24";
     public static final String C_PRODUCT_GQUERY = "#0768ac";
-    public static final String C_PRODUCT_ELASTIC = "#fbe605";
+    public static final String C_PRODUCT_GSS = "#fbe605";
 }
