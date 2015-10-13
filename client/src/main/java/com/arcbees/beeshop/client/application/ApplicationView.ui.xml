@@ -52,26 +52,26 @@
                     <svg:SVGImage resource="{res.logoBeestore}"/>
                 </div>
                 <div class="{res.grid.col} {res.grid.col_4}">
-                    <div class="{res.style.header_bottom__right}">
-                        <div class="{res.style.wishlist}">
+                    <nav class="{res.style.header_bottom__right}">
+                        <li class="{res.style.wishlist}">
                             <i class="{font.icons.iconWhishlist}"/>
-                        </div>
-                        <div class="{res.style.cart}">
+                            <span class="{res.style.visuallyHidden}">wishlist</span>
+                        </li>
+                        <li class="{res.style.cart}">
                             <i class="{font.icons.iconCart}"/>
-                        </div>
-                        <ul class="{res.style.language}">
-                            <li class="{res.style.active}">
-                                <a href="#">ENG
-                                    <span class="{res.style.visuallyHidden}">LISH</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">FR
-                                    <span class="{res.style.visuallyHidden}">ANÇAIS</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                            <span class="{res.style.visuallyHidden}">cart</span>
+                        </li>
+                        <li class="{res.style.language}">
+                            <a class="{res.style.active}" href="#">ENG
+                                <span class="{res.style.visuallyHidden}">LISH</span>
+                            </a>
+                        </li>
+                        <li class="{res.style.language}">
+                            <a href="#">FR
+                                <span class="{res.style.visuallyHidden}">ANÇAIS</span>
+                            </a>
+                        </li>
+                    </nav>
                 </div>
             </div>
 

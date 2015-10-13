@@ -172,14 +172,7 @@ body {
     font-size: 2.9rem;
 }
 
-.language {
-    display: inline-block;
-    margin: 10px 0 0 25px;
-    padding: 0;
-}
-
-.language li {
-    color: #c7c5c5;
+li.language {
     font-size: 1.6rem;
     font-family: F_PRIMARY_BOLD;
 
@@ -187,11 +180,11 @@ body {
     margin-left: 10px;
 }
 
-.language li a {
+li.language a {
     color: #c7c5c5;
 }
 
-.language li.active a {
+li.language a.active {
     color: C_TEXT;
 }
 
