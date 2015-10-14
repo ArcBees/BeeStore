@@ -8,6 +8,7 @@ public class WidgetModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
         bind(PricePresenter.MyView.class).to(PriceView.class);
+
         install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
     }
 }
