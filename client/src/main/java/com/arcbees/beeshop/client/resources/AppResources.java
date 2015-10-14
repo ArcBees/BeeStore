@@ -74,6 +74,20 @@ public interface AppResources extends ClientBundle {
         String inputQuantity();
 
         String visuallyHidden();
+
+        String arcbees();
+
+        String gwtp();
+
+        String chosen();
+
+        String jukito();
+
+        String gquery();
+
+        String gsss();
+
+        String gaestudio();
     }
 
     @Source("img/Beestore-logo.png")

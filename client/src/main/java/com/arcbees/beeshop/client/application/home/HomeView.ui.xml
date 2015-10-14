@@ -27,16 +27,22 @@
             <h3>shopping by products</h3>
             <ul class="{page.style.devProducts_list}">
                 <li>
-                    <i class="{font.icons.iconGae}"></i>
-                    GAE
-                    <span>STUDIO</span>
+                    <a ui:field="gaeAnchor" class="{font.icons.iconGae}">
+                        GAE
+                        <span>STUDIO</span>
+                    </a>
                 </li>
-                <li><i class="{font.icons.iconJukito}"></i>JUKITO</li>
-                <li><i class="{font.icons.iconGwtp}"></i>GWTP</li>
-                <li><i class="{font.icons.iconArcbees}"></i>arcbees</li>
-                <li><i class="{font.icons.iconGquery}"></i>gQuery</li>
-                <li><i class="{font.icons.iconGsss}"></i>GSSS</li>
-                <li><i class="{font.icons.iconChosen}"></i> GWT<span>chosen</span></li>
+                <li><a ui:field="jukitoAnchor" class="{font.icons.iconJukito}">JUKITO</a></li>
+                <li><a ui:field="gwtpAnchor" class="{font.icons.iconGwtp}">GWTP</a></li>
+                <li><a ui:field="arcbeesAnchor" class="{font.icons.iconArcbees}">arcbees</a></li>
+                <li><a ui:field="gqueryAnchor" class="{font.icons.iconGquery}">gQuery</a></li>
+                <li><a ui:field="gsssAnchor" class="{font.icons.iconGsss}">GSSS</a></li>
+                <li>
+                    <a ui:field="chosenAnchor" class="{font.icons.iconChosen}">
+                        GWT
+                        <span>chosen</span>
+                    </a>
+                </li>
             </ul>
         </section>
 

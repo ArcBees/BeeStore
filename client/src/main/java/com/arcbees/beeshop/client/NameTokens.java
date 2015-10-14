@@ -16,7 +16,18 @@
 
 package com.arcbees.beeshop.client;
 
+import com.arcbees.beeshop.common.dto.Brand;
+
 public class NameTokens {
     public static final String HOME = "!/home";
     public static final String PRODUCT = "!/product";
+
+    public static final String PARAM_BRAND = "brand";
+    public static final String GAE_STUDIO = Brand.GAE_STUDIO.getValue();
+    public static final String GWTP = Brand.GWTP.getValue();
+    public static final String CHOSEN = Brand.CHOSEN.getValue();
+    public static final String JUKITO = Brand.JUKITO.getValue();
+    public static final String GSSS = Brand.GSSS.getValue();
+    public static final String GQUERY = Brand.GQUERY.getValue();
+    public static final String ARCBEES = Brand.ARCBEES.getValue();
 }
