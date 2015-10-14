@@ -30,7 +30,7 @@ public class BrandChangeHandlerTest {
 
         handler.onNavigation(navigationEvent);
 
-        verify(currentBrand).update(Brand.ARCBEES);
+        verify(currentBrand).update();
     }
 
     @Test
@@ -43,6 +43,6 @@ public class BrandChangeHandlerTest {
 
         handler.onNavigation(navigationEvent);
 
-        verify(currentBrand).update(Brand.CHOSEN);
+        verify(currentBrand).update();
     }
 }
