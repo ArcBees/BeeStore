@@ -13,14 +13,25 @@
     <artifactId>client</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>com.arcbees.beeshop</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
         <!-- GWT -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
         </dependency>
+
+        <!-- DI -->
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
         </dependency>
 
         <!-- GWTP -->
@@ -31,6 +42,20 @@
         <dependency>
             <groupId>com.gwtplatform.extensions</groupId>
             <artifactId>dispatch-rest-delegates</artifactId>
+        </dependency>
+
+        <!-- TESTING -->
+        <dependency>
+            <groupId>org.jukito</groupId>
+            <artifactId>jukito</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
         </dependency>
 
         <!-- OTHER -->

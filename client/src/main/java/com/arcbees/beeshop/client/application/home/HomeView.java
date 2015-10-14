@@ -18,7 +18,11 @@ package com.arcbees.beeshop.client.application.home;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.application.widget.PricePresenter;
+import com.arcbees.beeshop.client.application.widget.PriceWidgetFactory;
+import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
@@ -26,8 +30,28 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     interface Binder extends UiBinder<Widget, HomeView> {
     }
 
+    @UiField(provided = true)
+    PricePresenter shirtPrice;
+    @UiField(provided = true)
+    PricePresenter bagPrice;
+
     @Inject
-    HomeView(Binder uiBinder) {
+    HomeView(
+            Binder uiBinder,
+            PriceWidgetFactory priceWidgetFactory) {
+        ProductDto shirt = new ProductDto();
+        shirt.setBrandName("Bee");
+        shirt.setPrice(55);
+        shirt.setProductName("Shirt");
+
+        ProductDto bag = new ProductDto();
+        bag.setBrandName("Bee");
+        bag.setPrice(35);
+        bag.setProductName("Bag");
+
+        shirtPrice = priceWidgetFactory.create(shirt);
+        bagPrice = priceWidgetFactory.create(bag);
+
         initWidget(uiBinder.createAndBindUi(this));
     }
 }

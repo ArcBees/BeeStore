@@ -6,10 +6,13 @@
     <inherits name="com.arcbees.gsss.grid.Grid"/>
     <inherits name="com.google.gwt.query.Query"/>
     <inherits name="org.vectomatic.libgwtsvg"/>
+    <inherits name="com.arcbees.gsss.mixin.Mixin"/>
+    <inherits name="com.arcbees.gsss.animation.Animation"/>
 
     <extend-configuration-property name="gin.ginjector.modules" value="com.arcbees.beeshop.client.ClientModule"/>
 
     <source path="client"/>
+    <source path='common'/>
 
     <set-configuration-property name="CssResource.enableGss" value="true"/>
 </module>
