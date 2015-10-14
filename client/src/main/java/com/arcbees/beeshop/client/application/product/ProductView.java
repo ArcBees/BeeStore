@@ -14,19 +14,20 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.application.product;
 
-import com.arcbees.beeshop.client.application.home.HomeModule;
-import com.arcbees.beeshop.client.application.product.ProductModule;
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import javax.inject.Inject;
 
-public class ApplicationModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        install(new HomeModule());
-        install(new ProductModule());
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
 
-        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-                ApplicationPresenter.MyProxy.class);
+public class ProductView extends ViewImpl implements ProductPresenter.MyView {
+    interface Binder extends UiBinder<Widget, ProductView> {
+    }
+
+    @Inject
+    ProductView(Binder uiBinder) {
+        initWidget(uiBinder.createAndBindUi(this));
     }
 }

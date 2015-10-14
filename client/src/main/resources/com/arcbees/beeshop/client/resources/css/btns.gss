@@ -1,3 +1,4 @@
+@require "fonts";
 @require "colors";
 
 /**
@@ -19,7 +20,7 @@
     background-color: C_DARK;
     color: C_TEXT_LIGHT;
     line-height: 1;
-    font-family: "geometria-bold", "Helvetica", Helvetica, Arial, sans-serif;
+    font-family: F_PRIMARY;
     font-size: 1.8rem;
     text-align: center;
     text-decoration: none;
@@ -63,7 +64,7 @@
 ------------------------ */
 
 .btn_primary {
-    color: #fff;
+    color: C_DARK;
     background-color: #2da2bb;
 }
 
@@ -84,9 +85,9 @@
 
 .btn_outline {
     background-color: transparent;
-    color: #fff;
+    color: C_DARK;
 
-    border: 4px solid C_LIGHT;
+    border: 4px solid C_DARK;
 }
 
 .btn_outline:hover {

@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.client.resources;
 
+import org.vectomatic.dom.svg.ui.SVGResource;
 import com.arcbees.gsss.grid.client.GridResources;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
@@ -30,25 +31,27 @@ public interface AppResources extends ClientBundle {
 
         String footer_contact();
 
-        String footer_contact_arcbees();
+        String footer_linkArcbees();
 
-        String footer_contact_social();
+        String footer_linkSocial();
 
         String wrapper();
 
         String header_top();
 
+        String header_menu();
+
         String header_bottom();
 
-        String header_bottom_right();
+        String header_bottom__right();
 
         String wishlist();
 
         String cart();
 
-        String beeStoreLogo();
+        String beestore_logo();
 
-        String resolution();
+        String mobileDisplay();
 
         String language();
 
@@ -58,7 +61,7 @@ public interface AppResources extends ClientBundle {
 
         String clearfix();
 
-        String caseStudy();
+        String footer_caseStudy();
 
         String txt_center();
 
@@ -67,15 +70,25 @@ public interface AppResources extends ClientBundle {
         String header_developersPlatform();
 
         String backTop();
+
+        String inputQuantity();
+
+        String visuallyHidden();
     }
 
     @Source("img/Beestore-logo.png")
     ImageResource beestoreLogo();
 
+    SVGResource logoBeestore();
+
     @Source("css/normalize.gss")
     Normalize normalize();
 
-    @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "css/colors.gss", "fonts/fonts.gss", "css/layout.gss", "css/style.gss"})
+    @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/colors.gss",
+            "fonts/fonts.gss",
+            "css/layout.gss",
+            "css/style.gss"})
     Style style();
 
     @Source({"com/arcbees/gsss/grid/client/gridsettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})

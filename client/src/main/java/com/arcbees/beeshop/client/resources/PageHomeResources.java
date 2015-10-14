@@ -65,7 +65,8 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/product-cup.png")
     ImageResource productCup();
 
-    @Source({"css/colors.gss", "fonts/fonts.gss", "css/pages/home.gss"})
+    @Source({"css/colors.gss",
+            "fonts/fonts.gss",
+            "css/pages/home.gss"})
     Style style();
-
 }

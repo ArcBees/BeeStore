@@ -24,6 +24,7 @@ public class ResourceLoader {
             AppResources appResources,
             FontResources fontResources,
             ComponentsResources componentsResources,
+            PageProductResources pageProductResources,
             PageHomeResources pageHomeResources) {
         appResources.normalize().ensureInjected();
         appResources.style().ensureInjected();
@@ -31,6 +32,7 @@ public class ResourceLoader {
         fontResources.font().ensureInjected();
         appResources.grid().ensureInjected();
         pageHomeResources.style().ensureInjected();
+        pageProductResources.style().ensureInjected();
         componentsResources.style().ensureInjected();
     }
 }

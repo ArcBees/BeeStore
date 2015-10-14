@@ -16,19 +16,27 @@
 /* -- TYPO
 ------------------------ */
 
-h2 {
-    font-size: 4rem;
+h2,
+h3 {
     line-height: 1;
     text-transform: uppercase;
 
     margin-bottom: 0;
 }
 
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
 /* -- BASE
 ------------------------ */
 
 body {
-    background-color: C_STRIPE_MEDIUM1;
+    background-color: #f1f1f1;
     font-family: F_PRIMARY;
 }
 
@@ -49,18 +57,18 @@ body {
 
 .header_top {
     color: C_TEXT_LIGHT;
-    background-color: C_DARK;
+    background-color: #000;
 
     position: relative;
 }
 
-.resolution {
+.mobileDisplay {
     display: inline-block;
     margin: 0 0 0 30px;
     padding: 0;
 }
 
-.resolution > li {
+.mobileDisplay li {
     font-size: 2.4rem;
     line-height: 5rem;
 
@@ -68,15 +76,15 @@ body {
     margin-right: 15px;
 }
 
-.resolution > li a {
+.mobileDisplay li a {
     color: #818181;
 }
 
-.resolution > li > a:hover {
+.mobileDisplay li a:hover {
     color: C_TEXT_LIGHT;
 }
 
-.resolution > li > a.active {
+.mobileDisplay li a.active {
     color: C_TEXT_LIGHT;
     border-bottom: 5px solid #fbe605;
 
@@ -93,60 +101,90 @@ body {
 
 .header_developersPlatform i:first-of-type {
     color: #6f6f6d;
-    font-size: 1.4rem;
+    font-size: 1.1em;
 
     margin-right: 25px;
+
+    vertical-align: top;
 }
 
-.header_developersPlatform i:last-of-type:before {
+.header_developersPlatform span {
+    vertical-align: middle;
+}
+
+.header_developersPlatform span + i {
     font-size: 1rem;
-}
 
-.header_developersPlatform i:before {
-    margin-top: -4px;
+    margin-left: 5px;
+
+    vertical-align: text-top;
 }
 
 .header_bottom {
-    background-color: C_LIGHT;
+    background-color: #fff;
 
-    padding: 10px 0;
+    padding: 15px 0;
 
     position: relative;
 }
 
-.beeStoreLogo {
+.header_menu {
+    margin: 25px 0 0 24px;
+}
+
+.header_menu li {
+    font-size: 1.4rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+
+    display: inline;
+    margin-right: 60px;
+}
+
+.header_menu li > a {
+    color: C_TEXT;
+}
+
+.beestore_logo svg {
+    display: block;
     width: 123px;
+    height: 70px;
     margin: 0 auto;
 }
 
-.header_bottom_right {
+.header_bottom__right {
     position: absolute;
-    top: 20px;
+    top: 28px;
     right: 30px;
 }
 
 .wishlist,
 .cart {
-    font-size: 3rem;
+    font-size: 2.6rem;
 
     display: inline-block;
     margin-left: 35px;
+
+    vertical-align: top;
 }
 
-.language {
-    display: inline-block;
-    margin: 0;
+.cart {
+    font-size: 2.9rem;
 }
 
-.language > li {
-    color: #c7c5c5;
+li.language {
+    font-size: 1.6rem;
     font-family: F_PRIMARY_BOLD;
 
-    display: inline;
+    display: inline-block;
     margin-left: 10px;
 }
 
-.language > li.active {
+li.language a {
+    color: #c7c5c5;
+}
+
+li.language a.active {
     color: C_TEXT;
 }
 
@@ -192,68 +230,61 @@ footer {
     color: C_TEXT_LIGHT;
 }
 
-.caseStudy {
+.footer_caseStudy {
     color: #c6c6c6;
     font-size: 1.4rem;
     line-height: 1.25em;
 }
 
-.caseStudy span {
+.footer_caseStudy span {
     display: block;
 }
 
 .footer_logoArcbees {
-    font-family: F_PRIMARY_LIGHT;
-    font-size: 5.5rem;
     text-align: center;
 }
 
 .footer_logoArcbees i {
-    font-size: 10.25rem;
-    line-height: 1;
-
     display: block;
-    margin: -32px 0 5px 0;
+    margin-top: -16px;
 }
 
-.footer_logoArcbees p {
-    font-size: 2rem;
-    line-height: 1;
-
-    margin: -5px 0 0 0;
+.footer_logoArcbees i:before {
+    font-size: 10rem;
 }
 
 .footer_contact {
     text-align: right;
 }
 
-.footer_contact_arcbees > li {
-    font-size: 1.2rem;
+.footer_linkArcbees > li {
+    font-size: 1.1rem;
     font-family: F_PRIMARY_BOLD;
     text-transform: uppercase;
 
     display: block;
 }
 
-.footer_contact_arcbees i:before {
-    font-size: 1.2rem;
+.footer_linkArcbees i:before {
+    font-size: 1rem;
 
-    vertical-align: text-top;
+    margin-left: 5px;
+
+    vertical-align: middle;
 }
 
-.footer_contact_social > li {
+.footer_linkSocial > li {
     font-size: 2.6rem;
     line-height: 1;
 
     display: inline-block;
     padding: 0;
-    margin: 0 1px 0 0;
 }
 
-.footer_contact_social > li > a {
+.footer_linkSocial > li > a {
     color: #333;
 }
 
-.footer_contact_social > li > a:hover {
+.footer_linkSocial > li > a:hover {
     color: C_TEXT_LIGHT;
 }

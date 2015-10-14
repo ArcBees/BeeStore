@@ -9,9 +9,12 @@
 
     <properties>
         <gwt.version>2.7.0</gwt.version>
-        <gwtp.version>1.5-SNAPSHOT</gwtp.version>
-        <gsss.version>1.1-SNAPSHOT</gsss.version>
+        <gwtp.version>1.5</gwtp.version>
+        <gsss.version>1.1</gsss.version>
         <gwtquery.version>1.4.3</gwtquery.version>
+
+        <gwt-inject.version>2.1.2</gwt-inject.version>
+        <gwt-svg.version>0.5.9</gwt-svg.version>
 
         <guava.version>18.0</guava.version>
         <guice.version>3.0</guice.version>
@@ -20,7 +23,7 @@
         <javax.inject.version>1</javax.inject.version>
         <servlet-api.version>2.5</servlet-api.version>
 
-        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -93,6 +96,11 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>com.google.gwt.inject</groupId>
+                <artifactId>gin</artifactId>
+                <version>${gwt-inject.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.google.inject.extensions</groupId>
                 <artifactId>guice-servlet</artifactId>
                 <version>${guice.version}</version>
@@ -117,6 +125,13 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.vectomatic</groupId>
+                <artifactId>lib-gwt-svg</artifactId>
+                <version>${gwt-svg.version}</version>
+                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
