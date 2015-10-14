@@ -24,11 +24,11 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-                ApplicationPresenter.MyProxy.class);
-
         install(new HomeModule());
         install(new ProductModule());
         install(new WidgetModule());
+
+        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
+                ApplicationPresenter.MyProxy.class);
     }
 }

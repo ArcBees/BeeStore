@@ -54,9 +54,11 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     private void buildAnchorUri(ProductDto product) {
+        String productId = String.valueOf(product.getId());
+
         PlaceRequest request = new PlaceRequest.Builder()
                 .nameToken(NameTokens.PRODUCT)
-                .with("productId", String.valueOf(product.getId()))
+                .with("productId", productId)
                 .build();
 
         String token = tokenFormatter.toPlaceToken(request);
