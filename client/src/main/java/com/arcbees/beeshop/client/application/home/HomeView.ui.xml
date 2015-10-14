@@ -16,7 +16,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bees
                         <span>shirt</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bee
                         <span>bag</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
         </section>
@@ -40,12 +40,12 @@
                     GAE
                     <span>STUDIO</span>
                 </li>
-                <li><i class="{font.icons.iconJukito}"></i>JUKITO</li>
-                <li><i class="{font.icons.iconGwtp}"></i>GWTP</li>
-                <li><i class="{font.icons.iconArcbees}"></i>arcbees</li>
-                <li><i class="{font.icons.iconGquery}"></i>gQuery</li>
-                <li><i class="{font.icons.iconGsss}"></i>GSSS</li>
-                <li><i class="{font.icons.iconChosen}"></i> GWT<span>chosen</span></li>
+                <li><i class="{font.icons.iconJukito}"/>JUKITO</li>
+                <li><i class="{font.icons.iconGwtp}"/>GWTP</li>
+                <li><i class="{font.icons.iconArcbees}"/>arcbees</li>
+                <li><i class="{font.icons.iconGquery}"/>gQuery</li>
+                <li><i class="{font.icons.iconGsss}"/>GSSS</li>
+                <li><i class="{font.icons.iconChosen}"/> GWT<span>chosen</span></li>
             </ul>
         </section>
 
@@ -64,7 +64,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bees
                         <span>Cup</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
             <div class="{page.style.itemForSale}">
@@ -74,7 +74,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bees
                         <span>Case</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
             <div class="{page.style.itemForSale}">
@@ -84,7 +84,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bees
                         <span>Key</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
             <div class="{page.style.itemForSale}">
@@ -94,7 +94,7 @@
                     <div class="{page.style.itemForSale_info_name}">Bees
                         <span>Mug</span>
                     </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
+                    <div class="{page.style.itemForSale_info_price}">35 $</div>
                 </div>
             </div>
         </section>

@@ -5,79 +5,92 @@
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
 
-    <g:HTMLPanel>
-        <header>
-            <div class="{res.style.header_top}">
-                <ul class="{res.style.mobileDisplay}">
-                    <li>
-                        <a class="{res.style.active}" href="#">
-                            <i class="{font.icons.iconDesktop}"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="{font.icons.iconTabletDevice}"/>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="{font.icons.iconPhoneDevice}"/>
-                        </a>
-                    </li>
-                </ul>
-                <div class="{res.style.header_developersPlatform}">
-                    <i class="{font.icons.iconInfoHexa}"/>
-                    <span>DEVELOPPER'S PLATFORM</span>
-                    <i class="{font.icons.iconArrowOutside}"/>
-                </div>
-            </div>
+    <ui:import field="com.arcbees.beeshop.client.NameTokens.*"/>
 
-            <div class="{res.style.header_bottom} {res.grid.row}">
-                <div class="{res.grid.col} {res.grid.col_4}">
-                    <nav class="{res.style.header_menu}">
-                        <ul>
-                            <li>
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Products</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact us</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
-                    <svg:SVGImage resource="{res.logoBeestore}"/>
-                </div>
-                <div class="{res.grid.col} {res.grid.col_4}">
-                    <nav class="{res.style.header_bottom__right}">
-                        <li class="{res.style.wishlist}">
-                            <i class="{font.icons.iconWhishlist}"/>
-                            <span class="{res.style.visuallyHidden}">wishlist</span>
-                        </li>
-                        <li class="{res.style.cart}">
-                            <i class="{font.icons.iconCart}"/>
-                            <span class="{res.style.visuallyHidden}">cart</span>
-                        </li>
-                        <li class="{res.style.language}">
-                            <a class="{res.style.active}" href="#">ENG
-                                <span class="{res.style.visuallyHidden}">LISH</span>
+    <g:HTMLPanel addStyleNames="{res.style.container}">
+        <div class="{res.style.wrap}">
+            <header>
+                <div class="{res.style.header_top}">
+                    <ul class="{res.style.mobileDisplay}">
+                        <li>
+                            <a class="{res.style.active}" href="#">
+                                <i class="{font.icons.iconDesktop}"/>
                             </a>
                         </li>
-                        <li class="{res.style.language}">
-                            <a href="#">FR
-                                <span class="{res.style.visuallyHidden}">ANÇAIS</span>
+                        <li>
+                            <a href="#">
+                                <i class="{font.icons.iconTabletDevice}"/>
                             </a>
                         </li>
-                    </nav>
+                        <li>
+                            <a href="#">
+                                <i class="{font.icons.iconPhoneDevice}"/>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="{res.style.header_developersPlatform}">
+                        <i class="{font.icons.iconInfoHexa}"/>
+                        <span>DEVELOPPER'S PLATFORM</span>
+                        <i class="{font.icons.iconArrowOutside}"/>
+                    </div>
                 </div>
-            </div>
 
-        </header>
+                <div class="{res.style.header_bottom} {res.grid.row}">
+                    <div class="{res.grid.col} {res.grid.col_4}">
+                        <nav class="{res.style.header_menu}">
+                            <ul>
+                                <li>
+                                    <a href="#{HOME}">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#{PRODUCTS}">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact us</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
+                        <a href="#{HOME}">
+                            <svg:SVGImage resource="{res.logoBeestore}"/>
+                        </a>
+                    </div>
+                    <div class="{res.grid.col} {res.grid.col_4}">
+                        <nav class="{res.style.header_bottom__right}">
+                            <li class="{res.style.wishlist}">
+                                <button>
+                                    <i class="{font.icons.iconWhishlist}"/>
+                                    <span class="{res.style.visuallyHidden}">wishlist</span>
+                                </button>
+                            </li>
+                            <li class="{res.style.cart} {res.style.active}">
+                                <button>
+                                    <i class="{font.icons.iconCart}"/>
+                                    <span class="{res.style.visuallyHidden}">cart</span>
+                                </button>
+                            </li>
+                            <li class="{res.style.language}">
+                                <a class="{res.style.active}" href="#">ENG
+                                    <span class="{res.style.visuallyHidden}">LISH</span>
+                                </a>
+                            </li>
+                            <li class="{res.style.language}">
+                                <a href="#">FR
+                                    <span class="{res.style.visuallyHidden}">ANÇAIS</span>
+                                </a>
+                            </li>
+                        </nav>
+                    </div>
+                </div>
 
-        <g:SimplePanel ui:field="main"/>
+            </header>
+
+            <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
+
+            <div class="{res.style.push}"></div>
+        </div>
+
 
         <footer class="{res.grid.row} {res.style.clearfix}">
             <div class="{res.style.backTop}">
@@ -88,10 +101,10 @@
                 <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
                         <li>
-                            <a href="">Home</a>
+                            <a href="#{HOME}">Home</a>
                         </li>
                         <li>
-                            <a href="">Products</a>
+                            <a href="#{PRODUCTS}">Products</a>
                         </li>
                         <li>
                             <a href="">Contact us</a>

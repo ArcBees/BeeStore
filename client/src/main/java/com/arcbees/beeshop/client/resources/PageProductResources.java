@@ -39,6 +39,12 @@ public interface PageProductResources extends ClientBundle {
         String previous();
 
         String next();
+
+        String product_description_content();
+
+        String product_size();
+
+        String active();
     }
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
