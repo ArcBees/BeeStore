@@ -18,11 +18,11 @@ package com.arcbees.beeshop.client;
 
 import com.arcbees.beeshop.client.application.ApplicationModule;
 import com.arcbees.beeshop.client.resources.ResourceLoader;
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.google.gwt.inject.client.AbstractGinModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 import com.gwtplatform.mvp.shared.proxy.RouteTokenFormatter;
 
-public class ClientModule extends AbstractPresenterModule {
+public class ClientModule extends AbstractGinModule {
     @Override
     protected void configure() {
         install(new DefaultModule.Builder()

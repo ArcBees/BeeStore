@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>com.arcbees.beeshop</groupId>
     <artifactId>beeshop</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -10,15 +9,23 @@
     <properties>
         <gwt.version>2.7.0</gwt.version>
         <gwtp.version>1.5</gwtp.version>
-        <gsss.version>1.1-SNAPSHOT</gsss.version>
+        <gsss.version>1.1</gsss.version>
         <gwtquery.version>1.4.3</gwtquery.version>
 
+        <gwt-inject.version>2.1.2</gwt-inject.version>
+        <gwt-svg.version>0.5.9</gwt-svg.version>
+
+        <gin.version>2.1.2</gin.version>
         <guava.version>18.0</guava.version>
         <guice.version>3.0</guice.version>
         <velocity.version>1.7</velocity.version>
 
         <javax.inject.version>1</javax.inject.version>
         <servlet-api.version>2.5</servlet-api.version>
+
+        <junit.version>4.12</junit.version>
+        <jukito.version>1.4.1</jukito.version>
+        <assertj-core.version>2.1.0</assertj-core.version>
 
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
@@ -30,6 +37,7 @@
         <module>client</module>
         <module>server</module>
         <module>app</module>
+        <module>common</module>
     </modules>
 
     <repositories>
@@ -47,6 +55,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.arcbees.beeshop</groupId>
+                <artifactId>common</artifactId>
+                <version>${project.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-user</artifactId>
@@ -87,16 +102,25 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>com.google.gwt.inject</groupId>
+                <artifactId>gin</artifactId>
+                <version>${gwt-inject.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
                 <groupId>com.google.inject</groupId>
                 <artifactId>guice</artifactId>
                 <version>${guice.version}</version>
-                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.inject.extensions</groupId>
                 <artifactId>guice-servlet</artifactId>
                 <version>${guice.version}</version>
-                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject.extensions</groupId>
+                <artifactId>guice-assistedinject</artifactId>
+                <version>${guice.version}</version>
             </dependency>
 
             <dependency>
@@ -117,6 +141,30 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.vectomatic</groupId>
+                <artifactId>lib-gwt-svg</artifactId>
+                <version>${gwt-svg.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <!-- TESTING -->
+            <dependency>
+                <groupId>org.jukito</groupId>
+                <artifactId>jukito</artifactId>
+                <version>${jukito.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
