@@ -17,6 +17,6 @@
 package com.arcbees.beeshop.client;
 
 public class NameTokens {
-    public static final String HOME = "/home";
-    public static final String PRODUCT = "/product";
+    public static final String HOME = "!/home";
+    public static final String PRODUCT = "!/product";
 }
