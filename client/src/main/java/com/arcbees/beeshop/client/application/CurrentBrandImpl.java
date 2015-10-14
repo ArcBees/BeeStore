@@ -15,22 +15,16 @@ public class CurrentBrandImpl implements CurrentBrand, HasHandlers {
     private final EventBus eventBus;
     private final PlaceManager placeManager;
 
-    private Brand brand;
-
     @Inject
     public CurrentBrandImpl(
             EventBus eventBus,
             PlaceManager placeManager) {
         this.eventBus = eventBus;
         this.placeManager = placeManager;
-
-        brand = Brand.getDefaultValue();
     }
 
     @Override
     public void update() {
-        brand = get();
-
         BrandChangedEvent.fire(get(), this);
     }
 
