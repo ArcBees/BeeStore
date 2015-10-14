@@ -57,7 +57,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         String productId = String.valueOf(product.getId());
 
         PlaceRequest request = new PlaceRequest.Builder()
-                .nameToken(NameTokens.PRODUCT)
+                .nameToken(NameTokens.PRODUCTS)
                 .with("productId", productId)
                 .build();
 
