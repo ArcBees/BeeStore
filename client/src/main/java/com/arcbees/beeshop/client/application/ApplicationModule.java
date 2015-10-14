@@ -30,7 +30,7 @@ public class ApplicationModule extends AbstractPresenterModule {
 
         bind(BrandChangeHandler.class).asEagerSingleton();
         bind(CurrentBrand.class).to(CurrentBrandImpl.class);
-        bind(ThemeChanger.class).to(ThemeChangerImpl.class).asEagerSingleton();
+        bind(ThemeChanger.class).to(ThemeChangerImpl.class);
 
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);
