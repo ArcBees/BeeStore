@@ -18,15 +18,17 @@ package com.arcbees.beeshop.client.application;
 
 import com.arcbees.beeshop.client.application.home.HomeModule;
 import com.arcbees.beeshop.client.application.product.ProductModule;
+import com.arcbees.beeshop.client.application.widget.WidgetModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new HomeModule());
-        install(new ProductModule());
-
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);
+
+        install(new HomeModule());
+        install(new ProductModule());
+        install(new WidgetModule());
     }
 }

@@ -15,9 +15,17 @@
     <dependencies>
         <!-- GWT -->
         <dependency>
+            <groupId>com.arcbees.beeshop</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
         </dependency>
+
+        <!-- DI -->
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
             <artifactId>gin</artifactId>
@@ -31,6 +39,23 @@
         <dependency>
             <groupId>com.gwtplatform.extensions</groupId>
             <artifactId>dispatch-rest-delegates</artifactId>
+        </dependency>
+
+        <!-- TESTING -->
+        <dependency>
+            <groupId>org.jukito</groupId>
+            <artifactId>jukito</artifactId>
+            <version>${jukito.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
         </dependency>
 
         <!-- OTHER -->

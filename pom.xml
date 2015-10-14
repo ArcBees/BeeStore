@@ -16,12 +16,17 @@
         <gwt-inject.version>2.1.2</gwt-inject.version>
         <gwt-svg.version>0.5.9</gwt-svg.version>
 
+        <gin.version>2.1.2</gin.version>
         <guava.version>18.0</guava.version>
         <guice.version>3.0</guice.version>
         <velocity.version>1.7</velocity.version>
 
         <javax.inject.version>1</javax.inject.version>
         <servlet-api.version>2.5</servlet-api.version>
+
+        <junit.version>4.12</junit.version>
+        <jukito.version>1.4.1</jukito.version>
+        <assertj-core.version>2.1.0</assertj-core.version>
 
         <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 
@@ -33,6 +38,7 @@
         <module>client</module>
         <module>server</module>
         <module>app</module>
+        <module>common</module>
     </modules>
 
     <repositories>

@@ -10,6 +10,7 @@
     <extend-configuration-property name="gin.ginjector.modules" value="com.arcbees.beeshop.client.ClientModule"/>
 
     <source path="client"/>
+    <source path='common'/>
 
     <set-configuration-property name="CssResource.enableGss" value="true"/>
 </module>
