@@ -22,6 +22,7 @@ public class PricePresenter extends PresenterWidget<PricePresenter.MyView> imple
             MyView view,
             @Assisted ProductDto product) {
         super(eventBus, view);
+
         this.product = product;
 
         getView().setUiHandlers(this);

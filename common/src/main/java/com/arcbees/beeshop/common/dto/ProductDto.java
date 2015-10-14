@@ -4,6 +4,15 @@ public class ProductDto {
     private String brandName;
     private String productName;
     private int price;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getBrandName() {
         return brandName;
