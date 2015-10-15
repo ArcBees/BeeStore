@@ -34,8 +34,6 @@ public interface PageHomeResources extends ClientBundle {
 
         String itemForSale_info_name();
 
-        String itemForSale_info_price();
-
         String welcome();
 
         String shoppingByProduct();
@@ -61,8 +59,11 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/product-usb.png")
     ImageResource productUsb();
 
-    @Source("img/products/product-thermos.png")
-    ImageResource productThermos();
+    @Source("img/products/arcbees/arcbees-thermos.png")
+    ImageResource arcbeesThermos();
+
+    @Source("img/products/gwtp/gwtp-thermos.png")
+    ImageResource gwtpThermos();
 
     @Source("img/products/product-cup.png")
     ImageResource productCup();

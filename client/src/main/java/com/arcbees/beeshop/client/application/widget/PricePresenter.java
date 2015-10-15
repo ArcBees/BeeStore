@@ -3,18 +3,20 @@ package com.arcbees.beeshop.client.application.widget;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.common.dto.ProductDto;
+import com.google.gwt.user.client.TakesValue;
 import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
-public class PricePresenter extends PresenterWidget<PricePresenter.MyView> implements PriceUiHandlers {
+public class PricePresenter extends PresenterWidget<PricePresenter.MyView>
+        implements PriceUiHandlers, TakesValue<ProductDto> {
     interface MyView extends View, HasUiHandlers<PriceUiHandlers> {
         void setProduct(ProductDto product);
     }
 
-    private final ProductDto product;
+    private ProductDto product;
 
     @Inject
     PricePresenter(
@@ -26,6 +28,17 @@ public class PricePresenter extends PresenterWidget<PricePresenter.MyView> imple
         this.product = product;
 
         getView().setUiHandlers(this);
+    }
+
+    @Override
+    public void setValue(ProductDto value) {
+        this.product = value;
+        getView().setProduct(product);
+    }
+
+    @Override
+    public ProductDto getValue() {
+        return product;
     }
 
     @Override

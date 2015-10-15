@@ -4,6 +4,115 @@
  * - Classes for differents elements used in every page
  */
 
+/* -- STYLE USE THROUGHOUT THE SITE
+------------------------ */
+
+.itemPrice {
+    background-color: C_PRIMARY;
+    font-size: 2rem;
+
+    display: inline-block;
+    padding: 2px 15px;
+}
+
+/* -- ARCBEES
+------------------------ */
+
+.arcbees {}
+
+.arcbees_img {
+    display: none;
+}
+
+.arcbees .arcbees_img {
+    display: block;
+}
+
+.arcbees .itemPrice,
+.arcbees .mainProducts_bg {
+    background-color: C_PRIMARY;
+}
+
+/* -- GWTP
+------------------------ */
+
+.gwtp {}
+
+.gwtp_img {
+    display: none;
+}
+
+.gwtp .gwtp_img {
+    display: block;
+}
+
+.gwtp .itemPrice,
+.gwtp .mainProducts_bg {
+    background-color: C_PRODUCT_GWTP;
+}
+
+/* -- CHOSEN
+------------------------ */
+
+.chosen {}
+
+.chosen .chosen_img {}
+
+.chosen .itemPrice,
+.chosen .mainProducts_bg {
+    background-color: C_PRODUCT_CHOSEN;
+}
+
+/* -- JUKITO
+------------------------ */
+
+.jukito {}
+
+.jukito .jukito_img {}
+
+.jukito .itemPrice,
+.jukito .mainProducts_bg {
+    background-color: C_PRODUCT_JUKITO;
+}
+
+/* -- GQUERY
+------------------------ */
+
+.gquery {}
+
+.gquery .gquery_img {}
+
+.gquery .itemPrice,
+.gquery .mainProducts_bg {
+    background-color: C_PRODUCT_GQUERY;
+}
+
+/* -- GSSS
+------------------------ */
+
+.gsss {}
+
+.gsss .gsss_img {}
+
+.gsss .itemPrice,
+.gsss .mainProducts_bg {
+    background-color: C_PRODUCT_GSS;
+}
+
+/* -- GAE STUDIO
+------------------------ */
+
+.gaestudio {}
+
+.gaestudio .gaestudio_img {}
+
+.gaestudio .itemPrice,
+.gaestudio .mainProducts_bg {
+    background-color: C_PRODUCT_GAE;
+}
+
+/* -- GENERIC STYLE
+------------------------ */
 
 .txt_center {
     text-align: center;

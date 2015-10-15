@@ -153,6 +153,18 @@ public interface FontResources extends ClientBundle {
         String iconPhoneDevice();
 
         String iconGsss();
+
+        String iconJukitoName();
+
+        String iconGwtpName();
+
+        String iconGqueryName();
+
+        String iconGsssName();
+
+        String iconChosenName();
+
+        String iconGaeName();
     }
 
     @Source("fonts/icons/icons.gss")
