@@ -89,7 +89,7 @@
 .iconChosen:before { content: "\e607";}
 .iconDevTime:before { content: "\e609";}
 .iconCode:before { content: "\e61a";}
-.iconCoeur:before { content: "\e63b";}
+.iconHeart:before { content: "\e63b";}
 .iconClose:before { content: "\e608";}
 .iconFb:before { content: "\e60a";}
 .iconFbSquare:before { content: "\e64a";}
@@ -110,7 +110,12 @@
 .iconRadar:before { content: "\e61c";}
 .iconRubic:before { content: "\e64b";}
 .iconSearch:before { content: "\e620";}
-.iconShare:before { content: "\e621";}
+.iconShare:before {
+    content: "\e621";
+    font-size: 2.5rem;
+
+    margin-left: 10px;
+}
 .iconSkull:before { content: "\e62a";}
 .iconTrophe:before { content: "\e62c";}
 .iconTwitter:before { content: "\e622";}

@@ -37,6 +37,8 @@ public interface AppResources extends ClientBundle {
 
         String wrapper();
 
+        String wrap();
+
         String header_top();
 
         String header_menu();
@@ -74,6 +76,12 @@ public interface AppResources extends ClientBundle {
         String inputQuantity();
 
         String visuallyHidden();
+
+        String push();
+
+        String container();
+
+        String main();
     }
 
     @Source("img/Beestore-logo.png")
@@ -85,6 +93,7 @@ public interface AppResources extends ClientBundle {
     Normalize normalize();
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/base.gss",
             "css/colors.gss",
             "fonts/fonts.gss",
             "css/layout.gss",

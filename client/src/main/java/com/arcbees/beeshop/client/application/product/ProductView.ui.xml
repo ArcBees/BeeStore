@@ -10,73 +10,92 @@
 
         <div class="{page.style.product_info}">
 
-            <nav class="{page.style.product_nav} {res.style.clearfix}">
-                <ul class="">
-                    <li class="{page.style.previous}">
+            <ul class="{page.style.product_nav} {res.style.clearfix}">
+                <li class="{page.style.previous}">
+                    <a href="#">
                         <i class="{font.icons.iconArrowDown}"/>
                         Back Home
-                    </li>
-                    <li class="{page.style.next}">
-                        Next Product
+                    </a>
+                </li>
+                <li class="{page.style.next}">
+                    <a href="#">Next Product
                         <i class="{font.icons.iconArrowDown}"/>
-                    </li>
-                </ul>
-            </nav>
+                    </a>
+                </li>
+            </ul>
 
             <div class="{page.style.product_description}">
-                <h2>Bee
-                    <span>bag</span>
-                </h2>
-                <p>Feel the beeway power taking control of you
-                    <span>and you will code like a crazy bee!</span>
-                </p>
-                <span class="{page.style.product_price}">20$</span>
+                <div class="{page.style.product_description_content}">
+                    <h2>Bee
+                        <span>bag</span>
+                    </h2>
+                    <p>Feel the beeway power taking control of you
+                        <span>and you will code like a crazy bee!</span>
+                    </p>
+                    <span class="{page.style.product_price}">20 $</span>
 
-                <h3>option</h3>
+                    <h3>options</h3>
 
-                <ul class="{page.style.product_option}">
-                    <li>
-                        <i class="{font.icons.iconGquery}"/>
-                        <span class="{res.style.visuallyHidden}">gQuery</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconGsss}"/>
-                        <span class="{res.style.visuallyHidden}">Gsss</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconChosen}"/>
-                        <span class="{res.style.visuallyHidden}">Chosen</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconArcbees}"/>
-                        <span class="{res.style.visuallyHidden}">Arcbees</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconGwtp}"/>
-                        <span class="{res.style.visuallyHidden}">Gwtp</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconJukito}"/>
-                        <span class="{res.style.visuallyHidden}">Jukito</span>
-                    </li>
-                    <li>
-                        <i class="{font.icons.iconGae}"/>
-                        <span class="{res.style.visuallyHidden}">Gae studio</span>
-                    </li>
-                </ul>
+                    <ul class="{page.style.product_option}">
+                        <li>
+                            <i class="{font.icons.iconGquery}"/>
+                            <span class="{res.style.visuallyHidden}">gQuery</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconGsss}"/>
+                            <span class="{res.style.visuallyHidden}">Gsss</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconChosen}"/>
+                            <span class="{res.style.visuallyHidden}">Chosen</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconArcbees}"/>
+                            <span class="{res.style.visuallyHidden}">Arcbees</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconGwtp}"/>
+                            <span class="{res.style.visuallyHidden}">Gwtp</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconJukito}"/>
+                            <span class="{res.style.visuallyHidden}">Jukito</span>
+                        </li>
+                        <li>
+                            <i class="{font.icons.iconGae}"/>
+                            <span class="{res.style.visuallyHidden}">Gae studio</span>
+                        </li>
+                    </ul>
 
-                <h3>size</h3>
+                    <h3>size</h3>
 
-                <ul class="{page.style.product_option}">
-                    <li>S<span class="{res.style.visuallyHidden}">mall</span></li>
-                    <li>M<span class="{res.style.visuallyHidden}">edium</span></li>
-                    <li>L<span class="{res.style.visuallyHidden}">arge</span></li>
-                    <li>XL<span class="{res.style.visuallyHidden}">arge</span></li>
-                </ul>
+                    <ul class="{page.style.product_size}">
+                        <li>
+                            <a href="#">S
+                                <span class="{res.style.visuallyHidden}">mall</span>
+                            </a>
+                        </li>
+                        <li class="{page.style.active}">
+                            <a href="#">M
+                                <span class="{res.style.visuallyHidden}">edium</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">L
+                                <span class="{res.style.visuallyHidden}">arge</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">XL
+                                <span class="{res.style.visuallyHidden}">arge</span>
+                            </a>
+                        </li>
+                    </ul>
 
-                <input type="number" class="{res.style.inputQuantity}" value="1"/>
-                <button class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
-                <i class="{font.icons.iconShare}"/>
+                    <input type="number" class="{res.style.inputQuantity}" value="1"/>
+                    <button class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
+                    <i class="{font.icons.iconShare}"/>
+                </div>
             </div>
         </div>
         <div class="{page.style.product_img}">

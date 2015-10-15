@@ -48,7 +48,7 @@ public interface FontResources extends ClientBundle {
 
         String iconArcbeesName();
 
-        String iconCoeur();
+        String iconHeart();
 
         String iconLkd();
 
