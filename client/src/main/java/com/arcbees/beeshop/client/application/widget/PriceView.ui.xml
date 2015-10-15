@@ -3,18 +3,15 @@
     <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageHomeResources"/>
 
     <g:HTMLPanel ui:field="panel">
-        <div ui:field="priceView" class="{page.style.itemForSale_info}">
+        <a ui:field="priceView" class="{page.style.itemForSale_info}">
             <div class="{page.style.itemForSale_info_name}">
                 <span ui:field="brandName"/>
                 <span ui:field="productName"/>
             </div>
             <div class="{page.style.itemForSale_info_price}" ui:field="price"/>
-        </div>
-        <!-- TODO: Larry : style this -->
-        <div ui:field="shopView" class="{page.style.itemForSale_info}">
-            <div class="{page.style.itemForSale_info_name}">
-                <a ui:field="shopAnchor">Shop</a>
-            </div>
-        </div>
+        </a>
+        <a ui:field="shopView" class="{page.style.itemForSale_info}">
+            <span class="{page.style.itemForSale_info_shop}">Shop</span>
+        </a>
     </g:HTMLPanel>
 </ui:UiBinder>

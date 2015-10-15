@@ -149,6 +149,7 @@
 
     display: block;
     width: 140px;
+    height: 140px;
     padding: 20px;
     margin: 0 auto;
 }
@@ -160,8 +161,16 @@
     margin: 0 0 10px;
 }
 
-.itemForSale_info_name > span {
+.itemForSale_info_shop {
+    color: C_TEXT;
+    font-size: 2rem;
+    line-height: 45px;
+
     display: block;
+    margin: 25px 0 10px;
+    height: 50px;
+    width: 100px;
+    border: 4px solid C_DARK;
 }
 
 .itemForSale_info_price {

@@ -28,11 +28,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     @UiField
     DivElement price;
     @UiField
-    DivElement shopView;
+    AnchorElement shopView;
     @UiField
-    DivElement priceView;
-    @UiField
-    AnchorElement shopAnchor;
+    AnchorElement priceView;
 
     private final TokenFormatter tokenFormatter;
 
@@ -62,7 +60,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
                 .build();
 
         String token = tokenFormatter.toPlaceToken(request);
-        shopAnchor.setHref("#" + token);
+        shopView.setHref("#" + token);
     }
 
     @Override
