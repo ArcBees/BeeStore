@@ -12,34 +12,12 @@ html {
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 
-html{
-    font-size: 62.5%;
-}
+/**
+ * Remove default margin.
+ */
 
 body {
-    line-height: 1.5;
-
     margin: 0;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* avoid top margins on first content element */
-p:first-child,
-ul:first-child,
-ol:first-child,
-dl:first-child,
-blockquote:first-child,
-pre:first-child,
-h1:first-child,
-h2:first-child,
-h3:first-child,
-h4:first-child,
-h5:first-child,
-h6:first-child {
-    margin-top: 0;
 }
 
 /* HTML5 display definitions
@@ -428,45 +406,4 @@ table {
 td,
 th {
     padding: 0;
-}
-
-
-/* List
-========================================================================== */
-
-nav ul,
-nav ol {
-    padding: 0;
-
-    list-style: none;
-    list-style-image: none;
-}
-
-dl,
-menu,
-ol,
-ul {
-    margin: 1em 0;
-}
-
-dd {
-    margin: 0 0 0 40px;
-}
-
-/* avoid margins on nested elements */
-li p,
-li ul,
-li ol {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-
-p,
-li {
-    font-size: 1.8rem;
-}
-
-a {
-    text-decoration: none;
 }

@@ -1,6 +1,9 @@
-.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
-.clearfix:after { clear: both; }
-.clearfix { zoom: 1; }
+/**
+ * STYLE.GSS
+ *
+ * - Classes for differents elements used in every page
+ */
+
 
 .txt_center {
     text-align: center;
@@ -42,8 +45,9 @@
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
     margin: 0;
+
+    -webkit-appearance: none;
 }
 
 .arcbees {}

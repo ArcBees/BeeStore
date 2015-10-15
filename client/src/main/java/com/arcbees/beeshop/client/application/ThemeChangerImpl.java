@@ -8,7 +8,6 @@ import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.google.gwt.query.client.GQuery;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class ThemeChangerImpl implements ThemeChanger, BrandChangedEventHandler {
@@ -31,7 +30,6 @@ public class ThemeChangerImpl implements ThemeChanger, BrandChangedEventHandler 
 
     @Override
     public void onBrandChanged(BrandChangedEvent event) {
-        GQuery.console.log("Theme change " + event.getBrand().getValue());
         changeBrand(event.getBrand());
     }
 

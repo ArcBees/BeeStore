@@ -6,31 +6,11 @@
  * Framework application style
  *
  *
- * - TYPO
  * - BASE
  * - HEADER                    Style of elements in the header
  * - MAIN CONTAINER            Style for the layout - container, wrapper, main sections, stripes
  * - FOOTER                    Classes for differents elements
  */
-
-/* -- TYPO
------------------------- */
-
-h2,
-h3 {
-    line-height: 1;
-    text-transform: uppercase;
-
-    margin-bottom: 0;
-}
-
-h2 {
-    font-size: 4rem;
-}
-
-h3 {
-    font-size: 2rem;
-}
 
 /* -- BASE
 ------------------------ */
@@ -38,6 +18,14 @@ h3 {
 body {
     background-color: #f1f1f1;
     font-family: F_PRIMARY;
+}
+
+.container {
+    height: 100%;
+}
+
+.main {
+    min-height: calc(100vh - 290px);
 }
 
 .stripe {
@@ -50,6 +38,18 @@ body {
     min-height: 100%;
     width: 980px;
     margin: 0 auto;
+}
+
+.wrap {
+    height: auto !important;
+    min-height: 100%;
+    margin: 0 auto -140px;
+}
+
+.push {
+    height: 140px;
+
+    clear: both;
 }
 
 /* -- HEADER
@@ -73,7 +73,7 @@ body {
     line-height: 5rem;
 
     display: inline-block;
-    margin-right: 15px;
+    margin: 0 15px 0 0;
 }
 
 .mobileDisplay li a {
@@ -153,30 +153,46 @@ body {
 }
 
 .header_bottom__right {
+    height: 100%;
+
     position: absolute;
-    top: 28px;
+    top: 0;
     right: 30px;
 }
 
-.wishlist,
-.cart {
+.header_bottom__right > li {
+    display: inline-block;
+    margin-bottom: 0;
+
+    vertical-align: middle;
+}
+
+.wishlist {
     font-size: 2.6rem;
 
-    display: inline-block;
-    margin-left: 35px;
+    margin-left: 27px;
 
     vertical-align: top;
 }
 
 .cart {
     font-size: 2.9rem;
+    text-align: center;
+    line-height: 100px;
+
+    height: 100px;
+    width: 63px;
+    margin-left: 20px;
+}
+
+.cart.active {
+    background-color: C_STRIPE_MEDIUM1;
 }
 
 li.language {
     font-size: 1.6rem;
     font-family: F_PRIMARY_BOLD;
 
-    display: inline-block;
     margin-left: 10px;
 }
 
@@ -279,6 +295,7 @@ footer {
 
     display: inline-block;
     padding: 0;
+    margin-bottom: 0;
 }
 
 .footer_linkSocial > li > a {

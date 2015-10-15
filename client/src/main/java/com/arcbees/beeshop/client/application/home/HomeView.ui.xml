@@ -57,42 +57,22 @@
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productThermos}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Cup</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
-                </div>
+                <widget:PricePresenter ui:field="cupPrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCase}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Case</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
-                </div>
+                <widget:PricePresenter ui:field="casePrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productUsb}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Key</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
-                </div>
+                <widget:PricePresenter ui:field="keyPrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCup}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Mug</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35$</div>
-                </div>
+                <widget:PricePresenter ui:field="mugPrice"/>
             </div>
         </section>
 
