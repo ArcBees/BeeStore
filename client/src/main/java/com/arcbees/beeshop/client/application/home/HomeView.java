@@ -28,7 +28,6 @@ import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
-import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
@@ -45,6 +44,14 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     PricePresenter shirtPrice;
     @UiField(provided = true)
     PricePresenter bagPrice;
+    @UiField(provided = true)
+    PricePresenter cupPrice;
+    @UiField(provided = true)
+    PricePresenter casePrice;
+    @UiField(provided = true)
+    PricePresenter mugPrice;
+    @UiField(provided = true)
+    PricePresenter keyPrice;
     @UiField
     AnchorElement gaeAnchor;
     @UiField
@@ -60,6 +67,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     @UiField
     AnchorElement chosenAnchor;
 
+    private final PriceWidgetFactory priceWidgetFactory;
     private final PlaceManager placeManager;
     private final TokenFormatter tokenFormatter;
     private final AppMessages appMessages;
@@ -72,27 +80,14 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
             PlaceManager placeManager,
             TokenFormatter tokenFormatter,
             AppMessages appMessages) {
+        this.priceWidgetFactory = priceWidgetFactory;
         this.placeManager = placeManager;
         this.tokenFormatter = tokenFormatter;
         this.appMessages = appMessages;
 
         products = new ArrayList<>();
 
-        ProductDto shirt = new ProductDto();
-        shirt.setBrandName(appMessages.brandName(Brand.getDefaultValue()));
-        shirt.setPrice(55);
-        shirt.setProductName("Shirt");
-
-        ProductDto bag = new ProductDto();
-        bag.setBrandName(appMessages.brandName(Brand.getDefaultValue()));
-        bag.setPrice(35);
-        bag.setProductName("Bag");
-
-        shirtPrice = priceWidgetFactory.create(shirt);
-        bagPrice = priceWidgetFactory.create(bag);
-
-        products.add(shirtPrice);
-        products.add(bagPrice);
+        createInitialProducts(Brand.getDefaultValue());
 
         initWidget(uiBinder.createAndBindUi(this));
     }
@@ -106,6 +101,54 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
 
             product.setValue(value);
         }
+    }
+
+    private void createInitialProducts(Brand brand) {
+        products.clear();
+
+        ProductDto shirt = new ProductDto();
+        shirt.setBrandName(appMessages.brandName(brand));
+        shirt.setPrice(55);
+        shirt.setProductName(appMessages.shirt());
+
+        ProductDto bag = new ProductDto();
+        bag.setBrandName(appMessages.brandName(brand));
+        bag.setPrice(35);
+        bag.setProductName(appMessages.bag());
+
+        ProductDto cup = new ProductDto();
+        cup.setBrandName(appMessages.brandName(brand));
+        cup.setPrice(35);
+        cup.setProductName(appMessages.cup());
+
+        ProductDto phoneCase = new ProductDto();
+        phoneCase.setBrandName(appMessages.brandName(brand));
+        phoneCase.setPrice(35);
+        phoneCase.setProductName(appMessages.phoneCase());
+
+        ProductDto key = new ProductDto();
+        key.setBrandName(appMessages.brandName(brand));
+        key.setPrice(35);
+        key.setProductName(appMessages.key());
+
+        ProductDto mug = new ProductDto();
+        mug.setBrandName(appMessages.brandName(brand));
+        mug.setPrice(35);
+        mug.setProductName(appMessages.mug());
+
+        shirtPrice = priceWidgetFactory.create(shirt);
+        bagPrice = priceWidgetFactory.create(bag);
+        cupPrice = priceWidgetFactory.create(cup);
+        casePrice = priceWidgetFactory.create(phoneCase);
+        keyPrice = priceWidgetFactory.create(key);
+        mugPrice = priceWidgetFactory.create(mug);
+
+        products.add(shirtPrice);
+        products.add(bagPrice);
+        products.add(cupPrice);
+        products.add(casePrice);
+        products.add(keyPrice);
+        products.add(mugPrice);
     }
 
     @Override
