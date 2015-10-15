@@ -45,6 +45,8 @@ public interface PageHomeResources extends ClientBundle {
         String mainProducts_left();
 
         String mainProducts_right();
+
+        String itemForSale_info_shop();
     }
 
     @Source("img/t-shirt-men.png")
