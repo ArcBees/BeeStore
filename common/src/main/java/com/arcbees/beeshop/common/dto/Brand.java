@@ -22,7 +22,7 @@ public enum Brand {
             }
         }
 
-        return ARCBEES;
+        return null;
     }
 
     public static Brand getDefaultValue() {

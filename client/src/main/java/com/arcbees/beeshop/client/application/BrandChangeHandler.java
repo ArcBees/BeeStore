@@ -2,6 +2,8 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
@@ -20,6 +22,10 @@ public class BrandChangeHandler implements NavigationHandler {
 
     @Override
     public void onNavigation(NavigationEvent navigationEvent) {
-        currentBrand.update();
+        String brandName = navigationEvent.getRequest().getParameter(NameTokens.PARAM_BRAND, "");
+
+        Brand fromValue = Brand.createFromValue(brandName);
+
+        currentBrand.update(fromValue);
     }
 }
