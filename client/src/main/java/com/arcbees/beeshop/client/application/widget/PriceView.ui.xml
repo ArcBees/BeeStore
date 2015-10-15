@@ -10,6 +10,7 @@
             </div>
             <div class="{page.style.itemForSale_info_price}" ui:field="price"/>
         </a>
+
         <a ui:field="shopView" class="{page.style.itemForSale_info}">
             <span class="{page.style.itemForSale_info_shop}">Shop</span>
         </a>
