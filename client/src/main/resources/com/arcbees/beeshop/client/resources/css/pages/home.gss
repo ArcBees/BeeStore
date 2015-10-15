@@ -81,7 +81,7 @@
     display: block;
 }
 
-.devProducts_list li i {
+.devProducts_list li a {
     font-size: 7rem;
 
     display: block;
@@ -93,7 +93,7 @@
     color: C_TEXT;
 }
 
-.devProducts_list li:hover i {
+.devProducts_list li:hover a {
     font-size: 10rem;
 }
 

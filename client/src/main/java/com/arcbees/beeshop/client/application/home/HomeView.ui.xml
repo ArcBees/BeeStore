@@ -27,16 +27,22 @@
             <h3>shopping by products</h3>
             <ul class="{page.style.devProducts_list}">
                 <li>
-                    <i class="{font.icons.iconGae}"></i>
-                    GAE
-                    <span>STUDIO</span>
+                    <a ui:field="gaeAnchor" class="{font.icons.iconGae}">
+                        GAE
+                        <span>STUDIO</span>
+                    </a>
                 </li>
-                <li><i class="{font.icons.iconJukito}"/>JUKITO</li>
-                <li><i class="{font.icons.iconGwtp}"/>GWTP</li>
-                <li><i class="{font.icons.iconArcbees}"/>arcbees</li>
-                <li><i class="{font.icons.iconGquery}"/>gQuery</li>
-                <li><i class="{font.icons.iconGsss}"/>GSSS</li>
-                <li><i class="{font.icons.iconChosen}"/> GWT<span>chosen</span></li>
+                <li><a ui:field="jukitoAnchor" class="{font.icons.iconJukito}">JUKITO</a></li>
+                <li><a ui:field="gwtpAnchor" class="{font.icons.iconGwtp}">GWTP</a></li>
+                <li><a ui:field="arcbeesAnchor" class="{font.icons.iconArcbees}">arcbees</a></li>
+                <li><a ui:field="gqueryAnchor" class="{font.icons.iconGquery}">gQuery</a></li>
+                <li><a ui:field="gsssAnchor" class="{font.icons.iconGsss}">GSSS</a></li>
+                <li>
+                    <a ui:field="chosenAnchor" class="{font.icons.iconChosen}">
+                        GWT
+                        <span>chosen</span>
+                    </a>
+                </li>
             </ul>
         </section>
 
@@ -51,42 +57,22 @@
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productThermos}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Cup</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35 $</div>
-                </div>
+                <widget:PricePresenter ui:field="cupPrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCase}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Case</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35 $</div>
-                </div>
+                <widget:PricePresenter ui:field="casePrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productUsb}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Key</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35 $</div>
-                </div>
+                <widget:PricePresenter ui:field="keyPrice"/>
             </div>
             <div class="{page.style.itemForSale}">
                 <g:Image addStyleNames="{page.style.itemForSale_img}" resource="{page.productCup}"/>
 
-                <div class="{page.style.itemForSale_info}">
-                    <div class="{page.style.itemForSale_info_name}">Bees
-                        <span>Mug</span>
-                    </div>
-                    <div class="{page.style.itemForSale_info_price}">35 $</div>
-                </div>
+                <widget:PricePresenter ui:field="mugPrice"/>
             </div>
         </section>
 

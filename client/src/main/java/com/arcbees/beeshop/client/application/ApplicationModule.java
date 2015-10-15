@@ -28,6 +28,10 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new ProductModule());
         install(new WidgetModule());
 
+        bind(BrandChangeHandler.class).asEagerSingleton();
+        bind(CurrentBrand.class).to(CurrentBrandImpl.class);
+        bind(ThemeChanger.class).to(ThemeChangerImpl.class).asEagerSingleton();
+
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);
     }
