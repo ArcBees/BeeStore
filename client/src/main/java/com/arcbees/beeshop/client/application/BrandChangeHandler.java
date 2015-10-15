@@ -24,8 +24,8 @@ public class BrandChangeHandler implements NavigationHandler {
     public void onNavigation(NavigationEvent navigationEvent) {
         String brandName = navigationEvent.getRequest().getParameter(NameTokens.PARAM_BRAND, "");
 
-        Brand fromValue = Brand.createFromValue(brandName);
+        Brand brandValue = Brand.createFromValue(brandName);
 
-        currentBrand.update(fromValue);
+        currentBrand.update(brandValue);
     }
 }
