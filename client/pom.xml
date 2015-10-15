@@ -18,6 +18,11 @@
             <artifactId>common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.arcbees</groupId>
+            <artifactId>ui</artifactId>
+        </dependency>
+
         <!-- GWT -->
         <dependency>
             <groupId>com.google.gwt</groupId>
