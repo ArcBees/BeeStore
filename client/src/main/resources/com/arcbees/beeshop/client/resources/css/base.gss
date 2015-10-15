@@ -1,0 +1,193 @@
+/*
+ * Copyright 2015 ArcBees Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+
+/**
+ * BASE.CSS
+ * Base application style
+ *
+ * - INIT                       Base style
+ * - ELEMENTS                   Style - p, a, b, strong,
+ * - LISTS
+ * - IMG                        Responsive table
+ * - STYLE                      Classes mostly used
+ */
+
+/* -- Init
+------------------------------------------- */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+::-moz-selection {
+    background: C_PRIMARY;
+    text-shadow: none;
+}
+
+::selection {
+    background: C_DARK;
+    text-shadow: none;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+/* avoid top margins on first content element */
+p:first-child,
+ul:first-child,
+ol:first-child,
+dl:first-child,
+blockquote:first-child,
+pre:first-child,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+    margin-top: 0;
+}
+
+/* -- TYPO
+------------------------ */
+
+h2,
+h3 {
+    font-family: "geometria-bold";
+    line-height: 1;
+    text-transform: uppercase;
+
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h2 span,
+h3 span {
+    display: block;
+}
+
+
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child {
+    margin-top: 0;
+}
+
+/* -- Elements
+------------------------------------------- */
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+p,
+li {
+    line-height: 1.4em;
+    font-size: 1.5rem;
+
+    margin-bottom: 0.8em;
+}
+
+b,
+strong {
+    font-family: arial, sans-serif; /* use the bold version of the font-family e.g.: font-family: 'geometria-bold' */
+    font-weight: normal;
+}
+
+/* -- List
+------------------- */
+
+nav ul,
+nav ol {
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
+}
+
+dl,
+menu,
+ol,
+ul {
+    margin: 1em 0;
+}
+
+dd {
+    margin: 0 0 0 40px;
+}
+
+li p,
+li ul,
+li ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* -- Img
+------------------- */
+
+img {
+    border: 0; /* remove border when inside an <a> */
+    height: auto;
+}
+
+svg:not(:root) {
+    overflow: hidden; /* correct oddly overflow in IE9 */
+}
+
+/* -- Styles
+------------------- */
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer; /* 3 */
+}

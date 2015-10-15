@@ -45,6 +45,8 @@ public interface PageHomeResources extends ClientBundle {
         String mainProducts_left();
 
         String mainProducts_right();
+
+        String itemForSale_info_shop();
     }
 
     @Source("img/t-shirt-men.png")
@@ -65,7 +67,8 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/product-cup.png")
     ImageResource productCup();
 
-    @Source({"css/colors.gss",
+    @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/colors.gss",
             "fonts/fonts.gss",
             "css/pages/home.gss"})
     Style style();

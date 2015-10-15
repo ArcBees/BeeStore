@@ -37,6 +37,8 @@ public interface AppResources extends ClientBundle {
 
         String wrapper();
 
+        String wrap();
+
         String header_top();
 
         String header_menu();
@@ -75,6 +77,12 @@ public interface AppResources extends ClientBundle {
 
         String visuallyHidden();
 
+        String push();
+
+        String container();
+
+        String main();
+
         String arcbees();
 
         String gwtp();
@@ -99,6 +107,7 @@ public interface AppResources extends ClientBundle {
     Normalize normalize();
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/base.gss",
             "css/colors.gss",
             "fonts/fonts.gss",
             "css/layout.gss",

@@ -28,11 +28,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     @UiField
     DivElement price;
     @UiField
-    DivElement shopView;
+    AnchorElement shopView;
     @UiField
-    DivElement priceView;
-    @UiField
-    AnchorElement shopAnchor;
+    AnchorElement priceView;
 
     private final TokenFormatter tokenFormatter;
 
@@ -57,12 +55,12 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         String productId = String.valueOf(product.getId());
 
         PlaceRequest request = new PlaceRequest.Builder()
-                .nameToken(NameTokens.PRODUCT)
+                .nameToken(NameTokens.PRODUCTS)
                 .with("productId", productId)
                 .build();
 
         String token = tokenFormatter.toPlaceToken(request);
-        shopAnchor.setHref("#" + token);
+        shopView.setHref("#" + token);
     }
 
     @Override

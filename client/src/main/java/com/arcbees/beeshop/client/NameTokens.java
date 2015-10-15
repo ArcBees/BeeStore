@@ -20,7 +20,7 @@ import com.arcbees.beeshop.common.dto.Brand;
 
 public class NameTokens {
     public static final String HOME = "!/home";
-    public static final String PRODUCT = "!/product";
+    public static final String PRODUCTS = "!/products";
 
     public static final String PARAM_BRAND = "brand";
     public static final String GAE_STUDIO = Brand.GAE_STUDIO.getValue();
