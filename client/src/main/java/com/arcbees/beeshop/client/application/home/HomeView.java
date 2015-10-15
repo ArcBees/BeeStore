@@ -79,12 +79,12 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         products = new ArrayList<>();
 
         ProductDto shirt = new ProductDto();
-        shirt.setBrandName(appMessages.brandName(Brand.ARCBEES));
+        shirt.setBrandName(appMessages.brandName(Brand.getDefaultValue()));
         shirt.setPrice(55);
         shirt.setProductName("Shirt");
 
         ProductDto bag = new ProductDto();
-        bag.setBrandName(appMessages.brandName(Brand.ARCBEES));
+        bag.setBrandName(appMessages.brandName(Brand.getDefaultValue()));
         bag.setPrice(35);
         bag.setProductName("Bag");
 
