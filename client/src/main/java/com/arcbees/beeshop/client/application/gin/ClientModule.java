@@ -14,8 +14,9 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client;
+package com.arcbees.beeshop.client.application.gin;
 
+import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationModule;
 import com.arcbees.beeshop.client.resources.ResourceLoader;
 import com.google.gwt.inject.client.AbstractGinModule;

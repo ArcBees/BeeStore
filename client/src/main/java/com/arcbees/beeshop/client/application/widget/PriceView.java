@@ -46,7 +46,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     public void setProduct(ProductDto product) {
         brandName.setInnerText(product.getBrandName());
         productName.setInnerText(product.getProductName());
-        price.setInnerText(product.getPrice() + "$");
+        price.setInnerText(product.getPrice() + " $");
 
         buildAnchorUri(product);
     }
