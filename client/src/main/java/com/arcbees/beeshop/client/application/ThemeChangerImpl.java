@@ -4,22 +4,33 @@ import static com.google.gwt.query.client.GQuery.$;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.events.BrandChangedEvent;
+import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.web.bindery.event.shared.EventBus;
 
-public class ThemeChangerImpl implements ThemeChanger {
+public class ThemeChangerImpl implements ThemeChanger, BrandChangedEventHandler {
     private final AppResources resources;
 
     @Inject
     public ThemeChangerImpl(
+            EventBus eventBus,
             AppResources resources) {
         this.resources = resources;
+
+        eventBus.addHandler(BrandChangedEvent.TYPE, this);
     }
 
     @Override
     public void changeBrand(Brand brand) {
         $("body").removeClass();
         $("body").addClass(getStyle(brand));
+    }
+
+    @Override
+    public void onBrandChanged(BrandChangedEvent event) {
+        changeBrand(event.getBrand());
     }
 
     private String getStyle(Brand brand) {

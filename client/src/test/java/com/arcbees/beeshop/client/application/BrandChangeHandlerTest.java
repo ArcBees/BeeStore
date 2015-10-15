@@ -22,27 +22,27 @@ public class BrandChangeHandlerTest {
 
     @Test
     public void onNavigation_whenBrandChanges_updatesCurrentBrand() {
-        String brand = Brand.ARCBEES.getValue();
+        Brand brand = Brand.ARCBEES;
         PlaceRequest request = new PlaceRequest.Builder()
-                .with(NameTokens.PARAM_BRAND, brand)
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
                 .build();
         NavigationEvent navigationEvent = new NavigationEvent(request);
 
         handler.onNavigation(navigationEvent);
 
-        verify(currentBrand).update(Brand.ARCBEES);
+        verify(currentBrand).update(brand);
     }
 
     @Test
     public void onNavigation_whenBrandChanges_updatesCurrentBrand2() {
-        String brand = Brand.CHOSEN.getValue();
+        Brand brand = Brand.CHOSEN;
         PlaceRequest request = new PlaceRequest.Builder()
-                .with(NameTokens.PARAM_BRAND, brand)
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
                 .build();
         NavigationEvent navigationEvent = new NavigationEvent(request);
 
         handler.onNavigation(navigationEvent);
 
-        verify(currentBrand).update(Brand.CHOSEN);
+        verify(currentBrand).update(brand);
     }
 }

@@ -20,6 +20,9 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
+import com.arcbees.beeshop.client.events.BrandChangedEvent;
+import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
+import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -27,8 +30,10 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
+public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>
+        implements BrandChangedEventHandler {
     interface MyView extends View {
+        void changeBrand(Brand brand);
     }
 
     @ProxyStandard
@@ -42,5 +47,15 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+    }
+
+    @Override
+    public void onBrandChanged(BrandChangedEvent event) {
+        getView().changeBrand(event.getBrand());
+    }
+
+    @Override
+    protected void onBind() {
+        addRegisteredHandler(BrandChangedEvent.TYPE, this);
     }
 }

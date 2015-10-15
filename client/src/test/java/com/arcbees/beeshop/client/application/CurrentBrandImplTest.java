@@ -1,17 +1,22 @@
 package com.arcbees.beeshop.client.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.never;
+import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 import javax.inject.Inject;
 
 import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
+import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 
 @RunWith(JukitoRunner.class)
 public class CurrentBrandImplTest {
@@ -19,10 +24,14 @@ public class CurrentBrandImplTest {
     CurrentBrandImpl currentBrand;
     @Inject
     ThemeChanger themeChanger;
+    @Inject
+    EventBus eventBus;
+    @Inject
+    PlaceManager placeManager;
 
     @Test
     public void getCurrentBrand_returnsCurrentBrand() {
-        Brand brand = Brand.ARCBEES;
+        Brand brand = Brand.CHOSEN;
         currentBrand.update(brand);
 
         Brand result = currentBrand.get();
@@ -31,25 +40,24 @@ public class CurrentBrandImplTest {
     }
 
     @Test
-    public void ctor_defaultBrand_isSet() {
-        assertThat(currentBrand.get()).isEqualTo(Brand.getDefaultValue());
-    }
-
-    @Test
-    public void updateBrand_doesNotChangeThemeWhenBrandIsTheSame() {
-        Brand brand = Brand.getDefaultValue();
-
-        currentBrand.update(brand);
-
-        verify(themeChanger, never()).changeBrand(any(Brand.class));
-    }
-
-    @Test
-    public void updateBrand_changesThemeWhenBrandChanges() {
+    public void updateBrand_firesEventWhenBrandUpdates() {
         Brand brand = Brand.CHOSEN;
 
         currentBrand.update(brand);
 
-        verify(themeChanger).changeBrand(brand);
+        ArgumentCaptor<BrandChangedEvent> captor = ArgumentCaptor.forClass(BrandChangedEvent.class);
+        verify(eventBus).fireEventFromSource(captor.capture(), same(currentBrand));
+        assertThat(captor.getValue().getBrand()).isEqualTo(brand);
+    }
+
+    @Test
+    public void updateBrand_doesNotFireEventWhenBrandIsSame() {
+        Brand brand = Brand.CHOSEN;
+        currentBrand.update(brand);
+        Mockito.reset(eventBus);
+
+        currentBrand.update(brand);
+
+        verifyZeroInteractions(eventBus);
     }
 }

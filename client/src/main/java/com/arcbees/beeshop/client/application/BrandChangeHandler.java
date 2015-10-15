@@ -7,7 +7,6 @@ import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class BrandChangeHandler implements NavigationHandler {
     private final CurrentBrand currentBrand;
@@ -17,15 +16,16 @@ public class BrandChangeHandler implements NavigationHandler {
             EventBus eventBus,
             CurrentBrand currentBrand) {
         this.currentBrand = currentBrand;
+
         eventBus.addHandler(NavigationEvent.getType(), this);
     }
 
     @Override
     public void onNavigation(NavigationEvent navigationEvent) {
-        PlaceRequest request = navigationEvent.getRequest();
+        String brandName = navigationEvent.getRequest().getParameter(NameTokens.PARAM_BRAND, "");
 
-        String brandValue = request.getParameter(NameTokens.PARAM_BRAND, "");
+        Brand brandValue = Brand.createFromValue(brandName);
 
-        currentBrand.update(Brand.createFromValue(brandValue));
+        currentBrand.update(brandValue);
     }
 }

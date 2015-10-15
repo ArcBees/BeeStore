@@ -15,4 +15,9 @@
     <source path='common'/>
 
     <set-configuration-property name="CssResource.enableGss" value="true"/>
+
+    <extend-property name="locale" values="en,fr"/>
+    <!-- remove the default locale -->
+    <set-property name="locale" value="en" />
+    <set-property-fallback name="locale" value="en"/>
 </module>
