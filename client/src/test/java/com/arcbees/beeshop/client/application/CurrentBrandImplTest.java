@@ -17,10 +17,9 @@
 package com.arcbees.beeshop.client.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.isA;
 import static org.mockito.Matchers.same;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 import javax.inject.Inject;
 
@@ -75,6 +74,6 @@ public class CurrentBrandImplTest {
 
         currentBrand.update(brand);
 
-        verify(eventBus, never()).fireEventFromSource(isA(BrandChangedEvent.class), same(currentBrand));
+        verifyZeroInteractions(eventBus);
     }
 }

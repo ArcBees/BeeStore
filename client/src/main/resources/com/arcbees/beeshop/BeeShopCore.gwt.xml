@@ -8,8 +8,13 @@
     <inherits name="org.vectomatic.libgwtsvg"/>
     <inherits name="com.arcbees.gsss.mixin.Mixin"/>
     <inherits name="com.arcbees.gsss.animation.Animation"/>
+    <inherits name="com.arcbees.ui.ui"/>
 
-    <extend-configuration-property name="gin.ginjector.modules" value="com.arcbees.beeshop.client.ClientModule"/>
+    <extend-configuration-property name="gin.ginjector.modules"
+            value="com.arcbees.beeshop.client.application.gin.ClientModule"/>
+
+    <set-configuration-property name="gwtp.bootstrapper"
+            value="com.arcbees.beeshop.client.application.gin.BootstrapperImpl"/>
 
 
     <source path="client"/>
