@@ -1,7 +1,5 @@
 package com.arcbees.beeshop.client.application.widget;
 
-import static com.google.gwt.query.client.GQuery.$;
-
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
@@ -15,6 +13,8 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         implements PricePresenter.MyView {
