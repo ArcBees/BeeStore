@@ -16,7 +16,6 @@
     <set-configuration-property name="gwtp.bootstrapper"
             value="com.arcbees.beeshop.client.application.gin.BootstrapperImpl"/>
 
-
     <source path="client"/>
     <source path='common'/>
 
