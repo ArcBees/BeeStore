@@ -131,7 +131,7 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/gsss/gsss-thermos.png")
     ImageResource gsssThermos();
 
-    @Source("img/products/gwtp/gwtp-thermos.png")
+    @Source("img/products/gwtp/gwtp-thermos1.png")
     ImageResource gwtpThermos();
 
     @Source("img/products/jukito/jukito-thermos.png")
