@@ -33,9 +33,12 @@
     background-color: #fbe605;
 }
 
+.mainProducts_left img {
+    display: block;
+}
+
 .mainProducts_left img,
 .mainProducts_right img {
-    display: block;
     margin: 0 auto;
 }
 
@@ -136,8 +139,14 @@
 .itemForSale_img {
     text-align: center;
 
-    /*display: block;*/
     margin: 0 auto 55px auto;
+
+    @mixin transition(all, .35s);
+    @mixin scale(.95,.95);
+}
+
+.itemForSale:hover .itemForSale_img {
+    @mixin scale(1,1);
 }
 
 .itemForSale_info {

@@ -56,7 +56,13 @@
 
 .chosen {}
 
-.chosen .chosen_img {}
+.chosen_img {
+    display: none;
+}
+
+.chosen .chosen_img {
+    display: block;
+}
 
 .chosen .itemPrice,
 .chosen .mainProducts_bg {
@@ -68,11 +74,21 @@
 
 .jukito {}
 
-.jukito .jukito_img {}
+.jukito_img {
+    display: none;
+}
+
+.jukito .jukito_img {
+    display: block;
+}
 
 .jukito .itemPrice,
 .jukito .mainProducts_bg {
     background-color: C_PRODUCT_JUKITO;
+}
+
+.jukito .itemPrice {
+    color: C_TEXT_LIGHT;
 }
 
 /* -- GQUERY
@@ -80,11 +96,21 @@
 
 .gquery {}
 
-.gquery .gquery_img {}
+.gquery_img {
+    display: none;
+}
+
+.gquery .gquery_img {
+    display: block;
+}
 
 .gquery .itemPrice,
 .gquery .mainProducts_bg {
     background-color: C_PRODUCT_GQUERY;
+}
+
+.gquery .itemPrice  {
+    color: C_TEXT_LIGHT;
 }
 
 /* -- GSSS
@@ -92,11 +118,21 @@
 
 .gsss {}
 
-.gsss .gsss_img {}
+.gsss_img {
+    display: none;
+}
+
+.gsss .gsss_img {
+    display: block;
+}
 
 .gsss .itemPrice,
 .gsss .mainProducts_bg {
     background-color: C_PRODUCT_GSS;
+}
+
+.gsss .itemPrice {
+    color: C_TEXT_LIGHT;
 }
 
 /* -- GAE STUDIO
@@ -104,7 +140,13 @@
 
 .gaestudio {}
 
-.gaestudio .gaestudio_img {}
+.gaestudio_img {
+    display: none;
+}
+
+.gaestudio .gaestudio_img {
+    display: block;
+}
 
 .gaestudio .itemPrice,
 .gaestudio .mainProducts_bg {
