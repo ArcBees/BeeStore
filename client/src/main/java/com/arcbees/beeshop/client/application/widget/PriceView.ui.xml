@@ -4,7 +4,7 @@
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageHomeResources"/>
 
-    <g:HTMLPanel ui:field="panel">
+    <g:HTMLPanel ui:field="panel" addStyleNames="{page.style.pricePresenter}">
         <a ui:field="priceView" class="{page.style.itemForSale_info}">
             <div class="{page.style.itemForSale_info_name}">
                 <span ui:field="brandName"/>
