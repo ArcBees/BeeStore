@@ -68,35 +68,69 @@
     width: 100%;
 }
 
-.devProducts_list li {
-    line-height: 1;
-
+.devProducts_list > li {
     display: table-cell;
     width: calc(100% / 7);
 
     vertical-align: top;
 }
 
-.devProducts_list li span {
-    display: block;
-}
-
-.devProducts_list li a {
-    color: C_STRIPE_MEDIUM2;
-    font-size: 14rem;
-
+.devProducts_list > li > a {
     display: block;
 
     @mixin transition(all, .5s);
-    @mixin scale(1, 1);
-}
-
-.devProducts_list li:hover {
-    color: C_TEXT;
+    @mixin scale(.6, .6);
 }
 
 .devProducts_list li:hover a {
-    @mixin scale(1.4, 1.4);
+    @mixin scale(1, 1);
+}
+
+.devProducts_list > li > a .productIcon,
+.devProducts_list > li > a .iconText {
+    fill: C_STRIPE_MEDIUM2;
+
+    @mixin transition(all, .5s);
+}
+
+.devProducts_list > li:hover > a .iconText {
+    fill: C_STRIPE_DARK;
+}
+
+.devProducts_list_gae {
+    margin-top: -10px;
+}
+
+.devProducts_list_chosen {
+    margin-top: -6px;
+}
+
+.devProducts_list > li:hover > a .gsssIcon {
+    fill: C_PRODUCT_GSS;
+}
+
+.devProducts_list > li:hover > a .chosenIcon {
+    fill: C_PRODUCT_CHOSEN;
+}
+
+.devProducts_list > li:hover > a .gwtpIcon {
+    fill: C_PRODUCT_GWTP;
+}
+
+.devProducts_list > li:hover > a .jukitoIcon {
+    fill: C_PRODUCT_JUKITO;
+}
+
+.devProducts_list > li:hover > a .gqueryIcon {
+    fill: C_PRODUCT_GQUERY;
+}
+
+.devProducts_list > li:hover > a .gaeIcon {
+    fill: C_PRODUCT_GAE;
+}
+
+.devProducts_list > li:hover > a .arcbeesIcon {
+    fill: C_PRIMARY;
 }
 
 /* -- WELCOME
@@ -122,6 +156,7 @@
 .itemsForSale {
     display: table;
     width: 100%;
+    height: 720px;
 }
 
 .itemForSale {
@@ -130,6 +165,8 @@
     display: table-cell;
     width: 25%;
     padding: 100px 0;
+
+    position: relative;
 }
 
 .itemForSale:hover {
@@ -147,6 +184,14 @@
 
 .itemForSale:hover .itemForSale_img {
     @mixin scale(1,1);
+}
+
+.itemForSale .pricePresenter {
+    margin-left: -70px;
+
+    position: absolute;
+    left: 50%;
+    bottom: 140px;
 }
 
 .itemForSale_info {

@@ -121,6 +121,20 @@ public interface AppResources extends ClientBundle {
 
     SVGResource logoBeestore();
 
+    SVGResource arcbees();
+
+    SVGResource chosen();
+
+    SVGResource gae();
+
+    SVGResource gquery();
+
+    SVGResource gsss();
+
+    SVGResource gwtp();
+
+    SVGResource jukito();
+
     @Source("css/normalize.gss")
     Normalize normalize();
 

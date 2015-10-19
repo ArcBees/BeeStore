@@ -45,8 +45,32 @@ public interface PageHomeResources extends ClientBundle {
         String mainProducts_right();
 
         String itemForSale_info_shop();
-    }
 
+        String pricePresenter();
+
+        String gsssIcon();
+
+        String iconText();
+
+        String productIcon();
+
+        String chosenIcon();
+
+        String arcbeesIcon();
+
+        String gaeIcon();
+
+        String gqueryIcon();
+
+        String jukitoIcon();
+
+        String gwtpIcon();
+
+        String devProducts_list_gae();
+
+        String devProducts_list_chosen();
+    }
+       
     @Source("img/t-shirt-men.png")
     ImageResource tshirt();
 
