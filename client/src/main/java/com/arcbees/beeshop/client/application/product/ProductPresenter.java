@@ -25,6 +25,7 @@ import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
 public class ProductPresenter extends Presenter<ProductPresenter.MyView, ProductPresenter.MyProxy> {
@@ -36,11 +37,16 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     interface MyProxy extends ProxyPlace<ProductPresenter> {
     }
 
+    static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
+
     @Inject
     ProductPresenter(
             EventBus eventBus,
             MyView view,
-            MyProxy proxy) {
+            MyProxy proxy,
+            SharePanelPresenter sharePanel) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+
+        setInSlot(SLOT_SHARE_PANEL, sharePanel);
     }
 }

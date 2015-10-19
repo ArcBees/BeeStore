@@ -18,16 +18,41 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.ui.ReplacePanel;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+
+import static com.arcbees.beeshop.client.application.product.ProductPresenter.SLOT_SHARE_PANEL;
+import static com.google.gwt.query.client.GQuery.$;
 
 public class ProductView extends ViewImpl implements ProductPresenter.MyView {
     interface Binder extends UiBinder<Widget, ProductView> {
     }
 
+    @UiField
+    Element shareButton;
+    @UiField
+    ReplacePanel sharePanel;
+
     @Inject
     ProductView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
+
+        bindSlot(SLOT_SHARE_PANEL, sharePanel);
+
+        bind();
+    }
+
+    private void bind() {
+        $(shareButton).click(new Function() {
+            @Override
+            public void f() {
+                $(sharePanel).show();
+            }
+        });
     }
 }

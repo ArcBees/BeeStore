@@ -14,16 +14,11 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.product;
+package com.arcbees.beeshop.client.resources;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.google.gwt.i18n.client.Messages;
 
-public class ProductModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        bindPresenter(ProductPresenter.class, ProductPresenter.MyView.class, ProductView.class,
-                ProductPresenter.MyProxy.class);
-
-        bindPresenterWidget(SharePanelPresenter.class, SharePanelPresenter.MyView.class, SharePanelView.class);
-    }
+public interface SocialSharingUrls extends Messages {
+    @DefaultMessage("http://www.facebook.com/sharer.php?u={0}")
+    String facebook(String url);
 }
