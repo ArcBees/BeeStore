@@ -22,10 +22,12 @@ public class Colors {
 
     public static final String C_LIGHT = "#fff";
     public static final String C_DARK = "#000";
+    public static final String C_NEGATIVE = "#ff0000";
 
     /* -> Text colors -- */
     public static final String C_TEXT = C_DARK;
     public static final String C_TEXT_LIGHT = C_LIGHT;
+    public static final String C_TEXT_ERROR = "#ff0000";
 
     /* -> Stripe colors -- */
     public static final String C_STRIPE_LIGHT = C_LIGHT;
