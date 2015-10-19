@@ -51,6 +51,12 @@
 
 @external "icon*";
 
+.iconGaeName:before { content: "\e800";}
+.iconChosenName:before { content: "\e801";}
+.iconGqueryName:before { content: "\e802";}
+.iconJukitoName:before { content: "\e803";}
+.iconGwtpName:before { content: "\e804";}
+.iconGsssName:before { content: "\e805";}
 .iconGPlus:before { content: "\e60d";}
 .iconWhishlist:before { content: "\e636";}
 .iconCart:before { content: "\e637";}

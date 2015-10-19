@@ -33,9 +33,12 @@
     background-color: #fbe605;
 }
 
+.mainProducts_left img {
+    display: block;
+}
+
 .mainProducts_left img,
 .mainProducts_right img {
-    display: block;
     margin: 0 auto;
 }
 
@@ -61,14 +64,11 @@
 .devProducts_list {
     display: table;
     padding: 0;
-    margin: 0;
+    margin: 38px 0 0;
     width: 100%;
 }
 
 .devProducts_list li {
-    color: #ededed;
-    font-size: 3.5rem;
-    font-variant: small-caps;
     line-height: 1;
 
     display: table-cell;
@@ -82,11 +82,13 @@
 }
 
 .devProducts_list li a {
-    font-size: 7rem;
+    color: C_STRIPE_MEDIUM2;
+    font-size: 14rem;
 
     display: block;
 
     @mixin transition(all, .5s);
+    @mixin scale(1, 1);
 }
 
 .devProducts_list li:hover {
@@ -94,7 +96,7 @@
 }
 
 .devProducts_list li:hover a {
-    font-size: 10rem;
+    @mixin scale(1.4, 1.4);
 }
 
 /* -- WELCOME
@@ -137,8 +139,14 @@
 .itemForSale_img {
     text-align: center;
 
-    display: block;
     margin: 0 auto 55px auto;
+
+    @mixin transition(all, .35s);
+    @mixin scale(.95,.95);
+}
+
+.itemForSale:hover .itemForSale_img {
+    @mixin scale(1,1);
 }
 
 .itemForSale_info {
@@ -171,12 +179,4 @@
     height: 50px;
     width: 100px;
     border: 4px solid C_DARK;
-}
-
-.itemForSale_info_price {
-    background-color: C_PRIMARY;
-    font-size: 2rem;
-
-    display: inline-block;
-    padding: 2px 15px;
 }

@@ -87,7 +87,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
 
         products = new ArrayList<>();
 
-        createInitialProducts(Brand.getDefaultValue());
+        createInitialProducts(Brand.ARCBEES);
 
         initWidget(uiBinder.createAndBindUi(this));
     }
