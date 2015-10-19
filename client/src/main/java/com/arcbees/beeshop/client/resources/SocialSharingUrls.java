@@ -21,4 +21,19 @@ import com.google.gwt.i18n.client.Messages;
 public interface SocialSharingUrls extends Messages {
     @DefaultMessage("http://www.facebook.com/sharer.php?u={0}")
     String facebook(String url);
+
+    @DefaultMessage("https://pinterest.com/pin/create/bookmarklet/?url={0}")
+    String pinterest(String url);
+
+    @DefaultMessage("https://plus.google.com/share?url={0}")
+    String googlePlus(String url);
+
+    @DefaultMessage("https://twitter.com/share?url={0}")
+    String twitter(String url);
+
+    @DefaultMessage("https://www.tumblr.com/widgets/share/tool?canonicalUrl={0}")
+    String tumblr(String url);
+
+    @DefaultMessage("mailto:?subject=Beestore%20product&body={0}")
+    String email(String url);
 }

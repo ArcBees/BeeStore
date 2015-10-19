@@ -32,6 +32,16 @@ public class SharePanelView extends ViewImpl implements SharePanelPresenter.MyVi
 
     @UiField
     AnchorElement facebook;
+    @UiField
+    AnchorElement pinterest;
+    @UiField
+    AnchorElement googleplus;
+    @UiField
+    AnchorElement twitter;
+    @UiField
+    AnchorElement tumblr;
+    @UiField
+    AnchorElement mail;
 
     @Inject
     SharePanelView(
@@ -44,5 +54,10 @@ public class SharePanelView extends ViewImpl implements SharePanelPresenter.MyVi
     @Override
     public void updateShareUrls(String urlToShare) {
         facebook.setHref(socialSharingUrls.facebook(urlToShare));
+        pinterest.setHref(socialSharingUrls.pinterest(urlToShare));
+        googleplus.setHref(socialSharingUrls.googlePlus(urlToShare));
+        twitter.setHref(socialSharingUrls.twitter(urlToShare));
+        tumblr.setHref(socialSharingUrls.tumblr(urlToShare));
+        mail.setHref(socialSharingUrls.email(urlToShare));
     }
 }
