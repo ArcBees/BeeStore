@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -28,8 +29,12 @@ import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class ProductPresenter extends Presenter<ProductPresenter.MyView, ProductPresenter.MyProxy> {
-    interface MyView extends View {
+public class ProductPresenter extends Presenter<ProductPresenter.MyView, ProductPresenter.MyProxy>
+        implements ProductPresenterUiHandlers {
+    interface MyView extends View, HasUiHandlers<ProductPresenterUiHandlers> {
+        void hideSharePanel();
+
+        void showSharePanel();
     }
 
     @ProxyStandard
@@ -38,6 +43,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
+
+    private boolean isSharePanelShown;
 
     @Inject
     ProductPresenter(
@@ -48,5 +55,31 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
+
+        getView().setUiHandlers(this);
+    }
+
+    @Override
+    public void onShareButtonClicked() {
+        if (isSharePanelShown) {
+            hideSharePanel();
+        } else {
+            showSharePanel();
+        }
+    }
+
+    @Override
+    protected void onReveal() {
+        hideSharePanel();
+    }
+
+    private void showSharePanel() {
+        getView().showSharePanel();
+        isSharePanelShown = true;
+    }
+
+    private void hideSharePanel() {
+        getView().hideSharePanel();
+        isSharePanelShown = false;
     }
 }

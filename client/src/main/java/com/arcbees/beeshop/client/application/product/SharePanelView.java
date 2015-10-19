@@ -48,6 +48,7 @@ public class SharePanelView extends ViewImpl implements SharePanelPresenter.MyVi
             Binder binder,
             SocialSharingUrls socialSharingUrls) {
         this.socialSharingUrls = socialSharingUrls;
+
         initWidget(binder.createAndBindUi(this));
     }
 
