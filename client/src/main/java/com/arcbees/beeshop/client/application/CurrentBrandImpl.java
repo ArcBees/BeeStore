@@ -18,7 +18,6 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.event.shared.GwtEvent;
@@ -52,9 +51,7 @@ public class CurrentBrandImpl implements CurrentBrand, HasHandlers {
 
     @Override
     public Brand get() {
-        String parameter = placeManager.getCurrentPlaceRequest().getParameter(NameTokens.PARAM_BRAND, "");
-
-        return Brand.createFromValue(parameter);
+        return brand;
     }
 
     @Override

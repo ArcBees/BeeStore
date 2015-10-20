@@ -103,8 +103,8 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         SecondaryProductPresenter phoneCasePresenter = productFactory.create(phoneCase);
 
         addToSlot(SLOT_SECONDARY_PRODUCTS, cupPresenter);
+        addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);
         addToSlot(SLOT_SECONDARY_PRODUCTS, keyPresenter);
         addToSlot(SLOT_SECONDARY_PRODUCTS, mugPresenter);
-        addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);
     }
 }
