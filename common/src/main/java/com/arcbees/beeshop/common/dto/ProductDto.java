@@ -1,33 +1,24 @@
 package com.arcbees.beeshop.common.dto;
 
 public class ProductDto {
-    private String brandName;
-    private String productName;
+    private Brand brand;
+    private Product product;
     private int price;
-    private int id;
 
-    public int getId() {
-        return id;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public String getBrandName() {
-        return brandName;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getPrice() {

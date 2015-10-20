@@ -123,52 +123,7 @@
             </p>
         </section>
 
-        <section class="{page.style.itemsForSale}">
-            <div class="{page.style.itemForSale}">
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.arcbees_img}" resource="{page.arcbeesThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gwtp_img}" resource="{page.gwtpThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gquery_img}" resource="{page.gqueryThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gaestudio_img}" resource="{page.gaeThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.chosen_img}" resource="{page.chosenThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.jukito_img}" resource="{page.jukitoThermos}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gsss_img}" resource="{page.gsssThermos}"/>
-
-                <widget:PricePresenter ui:field="cupPrice"/>
-            </div>
-            <div class="{page.style.itemForSale}">
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.arcbees_img}" resource="{page.arcbeesCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gwtp_img}" resource="{page.gwtpCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gquery_img}" resource="{page.gqueryCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gaestudio_img}" resource="{page.gaeCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.chosen_img}" resource="{page.chosenCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.jukito_img}" resource="{page.jukitoCase}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gsss_img}" resource="{page.gsssCase}"/>
-
-                <widget:PricePresenter ui:field="casePrice"/>
-            </div>
-            <div class="{page.style.itemForSale}">
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.arcbees_img}" resource="{page.arcbeesUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gwtp_img}" resource="{page.gwtpUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gquery_img}" resource="{page.gqueryUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gaestudio_img}" resource="{page.gaeUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.chosen_img}" resource="{page.chosenUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.jukito_img}" resource="{page.jukitoUsb}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gsss_img}" resource="{page.gsssUsb}"/>
-
-                <widget:PricePresenter ui:field="keyPrice"/>
-            </div>
-            <div class="{page.style.itemForSale}">
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.arcbees_img}" resource="{page.arcbeesCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gwtp_img}" resource="{page.gwtpCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gquery_img}" resource="{page.gqueryCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gaestudio_img}" resource="{page.gaeCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.chosen_img}" resource="{page.chosenCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.jukito_img}" resource="{page.jukitoCup}"/>
-                <g:Image addStyleNames="{page.style.itemForSale_img} {res.style.gsss_img}" resource="{page.gsssCup}"/>
-
-                <widget:PricePresenter ui:field="mugPrice"/>
-            </div>
-        </section>
+        <g:HTMLPanel ui:field="secondaryProducts" tag="section" styleName="{page.style.itemsForSale}"/>
 
     </g:HTMLPanel>
 </ui:UiBinder>
