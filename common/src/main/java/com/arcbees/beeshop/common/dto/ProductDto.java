@@ -3,7 +3,6 @@ package com.arcbees.beeshop.common.dto;
 public class ProductDto {
     private Brand brand;
     private Product product;
-    private int price;
 
     public Brand getBrand() {
         return brand;
@@ -22,10 +21,6 @@ public class ProductDto {
     }
 
     public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+        return product.getPrice();
     }
 }

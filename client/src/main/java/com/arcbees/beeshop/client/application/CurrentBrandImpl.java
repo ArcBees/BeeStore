@@ -23,20 +23,16 @@ import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
 
 public class CurrentBrandImpl implements CurrentBrand, HasHandlers {
     private final EventBus eventBus;
 
     private Brand brand;
-    private final PlaceManager placeManager;
 
     @Inject
     public CurrentBrandImpl(
-            EventBus eventBus,
-            PlaceManager placeManager) {
+            EventBus eventBus) {
         this.eventBus = eventBus;
-        this.placeManager = placeManager;
     }
 
     @Override

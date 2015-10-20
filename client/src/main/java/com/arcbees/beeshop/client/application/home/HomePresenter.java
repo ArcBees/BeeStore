@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
+import com.arcbees.beeshop.client.application.CurrentBrand;
 import com.arcbees.beeshop.client.application.widget.MainProductPresenter;
 import com.arcbees.beeshop.client.application.widget.ProductFactory;
 import com.arcbees.beeshop.client.application.widget.SecondaryProductPresenter;
@@ -48,30 +49,31 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     private final ProductFactory productFactory;
+    private final CurrentBrand currentBrand;
 
     @Inject
     HomePresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy,
-            ProductFactory productFactory) {
+            ProductFactory productFactory,
+            CurrentBrand currentBrand) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         this.productFactory = productFactory;
+        this.currentBrand = currentBrand;
     }
 
     @Override
     protected void onBind() {
-        Brand brand = Brand.getDefaultValue();
+        Brand brand = currentBrand.get();
 
         ProductDto shirt = new ProductDto();
         shirt.setBrand(brand);
-        shirt.setPrice(55);
         shirt.setProduct(Product.SHIRT);
 
         ProductDto bag = new ProductDto();
         bag.setBrand(brand);
-        bag.setPrice(55);
         bag.setProduct(Product.BAG);
 
         addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.LEFT, shirt));
@@ -79,22 +81,18 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
         ProductDto cup = new ProductDto();
         cup.setBrand(brand);
-        cup.setPrice(55);
         cup.setProduct(Product.THERMOS);
 
         ProductDto phoneCase = new ProductDto();
         phoneCase.setBrand(brand);
-        phoneCase.setPrice(55);
         phoneCase.setProduct(Product.PHONE_CASE);
 
         ProductDto key = new ProductDto();
         key.setBrand(brand);
-        key.setPrice(55);
         key.setProduct(Product.USB_KEY);
 
         ProductDto mug = new ProductDto();
         mug.setBrand(brand);
-        mug.setPrice(55);
         mug.setProduct(Product.MUG);
 
         SecondaryProductPresenter cupPresenter = productFactory.create(cup);
