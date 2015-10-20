@@ -1,9 +1,5 @@
 package com.arcbees.beeshop.client.application.widget;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-
 import javax.inject.Inject;
 
 import org.jukito.JukitoModule;
@@ -20,8 +16,12 @@ import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.gwtplatform.mvp.client.AutobindDisable;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
+
 @RunWith(JukitoRunner.class)
-public class MainProductPresenterTest {
+public class ProductPresenterTest {
     public static class Module extends JukitoModule {
         @Override
         protected void configureTest() {
@@ -36,18 +36,18 @@ public class MainProductPresenterTest {
     @Inject
     private ProductFactory productFactory;
     @Inject
-    private MainProductPresenter.MyView view;
+    private ProductPresenter.MyView view;
     @Inject
     private CurrentBrand currentBrand;
-    private Side side;
-    private MainProductPresenter presenter;
+    private ProductWidgetType productWidgetType;
+    private ProductPresenter presenter;
 
     @Before
     public void setUp() {
         ProductDto dto = new ProductDto();
-        side = Side.LEFT;
+        productWidgetType = ProductWidgetType.MAIN_LEFT;
 
-        presenter = productFactory.create(side, dto);
+        presenter = productFactory.create(productWidgetType, dto);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class MainProductPresenterTest {
     public void onBind_putsCorrectStyleInView() {
         presenter.onBind();
 
-        verify(view).setStyle(side);
+        verify(view).setStyle(productWidgetType);
     }
 
     @Test
