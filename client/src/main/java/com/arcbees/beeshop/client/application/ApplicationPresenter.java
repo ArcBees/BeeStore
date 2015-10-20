@@ -59,6 +59,6 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     protected void onBind() {
-        addRegisteredHandler(BrandChangedEvent.TYPE, this);
+        addVisibleHandler(BrandChangedEvent.TYPE, this);
     }
 }
