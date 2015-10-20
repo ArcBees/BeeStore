@@ -1,0 +1,11 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel>
+        <a href="#" ui:field="facebook">Facebook</a>
+        <a href="#" ui:field="pinterest">Pinterest</a>
+        <a href="#" ui:field="googleplus">Google+</a>
+        <a href="#" ui:field="twitter">Twitter</a>
+        <a href="#" ui:field="tumblr">Tumblr</a>
+        <a href="#" ui:field="mail">Mail</a>
+    </g:HTMLPanel>
+</ui:UiBinder>

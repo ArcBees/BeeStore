@@ -16,14 +16,26 @@
 
 package com.arcbees.beeshop.client.application.product;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.google.gwt.user.client.Window;
+import com.google.inject.Inject;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.PresenterWidget;
+import com.gwtplatform.mvp.client.View;
 
-public class ProductModule extends AbstractPresenterModule {
+public class SharePanelPresenter extends PresenterWidget<SharePanelPresenter.MyView> {
+    interface MyView extends View {
+        void updateShareUrls(String urlToShare);
+    }
+
+    @Inject
+    SharePanelPresenter(
+            EventBus eventBus,
+            MyView view) {
+        super(eventBus, view);
+    }
+
     @Override
-    protected void configure() {
-        bindPresenter(ProductPresenter.class, ProductPresenter.MyView.class, ProductView.class,
-                ProductPresenter.MyProxy.class);
-
-        bindPresenterWidget(SharePanelPresenter.class, SharePanelPresenter.MyView.class, SharePanelView.class);
+    protected void onReveal() {
+        getView().updateShareUrls(Window.Location.getHref());
     }
 }
