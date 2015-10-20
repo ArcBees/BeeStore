@@ -71,12 +71,12 @@
                                 </button>
                             </li>
                             <li class="{res.style.language}">
-                                <a class="{res.style.active}" href="#">ENG
+                                <a ui:field="englishAnchor" class="{res.style.active}" href="#">ENG
                                     <span class="{res.style.visuallyHidden}">LISH</span>
                                 </a>
                             </li>
                             <li class="{res.style.language}">
-                                <a href="#">FR
+                                <a ui:field="frenchAnchor" href="#">FR
                                     <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                                 </a>
                             </li>
