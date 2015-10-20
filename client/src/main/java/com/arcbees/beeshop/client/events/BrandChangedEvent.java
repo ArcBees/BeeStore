@@ -21,7 +21,8 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 
 public class BrandChangedEvent extends GwtEvent<BrandChangedEventHandler> {
-    public static Type<BrandChangedEventHandler> TYPE = new Type<>();
+    public static final Type<BrandChangedEventHandler> TYPE = new Type<>();
+
     private final Brand brand;
 
     public BrandChangedEvent(Brand brand) {
@@ -46,6 +47,7 @@ public class BrandChangedEvent extends GwtEvent<BrandChangedEventHandler> {
         return TYPE;
     }
 
+    @Override
     protected void dispatch(BrandChangedEventHandler handler) {
         handler.onBrandChanged(this);
     }
