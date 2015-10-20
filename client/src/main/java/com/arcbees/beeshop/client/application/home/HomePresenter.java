@@ -53,9 +53,4 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     public void onBrandChanged(BrandChangedEvent event) {
         getView().changeBrand(event.getBrand());
     }
-
-    @Override
-    protected void onBind() {
-        addRegisteredHandler(BrandChangedEvent.TYPE, this);
-    }
 }

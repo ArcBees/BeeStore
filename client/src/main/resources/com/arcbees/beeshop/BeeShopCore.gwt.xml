@@ -13,8 +13,8 @@
     <extend-configuration-property name="gin.ginjector.modules"
             value="com.arcbees.beeshop.client.application.gin.ClientModule"/>
 
-    <set-configuration-property name="gwtp.bootstrapper"
-            value="com.arcbees.beeshop.client.application.gin.BootstrapperImpl"/>
+    <set-configuration-property name="gwtp.prebootstrapper"
+            value="com.arcbees.beeshop.client.application.gin.PreBootstrapperImpl"/>
 
     <source path="client"/>
     <source path='common'/>

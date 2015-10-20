@@ -18,24 +18,30 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.events.BrandChangedEvent;
+import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
+import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
+import com.gwtplatform.mvp.client.annotations.ProxyEvent;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
-public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
+public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
+        implements BrandChangedEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
     }
 
-    public static final NestedSlot SLOT_MAIN = new NestedSlot();
-
     interface MyView extends View {
+        void changeBrand(Brand brand);
     }
+
+    public static final NestedSlot SLOT_MAIN = new NestedSlot();
 
     @Inject
     ApplicationPresenter(
@@ -43,5 +49,16 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
+    }
+
+    @ProxyEvent
+    @Override
+    public void onBrandChanged(BrandChangedEvent event) {
+        getView().changeBrand(event.getBrand());
+    }
+
+    @Override
+    protected void onBind() {
+        addRegisteredHandler(BrandChangedEvent.TYPE, this);
     }
 }

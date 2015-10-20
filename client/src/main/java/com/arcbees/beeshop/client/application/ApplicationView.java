@@ -16,17 +16,20 @@
 
 package com.arcbees.beeshop.client.application;
 
+import static com.google.gwt.query.client.GQuery.$;
+
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.resources.AppResources;
+import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.query.client.Function;
+import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
-
-import static com.google.gwt.query.client.GQuery.$;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
@@ -40,9 +43,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     Object backTop;
 
+    private final AppResources resources;
+
     @Inject
     ApplicationView(
-            Binder uiBinder) {
+            Binder uiBinder,
+            AppResources resources) {
+        this.resources = resources;
+
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
@@ -62,5 +70,33 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 });
             }
         });
+    }
+
+    @Override
+    public void changeBrand(Brand brand) {
+        $("body").removeClass();
+        $("body").addClass(getStyle(brand));
+    }
+
+    private String getStyle(Brand brand) {
+        switch (brand) {
+            case ARCBEES:
+                return resources.style().arcbees();
+            case GWTP:
+                return resources.style().gwtp();
+            case CHOSEN:
+                return resources.style().chosen();
+            case GQUERY:
+                return resources.style().gquery();
+            case GSSS:
+                return resources.style().gsss();
+            case GAE_STUDIO:
+                return resources.style().gaestudio();
+            case JUKITO:
+                return resources.style().jukito();
+            default:
+                GQuery.console.log("Couldn't determine the selected brand, picking up Arcbees.");
+                return resources.style().arcbees();
+        }
     }
 }
