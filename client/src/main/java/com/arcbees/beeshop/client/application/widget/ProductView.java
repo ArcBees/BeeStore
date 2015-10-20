@@ -12,8 +12,8 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 
-public class MainProductView extends ViewImpl implements MainProductPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, MainProductView> {
+public class ProductView extends ViewImpl implements ProductPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, ProductView> {
     }
 
     @UiField
@@ -30,14 +30,14 @@ public class MainProductView extends ViewImpl implements MainProductPresenter.My
     private final ProductBrandUtil productBrandUtil;
 
     @Inject
-    MainProductView(
+    ProductView(
             Binder binder,
             ProductBrandUtil productBrandUtil) {
         this.productBrandUtil = productBrandUtil;
 
         initWidget(binder.createAndBindUi(this));
 
-        bindSlot(MainProductPresenter.SLOT_PRICE, pricePanel);
+        bindSlot(ProductPresenter.SLOT_PRICE, pricePanel);
     }
 
     @Override

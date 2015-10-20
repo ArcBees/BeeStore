@@ -11,7 +11,7 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.SingleSlot;
 
-public class MainProductPresenter extends PresenterWidget<MainProductPresenter.MyView>
+public class ProductPresenter extends PresenterWidget<ProductPresenter.MyView>
         implements BrandChangedEventHandler {
     interface MyView extends View {
         void setStyle(ProductWidgetType productWidgetType);
@@ -27,7 +27,7 @@ public class MainProductPresenter extends PresenterWidget<MainProductPresenter.M
     private final CurrentBrand currentBrand;
 
     @Inject
-    MainProductPresenter(
+    ProductPresenter(
             EventBus eventBus,
             MyView view,
             PriceWidgetFactory priceWidgetFactory,

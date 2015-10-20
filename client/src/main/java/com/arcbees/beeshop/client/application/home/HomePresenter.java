@@ -21,7 +21,7 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.arcbees.beeshop.client.application.CurrentBrand;
-import com.arcbees.beeshop.client.application.widget.MainProductPresenter;
+import com.arcbees.beeshop.client.application.widget.ProductPresenter;
 import com.arcbees.beeshop.client.application.widget.ProductFactory;
 import com.arcbees.beeshop.client.application.widget.ProductWidgetType;
 import com.arcbees.beeshop.common.dto.Brand;
@@ -39,8 +39,8 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     interface MyView extends View {
     }
 
-    static Slot<MainProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
-    static Slot<MainProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
+    static Slot<ProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
+    static Slot<ProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
     @ProxyStandard
     @NameToken(NameTokens.HOME)
@@ -94,10 +94,10 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         mug.setBrand(brand);
         mug.setProduct(Product.MUG);
 
-        MainProductPresenter cupPresenter = productFactory.create(ProductWidgetType.SECONDARY, cup);
-        MainProductPresenter keyPresenter = productFactory.create(ProductWidgetType.SECONDARY, key);
-        MainProductPresenter mugPresenter = productFactory.create(ProductWidgetType.SECONDARY, mug);
-        MainProductPresenter phoneCasePresenter = productFactory.create(ProductWidgetType.SECONDARY, phoneCase);
+        ProductPresenter cupPresenter = productFactory.create(ProductWidgetType.SECONDARY, cup);
+        ProductPresenter keyPresenter = productFactory.create(ProductWidgetType.SECONDARY, key);
+        ProductPresenter mugPresenter = productFactory.create(ProductWidgetType.SECONDARY, mug);
+        ProductPresenter phoneCasePresenter = productFactory.create(ProductWidgetType.SECONDARY, phoneCase);
 
         addToSlot(SLOT_SECONDARY_PRODUCTS, cupPresenter);
         addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);

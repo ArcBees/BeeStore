@@ -21,7 +21,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @RunWith(JukitoRunner.class)
-public class MainProductPresenterTest {
+public class ProductPresenterTest {
     public static class Module extends JukitoModule {
         @Override
         protected void configureTest() {
@@ -36,11 +36,11 @@ public class MainProductPresenterTest {
     @Inject
     private ProductFactory productFactory;
     @Inject
-    private MainProductPresenter.MyView view;
+    private ProductPresenter.MyView view;
     @Inject
     private CurrentBrand currentBrand;
     private ProductWidgetType productWidgetType;
-    private MainProductPresenter presenter;
+    private ProductPresenter presenter;
 
     @Before
     public void setUp() {
