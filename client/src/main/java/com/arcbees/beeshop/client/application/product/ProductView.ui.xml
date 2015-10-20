@@ -15,7 +15,7 @@
                 <li class="{page.style.previous}">
                     <a href="#">
                         <i class="{font.icons.iconArrowDown}"/>
-                        Back Home
+                        Previous Product
                     </a>
                 </li>
                 <li class="{page.style.next}">

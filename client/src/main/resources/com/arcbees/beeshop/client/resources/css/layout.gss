@@ -16,7 +16,7 @@
 ------------------------ */
 
 body {
-    background-color: #f1f1f1;
+    background-color: C_STRIPE_MEDIUM1;
     font-family: F_PRIMARY;
 }
 
@@ -25,7 +25,8 @@ body {
 }
 
 .main {
-    min-height: calc(100vh - 290px);
+    min-height: calc(100vh - 240px);
+    padding-top: 100px;
 }
 
 .stripe {
@@ -55,9 +56,17 @@ body {
 /* -- HEADER
 ------------------------ */
 
+header {
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
 .header_top {
     color: C_TEXT_LIGHT;
-    background-color: #000;
+    background-color: C_DARK;
 
     position: relative;
 }
@@ -121,7 +130,7 @@ body {
 }
 
 .header_bottom {
-    background-color: #fff;
+    background-color: C_LIGHT;
 
     padding: 15px 0;
 
