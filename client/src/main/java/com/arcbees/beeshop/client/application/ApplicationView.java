@@ -20,6 +20,8 @@ import static com.google.gwt.query.client.GQuery.$;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.NameTokens;
+import com.google.gwt.dom.client.AnchorElement;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.dom.client.Element;
@@ -30,6 +32,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
@@ -42,13 +47,24 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     @UiField
     Object backTop;
+    @UiField
+    AnchorElement englishAnchor;
+    @UiField
+    AnchorElement frenchAnchor;
 
     private final AppResources resources;
+
+    private final TokenFormatter formatter;
+    private final PlaceManager placeManager;
 
     @Inject
     ApplicationView(
             Binder uiBinder,
+            TokenFormatter formatter,
+            PlaceManager placeManager,
             AppResources resources) {
+        this.formatter = formatter;
+        this.placeManager = placeManager;
         this.resources = resources;
 
         initWidget(uiBinder.createAndBindUi(this));
@@ -70,6 +86,24 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 });
             }
         });
+
+        setI18nAnchors();
+    }
+
+    private void setI18nAnchors() {
+        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
+        setLanguageAnchor(currentPlaceRequest, NameTokens.LANGUAGE_FRENCH, frenchAnchor);
+        setLanguageAnchor(currentPlaceRequest, NameTokens.LANGUAGE_ENGLISH, englishAnchor);
+    }
+
+    private void setLanguageAnchor(PlaceRequest currentPlaceRequest, String language, AnchorElement anchorElement) {
+        PlaceRequest newRequest = new PlaceRequest.Builder(currentPlaceRequest)
+                .with(NameTokens.PARAM_LANGUAGE, language)
+                .build();
+
+        String href = formatter.toPlaceToken(newRequest);
+
+        anchorElement.setHref("#" + href);
     }
 
     @Override

@@ -30,4 +30,8 @@ public class NameTokens {
     public static final String GSSS = Brand.GSSS.getValue();
     public static final String GQUERY = Brand.GQUERY.getValue();
     public static final String ARCBEES = Brand.ARCBEES.getValue();
+
+    public static final String PARAM_LANGUAGE = "language";
+    public static final String LANGUAGE_ENGLISH = "en";
+    public static final String LANGUAGE_FRENCH = "fr";
 }
