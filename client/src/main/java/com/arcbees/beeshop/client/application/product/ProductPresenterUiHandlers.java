@@ -16,14 +16,8 @@
 
 package com.arcbees.beeshop.client.application.product;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.gwtplatform.mvp.client.UiHandlers;
 
-public class ProductModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        bindPresenter(ProductPresenter.class, ProductPresenter.MyView.class, ProductView.class,
-                ProductPresenter.MyProxy.class);
-
-        bindPresenterWidget(SharePanelPresenter.class, SharePanelPresenter.MyView.class, SharePanelView.class);
-    }
+public interface ProductPresenterUiHandlers extends UiHandlers {
+    void onShareButtonClicked();
 }

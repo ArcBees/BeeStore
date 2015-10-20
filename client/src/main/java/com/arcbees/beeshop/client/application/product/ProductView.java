@@ -18,16 +18,56 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.resources.FontResources;
+import com.arcbees.ui.ReplacePanel;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public class ProductView extends ViewImpl implements ProductPresenter.MyView {
+import static com.arcbees.beeshop.client.application.product.ProductPresenter.SLOT_SHARE_PANEL;
+import static com.google.gwt.query.client.GQuery.$;
+
+public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> implements ProductPresenter.MyView {
     interface Binder extends UiBinder<Widget, ProductView> {
     }
+
+    @UiField
+    FontResources font;
+    @UiField
+    Element shareButton;
+    @UiField
+    ReplacePanel sharePanel;
 
     @Inject
     ProductView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
+
+        bindSlot(SLOT_SHARE_PANEL, sharePanel);
+
+        bind();
+    }
+
+    private void bind() {
+        $(shareButton).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onShareButtonClicked();
+            }
+        });
+    }
+
+    @Override
+    public void hideSharePanel() {
+        shareButton.setClassName(font.icons().iconShare());
+        $(sharePanel).hide();
+    }
+
+    @Override
+    public void showSharePanel() {
+        shareButton.setClassName(font.icons().iconClose());
+        $(sharePanel).show();
     }
 }
