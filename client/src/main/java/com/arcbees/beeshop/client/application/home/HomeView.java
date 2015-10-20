@@ -19,11 +19,6 @@ package com.arcbees.beeshop.client.application.home;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
-import com.arcbees.beeshop.client.application.widget.PricePresenter;
-import com.arcbees.beeshop.client.application.widget.PriceWidgetFactory;
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
-import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -54,45 +49,24 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     AnchorElement chosenAnchor;
     @UiField
     HTMLPanel secondaryProducts;
-    @UiField(provided = true)
-    PricePresenter bagPrice;
-    @UiField(provided = true)
-    PricePresenter shirtPrice;
+    @UiField
+    HTMLPanel mainProducts;
 
-    private final PriceWidgetFactory priceWidgetFactory;
     private final PlaceManager placeManager;
     private final TokenFormatter tokenFormatter;
 
     @Inject
     HomeView(
             Binder uiBinder,
-            PriceWidgetFactory priceWidgetFactory,
             PlaceManager placeManager,
             TokenFormatter tokenFormatter) {
-        this.priceWidgetFactory = priceWidgetFactory;
         this.placeManager = placeManager;
         this.tokenFormatter = tokenFormatter;
 
-        createInitialProducts(Brand.getDefaultValue());
-
         initWidget(uiBinder.createAndBindUi(this));
 
+        bindSlot(HomePresenter.SLOT_MAIN_PRODUCTS, mainProducts);
         bindSlot(HomePresenter.SLOT_SECONDARY_PRODUCTS, secondaryProducts);
-    }
-
-    private void createInitialProducts(Brand brand) {
-        ProductDto shirt = new ProductDto();
-        shirt.setBrand(brand);
-        shirt.setPrice(55);
-        shirt.setProduct(Product.SHIRT);
-
-        ProductDto bag = new ProductDto();
-        bag.setBrand(brand);
-        bag.setPrice(55);
-        bag.setProduct(Product.BAG);
-
-        shirtPrice = priceWidgetFactory.create(shirt);
-        bagPrice = priceWidgetFactory.create(bag);
     }
 
     @Override

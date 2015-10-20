@@ -10,25 +10,7 @@
 
     <g:HTMLPanel>
 
-        <section class="{page.style.mainProducts}">
-            <div class="{page.style.mainProducts_left} {res.style.mainProducts_bg}">
-                <g:Image resource="{page.tshirt}"/>
-
-                <widget:PricePresenter ui:field="shirtPrice"/>
-            </div>
-
-            <div class="{page.style.mainProducts_right}">
-                <g:Image resource="{page.arcbeesBag}" addStyleNames="{res.style.arcbees_img}"/>
-                <g:Image resource="{page.chosenBag}" addStyleNames="{res.style.chosen_img}"/>
-                <g:Image resource="{page.gaeBag}" addStyleNames="{res.style.gaestudio_img}"/>
-                <g:Image resource="{page.gqueryBag}" addStyleNames="{res.style.gquery_img}"/>
-                <g:Image resource="{page.gsssBag}" addStyleNames="{res.style.gsss_img}"/>
-                <g:Image resource="{page.gwtpBag}" addStyleNames="{res.style.gwtp_img}"/>
-                <g:Image resource="{page.jukitoBag}" addStyleNames="{res.style.jukito_img}"/>
-
-                <widget:PricePresenter ui:field="bagPrice"/>
-            </div>
-        </section>
+        <g:HTMLPanel tag="section" ui:field="mainProducts" styleName="{page.style.mainProducts}"/>
 
         <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
             <h3>shopping by products</h3>

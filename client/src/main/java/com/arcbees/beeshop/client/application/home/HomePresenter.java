@@ -20,8 +20,10 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
+import com.arcbees.beeshop.client.application.widget.MainProductPresenter;
 import com.arcbees.beeshop.client.application.widget.ProductFactory;
 import com.arcbees.beeshop.client.application.widget.SecondaryProductPresenter;
+import com.arcbees.beeshop.client.application.widget.Side;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
@@ -37,6 +39,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     interface MyView extends View {
     }
 
+    static Slot<MainProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
     static Slot<SecondaryProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
     @ProxyStandard
@@ -61,15 +64,18 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     protected void onBind() {
         Brand brand = Brand.getDefaultValue();
 
-//        ProductDto shirt = new ProductDto();
-//        shirt.setBrand(brand);
-//        shirt.setPrice(55);
-//        shirt.setProduct(Product.SHIRT);
-//
-//        ProductDto bag = new ProductDto();
-//        bag.setBrand(brand);
-//        bag.setPrice(55);
-//        bag.setProduct(Product.BAG);
+        ProductDto shirt = new ProductDto();
+        shirt.setBrand(brand);
+        shirt.setPrice(55);
+        shirt.setProduct(Product.SHIRT);
+
+        ProductDto bag = new ProductDto();
+        bag.setBrand(brand);
+        bag.setPrice(55);
+        bag.setProduct(Product.BAG);
+
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.LEFT, shirt));
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.RIGHT, bag));
 
         ProductDto cup = new ProductDto();
         cup.setBrand(brand);

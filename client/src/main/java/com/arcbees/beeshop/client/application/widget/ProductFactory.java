@@ -4,4 +4,5 @@ import com.arcbees.beeshop.common.dto.ProductDto;
 
 public interface ProductFactory {
     SecondaryProductPresenter create(ProductDto productDto);
+    MainProductPresenter create(Side side, ProductDto productDto);
 }
