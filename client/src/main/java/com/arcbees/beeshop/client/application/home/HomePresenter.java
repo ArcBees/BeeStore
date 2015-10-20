@@ -23,8 +23,7 @@ import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.arcbees.beeshop.client.application.CurrentBrand;
 import com.arcbees.beeshop.client.application.widget.MainProductPresenter;
 import com.arcbees.beeshop.client.application.widget.ProductFactory;
-import com.arcbees.beeshop.client.application.widget.SecondaryProductPresenter;
-import com.arcbees.beeshop.client.application.widget.Side;
+import com.arcbees.beeshop.client.application.widget.ProductWidgetType;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
@@ -41,7 +40,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     static Slot<MainProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
-    static Slot<SecondaryProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
+    static Slot<MainProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
     @ProxyStandard
     @NameToken(NameTokens.HOME)
@@ -76,8 +75,8 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         bag.setBrand(brand);
         bag.setProduct(Product.BAG);
 
-        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.LEFT, shirt));
-        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.RIGHT, bag));
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_LEFT, shirt));
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_RIGHT, bag));
 
         ProductDto cup = new ProductDto();
         cup.setBrand(brand);
@@ -95,10 +94,10 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         mug.setBrand(brand);
         mug.setProduct(Product.MUG);
 
-        SecondaryProductPresenter cupPresenter = productFactory.create(cup);
-        SecondaryProductPresenter keyPresenter = productFactory.create(key);
-        SecondaryProductPresenter mugPresenter = productFactory.create(mug);
-        SecondaryProductPresenter phoneCasePresenter = productFactory.create(phoneCase);
+        MainProductPresenter cupPresenter = productFactory.create(ProductWidgetType.SECONDARY, cup);
+        MainProductPresenter keyPresenter = productFactory.create(ProductWidgetType.SECONDARY, key);
+        MainProductPresenter mugPresenter = productFactory.create(ProductWidgetType.SECONDARY, mug);
+        MainProductPresenter phoneCasePresenter = productFactory.create(ProductWidgetType.SECONDARY, phoneCase);
 
         addToSlot(SLOT_SECONDARY_PRODUCTS, cupPresenter);
         addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);

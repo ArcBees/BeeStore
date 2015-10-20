@@ -41,12 +41,15 @@ public class MainProductView extends ViewImpl implements MainProductPresenter.My
     }
 
     @Override
-    public void setStyle(Side side) {
-        if (Side.LEFT == side) {
+    public void setStyle(ProductWidgetType productWidgetType) {
+        if (ProductWidgetType.MAIN_LEFT == productWidgetType) {
             panel.addStyleName(page.style().mainProducts_left());
             panel.addStyleName(res.style().mainProducts_bg());
-        } else {
+        } else if (ProductWidgetType.MAIN_RIGHT == productWidgetType) {
             panel.addStyleName(page.style().mainProducts_right());
+        } else {
+            panel.setStyleName(page.style().itemForSale());
+            image.setStyleName(page.style().itemForSale_img());
         }
     }
 

@@ -14,14 +14,14 @@ import com.gwtplatform.mvp.client.presenter.slots.SingleSlot;
 public class MainProductPresenter extends PresenterWidget<MainProductPresenter.MyView>
         implements BrandChangedEventHandler {
     interface MyView extends View {
-        void setStyle(Side side);
+        void setStyle(ProductWidgetType productWidgetType);
 
         void setProduct(ProductDto productDto);
     }
 
     static SingleSlot<PricePresenter> SLOT_PRICE = new SingleSlot<>();
 
-    private final Side side;
+    private final ProductWidgetType productWidgetType;
     private final ProductDto productDto;
     private final PriceWidgetFactory priceWidgetFactory;
     private final CurrentBrand currentBrand;
@@ -32,11 +32,11 @@ public class MainProductPresenter extends PresenterWidget<MainProductPresenter.M
             MyView view,
             PriceWidgetFactory priceWidgetFactory,
             CurrentBrand currentBrand,
-            @Assisted Side side,
+            @Assisted ProductWidgetType productWidgetType,
             @Assisted ProductDto productDto) {
         super(eventBus, view);
 
-        this.side = side;
+        this.productWidgetType = productWidgetType;
         this.productDto = productDto;
         this.priceWidgetFactory = priceWidgetFactory;
         this.currentBrand = currentBrand;
@@ -52,7 +52,7 @@ public class MainProductPresenter extends PresenterWidget<MainProductPresenter.M
     protected void onBind() {
         addVisibleHandler(BrandChangedEvent.TYPE, this);
 
-        getView().setStyle(side);
+        getView().setStyle(productWidgetType);
 
         setInSlot(SLOT_PRICE, priceWidgetFactory.create(productDto));
     }
