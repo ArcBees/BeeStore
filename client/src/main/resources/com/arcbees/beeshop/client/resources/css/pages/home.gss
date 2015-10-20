@@ -176,6 +176,8 @@
 .itemForSale_img {
     text-align: center;
 
+    display: block;
+
     margin: 0 auto 55px auto;
 
     @mixin transition(all, .35s);

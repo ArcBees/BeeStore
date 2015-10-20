@@ -20,42 +20,89 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
-import com.arcbees.beeshop.client.events.BrandChangedEvent;
-import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
+import com.arcbees.beeshop.client.application.CurrentBrand;
+import com.arcbees.beeshop.client.application.widget.MainProductPresenter;
+import com.arcbees.beeshop.client.application.widget.ProductFactory;
+import com.arcbees.beeshop.client.application.widget.SecondaryProductPresenter;
+import com.arcbees.beeshop.client.application.widget.Side;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.presenter.slots.Slot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 
-public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>
-        implements BrandChangedEventHandler {
+public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
     interface MyView extends View {
-        void changeBrand(Brand brand);
     }
+
+    static Slot<MainProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
+    static Slot<SecondaryProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
     @ProxyStandard
     @NameToken(NameTokens.HOME)
     interface MyProxy extends ProxyPlace<HomePresenter> {
     }
 
+    private final ProductFactory productFactory;
+    private final CurrentBrand currentBrand;
+
     @Inject
     HomePresenter(
             EventBus eventBus,
             MyView view,
-            MyProxy proxy) {
+            MyProxy proxy,
+            ProductFactory productFactory,
+            CurrentBrand currentBrand) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
-    }
 
-    @Override
-    public void onBrandChanged(BrandChangedEvent event) {
-        getView().changeBrand(event.getBrand());
+        this.productFactory = productFactory;
+        this.currentBrand = currentBrand;
     }
 
     @Override
     protected void onBind() {
-        addRegisteredHandler(BrandChangedEvent.TYPE, this);
+        Brand brand = currentBrand.get();
+
+        ProductDto shirt = new ProductDto();
+        shirt.setBrand(brand);
+        shirt.setProduct(Product.SHIRT);
+
+        ProductDto bag = new ProductDto();
+        bag.setBrand(brand);
+        bag.setProduct(Product.BAG);
+
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.LEFT, shirt));
+        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(Side.RIGHT, bag));
+
+        ProductDto cup = new ProductDto();
+        cup.setBrand(brand);
+        cup.setProduct(Product.THERMOS);
+
+        ProductDto phoneCase = new ProductDto();
+        phoneCase.setBrand(brand);
+        phoneCase.setProduct(Product.PHONE_CASE);
+
+        ProductDto key = new ProductDto();
+        key.setBrand(brand);
+        key.setProduct(Product.USB_KEY);
+
+        ProductDto mug = new ProductDto();
+        mug.setBrand(brand);
+        mug.setProduct(Product.MUG);
+
+        SecondaryProductPresenter cupPresenter = productFactory.create(cup);
+        SecondaryProductPresenter keyPresenter = productFactory.create(key);
+        SecondaryProductPresenter mugPresenter = productFactory.create(mug);
+        SecondaryProductPresenter phoneCasePresenter = productFactory.create(phoneCase);
+
+        addToSlot(SLOT_SECONDARY_PRODUCTS, cupPresenter);
+        addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);
+        addToSlot(SLOT_SECONDARY_PRODUCTS, keyPresenter);
+        addToSlot(SLOT_SECONDARY_PRODUCTS, mugPresenter);
     }
 }
