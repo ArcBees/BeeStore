@@ -1,11 +1,27 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>
-        <a href="#" ui:field="facebook">Facebook</a>
-        <a href="#" ui:field="pinterest">Pinterest</a>
-        <a href="#" ui:field="googleplus">Google+</a>
-        <a href="#" ui:field="twitter">Twitter</a>
-        <a href="#" ui:field="tumblr">Tumblr</a>
-        <a href="#" ui:field="mail">Mail</a>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+
+    <g:HTMLPanel addStyleNames="{res.style.share_icons}">
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_fb} {font.icons.iconFb}" ui:field="facebook">
+            <span class="{res.style.visuallyHidden}">Facebook</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_pinterest} {font.icons.iconPinterest}" ui:field="pinterest">
+            <span class="{res.style.visuallyHidden}">Pinterest</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_gplus} {font.icons.iconGPlus}" ui:field="googleplus">
+            <span class="{res.style.visuallyHidden}">Google+</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_twitter} {font.icons.iconTwitter}" ui:field="twitter">
+            <span class="{res.style.visuallyHidden}">Twitter</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_tumblr} {font.icons.iconTumblr}" ui:field="tumblr">
+            <span class="{res.style.visuallyHidden}">Tumblr</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_mail} {font.icons.iconEmailCircle}" ui:field="mail">
+            <span class="{res.style.visuallyHidden}">Mail</span>
+        </a>
     </g:HTMLPanel>
 </ui:UiBinder>
