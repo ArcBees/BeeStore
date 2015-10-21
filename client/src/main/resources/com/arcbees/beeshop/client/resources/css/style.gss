@@ -172,6 +172,20 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.rightPanel h2 span {
+    font-size: 2.8rem;
+    background-color: C_PRIMARY;
+    color: C_TEXT;
+    line-height: 40px;
+
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    padding: 2px;
+
+    border-radius: 50%;
+}
+
 .rightPanel h3,
 .rightPanel h4 {
     font-size: 2rem;
@@ -217,6 +231,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 99;
 }
 
+.rightPanel_shoppingBag,
 .rightPanel_address,
 .rightPanel_order,
 .rightPanel_paiement {
@@ -247,7 +262,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: table;
     width: calc(100% + 60px);
     padding: 30px;
-    margin: 0 0 20px -30px;
+    margin-left: -30px;
 }
 
 .orderBox__shirt {
