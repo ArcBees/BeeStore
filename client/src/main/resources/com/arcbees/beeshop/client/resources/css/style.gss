@@ -150,7 +150,7 @@ input[type=number]::-webkit-outer-spin-button {
 ------------------------ */
 
 .rightPanel {
-    background-color: C_STRIPE_MEDIUM4;
+    background-color: C_STRIPE_MEDIUM1;
 
     display: table;
     height: calc(100% - 100px);
