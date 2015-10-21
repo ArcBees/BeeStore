@@ -41,7 +41,7 @@
 }
 
 ::selection {
-    background: C_DARK;
+    background: C_PRIMARY;
     text-shadow: none;
 }
 

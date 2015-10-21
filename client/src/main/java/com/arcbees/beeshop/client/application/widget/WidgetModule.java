@@ -1,4 +1,3 @@
-
 package com.arcbees.beeshop.client.application.widget;
 
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;

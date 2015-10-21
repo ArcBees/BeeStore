@@ -118,6 +118,7 @@
 }
 
 .inputQuantity {
+    background-color: transparent;
     color: C_TEXT;
     line-height: 1;
     font-family: F_PRIMARY;
@@ -143,4 +144,196 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 
     -webkit-appearance: none;
+}
+
+/* -- RIGHT PANEL
+------------------------ */
+
+.rightPanel {
+    background-color: C_STRIPE_MEDIUM4;
+
+    display: table;
+    height: calc(100% - 100px);
+
+    position: fixed;
+    top: 100px;
+    right: 0;
+    z-index: 99999;
+}
+
+.rightPanel_title {
+    margin-bottom: 20px;
+}
+
+.rightPanel h2 {
+    font-size: 2.8rem;
+    text-align: center;
+
+    margin: 0;
+}
+
+.rightPanel h3,
+.rightPanel h4 {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+
+    margin: 0;
+}
+
+.rightPanel_step {
+    width: 28px;
+
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.rightPanel_step span:before {
+    content: "\e618";
+    color: C_DARK;
+    font-size: 2.8rem;
+    font-family: "icomoonregular";
+
+    margin-left: -15px;
+
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+
+    @mixin rotate(90deg);
+}
+
+.rightPanel_step span {
+    color: C_TEXT_LIGHT;
+    font-size: 1.5rem;
+    line-height: 28px;
+    text-align: center;
+
+    display: block;
+    width: 25px;
+
+    position: relative;
+    z-index: 99;
+}
+
+.rightPanel_address,
+.rightPanel_order,
+.rightPanel_paiement {
+    display: table-cell;
+    vertical-align: top;
+    width: 25vw;
+    padding: 30px;
+
+    position: relative;
+}
+
+.rightPanel_order h3,
+.rightPanel_paiement h3 {
+    margin-bottom: 10px;
+}
+
+.rightPanel_order {
+    background-color: C_STRIPE_MEDIUM3;
+}
+
+.rightPanel_paiement {
+    background-color: C_STRIPE_MEDIUM2;
+}
+
+.orderBox {
+    background-color: C_LIGHT;
+
+    display: table;
+    width: calc(100% + 60px);
+    padding: 30px;
+    margin: 0 0 20px -30px;
+}
+
+.orderBox__shirt {
+    background-color: C_PRIMARY;
+}
+
+.orderBox_img,
+.orderBox_info,
+.orderBox_delete {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.orderBox_img {
+    width: 75px;
+    max-height: 95px;
+}
+
+.orderBox_info {
+    padding-left: 30px;
+}
+
+.orderBox_productName {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.orderBox_productColor,
+.orderBox_productSize {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+
+    display: block;
+}
+
+.orderBox_productSize span {
+    font-family: F_PRIMARY_BOLD;
+}
+
+.orderBox_productTimes {
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    margin-right: 15px;
+
+    vertical-align: middle;
+}
+
+.orderBox_productPrice {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+
+    vertical-align: middle;
+}
+
+.orderBox_delete {
+    font-size: 2rem;
+
+    width: 20px;
+
+    vertical-align: middle;
+}
+
+.orderAmount {
+    margin: 20px 0;
+}
+
+.orderAmount h4 {
+    margin-bottom: 0;
+    float: left;
+}
+
+.shippingPrice {
+    font-size: 1.7rem;
+    line-height: 1;
+
+    float: right;
+}
+
+.orderAmount_price {
+    font-size: 2rem;
+    line-height: 1;
+
+    font-family: F_PRIMARY_BOLD;
+    float: right;
 }

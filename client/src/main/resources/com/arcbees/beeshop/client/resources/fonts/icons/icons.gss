@@ -51,6 +51,7 @@
 
 @external "icon*";
 
+.iconDeleteCircle:before { content: "\e809";}
 .iconGaeName:before { content: "\e800";}
 .iconChosenName:before { content: "\e801";}
 .iconGqueryName:before { content: "\e802";}
