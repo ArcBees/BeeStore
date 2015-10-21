@@ -10,31 +10,6 @@
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
             <header>
-                <div class="{res.style.header_top}">
-                    <ul class="{res.style.mobileDisplay}">
-                        <li>
-                            <a class="{res.style.active}" href="#">
-                                <i class="{font.icons.iconDesktop}"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="{font.icons.iconTabletDevice}"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="{font.icons.iconPhoneDevice}"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="{res.style.header_developersPlatform}">
-                        <i class="{font.icons.iconInfoHexa}"/>
-                        <span>DEVELOPPER'S PLATFORM</span>
-                        <i class="{font.icons.iconArrowOutside}"/>
-                    </div>
-                </div>
-
                 <div class="{res.style.header_bottom} {res.grid.row}">
                     <div class="{res.grid.col} {res.grid.col_4}">
                         <nav class="{res.style.header_menu}">
@@ -71,12 +46,12 @@
                                 </button>
                             </li>
                             <li class="{res.style.language}">
-                                <a class="{res.style.active}" href="#">ENG
+                                <a ui:field="englishAnchor" class="{res.style.active}" href="#">ENG
                                     <span class="{res.style.visuallyHidden}">LISH</span>
                                 </a>
                             </li>
                             <li class="{res.style.language}">
-                                <a href="#">FR
+                                <a ui:field="frenchAnchor" href="#">FR
                                     <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                                 </a>
                             </li>

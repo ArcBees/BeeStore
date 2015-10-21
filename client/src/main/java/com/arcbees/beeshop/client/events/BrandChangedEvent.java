@@ -21,12 +21,17 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 
 public class BrandChangedEvent extends GwtEvent<BrandChangedEventHandler> {
-    public static Type<BrandChangedEventHandler> TYPE = new Type<>();
+    public static final Type<BrandChangedEventHandler> TYPE = new Type<>();
 
     private final Brand brand;
 
     public BrandChangedEvent(Brand brand) {
         this.brand = brand;
+    }
+
+    // Needed for the proxyEvent on ApplicationPresenter
+    public static Type<BrandChangedEventHandler> getType() {
+        return TYPE;
     }
 
     public static void fire(Brand brand, HasHandlers source) {
@@ -37,10 +42,12 @@ public class BrandChangedEvent extends GwtEvent<BrandChangedEventHandler> {
         return brand;
     }
 
+    @Override
     public Type<BrandChangedEventHandler> getAssociatedType() {
         return TYPE;
     }
 
+    @Override
     protected void dispatch(BrandChangedEventHandler handler) {
         handler.onBrandChanged(this);
     }

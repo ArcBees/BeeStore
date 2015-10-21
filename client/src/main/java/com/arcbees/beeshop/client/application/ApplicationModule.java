@@ -16,9 +16,12 @@
 
 package com.arcbees.beeshop.client.application;
 
+import javax.inject.Singleton;
+
 import com.arcbees.beeshop.client.application.home.HomeModule;
 import com.arcbees.beeshop.client.application.product.ProductModule;
 import com.arcbees.beeshop.client.application.widget.WidgetModule;
+import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
@@ -29,8 +32,8 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new WidgetModule());
 
         bind(BrandChangeHandler.class).asEagerSingleton();
-        bind(CurrentBrand.class).to(CurrentBrandImpl.class);
-        bind(ThemeChanger.class).to(ThemeChangerImpl.class).asEagerSingleton();
+        bind(CurrentBrand.class).to(CurrentBrandImpl.class).in(Singleton.class);
+        bind(ProductBrandUtil.class).in(Singleton.class);
 
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);

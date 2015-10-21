@@ -102,20 +102,6 @@ public interface AppResources extends ClientBundle {
 
         String mainProducts_bg();
 
-        String gwtp_img();
-
-        String arcbees_img();
-
-        String jukito_img();
-
-        String chosen_img();
-
-        String gquery_img();
-
-        String gaestudio_img();
-
-        String gsss_img();
-
         String share();
 
         String share_icons();

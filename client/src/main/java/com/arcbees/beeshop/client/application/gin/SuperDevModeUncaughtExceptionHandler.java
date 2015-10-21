@@ -5,7 +5,7 @@ import com.google.web.bindery.event.shared.UmbrellaException;
 
 public class SuperDevModeUncaughtExceptionHandler implements GWT.UncaughtExceptionHandler {
     @Override
-    public void onUncaughtException(final Throwable t) {
+    public void onUncaughtException(Throwable t) {
         logException(t, false);
     }
 

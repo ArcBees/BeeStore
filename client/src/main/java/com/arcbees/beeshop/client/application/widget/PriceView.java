@@ -1,6 +1,9 @@
 package com.arcbees.beeshop.client.application.widget;
 
+import static com.google.gwt.query.client.GQuery.$;
+
 import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
@@ -13,8 +16,6 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
-
-import static com.google.gwt.query.client.GQuery.$;
 
 public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         implements PricePresenter.MyView {
@@ -33,26 +34,30 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     AnchorElement priceView;
 
     private final TokenFormatter tokenFormatter;
+    private final AppMessages messages;
 
     @Inject
     PriceView(
             Binder binder,
-            TokenFormatter tokenFormatter) {
+            TokenFormatter tokenFormatter,
+            AppMessages messages) {
         this.tokenFormatter = tokenFormatter;
+        this.messages = messages;
+
         initWidget(binder.createAndBindUi(this));
     }
 
     @Override
     public void setProduct(ProductDto product) {
-        brandName.setInnerText(product.getBrandName());
-        productName.setInnerText(product.getProductName());
+        brandName.setInnerText(messages.brandName(product.getBrand()));
+        productName.setInnerText(messages.productName(product.getProduct()));
         price.setInnerText(product.getPrice() + " $");
 
         buildAnchorUri(product);
     }
 
     private void buildAnchorUri(ProductDto product) {
-        String productId = String.valueOf(product.getId());
+        String productId = String.valueOf(product.getProduct().getValue());
 
         PlaceRequest request = new PlaceRequest.Builder()
                 .nameToken(NameTokens.PRODUCTS)
