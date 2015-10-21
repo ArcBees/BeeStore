@@ -14,14 +14,30 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.resources;
+package com.arcbees.beeshop.common.dto;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
-import com.google.gwt.i18n.client.Messages;
+public enum Product {
+    SHIRT(1, 30),
+    BAG(2, 25),
+    USB_KEY(3, 10),
+    MUG(4, 10),
+    THERMOS(5, 5),
+    PHONE_CASE(6, 15);
 
-public interface AppMessages extends Messages {
-    String brandName(@Select Brand brand);
+    private final int value;
 
-    String productName(@Select Product product);
+    public int getPrice() {
+        return price;
+    }
+
+    private final int price;
+
+    Product(int value, int price) {
+        this.value = value;
+        this.price = price;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }

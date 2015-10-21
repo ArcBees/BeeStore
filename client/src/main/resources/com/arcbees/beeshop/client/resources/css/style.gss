@@ -20,14 +20,6 @@
 
 .arcbees {}
 
-.arcbees_img {
-    display: none;
-}
-
-.arcbees .arcbees_img {
-    display: block;
-}
-
 .arcbees .itemPrice,
 .arcbees .mainProducts_bg {
     background-color: C_PRIMARY;
@@ -37,14 +29,6 @@
 ------------------------ */
 
 .gwtp {}
-
-.gwtp_img {
-    display: none;
-}
-
-.gwtp .gwtp_img {
-    display: block;
-}
 
 .gwtp .itemPrice,
 .gwtp .mainProducts_bg {
@@ -56,14 +40,6 @@
 
 .chosen {}
 
-.chosen_img {
-    display: none;
-}
-
-.chosen .chosen_img {
-    display: block;
-}
-
 .chosen .itemPrice,
 .chosen .mainProducts_bg {
     background-color: C_PRODUCT_CHOSEN;
@@ -73,14 +49,6 @@
 ------------------------ */
 
 .jukito {}
-
-.jukito_img {
-    display: none;
-}
-
-.jukito .jukito_img {
-    display: block;
-}
 
 .jukito .itemPrice,
 .jukito .mainProducts_bg {
@@ -96,14 +64,6 @@
 
 .gquery {}
 
-.gquery_img {
-    display: none;
-}
-
-.gquery .gquery_img {
-    display: block;
-}
-
 .gquery .itemPrice,
 .gquery .mainProducts_bg {
     background-color: C_PRODUCT_GQUERY;
@@ -118,14 +78,6 @@
 
 .gsss {}
 
-.gsss_img {
-    display: none;
-}
-
-.gsss .gsss_img {
-    display: block;
-}
-
 .gsss .itemPrice,
 .gsss .mainProducts_bg {
     background-color: C_PRODUCT_GSS;
@@ -139,14 +91,6 @@
 ------------------------ */
 
 .gaestudio {}
-
-.gaestudio_img {
-    display: none;
-}
-
-.gaestudio .gaestudio_img {
-    display: block;
-}
 
 .gaestudio .itemPrice,
 .gaestudio .mainProducts_bg {
@@ -205,37 +149,89 @@ input[type=number]::-webkit-outer-spin-button {
 .rightPanel {
     background-color: C_STRIPE_MEDIUM2;
 
-    position: absolute;
-    top: 150px;
-    z-index: 999;
+    display: table;
+    height: calc(100% - 100px);
+
+    position: fixed;
+    top: 100px;
+    right: 0;
+    z-index: 99999;
 }
+
+.rightPanel_title {
+}
+
+.rightPanel_step {
+    width: 28px;
+
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.rightPanel_step span:before {
+    content: "\e618";
+    color: C_DARK;
+    font-size: 2.8rem;
+    font-family: "icomoonregular";
+
+    margin-left: -15px;
+
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+
+    @mixin rotate(90deg);
+}
+
+.rightPanel_step span {
+    color: C_TEXT_LIGHT;
+    font-size: 1.5rem;
+    line-height: 28px;
+    text-align: center;
+
+    display: block;
+    width: 25px;
+
+    position: relative;
+    z-index: 99;
+}
+
+.rightPanel_title h2 {
+    font-size: 2.8rem;
+    text-align: center;
+
+    margin: 0;
+}
+
 
 .rightPanel_address,
 .rightPanel_order,
 .rightPanel_paiement {
     display: table-cell;
     vertical-align: top;
+    width: 25vw;
+    padding: 30px;
+
+    position: relative;
 }
 
-
-.rightPanel_address,
-.rightPanel_paiement {
-    padding: 30px;
+.rightPanel_order h3,
+.rightPanel_paiement h3 {
+    margin-bottom: 10px;
 }
 
 .rightPanel_order {
     background-color: C_STRIPE_MEDIUM3;
-
-    height: 100%;
-    padding: 30px 0;
 }
 
 .orderBox {
     background-color: C_LIGHT;
 
     display: table;
-    width: 100%;
+    width: calc(100% + 60px);
     padding: 30px;
+    margin-left: -30px;
 }
 
 .orderBox__shirt {
@@ -251,13 +247,37 @@ input[type=number]::-webkit-outer-spin-button {
 
 .orderBox_img {
     width: 75px;
-    height: 95px;
+    max-height: 95px;
 }
 
 .orderBox_info {
     padding-left: 30px;
 }
 
+.orderBox_productName {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
+}
+
+.orderBox_productColor,
+.orderBox_productSize {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+
+    display: block;
+}
+
+.orderBox_productSize span {
+    font-family: F_PRIMARY_BOLD;
+}
+
 .orderBox_delete {
+    font-size: 2rem;
+
+    width: 20px;
+
     vertical-align: middle;
 }

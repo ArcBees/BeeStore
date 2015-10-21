@@ -14,10 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.application.widget;
 
-import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.ProductDto;
 
-public interface ThemeChanger {
-    void changeBrand(Brand brand);
+public interface ProductFactory {
+    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
 }

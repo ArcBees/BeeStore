@@ -38,7 +38,7 @@ public enum Brand {
             }
         }
 
-        return null;
+        return getDefaultValue();
     }
 
     public static Brand getDefaultValue() {

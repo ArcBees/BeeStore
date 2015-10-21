@@ -3,6 +3,7 @@
         xmlns:svg="urn:import:org.vectomatic.dom.svg.ui">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="panel" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
 
@@ -11,31 +12,6 @@
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
             <header>
-                <div class="{res.style.header_top}">
-                    <ul class="{res.style.mobileDisplay}">
-                        <li>
-                            <a class="{res.style.active}" href="#">
-                                <i class="{font.icons.iconDesktop}"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="{font.icons.iconTabletDevice}"/>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="{font.icons.iconPhoneDevice}"/>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="{res.style.header_developersPlatform}">
-                        <i class="{font.icons.iconInfoHexa}"/>
-                        <span>DEVELOPPER'S PLATFORM</span>
-                        <i class="{font.icons.iconArrowOutside}"/>
-                    </div>
-                </div>
-
                 <div class="{res.style.header_bottom} {res.grid.row}">
                     <div class="{res.grid.col} {res.grid.col_4}">
                         <nav class="{res.style.header_menu}">
@@ -75,12 +51,12 @@
                                 </div>
                             </li>
                             <li class="{res.style.language}">
-                                <a class="{res.style.active}" href="#">ENG
+                                <a ui:field="englishAnchor" class="{res.style.active}" href="#">ENG
                                     <span class="{res.style.visuallyHidden}">LISH</span>
                                 </a>
                             </li>
                             <li class="{res.style.language}">
-                                <a href="#">FR
+                                <a ui:field="frenchAnchor" href="#">FR
                                     <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                                 </a>
                             </li>
@@ -91,23 +67,31 @@
 
             <div class="{res.style.rightPanel}">
                 <div class="{res.style.rightPanel_address}">
+                    <div class="{res.style.rightPanel_title}">
+                        <div class="{res.style.rightPanel_step}">
+                            <span>1</span>
+                        </div>
+                        <h2>Address</h2>
+                    </div>
+
                     <h3>Shipping address</h3>
                     <fieldset>
-                        <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name" required=""/>
-                        <input class="{comp.style.field}" type="text" placeholder="Last name" required=""/>
-                        <input class="{comp.style.field}" type="text" placeholder="Company" required=""/>
+                        <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*"
+                                required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Last name*" required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Company*" required=""/>
                     </fieldset>
 
                     <fieldset>
-                        <input class="{comp.style.field}" type="text" placeholder="Address" required=""/>
-                        <input class="{comp.style.field}" type="text" placeholder="Town city" required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Address*" required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Town city*" required=""/>
                         <input class="{comp.style.field}" type="text" placeholder="States" required=""/>
                         <input class="{comp.style.field}" type="text" placeholder="Country" required=""/>
                     </fieldset>
 
                     <fieldset>
-                        <input class="{comp.style.field}" type="email" placeholder="Email" required=""/>
-                        <input class="{comp.style.field}" type="tel" placeholder="Phone" required=""/>
+                        <input class="{comp.style.field}" type="email" placeholder="Email*" required=""/>
+                        <input class="{comp.style.field}" type="tel" placeholder="Phone*" required=""/>
                     </fieldset>
 
                     <div class="{comp.style.inputCheckbox}">
@@ -118,25 +102,29 @@
                     <button class="{comp.style.btn} {comp.style.btn_outline}">Contine</button>
                 </div>
                 <div class="{res.style.rightPanel_order}">
+                    <div class="{res.style.rightPanel_title}">
+                        <div class="{res.style.rightPanel_step}">
+                            <span>2</span>
+                        </div>
+                        <h2>Order</h2>
+                    </div>
                     <h3>Your order</h3>
                     <div class="{res.style.orderBox} {res.style.orderBox__shirt}">
-                        <div class="{res.style.orderBox_img}">
-                            t-shirt img
-                        </div>
+                        <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
                         <div class="{res.style.orderBox_info}">
-                            <h4>Bee shirt</h4>
-                            <span>Grey  shirt</span>
-                            <span>Yellow Logo</span>
-                            <span>Size: <span>M</span></span>
+                            <h4 class="{res.style.orderBox_productName}">Bee shirt</h4>
+                            <span class="{res.style.orderBox_productColor}">Grey shirt</span>
+                            <span class="{res.style.orderBox_productColor}">Yellow Logo</span>
+                            <span class="{res.style.orderBox_productSize}">Size:
+                                <span>M</span>
+                            </span>
                             <div>
                                 <input type="number" class="{res.style.inputQuantity}" value="1"/>
                                 x
                                 <span>35.00 $</span>
                             </div>
                         </div>
-                        <div class="{res.style.orderBox_delete}">
-                            delete
-                        </div>
+                        <i class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
                     </div>
                     <h4>subtotal</h4>
                     <div class="{res.style.orderBox}">
@@ -144,7 +132,7 @@
                             Shipping and handling
                             <div>
                                 <div class="{comp.style.inputRadio}">
-                                    <input type="radio" id="standard"/>
+                                    <input type="radio" name="shipping" id="standard"/>
                                     <label for="standard">Standard</label>
                                 </div>
 
@@ -152,7 +140,7 @@
 
                             <div>
                                 <div class="{comp.style.inputRadio}">
-                                    <input type="radio" id="international"/>
+                                    <input type="radio" name="shipping" id="international"/>
                                     <label for="international">International delivery</label>
                                 </div>
                             </div>
@@ -164,38 +152,43 @@
                     <button class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
                 </div>
                 <div class="{res.style.rightPanel_paiement}">
-                    <h3>Paiement</h3>
+                    <div class="{res.style.rightPanel_title}">
+                        <div class="{res.style.rightPanel_step}">
+                            <span>3</span>
+                        </div>
+                        <h2>Paiement</h2>
+                    </div>
 
-                    <h4>Paiement method</h4>
+                    <h3>Paiement method</h3>
+
                     <div class="{comp.style.inputRadio}">
-                        <input type="radio" id="paypal"/>
+                        <input type="radio" name="paeiment method" id="paypal"/>
                         <label for="paypal">paypal</label>
                     </div>
 
                     <div class="{comp.style.inputRadio}">
-                        <input type="radio" id="credit card"/>
+                        <input type="radio" name="paeiment method" id="credit card"/>
                         <label for="credit card">credit card</label>
                     </div>
 
                     <h4>credit card</h4>
 
                     <fieldset>
-                        <input class="{comp.style.field}" type="text" placeholder="Name on the card" required=""/>
-                        <input class="{comp.style.field}" type="text" placeholder="Country" required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Name on the card*" required=""/>
+                        <input class="{comp.style.field}" type="text" placeholder="Company name" required=""/>
                     </fieldset>
 
                     <fieldset>
-                        <input class="{comp.style.field}" type="email" placeholder="Card number" required=""/>
-                        <input class="{comp.style.field}" type="tel" placeholder="VAT number" required=""/>
+                        <input class="{comp.style.field}" type="email" placeholder="Card number*" required=""/>
+                        <input class="{comp.style.field}" type="tel" placeholder="VAT number*" required=""/>
                     </fieldset>
 
                     <fieldset>
-                        <input class="{comp.style.field}" type="email" placeholder="CVS" required=""/>
-                        <input class="{comp.style.field}" type="tel" placeholder="MM/YY" required=""/>
+                        <input class="{comp.style.field}" type="email" placeholder="CVS*" required=""/>
+                        <input class="{comp.style.field}" type="tel" placeholder="MM/YY*" required=""/>
                     </fieldset>
 
-                    <p>We don't store any credit information on our server.</p>
-                    <a href="#">Learn more</a>
+                    <p>We don't store any credit information on our server. <a href="#">Learn more</a></p>
 
                     <button class="{comp.style.btn} {comp.style.btn_outline}">Place order</button>
                 </div>

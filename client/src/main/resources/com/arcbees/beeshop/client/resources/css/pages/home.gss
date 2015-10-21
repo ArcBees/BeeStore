@@ -33,12 +33,9 @@
     background-color: #fbe605;
 }
 
-.mainProducts_left img {
-    display: block;
-}
-
 .mainProducts_left img,
 .mainProducts_right img {
+    display: table;
     margin: 0 auto;
 }
 
@@ -175,6 +172,8 @@
 
 .itemForSale_img {
     text-align: center;
+
+    display: block;
 
     margin: 0 auto 55px auto;
 

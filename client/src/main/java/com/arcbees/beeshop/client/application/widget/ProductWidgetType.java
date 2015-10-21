@@ -14,14 +14,8 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.resources;
+package com.arcbees.beeshop.client.application.widget;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
-import com.google.gwt.i18n.client.Messages;
-
-public interface AppMessages extends Messages {
-    String brandName(@Select Brand brand);
-
-    String productName(@Select Product product);
+public enum ProductWidgetType {
+    MAIN_LEFT, MAIN_RIGHT, SECONDARY
 }

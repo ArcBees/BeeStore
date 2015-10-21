@@ -14,14 +14,14 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.resources;
+package com.arcbees.beeshop.client.application.gin;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
-import com.google.gwt.i18n.client.Messages;
+import com.google.gwt.core.client.GWT;
+import com.gwtplatform.mvp.client.PreBootstrapper;
 
-public interface AppMessages extends Messages {
-    String brandName(@Select Brand brand);
-
-    String productName(@Select Product product);
+public class PreBootstrapperImpl implements PreBootstrapper {
+    @Override
+    public void onPreBootstrap() {
+        GWT.setUncaughtExceptionHandler(new SuperDevModeUncaughtExceptionHandler());
+    }
 }

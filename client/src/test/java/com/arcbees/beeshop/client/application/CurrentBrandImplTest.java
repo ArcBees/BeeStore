@@ -16,6 +16,11 @@
 
 package com.arcbees.beeshop.client.application;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.same;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
+
 import javax.inject.Inject;
 
 import org.jukito.JukitoRunner;
@@ -29,17 +34,10 @@ import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.same;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-
 @RunWith(JukitoRunner.class)
 public class CurrentBrandImplTest {
     @Inject
     CurrentBrandImpl currentBrand;
-    @Inject
-    ThemeChanger themeChanger;
     @Inject
     EventBus eventBus;
     @Inject
