@@ -119,6 +119,11 @@ li {
     margin-bottom: 0.8em;
 }
 
+p a {
+    color: C_TEXT;
+    text-decoration: underline;
+}
+
 b,
 strong {
     font-family: arial, sans-serif; /* use the bold version of the font-family e.g.: font-family: 'geometria-bold' */

@@ -140,6 +140,14 @@ public interface AppResources extends ClientBundle {
         String orderAmount();
 
         String shippingPrice();
+
+        String confirmNumber();
+
+        String rightPanel_confirmation();
+
+        String thankYou();
+
+        String paiementMethod();
     }
 
     @Source("img/Beestore-logo.png")
@@ -156,6 +164,8 @@ public interface AppResources extends ClientBundle {
     SVGResource gquery();
 
     SVGResource gsss();
+
+    SVGResource thankYou();
 
     SVGResource gwtp();
 

@@ -99,7 +99,7 @@
                         <label for="check3">Bill to a different address</label>
                     </div>
 
-                    <button class="{comp.style.btn} {comp.style.btn_outline}">Contine</button>
+                    <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Contine</button>
                 </div>
                 <div class="{res.style.rightPanel_order}">
                     <div class="{res.style.rightPanel_title}">
@@ -159,7 +159,7 @@
                         <h4 class="">Order Total</h4>
                         <span class="{res.style.orderAmount_price}">47.50$</span>
                     </div>
-                    <button class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
+                    <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Proceed to checkout</button>
                 </div>
                 <div class="{res.style.rightPanel_paiement}">
                     <div class="{res.style.rightPanel_title}">
@@ -171,15 +171,18 @@
 
                     <h3>Paiement method</h3>
 
-                    <div class="{comp.style.inputRadio}">
-                        <input type="radio" name="paeiment method" id="paypal"/>
-                        <label for="paypal">paypal</label>
+                    <div class="{res.style.paiementMethod}">
+                        <div class="{comp.style.inputRadio}">
+                            <input type="radio" name="paeiment method" id="paypal"/>
+                            <label for="paypal">paypal</label>
+                        </div>
+
+                        <div class="{comp.style.inputRadio}">
+                            <input type="radio" name="paeiment method" id="credit card"/>
+                            <label for="credit card">credit card</label>
+                        </div>
                     </div>
 
-                    <div class="{comp.style.inputRadio}">
-                        <input type="radio" name="paeiment method" id="credit card"/>
-                        <label for="credit card">credit card</label>
-                    </div>
 
                     <h3>credit card</h3>
 
@@ -202,7 +205,28 @@
                         <a href="#">Learn more</a>
                     </p>
 
-                    <button class="{comp.style.btn} {comp.style.btn_outline}">Place order</button>
+                    <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Place order</button>
+                </div>
+                <div class="{res.style.rightPanel_confirmation}">
+                    <div class="{res.style.rightPanel_title}">
+                        <div class="{res.style.rightPanel_step}">
+                            <span>4</span>
+                        </div>
+                        <h2>Confirmation</h2>
+
+                        <div class="{res.style.thankYou}">
+                            <svg:SVGImage resource="{res.thankYou}"/>
+                            <p>
+                                <span>Thank<br/>You</span>
+                                For buying from the beestore</p>
+                        </div>
+
+                        <div class="{res.style.confirmNumber}">AHNDKOR</div>
+                        <p>is your confirmation
+                            <span>number. Every informations</span>
+                            will be send by email</p>
+                    </div>
+                    <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Continue shopping</button>
                 </div>
             </div>
 
