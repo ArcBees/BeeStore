@@ -120,35 +120,45 @@
                             </span>
                             <div>
                                 <input type="number" class="{res.style.inputQuantity}" value="1"/>
-                                x
-                                <span>35.00 $</span>
+                                <span class="{res.style.orderBox_productTimes}">x</span>
+                                <span class="{res.style.orderBox_productPrice}">35.00 $</span>
                             </div>
                         </div>
                         <i class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
                     </div>
-                    <h4>subtotal</h4>
+                    <div class="{res.style.orderAmount} {res.style.clearfix}">
+                        <h4>subtotal</h4>
+                        <span class="{res.style.orderAmount_price}">35.00$</span>
+                    </div>
+
                     <div class="{res.style.orderBox}">
-                        <div>
-                            Shipping and handling
-                            <div>
-                                <div class="{comp.style.inputRadio}">
-                                    <input type="radio" name="shipping" id="standard"/>
-                                    <label for="standard">Standard</label>
-                                </div>
+                        <h3>Shipping and handling</h3>
 
-                            </div>
+                        <div class="{comp.style.inputRadio}">
+                            <input type="radio" name="shipping" id="standard"/>
+                            <label for="standard">Standard
+                                <span>4-5 Business days</span>
+                            </label>
+                            <span class="{res.style.shippingPrice}">10.00$</span>
+                        </div>
 
-                            <div>
-                                <div class="{comp.style.inputRadio}">
-                                    <input type="radio" name="shipping" id="international"/>
-                                    <label for="international">International delivery</label>
-                                </div>
-                            </div>
-
+                        <div class="{comp.style.inputRadio}">
+                            <input type="radio" name="shipping" id="international"/>
+                            <label for="international">International delivery
+                                <span>10-12 Business days</span>
+                            </label>
+                            <span class="{res.style.shippingPrice}">40.00$</span>
                         </div>
                     </div>
-                    <h4>Tax</h4>
-                    <h4>Order total</h4>
+
+                    <div class="{res.style.orderAmount} {res.style.clearfix}">
+                        <h4>Tax</h4>
+                        <span class="{res.style.orderAmount_price}">12.50$</span>
+                    </div>
+                    <div class="{res.style.orderAmount} {res.style.clearfix}">
+                        <h4 class="">Order Total</h4>
+                        <span class="{res.style.orderAmount_price}">47.50$</span>
+                    </div>
                     <button class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
                 </div>
                 <div class="{res.style.rightPanel_paiement}">
@@ -171,7 +181,7 @@
                         <label for="credit card">credit card</label>
                     </div>
 
-                    <h4>credit card</h4>
+                    <h3>credit card</h3>
 
                     <fieldset>
                         <input class="{comp.style.field}" type="text" placeholder="Name on the card*" required=""/>
@@ -188,7 +198,9 @@
                         <input class="{comp.style.field}" type="tel" placeholder="MM/YY*" required=""/>
                     </fieldset>
 
-                    <p>We don't store any credit information on our server. <a href="#">Learn more</a></p>
+                    <p>We don't store any credit information on our server.
+                        <a href="#">Learn more</a>
+                    </p>
 
                     <button class="{comp.style.btn} {comp.style.btn_outline}">Place order</button>
                 </div>

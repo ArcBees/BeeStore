@@ -146,8 +146,11 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+/* -- RIGHT PANEL
+------------------------ */
+
 .rightPanel {
-    background-color: C_STRIPE_MEDIUM2;
+    background-color: C_STRIPE_MEDIUM4;
 
     display: table;
     height: calc(100% - 100px);
@@ -159,6 +162,23 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .rightPanel_title {
+    margin-bottom: 20px;
+}
+
+.rightPanel h2 {
+    font-size: 2.8rem;
+    text-align: center;
+
+    margin: 0;
+}
+
+.rightPanel h3,
+.rightPanel h4 {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+
+    margin: 0;
 }
 
 .rightPanel_step {
@@ -197,14 +217,6 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 99;
 }
 
-.rightPanel_title h2 {
-    font-size: 2.8rem;
-    text-align: center;
-
-    margin: 0;
-}
-
-
 .rightPanel_address,
 .rightPanel_order,
 .rightPanel_paiement {
@@ -225,13 +237,17 @@ input[type=number]::-webkit-outer-spin-button {
     background-color: C_STRIPE_MEDIUM3;
 }
 
+.rightPanel_paiement {
+    background-color: C_STRIPE_MEDIUM2;
+}
+
 .orderBox {
     background-color: C_LIGHT;
 
     display: table;
     width: calc(100% + 60px);
     padding: 30px;
-    margin-left: -30px;
+    margin: 0 0 20px -30px;
 }
 
 .orderBox__shirt {
@@ -274,10 +290,50 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: F_PRIMARY_BOLD;
 }
 
+.orderBox_productTimes {
+    font-size: 2rem;
+    text-transform: uppercase;
+
+    margin-right: 15px;
+
+    vertical-align: middle;
+}
+
+.orderBox_productPrice {
+    font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
+
+    vertical-align: middle;
+}
+
 .orderBox_delete {
     font-size: 2rem;
 
     width: 20px;
 
     vertical-align: middle;
+}
+
+.orderAmount {
+    margin: 20px 0;
+}
+
+.orderAmount h4 {
+    margin-bottom: 0;
+    float: left;
+}
+
+.shippingPrice {
+    font-size: 1.7rem;
+    line-height: 1;
+
+    float: right;
+}
+
+.orderAmount_price {
+    font-size: 2rem;
+    line-height: 1;
+
+    font-family: F_PRIMARY_BOLD;
+    float: right;
 }

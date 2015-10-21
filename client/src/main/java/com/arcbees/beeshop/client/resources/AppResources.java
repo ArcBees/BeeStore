@@ -130,6 +130,16 @@ public interface AppResources extends ClientBundle {
         String orderBox_productColor();
 
         String orderBox_productSize();
+
+        String orderBox_productPrice();
+
+        String orderBox_productTimes();
+
+        String orderAmount_price();
+
+        String orderAmount();
+
+        String shippingPrice();
     }
 
     @Source("img/Beestore-logo.png")
