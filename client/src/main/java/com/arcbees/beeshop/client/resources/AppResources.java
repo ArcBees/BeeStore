@@ -17,6 +17,7 @@
 package com.arcbees.beeshop.client.resources;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
+import com.arcbees.gsss.animation.client.AnimationResources;
 import com.arcbees.gsss.grid.client.GridResources;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
@@ -26,7 +27,7 @@ public interface AppResources extends ClientBundle {
     interface Normalize extends CssResource {
     }
 
-    interface Style extends CssResource {
+    interface Style extends AnimationResources.Animation {
         String stripe();
 
         String footer_contact();
@@ -100,6 +101,26 @@ public interface AppResources extends ClientBundle {
         String itemPrice();
 
         String mainProducts_bg();
+
+        String share();
+
+        String share_icons();
+
+        String share_close();
+
+        String share_icons_fb();
+
+        String share_icons_mail();
+
+        String share_icons_tumblr();
+
+        String share_icons_twitter();
+
+        String share_icons_gplus();
+
+        String share_icons_pinterest();
+
+        String slideIn();
     }
 
     @Source("img/Beestore-logo.png")
@@ -125,6 +146,8 @@ public interface AppResources extends ClientBundle {
     Normalize normalize();
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "com/arcbees/gsss/animation/client/animationsettings.gss",
+            "com/arcbees/gsss/animation/client/animations.gss",
             "css/base.gss",
             "css/colors.gss",
             "fonts/fonts.gss",
