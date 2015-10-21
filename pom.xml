@@ -13,6 +13,7 @@
         <gwtp.version>1.5</gwtp.version>
         <gsss.version>1.1</gsss.version>
         <gwtquery.version>1.4.3</gwtquery.version>
+        <gwt-stripe.version>0.2.0</gwt-stripe.version>
 
         <gwt-inject.version>2.1.2</gwt-inject.version>
         <gwt-svg.version>0.5.9</gwt-svg.version>
@@ -69,6 +70,11 @@
                 <groupId>com.arcbees</groupId>
                 <artifactId>ui</artifactId>
                 <version>${arcbees-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.arcbees.stripe</groupId>
+                <artifactId>gwt-stripe</artifactId>
+                <version>${gwt-stripe.version}</version>
             </dependency>
 
             <dependency>

@@ -9,6 +9,7 @@
     <inherits name="com.arcbees.gsss.mixin.Mixin"/>
     <inherits name="com.arcbees.gsss.animation.Animation"/>
     <inherits name="com.arcbees.ui.ui"/>
+    <inherits name="com.arcbees.stripe.GwtStripe"/>
 
     <extend-configuration-property name="gin.ginjector.modules"
             value="com.arcbees.beeshop.client.application.gin.ClientModule"/>
