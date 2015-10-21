@@ -52,6 +52,9 @@
 @external "icon*";
 
 .iconDeleteCircle:before { content: "\e809";}
+.iconTumblr:before { content: "\e806";}
+.iconPinterest:before { content: "\e807";}
+.iconEmailCircle:before { content: "\e808";}
 .iconGaeName:before { content: "\e800";}
 .iconChosenName:before { content: "\e801";}
 .iconGqueryName:before { content: "\e802";}
@@ -122,6 +125,8 @@
     font-size: 2.5rem;
 
     margin-left: 10px;
+
+    cursor: pointer;
 }
 .iconSkull:before { content: "\e62a";}
 .iconTrophe:before { content: "\e62c";}
