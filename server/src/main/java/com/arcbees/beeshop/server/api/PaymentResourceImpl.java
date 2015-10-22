@@ -16,11 +16,32 @@
 
 package com.arcbees.beeshop.server.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.arcbees.beeshop.common.api.PaymentResource;
+import com.arcbees.beeshop.common.dto.PaymentInfoDto;
+import com.stripe.exception.CardException;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
+import com.stripe.net.RequestOptions;
 
 public class PaymentResourceImpl implements PaymentResource {
     @Override
-    public String get() {
-        return "Hello";
+    public void pay(PaymentInfoDto paymentInfo) {
+        RequestOptions requestOptions = (new RequestOptions.RequestOptionsBuilder()).setApiKey("PRIVATE_KEY").build();
+        Map<String, Object> chargeMap = new HashMap<>();
+        chargeMap.put("amount", 100);
+        chargeMap.put("currency", "cad");
+        chargeMap.put("source", paymentInfo.getCreditCardToken());
+
+        try {
+            Charge charge = Charge.create(chargeMap, requestOptions);
+            System.out.println(charge);
+        } catch (CardException e) {
+            e.printStackTrace();
+        } catch (StripeException e) {
+            e.printStackTrace();
+        }
     }
 }

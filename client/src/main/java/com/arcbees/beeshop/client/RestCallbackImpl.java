@@ -14,13 +14,24 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.payment;
+package com.arcbees.beeshop.client;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import com.google.gwt.http.client.Response;
+import com.gwtplatform.dispatch.rest.client.RestCallback;
 
-public class PaymentModule extends AbstractPresenterModule {
+public abstract class RestCallbackImpl<T> implements RestCallback<T> {
+    private Response response;
+
     @Override
-    protected void configure() {
-        bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        onError(response);
+    }
+
+    public void onError(Response response) {
     }
 }

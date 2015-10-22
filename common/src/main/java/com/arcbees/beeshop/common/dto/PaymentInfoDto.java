@@ -14,13 +14,23 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.payment;
+package com.arcbees.beeshop.common.dto;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+public class PaymentInfoDto {
+    private String creditCardToken;
 
-public class PaymentModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
+    public PaymentInfoDto() {
+    }
+
+    public PaymentInfoDto(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
+    }
+
+    public String getCreditCardToken() {
+        return creditCardToken;
+    }
+
+    public void setCreditCardToken(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
     }
 }

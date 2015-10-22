@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2015 ArcBees Inc.
  *
@@ -28,7 +27,8 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
     }
 
     @Inject
-    StripePaymentView(Binder binder) {
+    StripePaymentView(
+            Binder binder) {
         initWidget(binder.createAndBindUi(this));
     }
 }
