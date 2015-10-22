@@ -24,7 +24,7 @@
 
         <javax.inject.version>1</javax.inject.version>
         <servlet-api.version>2.5</servlet-api.version>
-        <resteasy.version>3.0.11.Final</resteasy.version>
+        <resteasy.version>3.0.13.Final</resteasy.version>
 
         <junit.version>4.12</junit.version>
         <jukito.version>1.4.1</jukito.version>
