@@ -25,12 +25,15 @@ import com.arcbees.stripe.client.Stripe;
 import com.arcbees.stripe.client.jso.CreditCardResponse;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.query.client.GQuery;
+import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
+
+import static com.google.gwt.http.client.Response.SC_OK;
 
 public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresenter.MyView> implements StripePaymentUiHandlers {
     interface MyView extends View, HasUiHandlers<StripePaymentUiHandlers> {
@@ -80,7 +83,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
 
     private void gogoStripe() {
         CreditCard creditCard = new CreditCard.Builder()
-                .creditCardNumber("4000000000000127")
+                .creditCardNumber("4000000000000002")
                 .cvc("317")
                 .expirationMonth(10)
                 .expirationYear(2019)
@@ -99,13 +102,16 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
                 GQuery.console.log("type = ", creditCardResponse.getType());
                 GQuery.console.log("used = ", creditCardResponse.getUsed());
 
+                if (status != SC_OK) {
+                    Window.alert("An error occured. Please verify your credit card details.");
+                    return;
+                }
+
                 paymentResource.withCallback(new RestCallbackImpl<Void>() {
                     @Override
                     public void onSuccess(Void result) {
                         GQuery.console.log("Success!");
                     }
-
-
                 }).pay(new PaymentInfoDto(creditCardResponse.getId()));
             }
         });
