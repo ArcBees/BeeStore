@@ -24,6 +24,7 @@ import com.arcbees.stripe.client.CreditCardResponseHandler;
 import com.arcbees.stripe.client.Stripe;
 import com.arcbees.stripe.client.jso.CreditCardResponse;
 import com.google.gwt.core.client.Callback;
+import com.google.gwt.http.client.Response;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
@@ -103,7 +104,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
                 GQuery.console.log("used = ", creditCardResponse.getUsed());
 
                 if (status != SC_OK) {
-                    Window.alert("An error occured. Please verify your credit card details.");
+                    Window.alert("An error occurred. Please verify your credit card details.");
                     return;
                 }
 
@@ -111,6 +112,11 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
                     @Override
                     public void onSuccess(Void result) {
                         GQuery.console.log("Success!");
+                    }
+
+                    @Override
+                    public void onError(Response response) {
+                        Window.alert(response.getText());
                     }
                 }).pay(new PaymentInfoDto(creditCardResponse.getId()));
             }

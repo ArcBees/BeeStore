@@ -14,16 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
-import com.google.inject.AbstractModule;
+public class InternalServerErrorException extends RuntimeException {
+    public InternalServerErrorException() {
+    }
 
-public class ServerModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+    public InternalServerErrorException(String message) {
+        super(message);
     }
 }

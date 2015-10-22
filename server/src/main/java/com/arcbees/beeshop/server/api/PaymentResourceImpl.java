@@ -21,6 +21,8 @@ import java.util.Map;
 
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
+import com.arcbees.beeshop.server.exception.CreditCardException;
+import com.arcbees.beeshop.server.exception.InternalServerErrorException;
 import com.stripe.exception.CardException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
@@ -39,9 +41,9 @@ public class PaymentResourceImpl implements PaymentResource {
             Charge charge = Charge.create(chargeMap, requestOptions);
             System.out.println(charge);
         } catch (CardException e) {
-            e.printStackTrace();
+            throw new CreditCardException(e.getMessage());
         } catch (StripeException e) {
-            e.printStackTrace();
+            throw new InternalServerErrorException("An error occurred on the server. Please try again later.");
         }
     }
 }

@@ -14,16 +14,17 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
-import com.google.inject.AbstractModule;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
-public class ServerModule extends AbstractModule {
+@Provider
+public class CreditCardExceptionMapper implements ExceptionMapper<CreditCardException> {
     @Override
-    protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+    public Response toResponse(CreditCardException e) {
+        return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
     }
 }

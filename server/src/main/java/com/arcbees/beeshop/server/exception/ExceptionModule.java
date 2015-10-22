@@ -14,16 +14,15 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
+import javax.inject.Singleton;
+
 import com.google.inject.AbstractModule;
 
-public class ServerModule extends AbstractModule {
+public class ExceptionModule extends AbstractModule {
     @Override
     protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+        bind(CreditCardExceptionMapper.class).in(Singleton.class);
     }
 }
