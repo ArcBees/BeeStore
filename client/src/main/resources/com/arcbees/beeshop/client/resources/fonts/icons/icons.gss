@@ -51,6 +51,7 @@
 
 @external "icon*";
 
+.iconDeleteCircle:before { content: "\e809";}
 .iconTumblr:before { content: "\e806";}
 .iconPinterest:before { content: "\e807";}
 .iconEmailCircle:before { content: "\e808";}

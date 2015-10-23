@@ -121,6 +121,48 @@ public interface AppResources extends ClientBundle {
         String share_icons_pinterest();
 
         String slideIn();
+
+        String rightPanel();
+
+        String cart_notifications();
+
+        String rightPanel_address();
+
+        String rightPanel_order();
+
+        String rightPanel_paiement();
+
+        String orderBox();
+
+        String orderBox_img();
+
+        String orderBox_info();
+
+        String orderBox_delete();
+
+        String orderBox__shirt();
+
+        String rightPanel_title();
+
+        String rightPanel_step();
+
+        String orderBox_productName();
+
+        String orderBox_productColor();
+
+        String orderBox_productSize();
+
+        String orderBox_productPrice();
+
+        String orderBox_productTimes();
+
+        String orderAmount_price();
+
+        String orderAmount();
+
+        String shippingPrice();
+
+        String rightPanel_shoppingBag();
     }
 
     @Source("img/Beestore-logo.png")
