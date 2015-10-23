@@ -14,16 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
-import com.google.inject.AbstractModule;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public class ServerModule extends AbstractModule {
+public class PaymentModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+        bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
     }
 }

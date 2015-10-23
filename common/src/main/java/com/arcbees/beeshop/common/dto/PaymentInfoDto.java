@@ -14,16 +14,23 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.common.dto;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
-import com.google.inject.AbstractModule;
+public class PaymentInfoDto {
+    private String creditCardToken;
 
-public class ServerModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+    public PaymentInfoDto() {
+    }
+
+    public PaymentInfoDto(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
+    }
+
+    public String getCreditCardToken() {
+        return creditCardToken;
+    }
+
+    public void setCreditCardToken(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
     }
 }

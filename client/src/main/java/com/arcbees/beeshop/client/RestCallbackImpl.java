@@ -14,16 +14,24 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.client;
 
-import com.arcbees.beeshop.server.api.ApiModule;
-import com.arcbees.beeshop.server.exception.ExceptionModule;
-import com.google.inject.AbstractModule;
+import com.google.gwt.http.client.Response;
+import com.gwtplatform.dispatch.rest.client.RestCallback;
 
-public class ServerModule extends AbstractModule {
+public abstract class RestCallbackImpl<T> implements RestCallback<T> {
+    private Response response;
+
     @Override
-    protected void configure() {
-        install(new ApiModule());
-        install(new ExceptionModule());
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        onError(response);
+    }
+
+    public void onError(Response response) {
     }
 }
