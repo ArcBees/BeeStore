@@ -1,11 +1,15 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui">
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui"
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+    <ui:with field="nametokens" type="com.arcbees.beeshop.client.resources.NameTokensConstants"/>
 
-    <ui:import field="com.arcbees.beeshop.client.NameTokens.*"/>
+    <ui:import field="com.arcbees.beeshop.common.NameTokens.*"/>
 
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
@@ -15,19 +19,26 @@
                         <nav class="{res.style.header_menu}">
                             <ul>
                                 <li>
-                                    <a href="#{HOME}">Home</a>
+                                    <a href="#{nametokens.HOME}">
+                                        <ui:msg description="Home">Home</ui:msg>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#{PRODUCTS}">Products</a>
+                                    <a href="#{nametokens.PRODUCTS}">
+                                        <ui:msg description="Products">Products</ui:msg>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Contact us</a>
+                                    <!-- TODO: Add link to contact page -->
+                                    <a href="#">
+                                        <ui:msg description="Contact us">Contact us</ui:msg>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                     <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
-                        <a href="#{HOME}">
+                        <a href="#{nametokens.HOME}">
                             <svg:SVGImage resource="{res.logoBeestore}"/>
                         </a>
                     </div>
@@ -36,22 +47,26 @@
                             <li class="{res.style.wishlist}">
                                 <button>
                                     <i class="{font.icons.iconWhishlist}"/>
-                                    <span class="{res.style.visuallyHidden}">wishlist</span>
+                                    <span class="{res.style.visuallyHidden}">
+                                        <ui:msg description="Wishlist">Wishlist</ui:msg>
+                                    </span>
                                 </button>
                             </li>
                             <li class="{res.style.cart} {res.style.active}">
                                 <button>
                                     <i class="{font.icons.iconCart}"/>
-                                    <span class="{res.style.visuallyHidden}">cart</span>
+                                    <span class="{res.style.visuallyHidden}">
+                                        <ui:msg description="cart">cart</ui:msg>
+                                    </span>
                                 </button>
                             </li>
                             <li class="{res.style.language}">
-                                <a ui:field="englishAnchor" class="{res.style.active}" href="#">ENG
+                                <a ui:field="englishAnchor">ENG
                                     <span class="{res.style.visuallyHidden}">LISH</span>
                                 </a>
                             </li>
                             <li class="{res.style.language}">
-                                <a ui:field="frenchAnchor" href="#">FR
+                                <a ui:field="frenchAnchor">FR
                                     <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                                 </a>
                             </li>
@@ -76,19 +91,31 @@
                 <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
                         <li>
-                            <a href="#{HOME}">Home</a>
+                            <a href="#{nametokens.HOME}">
+                                <ui:msg description="Home">Home</ui:msg>
+                            </a>
                         </li>
                         <li>
-                            <a href="#{PRODUCTS}">Products</a>
+                            <a href="#{nametokens.PRODUCTS}">
+                                <ui:msg description="Products">Products</ui:msg>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Contact us</a>
+                            <!-- TODO Add Link to contact page-->
+                            <a>
+                                <ui:msg description="Contact us">Contact us</ui:msg>
+                            </a>
                         </li>
                     </ul>
                 </nav>
 
-                <p class="{res.style.footer_caseStudy}">The Beestore is a study case from Arcbees
-                    <span>to show our hive of products and branded gears. Enjoy!</span>
+                <p class="{res.style.footer_caseStudy}">
+                    <ui:msg description="case study">The Beestore is a case study from Arcbees</ui:msg>
+                    <span>
+                        <ui:msg description="to show our hive products">to show our hive of products and branded gears.
+                            Enjoy!
+                        </ui:msg>
+                    </span>
                 </p>
             </div>
 

@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.gwt.query.client.GQuery;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -28,10 +29,13 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyEvent;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
+import com.gwtplatform.mvp.client.proxy.NavigationEvent;
+import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler {
+        implements BrandChangedEventHandler, NavigationHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -39,6 +43,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     interface MyView extends View {
         void changeBrand(Brand brand);
+
+        void updateNavigationHref();
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
@@ -51,6 +57,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         super(eventBus, view, proxy, RevealType.Root);
     }
 
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        GQuery.console.log("Changing request");
+    }
+
     @ProxyEvent
     @Override
     public void onBrandChanged(BrandChangedEvent event) {
@@ -58,7 +69,13 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onNavigation(NavigationEvent navigationEvent) {
+        getView().updateNavigationHref();
+    }
+
+    @Override
     protected void onBind() {
         addVisibleHandler(BrandChangedEvent.TYPE, this);
+        addVisibleHandler(NavigationEvent.getType(), this);
     }
 }

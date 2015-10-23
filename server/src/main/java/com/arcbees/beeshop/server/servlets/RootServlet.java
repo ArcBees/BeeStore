@@ -2,7 +2,9 @@ package com.arcbees.beeshop.server.servlets;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,12 @@ public class RootServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String locale = new LocaleExtractor(request, response).extractLocale();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("com.arcbees.beeshop.server.seo", Locale.forLanguageTag(locale));
+
         VelocityContext context = new VelocityContext();
+        context.put("locale", locale);
+        context.put("seo", resourceBundle);
 
         getVelocityEngine().mergeTemplate(TEMPLATE, "UTF-8" , context, response.getWriter());
     }

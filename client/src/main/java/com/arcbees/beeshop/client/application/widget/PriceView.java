@@ -2,7 +2,7 @@ package com.arcbees.beeshop.client.application.widget;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;

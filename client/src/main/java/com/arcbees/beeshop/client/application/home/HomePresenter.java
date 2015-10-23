@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application.home;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.arcbees.beeshop.client.application.CurrentBrand;
 import com.arcbees.beeshop.client.application.widget.ProductPresenter;
