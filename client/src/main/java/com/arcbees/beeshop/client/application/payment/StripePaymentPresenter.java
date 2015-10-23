@@ -70,6 +70,27 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     }
 
     @Override
+    protected void onBind() {
+        stripe.inject(new Callback<Void, Exception>() {
+            @Override
+            public void onFailure(Exception e) {
+                GQuery.console.error("Failed to inject stripe");
+            }
+
+            @Override
+            public void onSuccess(Void aVoid) {
+                onStripeInjected();
+            }
+        });
+    }
+
+    private void onStripeInjected() {
+        stripe.setPublishableKey(stripePublicKey);
+
+        getView().enablePaymentSubmit();
+    }
+
+    @Override
     public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
         // Prevents submitting payment multiple times
         getView().disablePaymentSubmit();
@@ -109,26 +130,5 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
                 getView().showErrorMessage(response.getText());
             }
         }).pay(paymentInfo);
-    }
-
-    @Override
-    protected void onBind() {
-        stripe.inject(new Callback<Void, Exception>() {
-            @Override
-            public void onFailure(Exception e) {
-                GQuery.console.error("Failed to inject stripe");
-            }
-
-            @Override
-            public void onSuccess(Void aVoid) {
-                onStripeInjected();
-            }
-        });
-    }
-
-    private void onStripeInjected() {
-        stripe.setPublishableKey(stripePublicKey);
-
-        getView().enablePaymentSubmit();
     }
 }
