@@ -1,5 +1,16 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <g:HTMLPanel>
+        <p>Credit card</p>
+
+        Name: <g:TextBox ui:field="name"/>
+        Number: <g:TextBox ui:field="number"/>
+        CVS: <g:TextBox ui:field="cvs"/>
+        Expiration: <g:IntegerBox ui:field="expMonth"/>/<g:IntegerBox ui:field="expYear"/>
+
+        <button type="submit" ui:field="submit">Place order</button>
+
+        We don't store any credit card information on our server.
+        <a href="https://stripe.com/about">Learn more</a>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -16,19 +16,55 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
+import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.IntegerBox;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandlers>
         implements StripePaymentPresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, StripePaymentView> {
     }
 
+    @UiField
+    TextBox name;
+    @UiField
+    TextBox number;
+    @UiField
+    TextBox cvs;
+    @UiField
+    IntegerBox expMonth;
+    @UiField
+    IntegerBox expYear;
+    @UiField
+    ButtonElement submit;
+
     @Inject
     StripePaymentView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
+
+        bind();
+    }
+
+    private void bind() {
+        $(submit).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onSubmit(
+                        name.getValue(),
+                        number.getValue(),
+                        cvs.getValue(),
+                        expMonth.getValue(),
+                        expYear.getValue());
+            }
+        });
     }
 }

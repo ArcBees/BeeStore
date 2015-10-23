@@ -19,4 +19,5 @@ package com.arcbees.beeshop.client.application.payment;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 interface StripePaymentUiHandlers extends UiHandlers {
+    void onSubmit(String name, String number, String cvs, int expMonth, int expYear);
 }

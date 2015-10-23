@@ -16,8 +16,8 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.client.RestCallbackImpl;
 import com.arcbees.beeshop.client.Config;
+import com.arcbees.beeshop.client.RestCallbackImpl;
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
@@ -64,6 +64,45 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     }
 
     @Override
+    public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
+        final CreditCard creditCard = new CreditCard.Builder()
+                .name(name)
+                .creditCardNumber(number)
+                .cvc(cvs)
+                .expirationMonth(expMonth)
+                .expirationYear(expYear)
+                .build();
+
+        stripe.getCreditCardToken(creditCard, new CreditCardResponseHandler() {
+            @Override
+            public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
+                if (status == SC_PAYMENT_REQUIRED) {
+                    Window.alert("An error occurred. Please verify your credit card details.");
+                } else if (status != SC_OK) {
+                    Window.alert("An error occurred.");
+                } else {
+                    PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
+                    pay(paymentInfo);
+                }
+            }
+        });
+    }
+
+    private void pay(PaymentInfoDto paymentInfo) {
+        paymentResource.withCallback(new RestCallbackImpl<Void>() {
+            @Override
+            public void onSuccess(Void result) {
+                Window.alert("Success!");
+            }
+
+            @Override
+            public void onError(Response response) {
+                Window.alert(response.getText());
+            }
+        }).pay(paymentInfo);
+    }
+
+    @Override
     protected void onBind() {
         stripe.inject(new Callback<Void, Exception>() {
             @Override
@@ -82,52 +121,5 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         GQuery.console.log("Stripe injected");
 
         stripe.setPublishableKey(stripePublicKey);
-
-        gogoStripe();
-    }
-
-    private void gogoStripe() {
-        CreditCard creditCard = new CreditCard.Builder()
-                .creditCardNumber("4000000000000002")
-                .cvc("317")
-                .expirationMonth(10)
-                .expirationYear(2019)
-                .name("Robert Bob")
-                .build();
-
-        stripe.getCreditCardToken(creditCard, new CreditCardResponseHandler() {
-            @Override
-            public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
-                GQuery.console.log("status = ", status);
-                GQuery.console.log("id = ", creditCardResponse.getId());
-                GQuery.console.log("card = ", creditCardResponse.getCard());
-                GQuery.console.log("created = ", creditCardResponse.getCreated());
-                GQuery.console.log("live mode = ", creditCardResponse.getLiveMode());
-                GQuery.console.log("object = ", creditCardResponse.getObject());
-                GQuery.console.log("type = ", creditCardResponse.getType());
-                GQuery.console.log("used = ", creditCardResponse.getUsed());
-
-                if (status == SC_PAYMENT_REQUIRED) {
-                    Window.alert("An error occurred. Please verify your credit card details.");
-                    return;
-                }
-                if (status != SC_OK) {
-                    Window.alert("An error occurred.");
-                    return;
-                }
-
-                paymentResource.withCallback(new RestCallbackImpl<Void>() {
-                    @Override
-                    public void onSuccess(Void result) {
-                        GQuery.console.log("Success!");
-                    }
-
-                    @Override
-                    public void onError(Response response) {
-                        Window.alert(response.getText());
-                    }
-                }).pay(new PaymentInfoDto(creditCardResponse.getId()));
-            }
-        });
     }
 }
