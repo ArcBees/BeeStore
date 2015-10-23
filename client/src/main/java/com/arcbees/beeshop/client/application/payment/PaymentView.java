@@ -16,14 +16,25 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
-import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+import javax.inject.Inject;
 
-public class PaymentModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        bindPresenter(PaymentPresenter.class, PaymentPresenter.MyView.class, PaymentView.class,
-                PaymentPresenter.MyProxy.class);
+import com.arcbees.ui.ReplacePanel;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
 
-        bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
+public class PaymentView extends ViewImpl implements PaymentPresenter.MyView {
+    interface Binder extends UiBinder<Widget, PaymentView> {
+    }
+
+    @UiField
+    ReplacePanel stripe;
+
+    @Inject
+    PaymentView(Binder uiBinder) {
+        initWidget(uiBinder.createAndBindUi(this));
+
+        bindSlot(PaymentPresenter.SLOT_STRIPE, stripe);
     }
 }
