@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.settings;
+package com.arcbees.beeshop.client;
 
 import com.google.gwt.i18n.client.Constants;
 

@@ -17,7 +17,7 @@
 package com.arcbees.beeshop.client.application.payment;
 
 import com.arcbees.beeshop.client.RestCallbackImpl;
-import com.arcbees.beeshop.client.settings.Config;
+import com.arcbees.beeshop.client.Config;
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
