@@ -22,6 +22,7 @@ import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -54,6 +55,16 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
         initWidget(binder.createAndBindUi(this));
 
         bind();
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Window.alert(message);
+    }
+
+    @Override
+    public void showSuccessMessage(String message) {
+        Window.alert(message);
     }
 
     private void bind() {

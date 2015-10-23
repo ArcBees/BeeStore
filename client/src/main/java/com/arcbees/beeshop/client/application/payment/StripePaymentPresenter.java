@@ -27,7 +27,6 @@ import com.arcbees.stripe.client.jso.CreditCardResponse;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.query.client.GQuery;
-import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
@@ -41,6 +40,9 @@ import static com.google.gwt.http.client.Response.SC_PAYMENT_REQUIRED;
 public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresenter.MyView>
         implements StripePaymentUiHandlers {
     interface MyView extends View, HasUiHandlers<StripePaymentUiHandlers> {
+        void showErrorMessage(String message);
+
+        void showSuccessMessage(String message);
     }
 
     private final String stripePublicKey;
@@ -77,9 +79,9 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
             @Override
             public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
                 if (status == SC_PAYMENT_REQUIRED) {
-                    Window.alert("An error occurred. Please verify your credit card details.");
+                    getView().showErrorMessage("An error occurred. Please verify your credit card details.");
                 } else if (status != SC_OK) {
-                    Window.alert("An error occurred.");
+                    getView().showErrorMessage("An error occurred.");
                 } else {
                     PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
                     pay(paymentInfo);
@@ -92,12 +94,12 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         paymentResource.withCallback(new RestCallbackImpl<Void>() {
             @Override
             public void onSuccess(Void result) {
-                Window.alert("Success!");
+                getView().showSuccessMessage("Success!");
             }
 
             @Override
             public void onError(Response response) {
-                Window.alert(response.getText());
+                getView().showErrorMessage(response.getText());
             }
         }).pay(paymentInfo);
     }
