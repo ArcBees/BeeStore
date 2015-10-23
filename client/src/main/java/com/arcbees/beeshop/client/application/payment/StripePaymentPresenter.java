@@ -49,7 +49,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         void disablePaymentSubmit();
     }
 
-    private final String stripePublicKey;
+    private final Config config;
     private final Stripe stripe;
     private final ResourceDelegate<PaymentResource> paymentResource;
 
@@ -62,7 +62,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
             ResourceDelegate<PaymentResource> paymentResource) {
         super(eventBus, view);
 
-        this.stripePublicKey = config.stripePublicKey();
+        this.config = config;
         this.stripe = stripe;
         this.paymentResource = paymentResource;
 
@@ -85,7 +85,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     }
 
     private void onStripeInjected() {
-        stripe.setPublishableKey(stripePublicKey);
+        stripe.setPublishableKey(config.stripePublicKey());
 
         getView().enablePaymentSubmit();
     }
