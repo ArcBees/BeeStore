@@ -21,7 +21,6 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.google.gwt.query.client.GQuery;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -32,7 +31,6 @@ import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
         implements BrandChangedEventHandler, NavigationHandler {
@@ -55,11 +53,6 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
-    }
-
-    @Override
-    public void prepareFromRequest(PlaceRequest request) {
-        GQuery.console.log("Changing request");
     }
 
     @ProxyEvent
