@@ -15,7 +15,7 @@
 
         <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
             <h3>
-                <ui:msg description="shopping by projects">shopping by products</ui:msg>
+                <ui:msg description="shopping by brand">shopping by brand</ui:msg>
             </h3>
             <ul class="{page.style.devProducts_list}">
                 <li>
