@@ -37,20 +37,11 @@ public class NameTokens {
     public static final String GQUERY = Brand.GQUERY.getValue();
     public static final String ARCBEES = Brand.ARCBEES.getValue();
 
-    public static final String PARAM_LOCALE = "locale";
     public static final String LANGUAGE_ENGLISH = "en";
     public static final String LANGUAGE_FRENCH = "fr";
-
-    static {
-        Map<String, String> keys = new HashMap<>();
-        keys.put(HOME, HOME);
-        keys.put(PRODUCTS, PRODUCTS_FR);
-
-        placeKeys = HashBiMap.create(keys);
-    }
+    public static final String NOTFOUND = "!/notfound"; // TODO
 
     private static final BiMap<String, String> placeKeys;
-
 
     public static boolean isEnglish(String nameToken) {
         return placeKeys.containsKey(nameToken);
@@ -64,21 +55,11 @@ public class NameTokens {
         }
     }
 
-    public static String translate(String translateToLocale, String nameToken) {
-        if (translateToLocale.equals(NameTokens.LANGUAGE_FRENCH)) {
-            if (isEnglish(nameToken)) {
-                return placeKeys.get(nameToken);
-            } else {
-                return nameToken;
-            }
-        } else {
-            if (isEnglish(nameToken)) {
-                return nameToken;
-            } else {
-                return placeKeys.inverse().get(nameToken);
-            }
-        }
-    }
+    static {
+        Map<String, String> keys = new HashMap<>();
+        keys.put(HOME, HOME);
+        keys.put(PRODUCTS, PRODUCTS_FR);
 
-    public static final String NOTFOUND = "!/notfound"; // TODO
+        placeKeys = HashBiMap.create(keys);
+    }
 }
