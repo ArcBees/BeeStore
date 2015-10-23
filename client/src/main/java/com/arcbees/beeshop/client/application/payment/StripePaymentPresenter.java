@@ -17,6 +17,7 @@
 package com.arcbees.beeshop.client.application.payment;
 
 import com.arcbees.beeshop.client.RestCallbackImpl;
+import com.arcbees.beeshop.client.settings.Config;
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
@@ -35,13 +36,14 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 import static com.google.gwt.http.client.Response.SC_OK;
+import static com.google.gwt.http.client.Response.SC_PAYMENT_REQUIRED;
 
-public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresenter.MyView> implements StripePaymentUiHandlers {
+public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresenter.MyView>
+        implements StripePaymentUiHandlers {
     interface MyView extends View, HasUiHandlers<StripePaymentUiHandlers> {
     }
 
-    private static final String STRIPE_PUBLIC_KEY = "pk_test_K9Oer0kZTz5qqJMxyCNSoIhr";
-
+    private final String stripePublicKey;
     private final Stripe stripe;
     private final ResourceDelegate<PaymentResource> paymentResource;
 
@@ -49,10 +51,12 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     StripePaymentPresenter(
             EventBus eventBus,
             MyView view,
+            Config config,
             Stripe stripe,
             ResourceDelegate<PaymentResource> paymentResource) {
         super(eventBus, view);
 
+        this.stripePublicKey = config.stripePublicKey();
         this.stripe = stripe;
         this.paymentResource = paymentResource;
 
@@ -77,7 +81,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     private void onStripeInjected() {
         GQuery.console.log("Stripe injected");
 
-        stripe.setPublishableKey(STRIPE_PUBLIC_KEY);
+        stripe.setPublishableKey(stripePublicKey);
 
         gogoStripe();
     }
@@ -103,8 +107,12 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
                 GQuery.console.log("type = ", creditCardResponse.getType());
                 GQuery.console.log("used = ", creditCardResponse.getUsed());
 
-                if (status != SC_OK) {
+                if (status == SC_PAYMENT_REQUIRED) {
                     Window.alert("An error occurred. Please verify your credit card details.");
+                    return;
+                }
+                if (status != SC_OK) {
+                    Window.alert("An error occurred.");
                     return;
                 }
 

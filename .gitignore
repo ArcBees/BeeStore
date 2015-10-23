@@ -4,3 +4,5 @@ target/
 extras/
 /gen
 .DS_Store
+
+client/src/main/resources/com/arcbees/beeshop/client/settings/Config.properties
