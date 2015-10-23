@@ -17,12 +17,12 @@
 package com.arcbees.beeshop.client.application.payment;
 
 import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.FormElement;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.IntegerBox;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -34,15 +34,17 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
     }
 
     @UiField
-    TextBox name;
+    FormElement form;
     @UiField
-    TextBox number;
+    InputElement name;
     @UiField
-    TextBox cvs;
+    InputElement number;
     @UiField
-    IntegerBox expMonth;
+    InputElement cvs;
     @UiField
-    IntegerBox expYear;
+    InputElement expMonth;
+    @UiField
+    InputElement expYear;
     @UiField
     ButtonElement submit;
 
@@ -55,15 +57,15 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
     }
 
     private void bind() {
-        $(submit).click(new Function() {
+        $(form).submit(new Function() {
             @Override
             public void f() {
                 getUiHandlers().onSubmit(
                         name.getValue(),
                         number.getValue(),
                         cvs.getValue(),
-                        expMonth.getValue(),
-                        expYear.getValue());
+                        Integer.parseInt(expMonth.getValue()),
+                        Integer.parseInt(expYear.getValue()));
             }
         });
     }
