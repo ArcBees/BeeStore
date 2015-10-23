@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.server.guice;
 
+import com.arcbees.beeshop.server.Config;
 import com.arcbees.beeshop.server.api.ApiModule;
 import com.arcbees.beeshop.server.exception.ExceptionModule;
 import com.google.inject.AbstractModule;
@@ -25,5 +26,7 @@ public class ServerModule extends AbstractModule {
     protected void configure() {
         install(new ApiModule());
         install(new ExceptionModule());
+
+        bind(Config.class).asEagerSingleton();
     }
 }

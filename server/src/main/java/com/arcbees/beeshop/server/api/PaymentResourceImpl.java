@@ -19,8 +19,11 @@ package com.arcbees.beeshop.server.api;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
+import com.arcbees.beeshop.server.Config;
 import com.arcbees.beeshop.server.exception.CreditCardException;
 import com.arcbees.beeshop.server.exception.InternalServerErrorException;
 import com.stripe.exception.CardException;
@@ -29,9 +32,18 @@ import com.stripe.model.Charge;
 import com.stripe.net.RequestOptions;
 
 public class PaymentResourceImpl implements PaymentResource {
+    private final RequestOptions requestOptions;
+
+    @Inject
+    public PaymentResourceImpl(
+            Config config) {
+        this.requestOptions = new RequestOptions.RequestOptionsBuilder()
+                .setApiKey(config.stripePrivateKey())
+                .build();
+    }
+
     @Override
     public void pay(PaymentInfoDto paymentInfo) {
-        RequestOptions requestOptions = (new RequestOptions.RequestOptionsBuilder()).setApiKey("PRIVATE_KEY").build();
         Map<String, Object> chargeMap = new HashMap<>();
         chargeMap.put("amount", 100);
         chargeMap.put("currency", "cad");
