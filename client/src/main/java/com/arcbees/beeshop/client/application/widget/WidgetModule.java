@@ -8,8 +8,11 @@ public class WidgetModule extends AbstractPresenterModule {
     protected void configure() {
         bind(PricePresenter.MyView.class).to(PriceView.class);
         bind(ProductPresenter.MyView.class).to(ProductView.class);
+        bind(ShoppingBagItemPresenter.MyView.class).to(ShoppingBagItemView.class);
+        bindSingletonPresenterWidget(ShoppingBagPresenter.class, ShoppingBagPresenter.MyView.class, ShoppingBagView.class);
 
         install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
         install(new GinFactoryModuleBuilder().build(ProductFactory.class));
+        install(new GinFactoryModuleBuilder().build(ShoppingBagItemFactory.class));
     }
 }

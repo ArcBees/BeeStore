@@ -24,7 +24,9 @@ import com.arcbees.beeshop.client.NameTokens;
 import com.google.gwt.dom.client.AnchorElement;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -44,13 +46,18 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     @UiField
     SimplePanel main;
-
+    @UiField
+    SimplePanel shoppingBagWidget;
+    @UiField
+    ButtonElement cartButton;
     @UiField
     Object backTop;
     @UiField
     AnchorElement englishAnchor;
     @UiField
     AnchorElement frenchAnchor;
+    @UiField
+    SpanElement numberOfItems;
 
     private final AppResources resources;
 
@@ -70,6 +77,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
+        bindSlot(ApplicationPresenter.SLOT_CART_WIDGET, shoppingBagWidget);
 
         bind();
     }
@@ -86,6 +94,15 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 });
             }
         });
+
+        $(cartButton).click(new Function() {
+            @Override
+            public void f() {
+                $(shoppingBagWidget).toggle();
+            }
+        });
+
+        $(shoppingBagWidget).hide();
 
         setI18nAnchors();
     }
@@ -110,6 +127,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     public void changeBrand(Brand brand) {
         $("body").removeClass();
         $("body").addClass(getStyle(brand));
+    }
+
+    @Override
+    public void updateItemNumber(int number) {
+        $(numberOfItems).text(String.valueOf(number));
     }
 
     private String getStyle(Brand brand) {

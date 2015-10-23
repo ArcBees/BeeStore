@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.ui.ReplacePanel;
+import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -40,6 +41,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     Element shareButton;
     @UiField
     ReplacePanel sharePanel;
+    @UiField
+    ButtonElement addToCart;
 
     @Inject
     ProductView(Binder uiBinder) {
@@ -55,6 +58,13 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             @Override
             public void f() {
                 getUiHandlers().onShareButtonClicked();
+            }
+        });
+
+        $(addToCart).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onAddToCartButtonClicked();
             }
         });
     }
