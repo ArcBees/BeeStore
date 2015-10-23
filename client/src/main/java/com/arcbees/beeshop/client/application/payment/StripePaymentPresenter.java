@@ -43,6 +43,10 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         void showErrorMessage(String message);
 
         void showSuccessMessage(String message);
+
+        void enablePaymentSubmit();
+
+        void disablePaymentSubmit();
     }
 
     private final String stripePublicKey;
@@ -67,6 +71,9 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
 
     @Override
     public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
+        // Prevents submitting payment multiple times
+        getView().disablePaymentSubmit();
+
         final CreditCard creditCard = new CreditCard.Builder()
                 .name(name)
                 .creditCardNumber(number)
@@ -120,8 +127,8 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     }
 
     private void onStripeInjected() {
-        GQuery.console.log("Stripe injected");
-
         stripe.setPublishableKey(stripePublicKey);
+
+        getView().enablePaymentSubmit();
     }
 }

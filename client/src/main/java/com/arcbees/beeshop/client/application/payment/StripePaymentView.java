@@ -55,16 +55,8 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
         initWidget(binder.createAndBindUi(this));
 
         bind();
-    }
 
-    @Override
-    public void showErrorMessage(String message) {
-        Window.alert(message);
-    }
-
-    @Override
-    public void showSuccessMessage(String message) {
-        Window.alert(message);
+        disablePaymentSubmit();
     }
 
     private void bind() {
@@ -79,5 +71,25 @@ public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandler
                         Integer.parseInt(expYear.getValue()));
             }
         });
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Window.alert(message);
+    }
+
+    @Override
+    public void showSuccessMessage(String message) {
+        Window.alert(message);
+    }
+
+    @Override
+    public void enablePaymentSubmit() {
+        submit.setDisabled(false);
+    }
+
+    @Override
+    public void disablePaymentSubmit() {
+        submit.setDisabled(true);
     }
 }
