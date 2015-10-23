@@ -32,8 +32,8 @@ public class Config {
         InputStream in = getClass().getResourceAsStream("config.properties");
         try {
             properties.load(in);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | NullPointerException e) {
+            throw new RuntimeException("Failed to load config file.");
         }
     }
 
