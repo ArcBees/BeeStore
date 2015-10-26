@@ -2,6 +2,7 @@ package com.arcbees.beeshop.client.application.widget;
 
 import static com.google.gwt.query.client.GQuery.$;
 
+import com.arcbees.beeshop.client.application.LocaleHelper;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.ProductDto;
@@ -38,16 +39,19 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     private final TokenFormatter tokenFormatter;
     private final AppMessages messages;
     private final PlaceManager placeManager;
+    private final LocaleHelper localeHelper;
 
     @Inject
     PriceView(
             Binder binder,
             TokenFormatter tokenFormatter,
             AppMessages messages,
-            PlaceManager placeManager) {
+            PlaceManager placeManager,
+            LocaleHelper localeHelper) {
         this.tokenFormatter = tokenFormatter;
         this.messages = messages;
         this.placeManager = placeManager;
+        this.localeHelper = localeHelper;
 
         initWidget(binder.createAndBindUi(this));
     }
@@ -63,12 +67,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
 
     private void buildAnchorUri(ProductDto product) {
         String productId = String.valueOf(product.getProduct().getValue());
-
-        String currentLocale = LocaleInfo.getCurrentLocale().getLocaleName();
-
         String nameToken = NameTokens.PRODUCT;
 
-        if (currentLocale.equals("fr")) {
+        if (localeHelper.isFrench()) {
             nameToken = NameTokens.translate(nameToken);
         }
 

@@ -37,6 +37,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         bind(CurrentBrand.class).to(CurrentBrandImpl.class).in(Singleton.class);
         bind(ProductBrandUtil.class).in(Singleton.class);
         bind(CurrentShoppingBag.class).to(CurrentShoppingBagImpl.class).in(Singleton.class);
+        bind(LocaleHelper.class).to(LocaleHelperImpl.class).in(Singleton.class);
 
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
                 ApplicationPresenter.MyProxy.class);
