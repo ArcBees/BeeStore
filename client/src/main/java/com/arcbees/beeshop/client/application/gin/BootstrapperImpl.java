@@ -15,6 +15,7 @@ package com.arcbees.beeshop.client.application.gin;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.application.LocaleHelper;
 import com.arcbees.beeshop.common.NameTokens;
 import com.google.common.base.Strings;
 import com.google.gwt.i18n.client.LocaleInfo;
@@ -25,11 +26,14 @@ import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class BootstrapperImpl implements Bootstrapper {
     private final PlaceManager placeManager;
+    private final LocaleHelper localeHelper;
 
     @Inject
     BootstrapperImpl(
-            PlaceManager placeManager) {
+            PlaceManager placeManager,
+            LocaleHelper localeHelper) {
         this.placeManager = placeManager;
+        this.localeHelper = localeHelper;
     }
 
     @Override
@@ -38,14 +42,14 @@ public class BootstrapperImpl implements Bootstrapper {
         String nameToken = Strings.nullToEmpty(History.getToken());
         String currentLocale = LocaleInfo.getCurrentLocale().getLocaleName();
 
-        if ("en".compareToIgnoreCase(currentLocale) == 0) {
+        if (localeHelper.isEnglish()) {
             if (!Strings.isNullOrEmpty(nameToken) && !NameTokens.isEnglish(nameToken)) {
                 revealTranslatedNameToken(currentPlaceRequest, nameToken);
                 return;
             } else if (Strings.isNullOrEmpty(nameToken)) {
                 revealTranslatedNameToken(currentPlaceRequest, NameTokens.HOME);
             }
-        } else if ("fr".compareToIgnoreCase(currentLocale) == 0) {
+        } else if (localeHelper.isFrench()) {
             if (NameTokens.isEnglish(nameToken)) {
                 revealTranslatedNameToken(currentPlaceRequest, nameToken);
                 return;
