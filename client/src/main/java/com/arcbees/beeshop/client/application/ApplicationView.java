@@ -60,9 +60,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     SpanElement numberOfItems;
 
     private final AppResources resources;
-
     private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+    private Boolean shoppingBagOpen;
 
     @Inject
     ApplicationView(
@@ -95,14 +95,22 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             }
         });
 
+        shoppingBagOpen = false;
+        $(shoppingBagWidget).hide();
+
         $(cartButton).click(new Function() {
             @Override
             public void f() {
                 $(shoppingBagWidget).toggle();
+                if (shoppingBagOpen) {
+                    $(cartButton).
+                    shoppingBagOpen = false;
+                } else {
+                    $(cartButton).get(0).setClassName("iconCart");
+                    shoppingBagOpen = true;
+                }
             }
         });
-
-        $(shoppingBagWidget).hide();
 
         setI18nAnchors();
     }
