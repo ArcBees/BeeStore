@@ -14,10 +14,21 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+public class StripePaymentView extends ViewWithUiHandlers<StripePaymentUiHandlers>
+        implements StripePaymentPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, StripePaymentView> {
+    }
+
+    @Inject
+    StripePaymentView(
+            Binder binder) {
+        initWidget(binder.createAndBindUi(this));
+    }
 }

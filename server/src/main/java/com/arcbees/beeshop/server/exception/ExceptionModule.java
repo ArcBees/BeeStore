@@ -14,10 +14,15 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import javax.inject.Singleton;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+import com.google.inject.AbstractModule;
+
+public class ExceptionModule extends AbstractModule {
+    @Override
+    protected void configure() {
+        bind(CreditCardExceptionMapper.class).in(Singleton.class);
+    }
 }

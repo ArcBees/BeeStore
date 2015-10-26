@@ -14,10 +14,24 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.google.gwt.http.client.Response;
+import com.gwtplatform.dispatch.rest.client.RestCallback;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+public abstract class RestCallbackImpl<T> implements RestCallback<T> {
+    private Response response;
+
+    @Override
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        onError(response);
+    }
+
+    public void onError(Response response) {
+    }
 }

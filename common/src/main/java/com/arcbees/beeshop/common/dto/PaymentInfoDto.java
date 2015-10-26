@@ -14,10 +14,23 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.common.dto;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+public class PaymentInfoDto {
+    private String creditCardToken;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+    public PaymentInfoDto() {
+    }
+
+    public PaymentInfoDto(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
+    }
+
+    public String getCreditCardToken() {
+        return creditCardToken;
+    }
+
+    public void setCreditCardToken(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
+    }
 }

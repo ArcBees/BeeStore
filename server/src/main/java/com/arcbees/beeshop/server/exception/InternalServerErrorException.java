@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+public class InternalServerErrorException extends RuntimeException {
+    public InternalServerErrorException() {
+    }
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+    public InternalServerErrorException(String message) {
+        super(message);
+    }
 }

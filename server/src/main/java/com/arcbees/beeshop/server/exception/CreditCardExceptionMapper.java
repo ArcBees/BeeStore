@@ -14,10 +14,17 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+@Provider
+public class CreditCardExceptionMapper implements ExceptionMapper<CreditCardException> {
+    @Override
+    public Response toResponse(CreditCardException e) {
+        return Response.status(Status.BAD_REQUEST).entity(e.getMessage()).build();
+    }
 }

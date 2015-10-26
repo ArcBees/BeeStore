@@ -16,13 +16,15 @@
 
 package com.arcbees.beeshop.common.api;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+
+import com.arcbees.beeshop.common.dto.PaymentInfoDto;
 
 import static com.arcbees.beeshop.common.api.ApiPaths.PAYMENT;
 
 @Path(PAYMENT)
 public interface PaymentResource {
-    @GET
-    String get();
+    @POST
+    void pay(PaymentInfoDto paymentInfo);
 }

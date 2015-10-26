@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+public class PaymentModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
+    }
 }

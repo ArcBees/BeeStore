@@ -22,6 +22,10 @@
             <groupId>com.arcbees</groupId>
             <artifactId>ui</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.arcbees.stripe</groupId>
+            <artifactId>gwt-stripe</artifactId>
+        </dependency>
 
         <!-- GWT -->
         <dependency>

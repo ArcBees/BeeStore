@@ -14,10 +14,9 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.gwtplatform.mvp.client.UiHandlers;
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+interface StripePaymentUiHandlers extends UiHandlers {
 }

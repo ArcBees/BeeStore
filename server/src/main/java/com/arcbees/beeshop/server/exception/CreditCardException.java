@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.server.exception;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+public class CreditCardException extends RuntimeException {
+    public CreditCardException() {
+    }
 
-public interface ProductFactory {
-    ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
+    public CreditCardException(String message) {
+        super(message);
+    }
 }
