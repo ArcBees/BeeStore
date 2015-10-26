@@ -28,10 +28,12 @@ import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyEvent;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
+import com.gwtplatform.mvp.client.proxy.NavigationEvent;
+import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler {
+        implements BrandChangedEventHandler, NavigationHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -39,6 +41,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     interface MyView extends View {
         void changeBrand(Brand brand);
+
+        void updateNavigationHref();
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
@@ -58,7 +62,13 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onNavigation(NavigationEvent navigationEvent) {
+        getView().updateNavigationHref();
+    }
+
+    @Override
     protected void onBind() {
         addVisibleHandler(BrandChangedEvent.TYPE, this);
+        addVisibleHandler(NavigationEvent.getType(), this);
     }
 }

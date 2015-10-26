@@ -1,5 +1,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
@@ -11,7 +14,9 @@
         <g:HTMLPanel tag="section" ui:field="mainProducts" styleName="{page.style.mainProducts}"/>
 
         <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
-            <h3>shopping by products</h3>
+            <h3>
+                <ui:msg description="shopping by brand">shopping by brand</ui:msg>
+            </h3>
             <ul class="{page.style.devProducts_list}">
                 <li>
                     <a ui:field="gaeAnchor">
@@ -97,9 +102,13 @@
         </section>
 
         <section class="{res.style.stripe} {page.style.welcome}">
-            <h2>Welcome to the Beestore</h2>
-            <p>The Beestore is a study case from Arcbees
-                <span>to show our hive of products and branded gears. Enjoy!</span>
+            <p>
+                <ui:msg description="case study">The Beestore is a case study from Arcbees</ui:msg>
+                <span>
+                    <ui:msg description="to show our hive products">
+                        to show our hive of products and branded gears. Enjoy!
+                    </ui:msg>
+                </span>
             </p>
         </section>
 

@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -38,7 +38,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     @ProxyStandard
-    @NameToken(NameTokens.PRODUCTS)
+    @NameToken({NameTokens.PRODUCTS, NameTokens.PRODUCTS_FR})
     interface MyProxy extends ProxyPlace<ProductPresenter> {
     }
 
