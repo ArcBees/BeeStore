@@ -43,7 +43,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     @ProxyStandard
-    @NameToken({NameTokens.PRODUCTS, NameTokens.PRODUCTS_FR})
+    @NameToken({NameTokens.PRODUCT, NameTokens.PRODUCT_FR})
     interface MyProxy extends ProxyPlace<ProductPresenter> {
     }
 
