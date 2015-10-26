@@ -96,7 +96,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         Product product = productDto.getProduct();
         $(productName).text(product.getName());
         $(productDescription).text(product.getDescription());
-        $(priceText).text(String.valueOf(product.getPrice()));
+        $(priceText).text(String.valueOf(product.getPrice() + " $"));
 
         productImage.setResource(productBrandUtil.getImage(product, productDto.getBrand()));
     }
