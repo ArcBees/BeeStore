@@ -15,5 +15,6 @@ package com.arcbees.beeshop.client.application;
 
 public interface LocaleHelper {
     boolean isEnglish();
+
     boolean isFrench();
 }
