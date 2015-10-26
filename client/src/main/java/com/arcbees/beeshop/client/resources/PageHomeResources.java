@@ -77,6 +77,27 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/product-bag.png")
     ImageResource productBag();
 
+    @Source("img/products/arcbees/arcbees-shirt.png")
+    ImageResource arcbeesShirt();
+
+    @Source("img/products/gwtp/gwtp-shirt.png")
+    ImageResource gwtpShirt();
+
+    @Source("img/products/gae/gae-shirt.png")
+    ImageResource gaeShirt();
+
+    @Source("img/products/gquery/gquery-shirt.png")
+    ImageResource gqueryShirt();
+
+    @Source("img/products/chosen/chosen-shirt.png")
+    ImageResource chosenShirt();
+
+    @Source("img/products/jukito/jukito-shirt.png")
+    ImageResource jukitoShirt();
+
+    @Source("img/products/gsss/gsss-shirt.png")
+    ImageResource gsssShirt();
+
     @Source("img/products/arcbees/arcbees-bag.png")
     ImageResource arcbeesBag();
 

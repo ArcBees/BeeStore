@@ -22,6 +22,10 @@
             <groupId>com.arcbees</groupId>
             <artifactId>ui</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.arcbees.stripe</groupId>
+            <artifactId>gwt-stripe</artifactId>
+        </dependency>
 
         <!-- GWT -->
         <dependency>
@@ -75,6 +79,14 @@
         <dependency>
             <groupId>org.vectomatic</groupId>
             <artifactId>lib-gwt-svg</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
         </dependency>
     </dependencies>
 

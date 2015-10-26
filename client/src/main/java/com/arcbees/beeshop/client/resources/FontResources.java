@@ -166,6 +166,12 @@ public interface FontResources extends ClientBundle {
 
         String iconGaeName();
 
+        String iconEmailCircle();
+
+        String iconTumblr();
+
+        String iconPinterest();
+
         String iconDeleteCircle();
     }
 

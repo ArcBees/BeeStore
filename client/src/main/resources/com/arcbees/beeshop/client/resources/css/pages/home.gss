@@ -29,12 +29,7 @@
     position: relative;
 }
 
-.mainProducts_left {
-    background-color: #fbe605;
-}
-
-.mainProducts_left img,
-.mainProducts_right img {
+.mainProducts img {
     display: table;
     margin: 0 auto;
 }

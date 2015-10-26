@@ -16,15 +16,17 @@
 
 package com.arcbees.beeshop.client.application;
 
-import static com.google.gwt.query.client.GQuery.$;
-
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
-import com.google.gwt.dom.client.AnchorElement;
 import com.arcbees.beeshop.client.resources.AppResources;
+import com.arcbees.beeshop.client.resources.FontResources;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.gwt.dom.client.AnchorElement;
+import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -36,6 +38,8 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
+import static com.google.gwt.query.client.GQuery.$;
+
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
     }
@@ -44,37 +48,64 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     @UiField
     SimplePanel main;
-
+    @UiField
+    SimplePanel shoppingBagWidget;
+    @UiField
+    ButtonElement cartButton;
     @UiField
     Object backTop;
     @UiField
     AnchorElement englishAnchor;
     @UiField
     AnchorElement frenchAnchor;
+    @UiField
+    SpanElement numberOfItems;
+    @UiField
+    Element cartIcon;
 
-    private final AppResources resources;
+    FontResources fontRes;
+    AppResources res;
 
     private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+
+    private Boolean shoppingBagOpen;
 
     @Inject
     ApplicationView(
             Binder uiBinder,
             TokenFormatter formatter,
             PlaceManager placeManager,
-            AppResources resources) {
+            AppResources res,
+            FontResources fontRes) {
         this.formatter = formatter;
         this.placeManager = placeManager;
-        this.resources = resources;
+        this.fontRes = fontRes;
+        this.res = res;
 
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
+        bindSlot(ApplicationPresenter.SLOT_CART_WIDGET, shoppingBagWidget);
 
         bind();
     }
 
+    @Override
+    public void changeBrand(Brand brand) {
+        $("body").removeClass();
+        $("body").addClass(getStyle(brand));
+    }
+
+    @Override
+    public void updateNavigationHref() {
+        setI18nAnchors();
+    }
+
     private void bind() {
+        $(shoppingBagWidget).hide();
+        shoppingBagOpen = false;
+
         $(backTop).click(new Function() {
             @Override
             public void f() {
@@ -87,50 +118,86 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             }
         });
 
+        $(cartButton).click(new Function() {
+            @Override
+            public void f() {
+                if (shoppingBagOpen) {
+                    $(shoppingBagWidget).show();
+                    $(cartIcon).attr("class", fontRes.icons().iconClose());
+                    shoppingBagOpen = false;
+                } else {
+                    $(shoppingBagWidget).hide();
+                    $(cartIcon).attr("class", fontRes.icons().iconCart());
+                    shoppingBagOpen = true;
+                }
+            }
+        });
+
         setI18nAnchors();
     }
 
     private void setI18nAnchors() {
-        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
-        setLanguageAnchor(currentPlaceRequest, NameTokens.LANGUAGE_FRENCH, frenchAnchor);
-        setLanguageAnchor(currentPlaceRequest, NameTokens.LANGUAGE_ENGLISH, englishAnchor);
+        if (isFrench()) {
+            setAnchorHighlighted(frenchAnchor);
+        } else {
+            setAnchorHighlighted(englishAnchor);
+        }
+
+        setLanguageAnchor(NameTokens.LANGUAGE_FRENCH, frenchAnchor);
+        setLanguageAnchor(NameTokens.LANGUAGE_ENGLISH, englishAnchor);
     }
 
-    private void setLanguageAnchor(PlaceRequest currentPlaceRequest, String language, AnchorElement anchorElement) {
+    private void setAnchorHighlighted(AnchorElement languageAnchor) {
+        $(languageAnchor).addClass(res.style().active());
+    }
+
+    private void setLanguageAnchor(String language, AnchorElement anchorElement) {
+        anchorElement.setHref(buildPath(language));
+    }
+
+    private boolean isFrench() {
+        LocaleInfo currentLocale = LocaleInfo.getCurrentLocale();
+        return currentLocale.getLocaleName().equals(NameTokens.LANGUAGE_FRENCH);
+    }
+
+    private String buildPath(String language) {
+        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
+
+        String currentNameToken = currentPlaceRequest.getNameToken();
+
         PlaceRequest newRequest = new PlaceRequest.Builder(currentPlaceRequest)
-                .with(NameTokens.PARAM_LANGUAGE, language)
+                .nameToken(NameTokens.translate(currentNameToken))
                 .build();
 
-        String href = formatter.toPlaceToken(newRequest);
+        String historyToken = placeManager.buildHistoryToken(newRequest);
 
-        anchorElement.setHref("#" + href);
+        return "/" + language + "/#" + historyToken;
     }
 
     @Override
-    public void changeBrand(Brand brand) {
-        $("body").removeClass();
-        $("body").addClass(getStyle(brand));
+    public void updateItemNumber(int number) {
+        $(numberOfItems).text(String.valueOf(number));
     }
 
     private String getStyle(Brand brand) {
         switch (brand) {
             case ARCBEES:
-                return resources.style().arcbees();
+                return res.style().arcbees();
             case GWTP:
-                return resources.style().gwtp();
+                return res.style().gwtp();
             case CHOSEN:
-                return resources.style().chosen();
+                return res.style().chosen();
             case GQUERY:
-                return resources.style().gquery();
+                return res.style().gquery();
             case GSSS:
-                return resources.style().gsss();
+                return res.style().gsss();
             case GAE_STUDIO:
-                return resources.style().gaestudio();
+                return res.style().gaestudio();
             case JUKITO:
-                return resources.style().jukito();
+                return res.style().jukito();
             default:
                 GQuery.console.log("Couldn't determine the selected brand, picking up Arcbees.");
-                return resources.style().arcbees();
+                return res.style().arcbees();
         }
     }
 }

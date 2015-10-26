@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;

@@ -10,6 +10,7 @@
 .itemPrice {
     background-color: C_PRIMARY;
     font-size: 2rem;
+    font-family: F_PRIMARY_BOLD;
 
     display: inline-block;
     padding: 2px 15px;
@@ -146,11 +147,129 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+.share {
+    display: inline-block;
+
+    position: relative;
+}
+
+.share_icons {
+    width: 220px;
+    height: 30px;
+
+    position: absolute;
+    left: 35px;
+    top: 0;
+
+    overflow: hidden;
+}
+
+.share_close {
+    font-size: 2rem;
+
+    display: block;
+    margin-left: 10px;
+    width: 25px;
+
+    cursor: pointer;
+}
+
+.share_icons_fb,
+.share_icons_pinterest,
+.share_icons_gplus,
+.share_icons_twitter,
+.share_icons_tumblr,
+.share_icons_mail {
+    display: block;
+    width: 30px;
+    height: 30px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.share_icons_fb {
+    left: 15px;
+
+    @mixin animation_delay(.6s);
+}
+
+.share_icons_pinterest {
+    left: 50px;
+
+    @mixin animation_delay(.5s);
+}
+
+.share_icons_gplus {
+    left: 85px;
+
+    @mixin animation_delay(.4s);
+}
+
+.share_icons_twitter {
+    left: 120px;
+
+    @mixin animation_delay(.3s);
+}
+
+.share_icons_tumblr {
+    left: 155px;
+
+    @mixin animation_delay(.2s);
+}
+
+.share_icons_mail {
+    left: 190px;
+
+    @mixin animation_delay(.1s);
+}
+
+.share_icons a:before {
+    color: C_STRIPE_MEDIUM2;
+    font-size: 3rem;
+
+    @mixin transition(all, .5s);
+}
+
+.share_icons a:hover:before {
+    color: C_TEXT;
+}
+
+.slideIn {
+    @mixin animation_name(slideIn);
+    @mixin animation_duration(.5s);
+}
+
+@-webkit-keyframes slideIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-900%);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-900%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* -- RIGHT PANEL
 ------------------------ */
 
 .rightPanel {
-    background-color: C_STRIPE_MEDIUM4;
+    background-color: C_STRIPE_MEDIUM1;
 
     display: table;
     height: calc(100% - 100px);
@@ -170,6 +289,20 @@ input[type=number]::-webkit-outer-spin-button {
     text-align: center;
 
     margin: 0;
+}
+
+.rightPanel h2 span {
+    font-size: 2.8rem;
+    background-color: C_PRIMARY;
+    color: C_TEXT;
+    line-height: 40px;
+
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    padding: 2px;
+
+    border-radius: 50%;
 }
 
 .rightPanel h3,
@@ -217,6 +350,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index: 99;
 }
 
+.rightPanel_shoppingBag,
 .rightPanel_address,
 .rightPanel_order,
 .rightPanel_paiement,

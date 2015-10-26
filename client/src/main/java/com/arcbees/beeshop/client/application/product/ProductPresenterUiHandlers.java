@@ -20,4 +20,6 @@ import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface ProductPresenterUiHandlers extends UiHandlers {
     void onShareButtonClicked();
+
+    void onAddToCartButtonClicked();
 }
