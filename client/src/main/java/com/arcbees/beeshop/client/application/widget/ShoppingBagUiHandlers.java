@@ -14,12 +14,9 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.product;
+package com.arcbees.beeshop.client.application.widget;
 
 import com.gwtplatform.mvp.client.UiHandlers;
 
-public interface ProductPresenterUiHandlers extends UiHandlers {
-    void onShareButtonClicked();
-
-    void onAddToCartButtonClicked();
+interface ShoppingBagUiHandlers extends UiHandlers {
 }

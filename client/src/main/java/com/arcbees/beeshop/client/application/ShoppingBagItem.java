@@ -14,12 +14,24 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.product;
+package com.arcbees.beeshop.client.application;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.arcbees.beeshop.common.dto.ProductDto;
 
-public interface ProductPresenterUiHandlers extends UiHandlers {
-    void onShareButtonClicked();
+public class ShoppingBagItem {
+    private ProductDto productDto;
+    private int quantity;
 
-    void onAddToCartButtonClicked();
+    public ShoppingBagItem(ProductDto productDto, int quantity) {
+        this.productDto = productDto;
+        this.quantity = quantity;
+    }
+
+    public ProductDto getProductDto() {
+        return productDto;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }

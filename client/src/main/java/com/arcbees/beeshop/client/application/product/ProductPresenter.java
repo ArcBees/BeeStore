@@ -20,6 +20,11 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
+import com.arcbees.beeshop.client.application.CurrentShoppingBag;
+import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
@@ -44,6 +49,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
 
+    private final CurrentShoppingBag currentShoppingBag;
+
     private boolean isSharePanelShown;
 
     @Inject
@@ -51,11 +58,13 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             EventBus eventBus,
             MyView view,
             MyProxy proxy,
-            SharePanelPresenter sharePanel) {
+            SharePanelPresenter sharePanel,
+            CurrentShoppingBag currentShoppingBag) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
-        setInSlot(SLOT_SHARE_PANEL, sharePanel);
+        this.currentShoppingBag = currentShoppingBag;
 
+        setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
     }
 
@@ -66,6 +75,12 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         } else {
             showSharePanel();
         }
+    }
+
+    @Override
+    public void onAddToCartButtonClicked() {
+        // TODO: Populate this object depending on the product selected
+        currentShoppingBag.addItem(dummyItem());
     }
 
     @Override
@@ -81,5 +96,13 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     private void hideSharePanel() {
         getView().hideSharePanel();
         isSharePanelShown = false;
+    }
+
+    private ShoppingBagItem dummyItem() {
+        ProductDto productDto = new ProductDto();
+        productDto.setBrand(Brand.ARCBEES);
+        productDto.setProduct(Product.BAG);
+
+        return new ShoppingBagItem(productDto, 2);
     }
 }

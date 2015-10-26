@@ -19,10 +19,13 @@ package com.arcbees.beeshop.client.application;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.resources.AppResources;
+import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.dom.client.AnchorElement;
+import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -33,6 +36,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 import static com.google.gwt.query.client.GQuery.$;
 
@@ -45,25 +49,44 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel main;
     @UiField
+    SimplePanel shoppingBagWidget;
+    @UiField
+    ButtonElement cartButton;
+    @UiField
     Object backTop;
     @UiField
     AnchorElement englishAnchor;
     @UiField
     AnchorElement frenchAnchor;
     @UiField
+    SpanElement numberOfItems;
+    @UiField
+    Element cartIcon;
+
+    FontResources fontRes;
     AppResources res;
 
+    private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+
+    private Boolean shoppingBagOpen;
 
     @Inject
     ApplicationView(
             Binder uiBinder,
-            PlaceManager placeManager) {
+            TokenFormatter formatter,
+            PlaceManager placeManager,
+            AppResources res,
+            FontResources fontRes) {
+        this.formatter = formatter;
         this.placeManager = placeManager;
+        this.fontRes = fontRes;
+        this.res = res;
 
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
+        bindSlot(ApplicationPresenter.SLOT_CART_WIDGET, shoppingBagWidget);
 
         bind();
     }
@@ -80,6 +103,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
+        $(shoppingBagWidget).hide();
+        shoppingBagOpen = false;
+
         $(backTop).click(new Function() {
             @Override
             public void f() {
@@ -89,6 +115,21 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                         new ScrollTopAnimation(element).run(ANIMATION_DURATION);
                     }
                 });
+            }
+        });
+
+        $(cartButton).click(new Function() {
+            @Override
+            public void f() {
+                if (shoppingBagOpen) {
+                    $(shoppingBagWidget).show();
+                    $(cartIcon).attr("class", fontRes.icons().iconClose());
+                    shoppingBagOpen = false;
+                } else {
+                    $(shoppingBagWidget).hide();
+                    $(cartIcon).attr("class", fontRes.icons().iconCart());
+                    shoppingBagOpen = true;
+                }
             }
         });
 
@@ -131,6 +172,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         String historyToken = placeManager.buildHistoryToken(newRequest);
 
         return "/" + language + "/#" + historyToken;
+    }
+
+    @Override
+    public void updateItemNumber(int number) {
+        $(numberOfItems).text(String.valueOf(number));
     }
 
     private String getStyle(Brand brand) {

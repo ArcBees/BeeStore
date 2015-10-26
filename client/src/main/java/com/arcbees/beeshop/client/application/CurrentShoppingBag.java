@@ -14,12 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.product;
+package com.arcbees.beeshop.client.application;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+public interface CurrentShoppingBag {
+    void addItem(ShoppingBagItem item);
 
-public interface ProductPresenterUiHandlers extends UiHandlers {
-    void onShareButtonClicked();
+    int getSize();
 
-    void onAddToCartButtonClicked();
+    void removeItem(ShoppingBagItem item);
 }

@@ -17,27 +17,44 @@
 package com.arcbees.beeshop.common.dto;
 
 public enum Product {
-    SHIRT(1, 30),
-    BAG(2, 25),
-    USB_KEY(3, 10),
-    MUG(4, 10),
-    THERMOS(5, 5),
-    PHONE_CASE(6, 15);
+    SHIRT(1, 30, "Bee Shirt", "Grey Logo", "M"),
+    BAG(2, 25, "Bee Bag", "Black Logo", "Unique"),
+    USB_KEY(3, 10, "Bee Key", "Black Logo", "Unique"),
+    MUG(4, 10, "Bee Mug", "Yellow Logo", "Unique"),
+    THERMOS(5, 5, "Bee Cup", "Black Logo", "Unique"),
+    PHONE_CASE(6, 15, "Bee Case", "Black Logo", "Unique");
 
     private final int value;
+    private final int price;
+    private final String name;
+    private final String description;
+    private final String size;
+
+    Product(int value, int price, String name, String description, String size) {
+        this.value = value;
+        this.price = price;
+        this.name = name;
+        this.description = description;
+        this.size = size;
+    }
+
+    public int getValue() {
+        return value;
+    }
 
     public int getPrice() {
         return price;
     }
 
-    private final int price;
-
-    Product(int value, int price) {
-        this.value = value;
-        this.price = price;
+    public String getName() {
+        return name;
     }
 
-    public int getValue() {
-        return value;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSize() {
+        return size;
     }
 }
