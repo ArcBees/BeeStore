@@ -24,22 +24,36 @@ public enum Product {
     THERMOS(5, 5, "Bee Cup", "Black Logo", "Unique"),
     PHONE_CASE(6, 15, "Bee Case", "Black Logo", "Unique");
 
-    private final int value;
+    private final int id;
     private final int price;
     private final String name;
     private final String description;
     private final String size;
 
-    Product(int value, int price, String name, String description, String size) {
-        this.value = value;
+    Product(int id, int price, String name, String description, String size) {
+        this.id = id;
         this.price = price;
         this.name = name;
         this.description = description;
         this.size = size;
     }
 
-    public int getValue() {
-        return value;
+    public static Product createFromId(int id) {
+        for (Product product : Product.values()) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+
+        return getDefaultValue();
+    }
+
+    private static Product getDefaultValue() {
+        return SHIRT;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getPrice() {

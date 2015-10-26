@@ -66,7 +66,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     private void buildAnchorUri(ProductDto product) {
-        String productId = String.valueOf(product.getProduct().getValue());
+        String productId = String.valueOf(product.getProduct().getId());
         String nameToken = NameTokens.PRODUCT;
 
         if (localeHelper.isFrench()) {

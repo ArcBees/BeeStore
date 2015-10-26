@@ -33,6 +33,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class ProductPresenter extends Presenter<ProductPresenter.MyView, ProductPresenter.MyProxy>
         implements ProductPresenterUiHandlers {
@@ -40,6 +41,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         void hideSharePanel();
 
         void showSharePanel();
+
+        void setProduct(ProductDto productDto);
     }
 
     @ProxyStandard
@@ -75,6 +78,16 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         } else {
             showSharePanel();
         }
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        Product product = Product.createFromId(Integer.parseInt(request.getParameter(NameTokens.PARAM_ID, "")));
+        Brand brand = Brand.createFromValue(request.getParameter(NameTokens.PARAM_BRAND, ""));
+
+        ProductDto productDto = new ProductDto(product, brand);
+
+        getView().setProduct(productDto);
     }
 
     @Override
