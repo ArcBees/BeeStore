@@ -16,8 +16,8 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.client.RestCallbackImpl;
 import com.arcbees.beeshop.client.Config;
+import com.arcbees.beeshop.client.RestCallbackImpl;
 import com.arcbees.beeshop.common.api.PaymentResource;
 import com.arcbees.beeshop.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
@@ -27,7 +27,6 @@ import com.arcbees.stripe.client.jso.CreditCardResponse;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.query.client.GQuery;
-import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
@@ -41,9 +40,16 @@ import static com.google.gwt.http.client.Response.SC_PAYMENT_REQUIRED;
 public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresenter.MyView>
         implements StripePaymentUiHandlers {
     interface MyView extends View, HasUiHandlers<StripePaymentUiHandlers> {
+        void showErrorMessage(String message);
+
+        void showSuccessMessage(String message);
+
+        void enablePaymentSubmit();
+
+        void disablePaymentSubmit();
     }
 
-    private final String stripePublicKey;
+    private final Config config;
     private final Stripe stripe;
     private final ResourceDelegate<PaymentResource> paymentResource;
 
@@ -56,7 +62,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
             ResourceDelegate<PaymentResource> paymentResource) {
         super(eventBus, view);
 
-        this.stripePublicKey = config.stripePublicKey();
+        this.config = config;
         this.stripe = stripe;
         this.paymentResource = paymentResource;
 
@@ -68,7 +74,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         stripe.inject(new Callback<Void, Exception>() {
             @Override
             public void onFailure(Exception e) {
-                GQuery.console.error("Failed to inject stripe");
+                getView().showErrorMessage("Failed to load stripe payment.");
             }
 
             @Override
@@ -79,55 +85,49 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
     }
 
     private void onStripeInjected() {
-        GQuery.console.log("Stripe injected");
+        stripe.setPublishableKey(config.stripePublicKey());
 
-        stripe.setPublishableKey(stripePublicKey);
-
-        gogoStripe();
+        getView().enablePaymentSubmit();
     }
 
-    private void gogoStripe() {
-        CreditCard creditCard = new CreditCard.Builder()
-                .creditCardNumber("4000000000000002")
-                .cvc("317")
-                .expirationMonth(10)
-                .expirationYear(2019)
-                .name("Robert Bob")
+    @Override
+    public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
+        getView().disablePaymentSubmit();
+
+        final CreditCard creditCard = new CreditCard.Builder()
+                .name(name)
+                .creditCardNumber(number)
+                .cvc(cvs)
+                .expirationMonth(expMonth)
+                .expirationYear(expYear)
                 .build();
 
         stripe.getCreditCardToken(creditCard, new CreditCardResponseHandler() {
             @Override
             public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
-                GQuery.console.log("status = ", status);
-                GQuery.console.log("id = ", creditCardResponse.getId());
-                GQuery.console.log("card = ", creditCardResponse.getCard());
-                GQuery.console.log("created = ", creditCardResponse.getCreated());
-                GQuery.console.log("live mode = ", creditCardResponse.getLiveMode());
-                GQuery.console.log("object = ", creditCardResponse.getObject());
-                GQuery.console.log("type = ", creditCardResponse.getType());
-                GQuery.console.log("used = ", creditCardResponse.getUsed());
-
                 if (status == SC_PAYMENT_REQUIRED) {
-                    Window.alert("An error occurred. Please verify your credit card details.");
-                    return;
+                    getView().showErrorMessage("An error occurred. Please verify your credit card details.");
+                } else if (status != SC_OK) {
+                    getView().showErrorMessage("An error occurred.");
+                } else {
+                    PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
+                    pay(paymentInfo);
                 }
-                if (status != SC_OK) {
-                    Window.alert("An error occurred.");
-                    return;
-                }
-
-                paymentResource.withCallback(new RestCallbackImpl<Void>() {
-                    @Override
-                    public void onSuccess(Void result) {
-                        GQuery.console.log("Success!");
-                    }
-
-                    @Override
-                    public void onError(Response response) {
-                        Window.alert(response.getText());
-                    }
-                }).pay(new PaymentInfoDto(creditCardResponse.getId()));
             }
         });
+    }
+
+    private void pay(PaymentInfoDto paymentInfo) {
+        paymentResource.withCallback(new RestCallbackImpl<Void>() {
+            @Override
+            public void onSuccess(Void result) {
+                getView().showSuccessMessage("Success!");
+            }
+
+            @Override
+            public void onError(Response response) {
+                getView().showErrorMessage(response.getText());
+            }
+        }).pay(paymentInfo);
     }
 }

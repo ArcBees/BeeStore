@@ -21,6 +21,9 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class PaymentModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
+        bindPresenter(PaymentPresenter.class, PaymentPresenter.MyView.class, PaymentView.class,
+                PaymentPresenter.MyProxy.class);
+
         bindPresenterWidget(StripePaymentPresenter.class, StripePaymentPresenter.MyView.class, StripePaymentView.class);
     }
 }
