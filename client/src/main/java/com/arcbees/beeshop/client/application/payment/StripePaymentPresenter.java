@@ -74,7 +74,7 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
         stripe.inject(new Callback<Void, Exception>() {
             @Override
             public void onFailure(Exception e) {
-                GQuery.console.error("Failed to inject stripe");
+                getView().showErrorMessage("Failed to load stripe payment.");
             }
 
             @Override
@@ -92,7 +92,6 @@ public class StripePaymentPresenter extends PresenterWidget<StripePaymentPresent
 
     @Override
     public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
-        // Prevents submitting payment multiple times
         getView().disablePaymentSubmit();
 
         final CreditCard creditCard = new CreditCard.Builder()
