@@ -13,13 +13,13 @@
 
             <ul class="{page.style.product_nav} {res.style.clearfix}">
                 <li class="{page.style.previous}">
-                    <a href="#">
+                    <a ui:field="previous">
                         <i class="{font.icons.iconArrowDown}"/>
                         Previous Product
                     </a>
                 </li>
                 <li class="{page.style.next}">
-                    <a href="#">Next Product
+                    <a ui:field="next">Next Product
                         <i class="{font.icons.iconArrowDown}"/>
                     </a>
                 </li>

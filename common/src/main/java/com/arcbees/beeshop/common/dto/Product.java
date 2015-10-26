@@ -71,4 +71,22 @@ public enum Product {
     public String getSize() {
         return size;
     }
+
+    public Product getPreviousProduct() {
+        int previousId = getId() - 1;
+        if (previousId == 0) {
+            previousId = values().length;
+        }
+
+        return createFromId(previousId);
+    }
+
+    public Product getNextProduct() {
+        int nextId = getId() + 1;
+        if (nextId == values().length + 1) {
+            nextId = 1;
+        }
+
+        return createFromId(nextId);
+    }
 }
