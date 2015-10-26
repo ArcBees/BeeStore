@@ -14,10 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.payment;
+package com.arcbees.beeshop.client;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.i18n.client.Constants;
 
-interface StripePaymentUiHandlers extends UiHandlers {
-    void onSubmit(String name, String number, String cvs, int expMonth, int expYear);
+public interface Config extends Constants {
+    String stripePublicKey();
 }

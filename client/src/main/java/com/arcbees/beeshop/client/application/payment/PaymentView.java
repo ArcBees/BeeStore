@@ -16,8 +16,25 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import javax.inject.Inject;
 
-interface StripePaymentUiHandlers extends UiHandlers {
-    void onSubmit(String name, String number, String cvs, int expMonth, int expYear);
+import com.arcbees.ui.ReplacePanel;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
+
+public class PaymentView extends ViewImpl implements PaymentPresenter.MyView {
+    interface Binder extends UiBinder<Widget, PaymentView> {
+    }
+
+    @UiField
+    ReplacePanel stripe;
+
+    @Inject
+    PaymentView(Binder uiBinder) {
+        initWidget(uiBinder.createAndBindUi(this));
+
+        bindSlot(PaymentPresenter.SLOT_STRIPE, stripe);
+    }
 }
