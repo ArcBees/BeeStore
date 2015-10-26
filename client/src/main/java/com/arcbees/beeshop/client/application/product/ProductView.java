@@ -18,6 +18,7 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
@@ -37,6 +38,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
     @UiField
     FontResources font;
+    @UiField
+    AppResources res;
     @UiField
     Element shareButton;
     @UiField
@@ -77,7 +80,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
     @Override
     public void showSharePanel() {
-        shareButton.setClassName(font.icons().iconClose());
+        shareButton.setClassName(font.icons().iconClose() + " " + res.style().share_close());
         $(sharePanel).show();
     }
 }

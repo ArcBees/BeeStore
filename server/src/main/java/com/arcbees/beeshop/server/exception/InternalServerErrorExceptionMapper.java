@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 ArcBees Inc.
+/*
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,15 +14,17 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.server.exception;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.ext.ExceptionMapper;
+import javax.ws.rs.ext.Provider;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
+@Provider
+public class InternalServerErrorExceptionMapper implements ExceptionMapper<InternalServerErrorException> {
     @Override
-    protected Injector getInjector() {
-        return Guice.createInjector(new DispatchServletModule(), new ServerModule());
+    public Response toResponse(InternalServerErrorException e) {
+        return Response.status(Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
     }
 }

@@ -59,6 +59,8 @@ public interface ComponentsResources extends ClientBundle {
         String inputCheckbox();
 
         String required();
+
+        String btn__center();
     }
 
     @Source({"css/colors.gss",

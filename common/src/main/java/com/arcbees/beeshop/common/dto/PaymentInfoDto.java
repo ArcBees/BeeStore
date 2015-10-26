@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 ArcBees Inc.
+/*
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,15 +14,23 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.common.dto;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+public class PaymentInfoDto {
+    private String creditCardToken;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
-    @Override
-    protected Injector getInjector() {
-        return Guice.createInjector(new DispatchServletModule(), new ServerModule());
+    public PaymentInfoDto() {
+    }
+
+    public PaymentInfoDto(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
+    }
+
+    public String getCreditCardToken() {
+        return creditCardToken;
+    }
+
+    public void setCreditCardToken(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
     }
 }

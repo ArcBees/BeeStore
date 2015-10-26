@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 ArcBees Inc.
+/*
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,15 +14,24 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.client;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+import com.google.gwt.http.client.Response;
+import com.gwtplatform.dispatch.rest.client.RestCallback;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
+public abstract class RestCallbackImpl<T> implements RestCallback<T> {
+    private Response response;
+
     @Override
-    protected Injector getInjector() {
-        return Guice.createInjector(new DispatchServletModule(), new ServerModule());
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    @Override
+    public void onFailure(Throwable throwable) {
+        onError(response);
+    }
+
+    public void onError(Response response) {
     }
 }

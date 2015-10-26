@@ -1,5 +1,5 @@
-/**
- * Copyright 2013 ArcBees Inc.
+/*
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,15 +14,14 @@
  * the License.
  */
 
-package com.arcbees.beeshop.server.guice;
+package com.arcbees.beeshop.server.api;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+import com.arcbees.beeshop.common.api.PaymentResource;
+import com.google.inject.AbstractModule;
 
-public class GuiceServletConfig extends GuiceServletContextListener {
+public class ApiModule extends AbstractModule {
     @Override
-    protected Injector getInjector() {
-        return Guice.createInjector(new DispatchServletModule(), new ServerModule());
+    protected void configure() {
+        bind(PaymentResource.class).to(PaymentResourceImpl.class);
     }
 }
