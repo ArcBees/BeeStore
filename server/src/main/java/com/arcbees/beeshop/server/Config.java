@@ -29,7 +29,7 @@ public class Config {
     }
 
     private void loadProperties() {
-        InputStream in = getClass().getResourceAsStream("config.properties");
+        InputStream in = getClass().getResourceAsStream("Config.properties");
         try {
             properties.load(in);
         } catch (IOException | NullPointerException e) {
