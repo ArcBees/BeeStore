@@ -26,6 +26,7 @@ import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -58,6 +59,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     AnchorElement frenchAnchor;
     @UiField
     SpanElement numberOfItems;
+    @UiField
+    Element cartIcon;
 
     private final AppResources resources;
     private final TokenFormatter formatter;
@@ -83,6 +86,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
+        $(shoppingBagWidget).hide();
+        shoppingBagOpen = false;
+
         $(backTop).click(new Function() {
             @Override
             public void f() {
@@ -95,18 +101,16 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             }
         });
 
-        shoppingBagOpen = false;
-        $(shoppingBagWidget).hide();
-
         $(cartButton).click(new Function() {
             @Override
             public void f() {
-                $(shoppingBagWidget).toggle();
                 if (shoppingBagOpen) {
-                    $(cartButton).
+                    $(shoppingBagWidget).show();
+                    $(cartIcon).attr("class", "iconClose");
                     shoppingBagOpen = false;
                 } else {
-                    $(cartButton).get(0).setClassName("iconCart");
+                    $(shoppingBagWidget).hide();
+                    $(cartIcon).attr("class", "iconCart");
                     shoppingBagOpen = true;
                 }
             }
