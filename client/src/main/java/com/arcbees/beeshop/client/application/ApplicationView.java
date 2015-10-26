@@ -16,17 +16,15 @@
 
 package com.arcbees.beeshop.client.application;
 
-import static com.google.gwt.query.client.GQuery.$;
-
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.NameTokens;
-import com.google.gwt.dom.client.AnchorElement;
 import com.arcbees.beeshop.client.resources.AppResources;
+import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -38,6 +36,8 @@ import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
@@ -63,8 +63,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     Element cartIcon;
 
     private final AppResources resources;
+    private final FontResources fontResources;
     private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+
     private Boolean shoppingBagOpen;
 
     @Inject
@@ -72,10 +74,12 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             Binder uiBinder,
             TokenFormatter formatter,
             PlaceManager placeManager,
-            AppResources resources) {
+            AppResources resources,
+            FontResources fontResources) {
         this.formatter = formatter;
         this.placeManager = placeManager;
         this.resources = resources;
+        this.fontResources = fontResources;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -106,11 +110,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             public void f() {
                 if (shoppingBagOpen) {
                     $(shoppingBagWidget).show();
-                    $(cartIcon).attr("class", "iconClose");
+                    $(cartIcon).attr("class", fontResources.icons().iconClose());
                     shoppingBagOpen = false;
                 } else {
                     $(shoppingBagWidget).hide();
-                    $(cartIcon).attr("class", "iconCart");
+                    $(cartIcon).attr("class", fontResources.icons().iconCart());
                     shoppingBagOpen = true;
                 }
             }

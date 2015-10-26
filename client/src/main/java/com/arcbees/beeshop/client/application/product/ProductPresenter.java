@@ -46,9 +46,11 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     @NameToken(NameTokens.PRODUCTS)
     interface MyProxy extends ProxyPlace<ProductPresenter> {
     }
+
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
 
     private final CurrentShoppingBag currentShoppingBag;
+
     private boolean isSharePanelShown;
 
     @Inject
@@ -59,6 +61,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             SharePanelPresenter sharePanel,
             CurrentShoppingBag currentShoppingBag) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+
         this.currentShoppingBag = currentShoppingBag;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
