@@ -171,6 +171,8 @@ public interface FontResources extends ClientBundle {
         String iconTumblr();
 
         String iconPinterest();
+
+        String iconDeleteCircle();
     }
 
     @Source("fonts/icons/icons.gss")

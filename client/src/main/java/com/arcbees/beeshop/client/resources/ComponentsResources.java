@@ -45,10 +45,27 @@ public interface ComponentsResources extends ClientBundle {
         String btns_group();
 
         String btns_group__round();
+
+        String input__error();
+
+        String inputRequired();
+
+        String inputRequired_required();
+
+        String field();
+
+        String inputRadio();
+
+        String inputCheckbox();
+
+        String required();
+
+        String btn__center();
     }
 
     @Source({"css/colors.gss",
             "fonts/fonts.gss",
+            "css/forms.gss",
             "css/btns.gss"})
     Style style();
 }

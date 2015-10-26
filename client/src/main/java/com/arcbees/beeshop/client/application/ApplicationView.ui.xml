@@ -1,11 +1,17 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui">
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui"
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="panel" type="com.arcbees.beeshop.client.resources.AppResources"/>
+    <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
+    <ui:with field="nametokens" type="com.arcbees.beeshop.client.resources.NameTokensConstants"/>
 
-    <ui:import field="com.arcbees.beeshop.client.NameTokens.*"/>
+    <ui:import field="com.arcbees.beeshop.common.NameTokens.*"/>
 
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
@@ -15,19 +21,26 @@
                         <nav class="{res.style.header_menu}">
                             <ul>
                                 <li>
-                                    <a href="#{HOME}">Home</a>
+                                    <a href="#{nametokens.HOME}">
+                                        <ui:msg description="Home">Home</ui:msg>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#{PRODUCTS}">Products</a>
+                                    <a href="#{nametokens.PRODUCTS}">
+                                        <ui:msg description="Products">Products</ui:msg>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">Contact us</a>
+                                    <!-- TODO: Add link to contact page -->
+                                    <a href="#">
+                                        <ui:msg description="Contact us">Contact us</ui:msg>
+                                    </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                     <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
-                        <a href="#{HOME}">
+                        <a href="#{nametokens.HOME}">
                             <svg:SVGImage resource="{res.logoBeestore}"/>
                         </a>
                     </div>
@@ -36,30 +49,83 @@
                             <li class="{res.style.wishlist}">
                                 <button>
                                     <i class="{font.icons.iconWhishlist}"/>
-                                    <span class="{res.style.visuallyHidden}">wishlist</span>
+                                    <span class="{res.style.visuallyHidden}">
+                                        <ui:msg description="Wishlist">Wishlist</ui:msg>
+                                    </span>
                                 </button>
                             </li>
                             <li class="{res.style.cart} {res.style.active}">
                                 <button>
                                     <i class="{font.icons.iconCart}"/>
-                                    <span class="{res.style.visuallyHidden}">cart</span>
+                                    <span class="{res.style.visuallyHidden}">
+                                        <ui:msg description="cart">cart</ui:msg>
+                                    </span>
                                 </button>
+                                <div class="{res.style.cart_notifications}">
+                                    2
+                                </div>
                             </li>
                             <li class="{res.style.language}">
-                                <a ui:field="englishAnchor" class="{res.style.active}" href="#">ENG
+                                <a ui:field="englishAnchor">ENG
                                     <span class="{res.style.visuallyHidden}">LISH</span>
                                 </a>
                             </li>
                             <li class="{res.style.language}">
-                                <a ui:field="frenchAnchor" href="#">FR
+                                <a ui:field="frenchAnchor">FR
                                     <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                                 </a>
                             </li>
                         </nav>
                     </div>
                 </div>
-
             </header>
+
+            <div class="{res.style.rightPanel}">
+                <div class="{res.style.rightPanel_shoppingBag}">
+                    <div class="{res.style.rightPanel_title}">
+                        <h2>Shopping bag <span>2</span></h2>
+                    </div>
+
+                    <div class="{res.style.orderBox} {res.style.orderBox__shirt}">
+                        <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
+                        <div class="{res.style.orderBox_info}">
+                            <h4 class="{res.style.orderBox_productName}">Bee shirt</h4>
+                            <span class="{res.style.orderBox_productColor}">Grey shirt</span>
+                            <span class="{res.style.orderBox_productColor}">Yellow Logo</span>
+                            <span class="{res.style.orderBox_productSize}">Size:
+                                <span>M</span>
+                            </span>
+                            <div>
+                                <input type="number" class="{res.style.inputQuantity}" value="1"/>
+                                <span class="{res.style.orderBox_productTimes}">x</span>
+                                <span class="{res.style.orderBox_productPrice}">35.00 $</span>
+                            </div>
+                        </div>
+                        <i class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
+                    </div>
+                    <div class="{res.style.orderBox}">
+                        <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
+                        <div class="{res.style.orderBox_info}">
+                            <h4 class="{res.style.orderBox_productName}">Bee Mug</h4>
+                            <span class="{res.style.orderBox_productColor}">Black Logo</span>
+                            <span class="{res.style.orderBox_productSize}">Size:
+                                <span>UNIQUE</span>
+                            </span>
+                            <div>
+                                <input type="number" class="{res.style.inputQuantity}" value="1"/>
+                                <span class="{res.style.orderBox_productTimes}">x</span>
+                                <span class="{res.style.orderBox_productPrice}">35.00 $</span>
+                            </div>
+                        </div>
+                        <i class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
+                    </div>
+                    <div class="{res.style.orderAmount} {res.style.clearfix}">
+                        <h4>Subtotal</h4>
+                        <span class="{res.style.orderAmount_price}">12.50$</span>
+                    </div>
+                    <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Proceed to checkout</button>
+                </div>
+            </div>
 
             <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
 
@@ -76,19 +142,31 @@
                 <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
                         <li>
-                            <a href="#{HOME}">Home</a>
+                            <a href="#{nametokens.HOME}">
+                                <ui:msg description="Home">Home</ui:msg>
+                            </a>
                         </li>
                         <li>
-                            <a href="#{PRODUCTS}">Products</a>
+                            <a href="#{nametokens.PRODUCTS}">
+                                <ui:msg description="Products">Products</ui:msg>
+                            </a>
                         </li>
                         <li>
-                            <a href="">Contact us</a>
+                            <!-- TODO Add Link to contact page-->
+                            <a>
+                                <ui:msg description="Contact us">Contact us</ui:msg>
+                            </a>
                         </li>
                     </ul>
                 </nav>
 
-                <p class="{res.style.footer_caseStudy}">The Beestore is a study case from Arcbees
-                    <span>to show our hive of products and branded gears. Enjoy!</span>
+                <p class="{res.style.footer_caseStudy}">
+                    <ui:msg description="case study">The Beestore is a case study from Arcbees</ui:msg>
+                    <span>
+                        <ui:msg description="to show our hive products">to show our hive of products and branded gears.
+                            Enjoy!
+                        </ui:msg>
+                    </span>
                 </p>
             </div>
 

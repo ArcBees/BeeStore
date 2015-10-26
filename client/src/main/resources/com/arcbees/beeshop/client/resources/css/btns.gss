@@ -133,6 +133,11 @@
     display: block;
 }
 
+.btn__center {
+    display: table;
+    margin: 0 auto;
+}
+
 /* -- STATE
 ------------------------ */
 
