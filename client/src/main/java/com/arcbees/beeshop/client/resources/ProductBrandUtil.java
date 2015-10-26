@@ -34,49 +34,49 @@ public class ProductBrandUtil {
     public ProductBrandUtil(PageHomeResources resources) {
         images = new HashMap<>();
 
-        images.put(new SimpleEntry<>(Brand.ARCBEES, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, Product.SHIRT), resources.arcbeesShirt());
         images.put(new SimpleEntry<>(Brand.ARCBEES, Product.BAG), resources.arcbeesBag());
         images.put(new SimpleEntry<>(Brand.ARCBEES, Product.MUG), resources.arcbeesCup());
         images.put(new SimpleEntry<>(Brand.ARCBEES, Product.THERMOS), resources.arcbeesThermos());
         images.put(new SimpleEntry<>(Brand.ARCBEES, Product.USB_KEY), resources.arcbeesUsb());
         images.put(new SimpleEntry<>(Brand.ARCBEES, Product.PHONE_CASE), resources.arcbeesCase());
 
-        images.put(new SimpleEntry<>(Brand.GWTP, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.GWTP, Product.SHIRT), resources.gwtpShirt());
         images.put(new SimpleEntry<>(Brand.GWTP, Product.BAG), resources.gwtpBag());
         images.put(new SimpleEntry<>(Brand.GWTP, Product.MUG), resources.gwtpCup());
         images.put(new SimpleEntry<>(Brand.GWTP, Product.THERMOS), resources.gwtpThermos());
         images.put(new SimpleEntry<>(Brand.GWTP, Product.USB_KEY), resources.gwtpUsb());
         images.put(new SimpleEntry<>(Brand.GWTP, Product.PHONE_CASE), resources.gwtpCase());
 
-        images.put(new SimpleEntry<>(Brand.CHOSEN, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, Product.SHIRT), resources.chosenShirt());
         images.put(new SimpleEntry<>(Brand.CHOSEN, Product.BAG), resources.chosenBag());
         images.put(new SimpleEntry<>(Brand.CHOSEN, Product.MUG), resources.chosenCup());
         images.put(new SimpleEntry<>(Brand.CHOSEN, Product.THERMOS), resources.chosenThermos());
         images.put(new SimpleEntry<>(Brand.CHOSEN, Product.USB_KEY), resources.chosenUsb());
         images.put(new SimpleEntry<>(Brand.CHOSEN, Product.PHONE_CASE), resources.chosenCase());
 
-        images.put(new SimpleEntry<>(Brand.JUKITO, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.JUKITO, Product.SHIRT), resources.jukitoShirt());
         images.put(new SimpleEntry<>(Brand.JUKITO, Product.BAG), resources.jukitoBag());
         images.put(new SimpleEntry<>(Brand.JUKITO, Product.MUG), resources.jukitoCup());
         images.put(new SimpleEntry<>(Brand.JUKITO, Product.THERMOS), resources.jukitoThermos());
         images.put(new SimpleEntry<>(Brand.JUKITO, Product.USB_KEY), resources.jukitoUsb());
         images.put(new SimpleEntry<>(Brand.JUKITO, Product.PHONE_CASE), resources.jukitoCase());
 
-        images.put(new SimpleEntry<>(Brand.GQUERY, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.GQUERY, Product.SHIRT), resources.gqueryShirt());
         images.put(new SimpleEntry<>(Brand.GQUERY, Product.BAG), resources.gqueryBag());
         images.put(new SimpleEntry<>(Brand.GQUERY, Product.MUG), resources.gqueryCup());
         images.put(new SimpleEntry<>(Brand.GQUERY, Product.THERMOS), resources.gqueryThermos());
         images.put(new SimpleEntry<>(Brand.GQUERY, Product.USB_KEY), resources.gqueryUsb());
         images.put(new SimpleEntry<>(Brand.GQUERY, Product.PHONE_CASE), resources.gqueryCase());
 
-        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.SHIRT), resources.gaeShirt());
         images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.BAG), resources.gaeBag());
         images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.MUG), resources.gaeCup());
         images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.THERMOS), resources.gaeThermos());
         images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.USB_KEY), resources.gaeUsb());
         images.put(new SimpleEntry<>(Brand.GAE_STUDIO, Product.PHONE_CASE), resources.gaeCase());
 
-        images.put(new SimpleEntry<>(Brand.GSSS, Product.SHIRT), resources.tshirt());
+        images.put(new SimpleEntry<>(Brand.GSSS, Product.SHIRT), resources.gsssShirt());
         images.put(new SimpleEntry<>(Brand.GSSS, Product.BAG), resources.gsssBag());
         images.put(new SimpleEntry<>(Brand.GSSS, Product.MUG), resources.gsssCup());
         images.put(new SimpleEntry<>(Brand.GSSS, Product.THERMOS), resources.gsssThermos());
