@@ -70,11 +70,28 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             Binder uiBinder,
             ProductBrandUtil productBrandUtil) {
         this.productBrandUtil = productBrandUtil;
+
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
         bind();
+    }
+
+    private void bind() {
+        $(shareButton).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onShareButtonClicked();
+            }
+        });
+
+        $(addToCart).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onAddToCartButtonClicked();
+            }
+        });
     }
 
     @Override
@@ -99,21 +116,5 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         $(priceText).text(String.valueOf(product.getPrice() + " $"));
 
         productImage.setResource(productBrandUtil.getImage(product, productDto.getBrand()));
-    }
-
-    private void bind() {
-        $(shareButton).click(new Function() {
-            @Override
-            public void f() {
-                getUiHandlers().onShareButtonClicked();
-            }
-        });
-
-        $(addToCart).click(new Function() {
-            @Override
-            public void f() {
-                getUiHandlers().onAddToCartButtonClicked();
-            }
-        });
     }
 }
