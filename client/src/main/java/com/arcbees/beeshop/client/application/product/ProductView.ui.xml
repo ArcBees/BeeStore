@@ -27,13 +27,14 @@
 
             <div class="{page.style.product_description}">
                 <div class="{page.style.product_description_content}">
-                    <h2>Bee
-                        <span>bag</span>
+                    <h2>
+                        <span ui:field="brandName">Bee</span>
+                        <span ui:field="productName">bag</span>
                     </h2>
-                    <p>Feel the beeway power taking control of you
-                        <span>and you will code like a crazy bee!</span>
-                    </p>
-                    <span class="{res.style.itemPrice}">20 $</span>
+
+                    <p ui:field="productDescription"/>
+
+                    <span ui:field="priceText" class="{res.style.itemPrice}">20 $</span>
 
                     <h3>options</h3>
 
@@ -100,7 +101,7 @@
             </div>
         </div>
         <div class="{page.style.product_img}">
-            <g:Image resource="{page.productBag}"/>
+            <g:Image ui:field="productImage"/>
         </div>
 
     </g:HTMLPanel>

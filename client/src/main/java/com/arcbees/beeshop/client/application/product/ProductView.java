@@ -20,12 +20,18 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.FontResources;
+import com.arcbees.beeshop.client.resources.ProductBrandUtil;
+import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.ParagraphElement;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -46,14 +52,53 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     ReplacePanel sharePanel;
     @UiField
     ButtonElement addToCart;
+    @UiField
+    SpanElement brandName;
+    @UiField
+    SpanElement productName;
+    @UiField
+    ParagraphElement productDescription;
+    @UiField
+    SpanElement priceText;
+    @UiField
+    Image productImage;
+
+    private final ProductBrandUtil productBrandUtil;
 
     @Inject
-    ProductView(Binder uiBinder) {
+    ProductView(
+            Binder uiBinder,
+            ProductBrandUtil productBrandUtil) {
+        this.productBrandUtil = productBrandUtil;
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
         bind();
+    }
+
+    @Override
+    public void hideSharePanel() {
+        shareButton.setClassName(font.icons().iconShare());
+        $(sharePanel).hide();
+    }
+
+    @Override
+    public void showSharePanel() {
+        shareButton.setClassName(font.icons().iconClose() + " " + res.style().share_close());
+        $(sharePanel).show();
+    }
+
+    @Override
+    public void setProduct(ProductDto productDto) {
+        $(brandName).text(productDto.getBrand().getValue());
+
+        Product product = productDto.getProduct();
+        $(productName).text(product.getName());
+        $(productDescription).text(product.getDescription());
+        $(priceText).text(String.valueOf(product.getPrice()));
+
+        productImage.setResource(productBrandUtil.getImage(product, productDto.getBrand()));
     }
 
     private void bind() {
@@ -70,17 +115,5 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
                 getUiHandlers().onAddToCartButtonClicked();
             }
         });
-    }
-
-    @Override
-    public void hideSharePanel() {
-        shareButton.setClassName(font.icons().iconShare());
-        $(sharePanel).hide();
-    }
-
-    @Override
-    public void showSharePanel() {
-        shareButton.setClassName(font.icons().iconClose() + " " + res.style().share_close());
-        $(sharePanel).show();
     }
 }

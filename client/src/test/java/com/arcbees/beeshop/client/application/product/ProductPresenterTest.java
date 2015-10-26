@@ -22,6 +22,12 @@ import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.arcbees.beeshop.common.NameTokens;
+import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductDto;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
@@ -83,5 +89,24 @@ public class ProductPresenterTest {
         // then
         verify(view).showSharePanel();
         verify(view, never()).hideSharePanel();
+    }
+
+    @Test
+    public void prepareFromRequest() {
+        Product product = Product.MUG;
+        Brand brand = Brand.GAE_STUDIO;
+
+        ProductDto productDto = new ProductDto();
+        productDto.setProduct(product);
+        productDto.setBrand(brand);
+
+        PlaceRequest request = new PlaceRequest.Builder()
+                .with(NameTokens.PARAM_ID, String.valueOf(product.getId()))
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .build();
+
+        presenter.prepareFromRequest(request);
+
+        verify(view).setProduct(productDto);
     }
 }
