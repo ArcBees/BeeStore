@@ -16,8 +16,8 @@
 
 package com.arcbees.beeshop.client.application.payment;
 
-import com.arcbees.beeshop.client.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
+import com.arcbees.beeshop.common.NameTokens;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;

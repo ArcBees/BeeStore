@@ -81,7 +81,6 @@ public class StripePaymentPresenterTest {
 
     @Before
     public void setUp() {
-//        creditCardResponse = (CreditCardResponse) CreditCardResponse.createObject();
         givenDelegate(paymentDelegate).useResource(paymentResource);
     }
 
