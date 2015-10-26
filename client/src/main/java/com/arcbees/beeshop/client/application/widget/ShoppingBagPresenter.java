@@ -17,6 +17,7 @@
 package com.arcbees.beeshop.client.application.widget;
 
 import com.arcbees.beeshop.client.application.CurrentShoppingBag;
+import com.arcbees.beeshop.client.events.CheckoutClickedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
 import com.google.inject.Inject;
@@ -58,6 +59,11 @@ public class ShoppingBagPresenter extends PresenterWidget<ShoppingBagPresenter.M
         if (!event.isRemoved()) {
             addToSlot(SLOT_BAG_ITEM, shoppingBagItemFactory.create(event.getItem()));
         }
+    }
+
+    @Override
+    public void checkout() {
+        CheckoutClickedEvent.fire(this);
     }
 
     @Override

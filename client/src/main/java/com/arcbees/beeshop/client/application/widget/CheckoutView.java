@@ -16,8 +16,19 @@
 
 package com.arcbees.beeshop.client.application.widget;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import javax.inject.Inject;
 
-interface ShoppingBagUiHandlers extends UiHandlers {
-    void checkout();
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+public class CheckoutView extends ViewWithUiHandlers<CheckoutUiHandlers> implements CheckoutPresenter.MyView {
+    interface Binder extends UiBinder<Widget, CheckoutView> {
+    }
+
+    @Inject
+    CheckoutView(
+            Binder binder) {
+        initWidget(binder.createAndBindUi(this));
+    }
 }

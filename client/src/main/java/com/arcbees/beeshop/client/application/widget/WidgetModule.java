@@ -26,6 +26,7 @@ public class WidgetModule extends AbstractPresenterModule {
         bind(ProductPresenter.MyView.class).to(ProductView.class);
         bind(ShoppingBagItemPresenter.MyView.class).to(ShoppingBagItemView.class);
         bindSingletonPresenterWidget(ShoppingBagPresenter.class, ShoppingBagPresenter.MyView.class, ShoppingBagView.class);
+        bindSingletonPresenterWidget(CheckoutPresenter.class, CheckoutPresenter.MyView.class, CheckoutView.class);
 
         install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
         install(new GinFactoryModuleBuilder().build(ProductFactory.class));

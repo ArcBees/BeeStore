@@ -16,8 +16,23 @@
 
 package com.arcbees.beeshop.client.application.widget;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import javax.inject.Inject;
 
-interface ShoppingBagUiHandlers extends UiHandlers {
-    void checkout();
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.HasUiHandlers;
+import com.gwtplatform.mvp.client.PresenterWidget;
+import com.gwtplatform.mvp.client.View;
+
+public class CheckoutPresenter extends PresenterWidget<CheckoutPresenter.MyView> {
+    interface MyView extends View, HasUiHandlers<CheckoutUiHandlers> {
+    }
+
+    @Inject
+    CheckoutPresenter(
+            EventBus eventBus,
+            MyView view) {
+        super(eventBus, view);
+    }
 }
+
+

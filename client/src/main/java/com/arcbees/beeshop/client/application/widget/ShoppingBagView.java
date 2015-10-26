@@ -16,9 +16,13 @@
 
 package com.arcbees.beeshop.client.application.widget;
 
+import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -34,6 +38,8 @@ public class ShoppingBagView extends ViewWithUiHandlers<ShoppingBagUiHandlers>
     SpanElement numberOfItems;
     @UiField
     HTMLPanel itemsContainer;
+    @UiField
+    ButtonElement checkoutButton;
 
     @Inject
     ShoppingBagView(
@@ -41,10 +47,25 @@ public class ShoppingBagView extends ViewWithUiHandlers<ShoppingBagUiHandlers>
         initWidget(binder.createAndBindUi(this));
 
         bindSlot(ShoppingBagPresenter.SLOT_BAG_ITEM, itemsContainer);
+
+        bind();
+    }
+
+    private void bind() {
+        $(checkoutButton).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().checkout();
+            }
+        });
     }
 
     @Override
     public void updateItemNumber(int number) {
         $(numberOfItems).text(String.valueOf(number));
+    }
+
+    public void onCheckoutButtonClick(ClickEvent event) {
+
     }
 }

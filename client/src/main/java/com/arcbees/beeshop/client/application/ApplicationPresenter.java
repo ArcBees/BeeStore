@@ -18,9 +18,12 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.application.widget.CheckoutPresenter;
 import com.arcbees.beeshop.client.application.widget.ShoppingBagPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
+import com.arcbees.beeshop.client.events.CheckoutClickEventHandler;
+import com.arcbees.beeshop.client.events.CheckoutClickedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
@@ -37,7 +40,7 @@ import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler, ShoppingBagChangedEventHandler, NavigationHandler {
+        implements BrandChangedEventHandler, ShoppingBagChangedEventHandler, NavigationHandler, CheckoutClickEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -52,9 +55,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
-    public static final SingleSlot SLOT_CART_WIDGET = new SingleSlot();
+    public static final SingleSlot SLOT_CART = new SingleSlot();
 
-    private ShoppingBagPresenter shoppingBagPresenter;
+    private final ShoppingBagPresenter shoppingBagPresenter;
+    private final CheckoutPresenter checkoutPresenter;
+
     private CurrentShoppingBag currentShoppingBag;
 
     @Inject
@@ -63,13 +68,15 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy,
             ShoppingBagPresenter shoppingBagPresenter,
-            CurrentShoppingBag currentShoppingBag) {
+            CurrentShoppingBag currentShoppingBag,
+            CheckoutPresenter checkoutPresenter) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.shoppingBagPresenter = shoppingBagPresenter;
+        this.checkoutPresenter = checkoutPresenter;
         this.currentShoppingBag = currentShoppingBag;
 
-        setInSlot(SLOT_CART_WIDGET, shoppingBagPresenter);
+        setInSlot(SLOT_CART, shoppingBagPresenter);
     }
 
     @ProxyEvent
@@ -89,11 +96,18 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onCheckout(CheckoutClickedEvent event) {
+        setInSlot(SLOT_CART, checkoutPresenter);
+    }
+
+    @Override
     protected void onBind() {
         addVisibleHandler(BrandChangedEvent.TYPE, this);
 
         addVisibleHandler(ShoppingBagChangedEvent.TYPE, this);
 
         addVisibleHandler(NavigationEvent.getType(), this);
+
+        addVisibleHandler(CheckoutClickedEvent.TYPE, this);
     }
 }
