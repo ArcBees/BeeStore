@@ -28,12 +28,12 @@ public class ProductTest {
     @Test
     public void previousTests() {
         List<TestCase> cases = Lists.newArrayList(
-                new TestCase(Product.SHIRT, Product.PHONE_CASE),
+                new TestCase(Product.SHIRT, Product.MUG),
                 new TestCase(Product.BAG, Product.SHIRT),
-                new TestCase(Product.USB_KEY, Product.BAG),
-                new TestCase(Product.MUG, Product.USB_KEY),
-                new TestCase(Product.THERMOS, Product.MUG),
-                new TestCase(Product.PHONE_CASE, Product.THERMOS)
+                new TestCase(Product.THERMOS, Product.BAG),
+                new TestCase(Product.PHONE_CASE, Product.THERMOS),
+                new TestCase(Product.USB_KEY, Product.PHONE_CASE),
+                new TestCase(Product.MUG, Product.USB_KEY)
         );
 
         for (TestCase testCase : cases) {
@@ -45,11 +45,11 @@ public class ProductTest {
     public void nextTests() {
         List<TestCase> cases = Lists.newArrayList(
                 new TestCase(Product.SHIRT, Product.BAG),
-                new TestCase(Product.BAG, Product.USB_KEY),
-                new TestCase(Product.USB_KEY, Product.MUG),
-                new TestCase(Product.MUG, Product.THERMOS),
+                new TestCase(Product.BAG, Product.THERMOS),
                 new TestCase(Product.THERMOS, Product.PHONE_CASE),
-                new TestCase(Product.PHONE_CASE, Product.SHIRT)
+                new TestCase(Product.PHONE_CASE, Product.USB_KEY),
+                new TestCase(Product.USB_KEY, Product.MUG),
+                new TestCase(Product.MUG, Product.SHIRT)
         );
 
         for (TestCase testCase : cases) {
