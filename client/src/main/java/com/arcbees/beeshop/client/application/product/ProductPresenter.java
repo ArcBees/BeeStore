@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.arcbees.beeshop.client.application.CurrentShoppingBag;
 import com.arcbees.beeshop.client.application.ShoppingBagItem;
@@ -43,7 +43,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     @ProxyStandard
-    @NameToken(NameTokens.PRODUCTS)
+    @NameToken({NameTokens.PRODUCTS, NameTokens.PRODUCTS_FR})
     interface MyProxy extends ProxyPlace<ProductPresenter> {
     }
 

@@ -16,12 +16,13 @@
 
 package com.arcbees.beeshop.client.application.gin;
 
-import com.arcbees.beeshop.client.NameTokens;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationModule;
 import com.arcbees.beeshop.client.resources.ResourceLoader;
 import com.arcbees.beeshop.common.api.ApiPaths;
 import com.arcbees.stripe.client.StripeModule;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.gwtplatform.mvp.client.Bootstrapper;
 import com.gwtplatform.dispatch.rest.client.RestApplicationPath;
 import com.gwtplatform.dispatch.rest.client.gin.RestDispatchAsyncModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
@@ -40,6 +41,7 @@ public class ClientModule extends AbstractGinModule {
         install(new StripeModule());
 
         bind(ResourceLoader.class).asEagerSingleton();
+        bind(Bootstrapper.class).to(BootstrapperImpl.class).asEagerSingleton();
 
         install(new RestDispatchAsyncModule.Builder().build());
         bindConstant().annotatedWith(RestApplicationPath.class).to(ApiPaths.ROOT);

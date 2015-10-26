@@ -14,13 +14,19 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client;
+package com.arcbees.beeshop.common;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 public class NameTokens {
-    public static final String HOME = "!/home";
+    public static final String HOME = "!/";
     public static final String PRODUCTS = "!/products";
+    public static final String PRODUCTS_FR = "!/produits";
 
     public static final String PARAM_BRAND = "brand";
     public static final String GAE_STUDIO = Brand.GAE_STUDIO.getValue();
@@ -31,7 +37,29 @@ public class NameTokens {
     public static final String GQUERY = Brand.GQUERY.getValue();
     public static final String ARCBEES = Brand.ARCBEES.getValue();
 
-    public static final String PARAM_LANGUAGE = "language";
     public static final String LANGUAGE_ENGLISH = "en";
     public static final String LANGUAGE_FRENCH = "fr";
+    public static final String NOTFOUND = "!/notfound"; // TODO
+
+    private static final BiMap<String, String> placeKeys;
+
+    public static boolean isEnglish(String nameToken) {
+        return placeKeys.containsKey(nameToken);
+    }
+
+    public static String translate(String nameToken) {
+        if (isEnglish(nameToken)) {
+            return placeKeys.get(nameToken);
+        } else {
+            return placeKeys.inverse().get(nameToken);
+        }
+    }
+
+    static {
+        Map<String, String> keys = new HashMap<>();
+        keys.put(HOME, HOME);
+        keys.put(PRODUCTS, PRODUCTS_FR);
+
+        placeKeys = HashBiMap.create(keys);
+    }
 }

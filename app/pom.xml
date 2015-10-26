@@ -78,6 +78,7 @@
                     <copyWebapp>true</copyWebapp>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
                     <module>com.arcbees.beeshop.Production</module>
+                    <runTarget>/</runTarget>
 
                     <extraParam>true</extraParam>
                     <extra>extras</extra>
