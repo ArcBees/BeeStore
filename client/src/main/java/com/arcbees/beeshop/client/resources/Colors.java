@@ -16,6 +16,8 @@
 
 package com.arcbees.beeshop.client.resources;
 
+import com.arcbees.beeshop.common.dto.Brand;
+
 public class Colors {
     /* -> App colors -- */
     public static final String C_PRIMARY = "#ffe200";
@@ -45,4 +47,25 @@ public class Colors {
     public static final String C_PRODUCT_JUKITO = "#ed1c24";
     public static final String C_PRODUCT_GQUERY = "#0768ac";
     public static final String C_PRODUCT_GSS = "#594588";
+
+    public static String getBrandColor(Brand brand) {
+        switch (brand) {
+            case ARCBEES:
+                return C_PRIMARY;
+            case CHOSEN:
+                return C_PRODUCT_CHOSEN;
+            case JUKITO:
+                return C_PRODUCT_JUKITO;
+            case GWTP:
+                return C_PRODUCT_GWTP;
+            case GAE_STUDIO:
+                return C_PRODUCT_GAE;
+            case GQUERY:
+                return C_PRODUCT_GQUERY;
+            case GSSS:
+                return C_PRODUCT_GSS;
+            default:
+                return C_PRIMARY;
+        }
+    }
 }

@@ -9,7 +9,7 @@
 
     <g:HTMLPanel addStyleNames="{page.style.product}">
 
-        <div class="{page.style.product_info}">
+        <div ui:field="productInfoDiv" class="{page.style.product_info}">
 
             <ul class="{page.style.product_nav} {res.style.clearfix}">
                 <li class="{page.style.previous}">
@@ -69,30 +69,33 @@
                         </li>
                     </ul>
 
-                    <h3>size</h3>
+                    <div ui:field="sizeDiv">
+                        <h3>size</h3>
 
-                    <ul class="{page.style.product_size}">
-                        <li>
-                            <a href="#">S
-                                <span class="{res.style.visuallyHidden}">mall</span>
-                            </a>
-                        </li>
-                        <li class="{page.style.active}">
-                            <a href="#">M
-                                <span class="{res.style.visuallyHidden}">edium</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">L
-                                <span class="{res.style.visuallyHidden}">arge</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">XL
-                                <span class="{res.style.visuallyHidden}">arge</span>
-                            </a>
-                        </li>
-                    </ul>
+                        <ul class="{page.style.product_size}">
+                            <li>
+                                <a href="#">S
+                                    <span class="{res.style.visuallyHidden}">mall</span>
+                                </a>
+                            </li>
+                            <li class="{page.style.active}">
+                                <a href="#">M
+                                    <span class="{res.style.visuallyHidden}">edium</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">L
+                                    <span class="{res.style.visuallyHidden}">arge</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">XL
+                                    <span class="{res.style.visuallyHidden}">arge</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                     <input ui:field="quantity" type="number" class="{res.style.inputQuantity}" value="1"/>
                     <button ui:field="addToCart" class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
                     <i class="{font.icons.iconShare}" ui:field="shareButton"/>
@@ -100,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="{page.style.product_img}">
+        <div ui:field="productImageDiv" class="{page.style.product_img}">
             <g:Image ui:field="productImage"/>
         </div>
 
