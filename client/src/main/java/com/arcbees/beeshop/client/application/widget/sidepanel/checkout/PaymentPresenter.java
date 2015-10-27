@@ -22,7 +22,8 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
-public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> {
+public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
+        implements PaymentUiHandlers {
     interface MyView extends View, HasUiHandlers<PaymentUiHandlers> {
     }
 

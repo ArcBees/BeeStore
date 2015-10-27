@@ -2,12 +2,12 @@ package com.arcbees.beeshop.client.application.widget.sidepanel;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.application.payment.PaymentPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingBagPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.AddressPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.OrderPresenter;
-import com.arcbees.beeshop.client.events.CheckoutClickEventHandler;
-import com.arcbees.beeshop.client.events.CheckoutClickedEvent;
+import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.PaymentPresenter;
+import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
+import com.arcbees.beeshop.client.events.CheckoutContinueEventHandler;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -15,7 +15,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
 public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyView>
-        implements SidePanelUiHandlers, CheckoutClickEventHandler {
+        implements SidePanelUiHandlers, CheckoutContinueEventHandler {
     interface MyView extends View, HasUiHandlers<SidePanelUiHandlers> {
     }
 
@@ -48,13 +48,17 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
     protected void onBind() {
         setInSlot(SLOT_MAIN, shoppingBagPresenter);
 
-        addRegisteredHandler(CheckoutClickedEvent.TYPE, this);
+        addRegisteredHandler(CheckoutContinueEvent.TYPE, this);
     }
 
     @Override
-    public void onCheckout(CheckoutClickedEvent event) {
-        clearSlot(SLOT_MAIN);
-
-        addToSlot(SLOT_MAIN, addressPresenter);
+    public void onCheckoutContinue(CheckoutContinueEvent event) {
+        if (getChildren(SLOT_MAIN).contains(shoppingBagPresenter)) {
+            setInSlot(SLOT_MAIN, addressPresenter);
+        } else if (event.getSource() == addressPresenter) {
+            addToSlot(SLOT_MAIN, orderPresenter);
+        } else if (event.getSource() == orderPresenter) {
+            addToSlot(SLOT_MAIN, paymentPresenter);
+        }
     }
 }

@@ -32,7 +32,6 @@ import com.gwtplatform.mvp.client.annotations.ProxyEvent;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.presenter.slots.SingleSlot;
-import com.gwtplatform.mvp.client.presenter.slots.Slot;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
@@ -53,7 +52,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
-    public static final SingleSlot SLOT_SIDEPANEL = new SingleSlot();
+    public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
     private CurrentShoppingBag currentShoppingBag;
@@ -73,7 +72,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     protected void onBind() {
-        setInSlot(SLOT_SIDEPANEL, sidePanelPresenter);
+        setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
         addVisibleHandler(BrandChangedEvent.TYPE, this);
 

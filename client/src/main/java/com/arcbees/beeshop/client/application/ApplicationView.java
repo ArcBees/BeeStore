@@ -86,7 +86,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
-        bindSlot(ApplicationPresenter.SLOT_SIDEPANEL, sidePanelContainer);
+        bindSlot(ApplicationPresenter.SLOT_SIDE_PANEL, sidePanelContainer);
 
         bind();
     }

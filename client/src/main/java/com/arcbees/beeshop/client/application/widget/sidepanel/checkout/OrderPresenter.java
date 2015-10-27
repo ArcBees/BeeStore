@@ -18,12 +18,14 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
-public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView> {
+public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
+        implements OrderUiHandlers {
     interface MyView extends View, HasUiHandlers<OrderUiHandlers> {
     }
 
@@ -32,7 +34,12 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView> {
             EventBus eventBus,
             MyView view) {
         super(eventBus, view);
+
+        getView().setUiHandlers(this);
+    }
+
+    @Override
+    public void onContinueClicked() {
+        CheckoutContinueEvent.fire(this);
     }
 }
-
-

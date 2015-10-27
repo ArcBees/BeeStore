@@ -19,23 +19,23 @@ package com.arcbees.beeshop.client.events;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 
-public class CheckoutClickedEvent extends GwtEvent<CheckoutClickEventHandler> {
-    public static final Type<CheckoutClickEventHandler> TYPE = new Type<>();
+public class CheckoutContinueEvent extends GwtEvent<CheckoutContinueEventHandler> {
+    public static final Type<CheckoutContinueEventHandler> TYPE = new Type<>();
 
-    public CheckoutClickedEvent() {
+    public CheckoutContinueEvent() {
     }
 
     public static void fire(HasHandlers source) {
-        source.fireEvent(new CheckoutClickedEvent());
+        source.fireEvent(new CheckoutContinueEvent());
     }
 
     @Override
-    public Type<CheckoutClickEventHandler> getAssociatedType() {
+    public Type<CheckoutContinueEventHandler> getAssociatedType() {
         return TYPE;
     }
 
     @Override
-    protected void dispatch(CheckoutClickEventHandler handler) {
-        handler.onCheckout(this);
+    protected void dispatch(CheckoutContinueEventHandler handler) {
+        handler.onCheckoutContinue(this);
     }
 }

@@ -18,6 +18,6 @@ package com.arcbees.beeshop.client.events;
 
 import com.google.gwt.event.shared.EventHandler;
 
-public interface CheckoutClickEventHandler extends EventHandler {
-    void onCheckout(CheckoutClickedEvent event);
+public interface CheckoutContinueEventHandler extends EventHandler {
+    void onCheckoutContinue(CheckoutContinueEvent event);
 }

@@ -18,17 +18,36 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
+import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements OrderPresenter.MyView {
     interface Binder extends UiBinder<Widget, OrderView> {
     }
 
+    @UiField
+    ButtonElement continueButton;
+
     @Inject
     OrderView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
+
+        bind();
+    }
+
+    private void bind() {
+        $(continueButton).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onContinueClicked();
+            }
+        });
     }
 }

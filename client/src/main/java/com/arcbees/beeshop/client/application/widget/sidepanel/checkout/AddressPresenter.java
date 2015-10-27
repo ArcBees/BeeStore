@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
+import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -31,10 +32,12 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
             EventBus eventBus,
             MyView view) {
         super(eventBus, view);
+
+        getView().setUiHandlers(this);
     }
 
     @Override
-    public void getToOrder() {
-
+    public void onContinueClicked() {
+        CheckoutContinueEvent.fire(this);
     }
 }

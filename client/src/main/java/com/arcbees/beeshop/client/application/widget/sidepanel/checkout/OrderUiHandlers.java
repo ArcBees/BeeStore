@@ -18,5 +18,6 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import com.gwtplatform.mvp.client.UiHandlers;
 
-public class OrderUiHandlers implements UiHandlers {
+public interface OrderUiHandlers extends UiHandlers {
+    void onContinueClicked();
 }

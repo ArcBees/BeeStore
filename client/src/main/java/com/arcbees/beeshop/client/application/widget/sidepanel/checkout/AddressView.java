@@ -45,7 +45,7 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
         $(continueButton).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().getToOrder();
+                getUiHandlers().onContinueClicked();
             }
         });
     }

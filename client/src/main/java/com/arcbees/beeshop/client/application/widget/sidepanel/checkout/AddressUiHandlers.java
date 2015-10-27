@@ -19,5 +19,5 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface AddressUiHandlers extends UiHandlers {
-    void getToOrder();
+    void onContinueClicked();
 }
