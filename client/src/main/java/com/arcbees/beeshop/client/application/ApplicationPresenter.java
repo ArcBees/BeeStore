@@ -21,8 +21,8 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
-import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
-import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -37,7 +37,7 @@ import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler, NavigationHandler, ShoppingBagChangedEventHandler {
+        implements BrandChangedEventHandler, NavigationHandler, ShoppingCartChangedEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -76,7 +76,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
         addVisibleHandler(BrandChangedEvent.TYPE, this);
 
-        addVisibleHandler(ShoppingBagChangedEvent.TYPE, this);
+        addVisibleHandler(ShoppingCartChangedEvent.TYPE, this);
 
         addVisibleHandler(NavigationEvent.getType(), this);
     }
@@ -88,7 +88,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
-    public void onShoppingBagChanged(ShoppingBagChangedEvent event) {
+    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
         getView().updateItemNumber(currentOrder.getSize());
     }
 

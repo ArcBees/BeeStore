@@ -2,7 +2,7 @@ package com.arcbees.beeshop.client.application.widget.sidepanel;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingBagPresenter;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingCartPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.AddressPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.OrderPresenter;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.PaymentPresenter;
@@ -20,7 +20,7 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
 
     public static Slot SLOT_MAIN = new Slot();
 
-    private final ShoppingBagPresenter shoppingBagPresenter;
+    private final ShoppingCartPresenter shoppingCartPresenter;
     private final AddressPresenter addressPresenter;
     private final OrderPresenter orderPresenter;
     private final PaymentPresenter paymentPresenter;
@@ -29,13 +29,13 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
     SidePanelPresenter(
             EventBus eventBus,
             MyView view,
-            ShoppingBagPresenter shoppingBagPresenter,
+            ShoppingCartPresenter shoppingCartPresenter,
             AddressPresenter addressPresenter,
             OrderPresenter orderPresenter,
             PaymentPresenter paymentPresenter) {
         super(eventBus, view);
 
-        this.shoppingBagPresenter = shoppingBagPresenter;
+        this.shoppingCartPresenter = shoppingCartPresenter;
         this.addressPresenter = addressPresenter;
         this.orderPresenter = orderPresenter;
         this.paymentPresenter = paymentPresenter;
@@ -43,14 +43,14 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
 
     @Override
     protected void onBind() {
-        setInSlot(SLOT_MAIN, shoppingBagPresenter);
+        setInSlot(SLOT_MAIN, shoppingCartPresenter);
 
         addRegisteredHandler(CheckoutContinueEvent.TYPE, this);
     }
 
     @Override
     public void onCheckoutContinue(CheckoutContinueEvent event) {
-        if (getChildren(SLOT_MAIN).contains(shoppingBagPresenter)) {
+        if (getChildren(SLOT_MAIN).contains(shoppingCartPresenter)) {
             setInSlot(SLOT_MAIN, addressPresenter);
         } else if (event.getSource() == addressPresenter) {
             addToSlot(SLOT_MAIN, orderPresenter);

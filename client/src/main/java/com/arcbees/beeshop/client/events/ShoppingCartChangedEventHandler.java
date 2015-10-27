@@ -14,24 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.events;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.google.gwt.event.shared.EventHandler;
 
-public class ShoppingBagItem {
-    private ProductDto productDto;
-    private int quantity;
-
-    public ShoppingBagItem(ProductDto productDto, int quantity) {
-        this.productDto = productDto;
-        this.quantity = quantity;
-    }
-
-    public ProductDto getProductDto() {
-        return productDto;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
+public interface ShoppingCartChangedEventHandler extends EventHandler {
+    void onShoppingCartChanged(ShoppingCartChangedEvent event);
 }

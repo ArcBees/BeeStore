@@ -18,8 +18,8 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
-import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
-import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -27,37 +27,37 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
-public class ShoppingBagPresenter extends PresenterWidget<ShoppingBagPresenter.MyView>
-        implements ShoppingBagUiHandlers, ShoppingBagChangedEventHandler {
-    interface MyView extends View, HasUiHandlers<ShoppingBagUiHandlers> {
+public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter.MyView>
+        implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler {
+    interface MyView extends View, HasUiHandlers<ShoppingCartUiHandlers> {
         void updateItemNumber(int Number);
     }
 
-    static final Slot<ShoppingBagItemPresenter> SLOT_BAG_ITEM = new Slot<>();
+    static final Slot<ShoppingCartItemPresenter> SLOT_CART_ITEM = new Slot<>();
 
-    private ShoppingBagItemFactory shoppingBagItemFactory;
+    private ShoppingCartItemFactory shoppingCartItemFactory;
     private CurrentOrder currentOrder;
 
     @Inject
-    ShoppingBagPresenter(
+    ShoppingCartPresenter(
             EventBus eventBus,
             MyView view,
-            ShoppingBagItemFactory shoppingBagItemFactory,
+            ShoppingCartItemFactory shoppingCartItemFactory,
             CurrentOrder currentOrder) {
         super(eventBus, view);
 
-        this.shoppingBagItemFactory = shoppingBagItemFactory;
+        this.shoppingCartItemFactory = shoppingCartItemFactory;
         this.currentOrder = currentOrder;
 
         getView().setUiHandlers(this);
     }
 
     @Override
-    public void onShoppingBagChanged(ShoppingBagChangedEvent event) {
+    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
         getView().updateItemNumber(currentOrder.getSize());
 
         if (!event.isRemoved()) {
-            addToSlot(SLOT_BAG_ITEM, shoppingBagItemFactory.create(event.getItem()));
+            addToSlot(SLOT_CART_ITEM, shoppingCartItemFactory.create(event.getItem()));
         }
     }
 
@@ -68,6 +68,6 @@ public class ShoppingBagPresenter extends PresenterWidget<ShoppingBagPresenter.M
 
     @Override
     protected void onBind() {
-        addRegisteredHandler(ShoppingBagChangedEvent.TYPE, this);
+        addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
     }
 }

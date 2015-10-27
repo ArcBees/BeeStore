@@ -17,7 +17,7 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
@@ -25,20 +25,20 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
-public class ShoppingBagItemPresenter extends PresenterWidget<ShoppingBagItemPresenter.MyView>
-        implements ShoppingBagItemUiHandlers {
-    interface MyView extends View, HasUiHandlers<ShoppingBagItemUiHandlers> {
-        void setShoppingBagItem(ShoppingBagItem item);
+public class ShoppingCartItemPresenter extends PresenterWidget<ShoppingCartItemPresenter.MyView>
+        implements ShoppingCartItemUiHandlers {
+    interface MyView extends View, HasUiHandlers<ShoppingCartItemUiHandlers> {
+        void setShoppingCartItem(ShoppingCartItem item);
     }
 
-    private ShoppingBagItem item;
+    private ShoppingCartItem item;
     private CurrentOrder currentOrder;
 
     @Inject
-    ShoppingBagItemPresenter(
+    ShoppingCartItemPresenter(
             EventBus eventBus,
             MyView view,
-            @Assisted ShoppingBagItem item,
+            @Assisted ShoppingCartItem item,
             CurrentOrder currentOrder) {
         super(eventBus, view);
 
@@ -57,6 +57,6 @@ public class ShoppingBagItemPresenter extends PresenterWidget<ShoppingBagItemPre
 
     @Override
     protected void onReveal() {
-        getView().setShoppingBagItem(item);
+        getView().setShoppingCartItem(item);
     }
 }
