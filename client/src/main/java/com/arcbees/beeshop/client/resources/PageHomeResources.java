@@ -22,8 +22,6 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface PageHomeResources extends ClientBundle {
     interface Style extends CssResource {
-        String devProducts_list();
-
         String itemsForSale();
 
         String itemForSale();
@@ -47,30 +45,8 @@ public interface PageHomeResources extends ClientBundle {
         String itemForSale_info_shop();
 
         String pricePresenter();
-
-        String gsssIcon();
-
-        String iconText();
-
-        String productIcon();
-
-        String chosenIcon();
-
-        String arcbeesIcon();
-
-        String gaeIcon();
-
-        String gqueryIcon();
-
-        String jukitoIcon();
-
-        String gwtpIcon();
-
-        String devProducts_list_gae();
-
-        String devProducts_list_chosen();
     }
-       
+
     @Source("img/t-shirt-men.png")
     ImageResource tshirt();
 

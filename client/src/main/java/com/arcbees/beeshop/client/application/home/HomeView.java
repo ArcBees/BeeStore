@@ -87,6 +87,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
                 .with(NameTokens.PARAM_BRAND, brand)
                 .build();
 
+        anchor.setAttribute("data-brand", brand);
         anchor.setHref("#" + tokenFormatter.toPlaceToken(placeRequest));
     }
 }
