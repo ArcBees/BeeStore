@@ -132,9 +132,9 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @Override
     public void setProduct(ProductDto productDto) {
         Brand brand = productDto.getBrand();
-        $(brandName).text(brand.getValue());
-
         Product product = productDto.getProduct();
+
+        $(brandName).text(brand.getValue());
         $(productName).text(product.getName());
         $(productDescription).text(product.getDescription());
         $(priceText).text(String.valueOf(product.getPrice() + " $"));
