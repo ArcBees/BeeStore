@@ -18,12 +18,9 @@ package com.arcbees.beeshop.client.application;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.application.widget.CheckoutPresenter;
-import com.arcbees.beeshop.client.application.widget.ShoppingBagPresenter;
+import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
-import com.arcbees.beeshop.client.events.CheckoutClickEventHandler;
-import com.arcbees.beeshop.client.events.CheckoutClickedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
@@ -35,12 +32,13 @@ import com.gwtplatform.mvp.client.annotations.ProxyEvent;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.presenter.slots.SingleSlot;
+import com.gwtplatform.mvp.client.presenter.slots.Slot;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler, ShoppingBagChangedEventHandler, NavigationHandler, CheckoutClickEventHandler {
+        implements BrandChangedEventHandler, NavigationHandler, ShoppingBagChangedEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -55,11 +53,9 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
-    public static final SingleSlot SLOT_CART = new SingleSlot();
+    public static final SingleSlot SLOT_SIDEPANEL = new SingleSlot();
 
-    private final ShoppingBagPresenter shoppingBagPresenter;
-    private final CheckoutPresenter checkoutPresenter;
-
+    private final SidePanelPresenter sidePanelPresenter;
     private CurrentShoppingBag currentShoppingBag;
 
     @Inject
@@ -67,16 +63,23 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             EventBus eventBus,
             MyView view,
             MyProxy proxy,
-            ShoppingBagPresenter shoppingBagPresenter,
-            CurrentShoppingBag currentShoppingBag,
-            CheckoutPresenter checkoutPresenter) {
+            SidePanelPresenter sidePanelPresenter,
+            CurrentShoppingBag currentShoppingBag) {
         super(eventBus, view, proxy, RevealType.Root);
 
-        this.shoppingBagPresenter = shoppingBagPresenter;
-        this.checkoutPresenter = checkoutPresenter;
+        this.sidePanelPresenter = sidePanelPresenter;
         this.currentShoppingBag = currentShoppingBag;
+    }
 
-        setInSlot(SLOT_CART, shoppingBagPresenter);
+    @Override
+    protected void onBind() {
+        setInSlot(SLOT_SIDEPANEL, sidePanelPresenter);
+
+        addVisibleHandler(BrandChangedEvent.TYPE, this);
+
+        addVisibleHandler(ShoppingBagChangedEvent.TYPE, this);
+
+        addVisibleHandler(NavigationEvent.getType(), this);
     }
 
     @ProxyEvent
@@ -93,21 +96,5 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     @Override
     public void onNavigation(NavigationEvent navigationEvent) {
         getView().updateNavigationHref();
-    }
-
-    @Override
-    public void onCheckout(CheckoutClickedEvent event) {
-        setInSlot(SLOT_CART, checkoutPresenter);
-    }
-
-    @Override
-    protected void onBind() {
-        addVisibleHandler(BrandChangedEvent.TYPE, this);
-
-        addVisibleHandler(ShoppingBagChangedEvent.TYPE, this);
-
-        addVisibleHandler(NavigationEvent.getType(), this);
-
-        addVisibleHandler(CheckoutClickedEvent.TYPE, this);
     }
 }

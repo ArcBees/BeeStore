@@ -14,21 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import javax.inject.Inject;
+import com.gwtplatform.mvp.client.UiHandlers;
 
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.user.client.ui.Widget;
-import com.gwtplatform.mvp.client.ViewWithUiHandlers;
-
-public class CheckoutView extends ViewWithUiHandlers<CheckoutUiHandlers> implements CheckoutPresenter.MyView {
-    interface Binder extends UiBinder<Widget, CheckoutView> {
-    }
-
-    @Inject
-    CheckoutView(
-            Binder binder) {
-        initWidget(binder.createAndBindUi(this));
-    }
+interface ShoppingBagUiHandlers extends UiHandlers {
+    void checkout();
 }

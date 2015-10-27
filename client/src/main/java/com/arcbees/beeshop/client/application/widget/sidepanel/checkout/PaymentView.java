@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public interface ShoppingBagItemFactory {
-    ShoppingBagItemPresenter create(ShoppingBagItem shoppingBagItem);
+public class PaymentView extends ViewWithUiHandlers<PaymentUiHandlers> implements PaymentPresenter.MyView {
+    interface Binder extends UiBinder<Widget, PaymentView> {
+    }
 }

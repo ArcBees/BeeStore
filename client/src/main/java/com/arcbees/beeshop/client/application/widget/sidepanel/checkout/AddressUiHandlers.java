@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import com.gwtplatform.mvp.client.UiHandlers;
 
-public class CheckoutUiHandlers implements UiHandlers {
+public interface AddressUiHandlers extends UiHandlers {
+    void getToOrder();
 }

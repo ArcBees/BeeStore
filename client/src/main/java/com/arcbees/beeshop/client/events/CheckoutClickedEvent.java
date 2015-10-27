@@ -22,6 +22,9 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CheckoutClickedEvent extends GwtEvent<CheckoutClickEventHandler> {
     public static final Type<CheckoutClickEventHandler> TYPE = new Type<>();
 
+    public CheckoutClickedEvent() {
+    }
+
     public static void fire(HasHandlers source) {
         source.fireEvent(new CheckoutClickedEvent());
     }

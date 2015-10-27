@@ -14,25 +14,21 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
-import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.HasUiHandlers;
-import com.gwtplatform.mvp.client.PresenterWidget;
-import com.gwtplatform.mvp.client.View;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public class CheckoutPresenter extends PresenterWidget<CheckoutPresenter.MyView> {
-    interface MyView extends View, HasUiHandlers<CheckoutUiHandlers> {
+public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements OrderPresenter.MyView {
+    interface Binder extends UiBinder<Widget, OrderView> {
     }
 
     @Inject
-    CheckoutPresenter(
-            EventBus eventBus,
-            MyView view) {
-        super(eventBus, view);
+    OrderView(
+            Binder binder) {
+        initWidget(binder.createAndBindUi(this));
     }
 }
-
-

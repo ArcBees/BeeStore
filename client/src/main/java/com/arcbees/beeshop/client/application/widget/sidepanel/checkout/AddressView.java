@@ -14,58 +14,39 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import com.google.gwt.dom.client.ButtonElement;
-import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ShoppingBagView extends ViewWithUiHandlers<ShoppingBagUiHandlers>
-        implements ShoppingBagPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, ShoppingBagView> {
+public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implements AddressPresenter.MyView {
+    interface Binder extends UiBinder<Widget, AddressView> {
     }
 
     @UiField
-    SpanElement numberOfItems;
-    @UiField
-    HTMLPanel itemsContainer;
-    @UiField
-    ButtonElement checkoutButton;
+    ButtonElement continueButton;
 
     @Inject
-    ShoppingBagView(
+    AddressView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
-
-        bindSlot(ShoppingBagPresenter.SLOT_BAG_ITEM, itemsContainer);
 
         bind();
     }
 
     private void bind() {
-        $(checkoutButton).click(new Function() {
+        $(continueButton).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().checkout();
+                getUiHandlers().getToOrder();
             }
         });
-    }
-
-    @Override
-    public void updateItemNumber(int number) {
-        $(numberOfItems).text(String.valueOf(number));
-    }
-
-    public void onCheckoutButtonClick(ClickEvent event) {
-
     }
 }

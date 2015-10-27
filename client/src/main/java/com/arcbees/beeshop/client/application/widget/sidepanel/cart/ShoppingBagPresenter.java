@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentShoppingBag;
 import com.arcbees.beeshop.client.events.CheckoutClickedEvent;

@@ -14,10 +14,15 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public interface ShoppingBagItemUiHandlers extends UiHandlers {
-    void delete();
+public class CheckoutModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        bindSingletonPresenterWidget(AddressPresenter.class, AddressPresenter.MyView.class, AddressView.class);
+        bindSingletonPresenterWidget(OrderPresenter.class, OrderPresenter.MyView.class, OrderView.class);
+        bindSingletonPresenterWidget(PaymentPresenter.class, PaymentPresenter.MyView.class, PaymentView.class);
+    }
 }

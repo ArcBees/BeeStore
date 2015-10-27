@@ -79,7 +79,7 @@
             </header>
 
             <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
-            <g:SimplePanel ui:field="shoppingBagWidget"/>
+            <g:SimplePanel ui:field="sidePanelContainer"/>
 
             <div class="{res.style.push}"></div>
         </div>

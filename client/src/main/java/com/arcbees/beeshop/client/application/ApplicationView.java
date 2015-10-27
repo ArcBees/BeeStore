@@ -49,7 +49,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel main;
     @UiField
-    SimplePanel shoppingBagWidget;
+    SimplePanel sidePanelContainer;
     @UiField
     ButtonElement cartButton;
     @UiField
@@ -86,7 +86,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
-        bindSlot(ApplicationPresenter.SLOT_CART, shoppingBagWidget);
+        bindSlot(ApplicationPresenter.SLOT_SIDEPANEL, sidePanelContainer);
 
         bind();
     }
@@ -103,7 +103,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
-        $(shoppingBagWidget).hide();
+        $(sidePanelContainer).hide();
         shoppingBagOpen = false;
 
         $(backTop).click(new Function() {
@@ -122,11 +122,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             @Override
             public void f() {
                 if (shoppingBagOpen) {
-                    $(shoppingBagWidget).show();
+                    $(sidePanelContainer).show();
                     $(cartIcon).attr("class", fontRes.icons().iconClose());
                     shoppingBagOpen = false;
                 } else {
-                    $(shoppingBagWidget).hide();
+                    $(sidePanelContainer).hide();
                     $(cartIcon).attr("class", fontRes.icons().iconCart());
                     shoppingBagOpen = true;
                 }

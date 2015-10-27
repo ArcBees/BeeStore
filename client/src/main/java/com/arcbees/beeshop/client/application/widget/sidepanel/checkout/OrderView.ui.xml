@@ -57,7 +57,7 @@
                     <label for="check3">Bill to a different address</label>
                 </div>
 
-                <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Contine</button>
+                <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Continue</button>
             </div>
             <div class="{res.style.rightPanel_order}">
                 <div class="{res.style.rightPanel_title}">

@@ -14,10 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.arcbees.beeshop.client.application.ShoppingBagItem;
 
-interface ShoppingBagUiHandlers extends UiHandlers {
-    void checkout();
+public interface ShoppingBagItemFactory {
+    ShoppingBagItemPresenter create(ShoppingBagItem shoppingBagItem);
 }
