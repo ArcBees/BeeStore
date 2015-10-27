@@ -24,6 +24,7 @@ import com.google.common.collect.Lists;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.BrowserEvents;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -120,23 +121,25 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     private void handleClick(final GQuery w) {
         final String indexOfSelected = w.css("order");
 
-        $(w).bind(TRANSITION_END, new Function() {
+        final List<Element> elements = Lists.newArrayList(w.get(0), activeItem.get(0));
+
+        activeItem.bind(TRANSITION_END, new Function() {
             @Override
             public void f() {
                 $(this).unbind(TRANSITION_END);
 
-                $(activeItem).removeClass(sliderResources.style().activeProduct());
-                $(w).addClass(sliderResources.style().activeProduct());
+                activeItem.removeClass(sliderResources.style().activeProduct());
+                w.addClass(sliderResources.style().activeProduct());
 
                 setOrder(w, String.valueOf(3));
                 setOrder(activeItem, indexOfSelected);
 
-                $(w.get(0), activeItem.get(0)).css("transform", "scale(1)");
+                $(elements).css("transform", "scale(1)");
                 activeItem = w;
             }
         });
 
-        $(w.get(0), activeItem.get(0)).css("transform", "scale(0.1)");
+        $(elements).css("transform", "scale(0.1)");
     }
 
     private void setOrder(GQuery child, String order) {
