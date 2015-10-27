@@ -26,7 +26,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#{nametokens.PRODUCTS}">
+                                    <a ui:field="productsAnchor">
                                         <ui:msg description="Products">Products</ui:msg>
                                     </a>
                                 </li>

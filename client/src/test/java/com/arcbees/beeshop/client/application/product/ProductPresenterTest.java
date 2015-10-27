@@ -92,7 +92,7 @@ public class ProductPresenterTest {
     }
 
     @Test
-    public void prepareFromRequest() {
+    public void prepareFromRequest_setsProduct() {
         Product product = Product.MUG;
         Brand brand = Brand.GAE_STUDIO;
 
