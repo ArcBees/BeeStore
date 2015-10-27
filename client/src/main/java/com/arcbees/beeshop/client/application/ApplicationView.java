@@ -22,6 +22,7 @@ import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.Product;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
@@ -36,7 +37,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 import static com.google.gwt.query.client.GQuery.$;
 
@@ -62,26 +62,28 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     SpanElement numberOfItems;
     @UiField
     Element cartIcon;
+    @UiField
+    AnchorElement productsAnchor;
 
     FontResources fontRes;
     AppResources res;
 
-    private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+    private final LocaleHelper localeHelper;
 
     private Boolean shoppingBagOpen;
 
     @Inject
     ApplicationView(
             Binder uiBinder,
-            TokenFormatter formatter,
             PlaceManager placeManager,
             AppResources res,
-            FontResources fontRes) {
-        this.formatter = formatter;
+            FontResources fontRes,
+            LocaleHelper localeHelper) {
         this.placeManager = placeManager;
         this.fontRes = fontRes;
         this.res = res;
+        this.localeHelper = localeHelper;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -95,6 +97,24 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     public void changeBrand(Brand brand) {
         $("body").removeClass();
         $("body").addClass(getStyle(brand));
+
+        setProductsHref(brand);
+    }
+
+    private void setProductsHref(Brand brand) {
+        String nameToken = NameTokens.PRODUCT;
+
+        if (localeHelper.isFrench()) {
+            nameToken = NameTokens.translate(nameToken);
+        }
+
+        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
+                .nameToken(nameToken)
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .with(NameTokens.PARAM_ID, String.valueOf(Product.SHIRT.getId()))
+                .build();
+
+        productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
     }
 
     @Override
