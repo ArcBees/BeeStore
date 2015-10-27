@@ -80,6 +80,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     PageProductResources page;
     @UiField
     DivElement productInfoDiv;
+    @UiField
+    DivElement sizeDiv;
 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
@@ -142,9 +144,11 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         if (product.equals(Product.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
+            $(sizeDiv).show();
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
+            $(sizeDiv).hide();
         }
 
         setAnchorToProduct(previous, product.getPreviousProduct());
