@@ -18,7 +18,6 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -62,9 +61,5 @@ public class ShoppingBagView extends ViewWithUiHandlers<ShoppingBagUiHandlers>
     @Override
     public void updateItemNumber(int number) {
         $(numberOfItems).text(String.valueOf(number));
-    }
-
-    public void onCheckoutButtonClick(ClickEvent event) {
-
     }
 }

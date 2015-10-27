@@ -5,10 +5,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import com.gwtplatform.mvp.client.ViewImpl;
 
-public class SidePanelView extends ViewWithUiHandlers<SidePanelUiHandlers>
-        implements SidePanelPresenter.MyView {
+public class SidePanelView extends ViewImpl implements SidePanelPresenter.MyView {
     interface Binder extends UiBinder<Widget, SidePanelView> {
     }
 

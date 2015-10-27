@@ -9,14 +9,13 @@ import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.PaymentP
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.arcbees.beeshop.client.events.CheckoutContinueEventHandler;
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
 public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyView>
-        implements SidePanelUiHandlers, CheckoutContinueEventHandler {
-    interface MyView extends View, HasUiHandlers<SidePanelUiHandlers> {
+        implements CheckoutContinueEventHandler {
+    interface MyView extends View {
     }
 
     public static Slot SLOT_MAIN = new Slot();
@@ -40,8 +39,6 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
         this.addressPresenter = addressPresenter;
         this.orderPresenter = orderPresenter;
         this.paymentPresenter = paymentPresenter;
-
-        getView().setUiHandlers(this);
     }
 
     @Override

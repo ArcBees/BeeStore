@@ -21,7 +21,9 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class ShoppingBagModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        bind(ShoppingBagItemPresenter.MyView.class).to(ShoppingBagItemView.class);
-        bindSingletonPresenterWidget(ShoppingBagPresenter.class, ShoppingBagPresenter.MyView.class, ShoppingBagView.class);
+        bindPresenterWidget(ShoppingBagItemPresenter.class, ShoppingBagItemPresenter.MyView.class,
+                ShoppingBagItemView.class);
+        bindSingletonPresenterWidget(ShoppingBagPresenter.class, ShoppingBagPresenter.MyView.class,
+                ShoppingBagView.class);
     }
 }

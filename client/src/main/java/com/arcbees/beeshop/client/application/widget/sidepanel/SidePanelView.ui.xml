@@ -3,7 +3,6 @@
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
 
-    <g:HTMLPanel styleName="{res.style.rightPanel}">
-        <g:HTMLPanel ui:field="main"/>
+    <g:HTMLPanel ui:field="main" styleName="{res.style.rightPanel}">
     </g:HTMLPanel>
 </ui:UiBinder>

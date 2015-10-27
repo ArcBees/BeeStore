@@ -15,7 +15,7 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.gwtplatform.mvp.client.AutobindDisable;
 
 @RunWith(JukitoRunner.class)
-public class SidePanelPresenterTest {
+public class PricePresenterTest {
     public static class Module extends JukitoModule {
         @Override
         protected void configureTest() {
