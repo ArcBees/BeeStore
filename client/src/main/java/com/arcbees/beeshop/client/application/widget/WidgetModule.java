@@ -17,7 +17,6 @@
 package com.arcbees.beeshop.client.application.widget;
 
 import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelModule;
-import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingBagItemFactory;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
@@ -30,6 +29,5 @@ public class WidgetModule extends AbstractPresenterModule {
 
         install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
         install(new GinFactoryModuleBuilder().build(ProductFactory.class));
-        install(new GinFactoryModuleBuilder().build(ShoppingBagItemFactory.class));
     }
 }
