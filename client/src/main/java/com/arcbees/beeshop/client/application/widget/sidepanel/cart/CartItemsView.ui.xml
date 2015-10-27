@@ -1,0 +1,14 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
+
+    <g:HTMLPanel>
+        <g:HTMLPanel ui:field="itemsContainer"/>
+
+        <div class="{res.style.orderAmount} {res.style.clearfix}">
+            <h4>Subtotal</h4>
+            <span class="{res.style.orderAmount_price}">12.50$</span>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

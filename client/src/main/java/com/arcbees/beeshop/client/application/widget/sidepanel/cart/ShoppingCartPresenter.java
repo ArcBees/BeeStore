@@ -25,29 +25,29 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.presenter.slots.Slot;
+import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 
 public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter.MyView>
         implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler {
     interface MyView extends View, HasUiHandlers<ShoppingCartUiHandlers> {
-        void updateItemNumber(int Number);
+        void updateItemNumber(int number);
     }
 
-    static final Slot<ShoppingCartItemPresenter> SLOT_CART_ITEM = new Slot<>();
+    static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEM = new PermanentSlot<>();
 
-    private ShoppingCartItemFactory shoppingCartItemFactory;
-    private CurrentOrder currentOrder;
+    private final CurrentOrder currentOrder;
+    private final CartItemsPresenter cartItemsPresenter;
 
     @Inject
     ShoppingCartPresenter(
             EventBus eventBus,
             MyView view,
-            ShoppingCartItemFactory shoppingCartItemFactory,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            CartItemsPresenter cartItemsPresenter) {
         super(eventBus, view);
 
-        this.shoppingCartItemFactory = shoppingCartItemFactory;
         this.currentOrder = currentOrder;
+        this.cartItemsPresenter = cartItemsPresenter;
 
         getView().setUiHandlers(this);
     }
@@ -55,10 +55,6 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
         getView().updateItemNumber(currentOrder.getSize());
-
-        if (!event.isRemoved()) {
-            addToSlot(SLOT_CART_ITEM, shoppingCartItemFactory.create(event.getItem()));
-        }
     }
 
     @Override
@@ -68,6 +64,8 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
 
     @Override
     protected void onBind() {
+        setInSlot(SLOT_CART_ITEM, cartItemsPresenter);
+
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
     }
 }

@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
+import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
@@ -35,16 +36,16 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     @UiField
     SpanElement numberOfItems;
     @UiField
-    HTMLPanel itemsContainer;
-    @UiField
     ButtonElement checkoutButton;
+    @UiField
+    ReplacePanel cartItems;
 
     @Inject
     ShoppingCartView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
 
-        bindSlot(ShoppingCartPresenter.SLOT_CART_ITEM, itemsContainer);
+        bindSlot(ShoppingCartPresenter.SLOT_CART_ITEM, cartItems);
 
         bind();
     }

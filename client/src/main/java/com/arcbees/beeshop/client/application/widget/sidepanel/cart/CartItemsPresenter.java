@@ -16,47 +16,44 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.CurrentOrder;
-import com.arcbees.beeshop.client.application.ShoppingCartItem;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
+import com.google.gwt.query.client.GQuery;
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
-public class ShoppingCartItemPresenter extends PresenterWidget<ShoppingCartItemPresenter.MyView>
-        implements ShoppingCartItemUiHandlers {
-    interface MyView extends View, HasUiHandlers<ShoppingCartItemUiHandlers> {
-        void setShoppingCartItem(ShoppingCartItem item);
+public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
+        implements ShoppingCartChangedEventHandler {
+    interface MyView extends View {
     }
 
-    private ShoppingCartItem item;
-    private CurrentOrder currentOrder;
+    static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
+
+    private final CartItemFactory cartItemFactory;
 
     @Inject
-    ShoppingCartItemPresenter(
+    CartItemsPresenter(
             EventBus eventBus,
             MyView view,
-            @Assisted ShoppingCartItem item,
-            CurrentOrder currentOrder) {
+            CartItemFactory cartItemFactory) {
         super(eventBus, view);
 
-        this.currentOrder = currentOrder;
-        this.item = item;
-
-        getView().setUiHandlers(this);
+        this.cartItemFactory = cartItemFactory;
     }
 
     @Override
-    public void delete() {
-        currentOrder.removeItem(item);
-
-        this.removeFromParentSlot();
+    protected void onBind() {
+        addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
     }
 
     @Override
-    protected void onReveal() {
-        getView().setShoppingCartItem(item);
+    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
+        GQuery.console.log(event.isRemoved());
+        if (!event.isRemoved()) {
+            addToSlot(SLOT_ITEMS, cartItemFactory.create(event.getItem()));
+        }
     }
 }

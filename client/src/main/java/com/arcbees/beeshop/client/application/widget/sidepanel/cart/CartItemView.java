@@ -31,9 +31,9 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ShoppingCartItemView extends ViewWithUiHandlers<ShoppingCartItemUiHandlers>
-        implements ShoppingCartItemPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, ShoppingCartItemView> {
+public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
+        implements CartItemPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, CartItemView> {
     }
 
     @UiField
@@ -52,7 +52,7 @@ public class ShoppingCartItemView extends ViewWithUiHandlers<ShoppingCartItemUiH
     Element delete;
 
     @Inject
-    ShoppingCartItemView(
+    CartItemView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
 

@@ -16,8 +16,24 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.ShoppingCartItem;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.ViewImpl;
 
-public interface ShoppingCartItemFactory {
-    ShoppingCartItemPresenter create(ShoppingCartItem shoppingCartItem);
+public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, CartItemsView> {
+    }
+
+    @UiField
+    HTMLPanel itemsContainer;
+
+    @Inject
+    CartItemsView(
+            Binder binder) {
+        initWidget(binder.createAndBindUi(this));
+
+        bindSlot(CartItemsPresenter.SLOT_ITEMS, itemsContainer);
+    }
 }

@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-        xmlns:g="urn:import:com.google.gwt.user.client.ui">
+        xmlns:g="urn:import:com.google.gwt.user.client.ui"
+        xmlns:arcbees="urn:import:com.arcbees.ui">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="panel" type="com.arcbees.beeshop.client.resources.AppResources"/>
@@ -8,17 +9,13 @@
 
     <g:HTMLPanel addStyleNames="{res.style.rightPanel_shoppingBag}">
         <div class="{res.style.rightPanel_title}">
-            <h2>Shopping bag
+            <h2>Shopping cart
                 <span ui:field="numberOfItems"/>
             </h2>
         </div>
 
-        <g:HTMLPanel ui:field="itemsContainer"/>
+        <arcbees:ReplacePanel ui:field="cartItems"/>
 
-        <div class="{res.style.orderAmount} {res.style.clearfix}">
-            <h4>Subtotal</h4>
-            <span class="{res.style.orderAmount_price}">12.50$</span>
-        </div>
-        <button class="{comp.style.btn} {comp.style.btn_outline}" ui:field="checkoutButton">Proceed to checkout</button>
+        <button ui:field="checkoutButton" class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
     </g:HTMLPanel>
 </ui:UiBinder>
