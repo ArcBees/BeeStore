@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.FontResources;
+import com.arcbees.beeshop.client.resources.NameTokensConstants;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
@@ -71,6 +72,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
+    private final NameTokensConstants nameTokensConstants;
 
     private Boolean shoppingBagOpen;
 
@@ -78,9 +80,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     ApplicationView(
             Binder uiBinder,
             PlaceManager placeManager,
-            LocaleHelper localeHelper) {
+            LocaleHelper localeHelper,
+            NameTokensConstants nameTokensConstants) {
         this.placeManager = placeManager;
         this.localeHelper = localeHelper;
+        this.nameTokensConstants = nameTokensConstants;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -99,14 +103,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void setProductsHref(Brand brand) {
-        String nameToken = NameTokens.PRODUCT;
-
-        if (localeHelper.isFrench()) {
-            nameToken = NameTokens.translate(nameToken);
-        }
-
         PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
-                .nameToken(nameToken)
+                .nameToken(nameTokensConstants.PRODUCT())
                 .with(NameTokens.PARAM_BRAND, brand.getValue())
                 .with(NameTokens.PARAM_ID, String.valueOf(Product.SHIRT.getId()))
                 .build();
