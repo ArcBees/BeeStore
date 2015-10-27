@@ -16,7 +16,7 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.CurrentShoppingBag;
+import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingBagChangedEventHandler;
@@ -36,25 +36,25 @@ public class ShoppingBagPresenter extends PresenterWidget<ShoppingBagPresenter.M
     static final Slot<ShoppingBagItemPresenter> SLOT_BAG_ITEM = new Slot<>();
 
     private ShoppingBagItemFactory shoppingBagItemFactory;
-    private CurrentShoppingBag currentShoppingBag;
+    private CurrentOrder currentOrder;
 
     @Inject
     ShoppingBagPresenter(
             EventBus eventBus,
             MyView view,
             ShoppingBagItemFactory shoppingBagItemFactory,
-            CurrentShoppingBag currentShoppingBag) {
+            CurrentOrder currentOrder) {
         super(eventBus, view);
 
         this.shoppingBagItemFactory = shoppingBagItemFactory;
-        this.currentShoppingBag = currentShoppingBag;
+        this.currentOrder = currentOrder;
 
         getView().setUiHandlers(this);
     }
 
     @Override
     public void onShoppingBagChanged(ShoppingBagChangedEvent event) {
-        getView().updateItemNumber(currentShoppingBag.getSize());
+        getView().updateItemNumber(currentOrder.getSize());
 
         if (!event.isRemoved()) {
             addToSlot(SLOT_BAG_ITEM, shoppingBagItemFactory.create(event.getItem()));

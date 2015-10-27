@@ -17,6 +17,7 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
+import com.arcbees.beeshop.common.dto.ContactInfoDto;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -25,6 +26,7 @@ import com.gwtplatform.mvp.client.View;
 
 public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> implements AddressUiHandlers {
     interface MyView extends View, HasUiHandlers<AddressUiHandlers> {
+        ContactInfoDto getContactInfo();
     }
 
     @Inject
@@ -39,5 +41,9 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
     @Override
     public void onContinueClicked() {
         CheckoutContinueEvent.fire(this);
+    }
+
+    public ContactInfoDto getContactInfo() {
+        return getView().getContactInfo();
     }
 }

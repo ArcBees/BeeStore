@@ -16,10 +16,16 @@
 
 package com.arcbees.beeshop.client.application;
 
-public interface CurrentShoppingBag {
+import com.arcbees.beeshop.common.dto.ContactInfoDto;
+
+public interface CurrentOrder {
     void addItem(ShoppingBagItem item);
 
     int getSize();
 
     void removeItem(ShoppingBagItem item);
+
+    ContactInfoDto getContactInfo();
+
+    void setContactInfo(ContactInfoDto contactInfo);
 }

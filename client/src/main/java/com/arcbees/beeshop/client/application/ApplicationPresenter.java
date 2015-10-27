@@ -55,7 +55,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
-    private CurrentShoppingBag currentShoppingBag;
+    private CurrentOrder currentOrder;
 
     @Inject
     ApplicationPresenter(
@@ -63,11 +63,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy,
             SidePanelPresenter sidePanelPresenter,
-            CurrentShoppingBag currentShoppingBag) {
+            CurrentOrder currentOrder) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.sidePanelPresenter = sidePanelPresenter;
-        this.currentShoppingBag = currentShoppingBag;
+        this.currentOrder = currentOrder;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingBagChanged(ShoppingBagChangedEvent event) {
-        getView().updateItemNumber(currentShoppingBag.getSize());
+        getView().updateItemNumber(currentOrder.getSize());
     }
 
     @Override

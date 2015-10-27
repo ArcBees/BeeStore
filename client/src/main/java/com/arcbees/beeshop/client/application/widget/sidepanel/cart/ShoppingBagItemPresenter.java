@@ -16,7 +16,7 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.CurrentShoppingBag;
+import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.application.ShoppingBagItem;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
@@ -32,17 +32,17 @@ public class ShoppingBagItemPresenter extends PresenterWidget<ShoppingBagItemPre
     }
 
     private ShoppingBagItem item;
-    private CurrentShoppingBag currentShoppingBag;
+    private CurrentOrder currentOrder;
 
     @Inject
     ShoppingBagItemPresenter(
             EventBus eventBus,
             MyView view,
             @Assisted ShoppingBagItem item,
-            CurrentShoppingBag currentShoppingBag) {
+            CurrentOrder currentOrder) {
         super(eventBus, view);
 
-        this.currentShoppingBag = currentShoppingBag;
+        this.currentOrder = currentOrder;
         this.item = item;
 
         getView().setUiHandlers(this);
@@ -50,7 +50,7 @@ public class ShoppingBagItemPresenter extends PresenterWidget<ShoppingBagItemPre
 
     @Override
     public void delete() {
-        currentShoppingBag.removeItem(item);
+        currentOrder.removeItem(item);
 
         this.removeFromParentSlot();
     }
