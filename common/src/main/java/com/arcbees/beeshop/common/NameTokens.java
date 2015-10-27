@@ -24,11 +24,18 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class NameTokens {
+    public static final String PARAM_BRAND = "brand";
+    public static final String PARAM_ID = "id";
+
+    public static final String WRAPPED_ID = "/{" + PARAM_ID + "}";
+
     public static final String HOME = "!/";
     public static final String PRODUCTS = "!/products";
     public static final String PRODUCTS_FR = "!/produits";
 
-    public static final String PARAM_BRAND = "brand";
+    public static final String PRODUCT = PRODUCTS + WRAPPED_ID;
+    public static final String PRODUCT_FR = PRODUCTS_FR + WRAPPED_ID;
+
     public static final String GAE_STUDIO = Brand.GAE_STUDIO.getValue();
     public static final String GWTP = Brand.GWTP.getValue();
     public static final String CHOSEN = Brand.CHOSEN.getValue();
@@ -62,6 +69,7 @@ public class NameTokens {
         Map<String, String> keys = new HashMap<>();
         keys.put(HOME, HOME);
         keys.put(PRODUCTS, PRODUCTS_FR);
+        keys.put(PRODUCT, PRODUCT_FR);
 
         placeKeys = HashBiMap.create(keys);
     }

@@ -2,18 +2,21 @@ package com.arcbees.beeshop.client.application.widget;
 
 import static com.google.gwt.query.client.GQuery.$;
 
+import com.arcbees.beeshop.client.application.LocaleHelper;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
@@ -35,14 +38,20 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
 
     private final TokenFormatter tokenFormatter;
     private final AppMessages messages;
+    private final PlaceManager placeManager;
+    private final LocaleHelper localeHelper;
 
     @Inject
     PriceView(
             Binder binder,
             TokenFormatter tokenFormatter,
-            AppMessages messages) {
+            AppMessages messages,
+            PlaceManager placeManager,
+            LocaleHelper localeHelper) {
         this.tokenFormatter = tokenFormatter;
         this.messages = messages;
+        this.placeManager = placeManager;
+        this.localeHelper = localeHelper;
 
         initWidget(binder.createAndBindUi(this));
     }
@@ -57,11 +66,16 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     private void buildAnchorUri(ProductDto product) {
-        String productId = String.valueOf(product.getProduct().getValue());
+        String productId = String.valueOf(product.getProduct().getId());
+        String nameToken = NameTokens.PRODUCT;
 
-        PlaceRequest request = new PlaceRequest.Builder()
-                .nameToken(NameTokens.PRODUCTS)
-                .with("productId", productId)
+        if (localeHelper.isFrench()) {
+            nameToken = NameTokens.translate(nameToken);
+        }
+
+        PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
+                .nameToken(nameToken)
+                .with(NameTokens.PARAM_ID, productId)
                 .build();
 
         String token = tokenFormatter.toPlaceToken(request);
