@@ -64,9 +64,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     Element cartIcon;
     @UiField
     AnchorElement productsAnchor;
-
-    FontResources fontRes;
+    @UiField
     AppResources res;
+    @UiField
+    FontResources font;
 
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
@@ -77,12 +78,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     ApplicationView(
             Binder uiBinder,
             PlaceManager placeManager,
-            AppResources res,
-            FontResources fontRes,
             LocaleHelper localeHelper) {
         this.placeManager = placeManager;
-        this.fontRes = fontRes;
-        this.res = res;
         this.localeHelper = localeHelper;
 
         initWidget(uiBinder.createAndBindUi(this));
@@ -143,11 +140,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             public void f() {
                 if (shoppingBagOpen) {
                     $(shoppingBagWidget).show();
-                    $(cartIcon).attr("class", fontRes.icons().iconClose());
+                    $(cartIcon).attr("class", font.icons().iconClose());
                     shoppingBagOpen = false;
                 } else {
                     $(shoppingBagWidget).hide();
-                    $(cartIcon).attr("class", fontRes.icons().iconCart());
+                    $(cartIcon).attr("class", font.icons().iconCart());
                     shoppingBagOpen = true;
                 }
             }
