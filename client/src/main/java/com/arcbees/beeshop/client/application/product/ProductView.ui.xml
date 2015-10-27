@@ -9,7 +9,7 @@
 
     <g:HTMLPanel addStyleNames="{page.style.product}">
 
-        <div class="{page.style.product_info}">
+        <div ui:field="productInfoDiv" class="{page.style.product_info}">
 
             <ul class="{page.style.product_nav} {res.style.clearfix}">
                 <li class="{page.style.previous}">
@@ -100,7 +100,7 @@
                 </div>
             </div>
         </div>
-        <div class="{page.style.product_img}">
+        <div ui:field="productImageDiv" class="{page.style.product_img}">
             <g:Image ui:field="productImage"/>
         </div>
 
