@@ -8,7 +8,7 @@
 
         <div class="{res.style.orderAmount} {res.style.clearfix}">
             <h4>Subtotal</h4>
-            <span class="{res.style.orderAmount_price}">12.50$</span>
+            <span class="{res.style.orderAmount_price}" ui:field="subTotal">12.50$</span>
         </div>
     </g:HTMLPanel>
 </ui:UiBinder>

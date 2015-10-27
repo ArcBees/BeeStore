@@ -68,6 +68,16 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
+    public float calculateSubTotal() {
+        float sum = 0;
+        for (ShoppingCartItem item : items) {
+            sum += item.getProductDto().getPrice() * item.getQuantity();
+        }
+
+        return sum;
+    }
+
+    @Override
     public void fireEvent(GwtEvent<?> gwtEvent) {
         eventBus.fireEventFromSource(gwtEvent, this);
     }

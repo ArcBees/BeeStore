@@ -16,9 +16,9 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
+import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
-import com.google.gwt.query.client.GQuery;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -28,20 +28,24 @@ import com.gwtplatform.mvp.client.presenter.slots.Slot;
 public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
         implements ShoppingCartChangedEventHandler {
     interface MyView extends View {
+        void setSubTotal(float subTotal);
     }
 
     static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
 
     private final CartItemFactory cartItemFactory;
+    private final CurrentOrder currentOrder;
 
     @Inject
     CartItemsPresenter(
             EventBus eventBus,
             MyView view,
-            CartItemFactory cartItemFactory) {
+            CartItemFactory cartItemFactory,
+            CurrentOrder currentOrder) {
         super(eventBus, view);
 
         this.cartItemFactory = cartItemFactory;
+        this.currentOrder = currentOrder;
     }
 
     @Override
@@ -51,9 +55,10 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        GQuery.console.log(event.isRemoved());
         if (!event.isRemoved()) {
             addToSlot(SLOT_ITEMS, cartItemFactory.create(event.getItem()));
         }
+
+        getView().setSubTotal(currentOrder.calculateSubTotal());
     }
 }

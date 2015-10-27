@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -28,6 +29,8 @@ public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView
 
     @UiField
     HTMLPanel itemsContainer;
+    @UiField
+    SpanElement subTotal;
 
     @Inject
     CartItemsView(
@@ -35,5 +38,10 @@ public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView
         initWidget(binder.createAndBindUi(this));
 
         bindSlot(CartItemsPresenter.SLOT_ITEMS, itemsContainer);
+    }
+
+    @Override
+    public void setSubTotal(float subTotal) {
+        this.subTotal.setInnerText(subTotal + " $");
     }
 }
