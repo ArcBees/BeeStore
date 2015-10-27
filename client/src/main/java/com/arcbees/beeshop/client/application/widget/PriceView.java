@@ -1,15 +1,12 @@
 package com.arcbees.beeshop.client.application.widget;
 
-import static com.google.gwt.query.client.GQuery.$;
-
-import com.arcbees.beeshop.client.application.LocaleHelper;
-import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.resources.AppMessages;
+import com.arcbees.beeshop.client.resources.NameTokensConstants;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -19,6 +16,8 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         implements PricePresenter.MyView {
@@ -39,7 +38,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     private final TokenFormatter tokenFormatter;
     private final AppMessages messages;
     private final PlaceManager placeManager;
-    private final LocaleHelper localeHelper;
+    private final NameTokensConstants nameTokensConstants;
 
     @Inject
     PriceView(
@@ -47,11 +46,11 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
             TokenFormatter tokenFormatter,
             AppMessages messages,
             PlaceManager placeManager,
-            LocaleHelper localeHelper) {
+            NameTokensConstants nameTokensConstants) {
         this.tokenFormatter = tokenFormatter;
         this.messages = messages;
         this.placeManager = placeManager;
-        this.localeHelper = localeHelper;
+        this.nameTokensConstants = nameTokensConstants;
 
         initWidget(binder.createAndBindUi(this));
     }
@@ -67,14 +66,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
 
     private void buildAnchorUri(ProductDto product) {
         String productId = String.valueOf(product.getProduct().getId());
-        String nameToken = NameTokens.PRODUCT;
-
-        if (localeHelper.isFrench()) {
-            nameToken = NameTokens.translate(nameToken);
-        }
 
         PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
-                .nameToken(nameToken)
+                .nameToken(nameTokensConstants.PRODUCT())
                 .with(NameTokens.PARAM_ID, productId)
                 .build();
 

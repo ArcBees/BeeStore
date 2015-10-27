@@ -20,8 +20,10 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.FontResources;
+import com.arcbees.beeshop.client.resources.NameTokensConstants;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.arcbees.beeshop.common.dto.Product;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
@@ -36,7 +38,6 @@ import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 import static com.google.gwt.query.client.GQuery.$;
 
@@ -62,26 +63,28 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     SpanElement numberOfItems;
     @UiField
     Element cartIcon;
-
-    FontResources fontRes;
+    @UiField
+    AnchorElement productsAnchor;
+    @UiField
     AppResources res;
+    @UiField
+    FontResources font;
 
-    private final TokenFormatter formatter;
     private final PlaceManager placeManager;
+    private final LocaleHelper localeHelper;
+    private final NameTokensConstants nameTokensConstants;
 
     private Boolean shoppingBagOpen;
 
     @Inject
     ApplicationView(
             Binder uiBinder,
-            TokenFormatter formatter,
             PlaceManager placeManager,
-            AppResources res,
-            FontResources fontRes) {
-        this.formatter = formatter;
+            LocaleHelper localeHelper,
+            NameTokensConstants nameTokensConstants) {
         this.placeManager = placeManager;
-        this.fontRes = fontRes;
-        this.res = res;
+        this.localeHelper = localeHelper;
+        this.nameTokensConstants = nameTokensConstants;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -95,6 +98,18 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     public void changeBrand(Brand brand) {
         $("body").removeClass();
         $("body").addClass(getStyle(brand));
+
+        setProductsHref(brand);
+    }
+
+    private void setProductsHref(Brand brand) {
+        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
+                .nameToken(nameTokensConstants.PRODUCT())
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .with(NameTokens.PARAM_ID, String.valueOf(Product.SHIRT.getId()))
+                .build();
+
+        productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
     }
 
     @Override
@@ -123,11 +138,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             public void f() {
                 if (shoppingBagOpen) {
                     $(shoppingBagWidget).show();
-                    $(cartIcon).attr("class", fontRes.icons().iconClose());
+                    $(cartIcon).attr("class", font.icons().iconClose());
                     shoppingBagOpen = false;
                 } else {
                     $(shoppingBagWidget).hide();
-                    $(cartIcon).attr("class", fontRes.icons().iconCart());
+                    $(cartIcon).attr("class", font.icons().iconCart());
                     shoppingBagOpen = true;
                 }
             }
