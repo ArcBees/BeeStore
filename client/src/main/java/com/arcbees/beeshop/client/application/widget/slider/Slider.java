@@ -26,6 +26,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.BrowserEvents;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -179,6 +180,11 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     }
 
     private void setOrder(GQuery child, String order) {
-        child.get(0).getStyle().setProperty("order", order);
+        setOrder(child.get(0).getStyle(), order);
     }
+
+    private native void setOrder(Style style, String order) /*-{
+        style.order = order;
+        style.webkitOrder = order;
+    }-*/;
 }
