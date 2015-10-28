@@ -24,6 +24,7 @@ import com.arcbees.beeshop.client.resources.NameTokensConstants;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
@@ -50,7 +51,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel main;
     @UiField
-    SimplePanel shoppingBagWidget;
+    ReplacePanel sidePanelContainer;
     @UiField
     ButtonElement cartButton;
     @UiField
@@ -74,7 +75,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     private final LocaleHelper localeHelper;
     private final NameTokensConstants nameTokensConstants;
 
-    private Boolean shoppingBagOpen;
+    private Boolean shoppingCartOpen;
 
     @Inject
     ApplicationView(
@@ -89,7 +90,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
-        bindSlot(ApplicationPresenter.SLOT_CART_WIDGET, shoppingBagWidget);
+        bindSlot(ApplicationPresenter.SLOT_SIDE_PANEL, sidePanelContainer);
 
         bind();
     }
@@ -118,7 +119,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
-        shoppingBagOpen = false;
+        shoppingCartOpen = false;
 
         $(backTop).click(new Function() {
             @Override
@@ -135,16 +136,16 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         $(cartButton).click(new Function() {
             @Override
             public void f() {
-                if (shoppingBagOpen) {
-                    $(shoppingBagWidget).addClass(res.style().rightPanel__open());
+                if (shoppingCartOpen) {
+                    $(sidePanelContainer).addClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconClose());
                     $(cartButton).addClass(res.style().active());
-                    shoppingBagOpen = false;
+                    shoppingCartOpen = false;
                 } else {
-                    $(shoppingBagWidget).removeClass(res.style().rightPanel__open());
+                    $(sidePanelContainer).removeClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconCart());
                     $(cartButton).removeClass(res.style().active());
-                    shoppingBagOpen = true;
+                    shoppingCartOpen = true;
                 }
             }
         });

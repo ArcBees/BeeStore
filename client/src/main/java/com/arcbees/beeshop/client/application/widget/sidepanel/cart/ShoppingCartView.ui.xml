@@ -19,6 +19,6 @@
             <h4>Subtotal</h4>
             <span class="{res.style.orderAmount_price}">12.50$</span>
         </div>
-        <button class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
+        <button class="{comp.style.btn} {comp.style.btn_outline}" ui:field="checkoutButton">Proceed to checkout</button>
     </g:HTMLPanel>
 </ui:UiBinder>

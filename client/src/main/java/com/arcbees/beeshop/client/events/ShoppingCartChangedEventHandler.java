@@ -14,10 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.events;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-public interface ShoppingBagItemUiHandlers extends UiHandlers {
-    void delete();
+public interface ShoppingCartChangedEventHandler extends EventHandler {
+    void onShoppingCartChanged(ShoppingCartChangedEvent event);
 }
