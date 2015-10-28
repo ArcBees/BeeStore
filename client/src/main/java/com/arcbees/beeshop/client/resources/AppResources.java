@@ -171,6 +171,10 @@ public interface AppResources extends ClientBundle {
         String paiementMethod();
 
         String rightPanel_shoppingBag();
+
+        String animateShare();
+
+        String share_icons__hidden();
     }
 
     @Source("img/Beestore-logo.png")

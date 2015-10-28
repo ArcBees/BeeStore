@@ -153,6 +153,20 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
 }
 
+.share > i {
+    color: C_STRIPE_MEDIUM2;
+
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+
+    @mixin transition(color, .5s);
+}
+
+.share > i:hover {
+    color: C_TEXT;
+}
+
 .share_icons {
     width: 220px;
     height: 30px;
@@ -164,14 +178,25 @@ input[type=number]::-webkit-outer-spin-button {
     overflow: hidden;
 }
 
-.share_close {
-    font-size: 2rem;
+.share > i.share_close {
+    color: C_TEXT;
+}
 
-    display: block;
-    margin-left: 10px;
-    width: 25px;
+.share > i.share_close:before {
+    height: 30px;
+    font-size: 1.5rem;
+    line-height: 30px;
+
+    margin: 0 0 -5px 15px;
 
     cursor: pointer;
+
+    transform-origin: center center;
+    @mixin transition(all, .25s);
+}
+
+.share > i.share_close:active:before {
+    font-size: 2rem;
 }
 
 .share_icons_fb,
@@ -236,8 +261,17 @@ input[type=number]::-webkit-outer-spin-button {
     color: C_TEXT;
 }
 
-.slideIn {
+.share_icons__hidden {
+    display: none;
+}
+
+.animateShare .slideIn {
     @mixin animation_name(slideIn);
+    @mixin animation_duration(.5s);
+}
+
+.slideIn {
+    @mixin animation_name(slideOut);
     @mixin animation_duration(.5s);
 }
 
@@ -262,6 +296,26 @@ input[type=number]::-webkit-outer-spin-button {
     100% {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+@-webkit-keyframes slideOut {
+    0% {
+        -webkit-transform: translateX(0);
+    }
+
+    100% {
+        -webkit-transform: translateX(-900%);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-900%);
     }
 }
 
