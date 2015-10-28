@@ -1,6 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui" xmlns:arcbees="urn:import:com.arcbees.ui"
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui" 
+        xmlns:arcbees="urn:import:com.arcbees.ui"
         ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
         ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
         ui:generateLocales="default">
