@@ -19,7 +19,7 @@
                 <ui:msg description="shopping by brand">shopping by brand</ui:msg>
             </h3>
 
-            <brandpicker:BrandPicker ui:field="brandPicker"/>
+            <brandpicker:HomeBrandPicker ui:field="brandPicker"/>
         </section>
 
         <section class="{res.style.stripe} {page.style.welcome}">

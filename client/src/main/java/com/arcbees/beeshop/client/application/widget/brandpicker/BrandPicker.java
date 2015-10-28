@@ -16,22 +16,23 @@ package com.arcbees.beeshop.client.application.widget.brandpicker;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.common.NameTokens;
-import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class BrandPicker implements IsWidget, AttachEvent.Handler {
+    @UiTemplate("BrandPicker.ui.xml")
     interface Binder extends UiBinder<IsWidget, BrandPicker> {
     }
 
-    IsWidget root;
+    protected IsWidget root;
+
     @UiField
     AnchorElement gaeAnchor;
     @UiField
@@ -49,19 +50,18 @@ public class BrandPicker implements IsWidget, AttachEvent.Handler {
 
     private final PlaceManager placeManager;
 
-    @Inject
-    public BrandPicker(
-            PlaceManager placeManager,
-            Binder binder) {
+    BrandPicker(
+            PlaceManager placeManager) {
         this.placeManager = placeManager;
-        root = binder.createAndBindUi(this);
-
-        asWidget().addAttachHandler(this);
     }
 
-    @Override
-    public Widget asWidget() {
-        return root.asWidget();
+    @Inject
+    public BrandPicker(
+            Binder binder,
+            PlaceManager placeManager) {
+        this.placeManager = placeManager;
+
+        setRoot(binder.createAndBindUi(this));
     }
 
     @Override
@@ -90,5 +90,16 @@ public class BrandPicker implements IsWidget, AttachEvent.Handler {
 
     public void setAddStyleNames(String styleName) {
         asWidget().addStyleName(styleName);
+    }
+
+    @Override
+    public Widget asWidget() {
+        return root.asWidget();
+    }
+
+    protected void setRoot(IsWidget widget) {
+        root = widget;
+
+        asWidget().addAttachHandler(this);
     }
 }

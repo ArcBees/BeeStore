@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application.home;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
+import com.arcbees.beeshop.client.application.widget.brandpicker.HomeBrandPicker;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -34,12 +34,12 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     @UiField
     HTMLPanel mainProducts;
     @UiField(provided = true)
-    BrandPicker brandPicker;
+    HomeBrandPicker brandPicker;
 
     @Inject
     HomeView(
             Binder uiBinder,
-            BrandPicker brandPicker) {
+            HomeBrandPicker brandPicker) {
 
         this.brandPicker = brandPicker;
 
