@@ -14,24 +14,18 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelModule;
-import com.arcbees.beeshop.client.application.widget.slider.Slider;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public class WidgetModule extends AbstractPresenterModule {
+public class ShoppingCartModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        bind(PricePresenter.MyView.class).to(PriceView.class);
-        bind(ProductPresenter.MyView.class).to(ProductView.class);
-        install(new SidePanelModule());
+        install(new GinFactoryModuleBuilder().build(ShoppingCartItemFactory.class));
 
-        install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
-        install(new GinFactoryModuleBuilder().build(ProductFactory.class));
-        install(new GinFactoryModuleBuilder().build(ShoppingBagItemFactory.class));
-
-        requestStaticInjection(Slider.class);
+        bind(ShoppingCartItemPresenter.MyView.class).to(ShoppingCartItemView.class);
+        bindSingletonPresenterWidget(ShoppingCartPresenter.class, ShoppingCartPresenter.MyView.class,
+                ShoppingCartView.class);
     }
 }

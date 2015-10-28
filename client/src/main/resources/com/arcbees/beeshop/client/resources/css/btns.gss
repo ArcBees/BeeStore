@@ -91,9 +91,10 @@
 }
 
 .btn_outline:hover {
-    background-color: transparent;
+    color: C_TEXT_LIGHT;
+    background-color: C_DARK;
 
-    border-color: #333;
+    border-color: C_DARK;
 }
 
 .btn_outline.btn_primary {

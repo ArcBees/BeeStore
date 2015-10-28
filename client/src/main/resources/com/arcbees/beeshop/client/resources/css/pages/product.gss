@@ -87,6 +87,7 @@ ul.product_nav {
 
 .product_description_content {
     display: table-cell;
+    padding: 40px;
 
     vertical-align: middle;
 }

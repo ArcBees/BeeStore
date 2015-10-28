@@ -273,11 +273,18 @@ input[type=number]::-webkit-outer-spin-button {
 
     display: table;
     height: calc(100% - 100px);
+    margin-right: -25vw;
 
     position: fixed;
     top: 100px;
     right: 0;
     z-index: 99999;
+
+    @mixin transition_effect(all, .5s, ease-in-out);
+}
+
+.rightPanel__open {
+    margin-right: 0;
 }
 
 .rightPanel_title {
@@ -353,13 +360,17 @@ input[type=number]::-webkit-outer-spin-button {
 .rightPanel_shoppingBag,
 .rightPanel_address,
 .rightPanel_order,
-.rightPanel_paiement {
-    display: table-cell;
+.rightPanel_paiement,
+.rightPanel_confirmation {
+    display: inline-block;
     vertical-align: top;
     width: 25vw;
+    height: calc(100vh - 100px);
     padding: 30px;
 
     position: relative;
+
+    overflow: auto;
 }
 
 .rightPanel_order h3,
@@ -470,4 +481,64 @@ input[type=number]::-webkit-outer-spin-button {
 
     font-family: F_PRIMARY_BOLD;
     float: right;
+}
+
+.rightPanel_confirmation p {
+    text-align: center;
+}
+
+.rightPanel_confirmation p > span {
+    display: block;
+}
+
+.paiementMethod {
+    margin-bottom: 25px;
+}
+
+.thankYou {
+    width: 225px;
+    margin: 85px auto 0;
+}
+
+.thankYou > svg {
+    display: block;
+    width: 186px;
+    height: 184px;
+    margin-left: -93px;
+
+    top: 109px;
+    position: absolute;
+    left: 50%;
+    z-index: 0;
+}
+
+.thankYou p {
+    font-size: 2rem;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: F_PRIMARY_BOLD;
+
+    margin-bottom: 30px;
+
+    position: relative;
+    z-index: 999;
+}
+
+.thankYou p > span {
+    font-size: 4.75rem;
+    line-height: .9em;
+
+    display: block;
+    margin-bottom: 80px;
+}
+
+.confirmNumber {
+    color: C_TEXT_LIGHT;
+    font-size: 1.8rem;
+    font-family: F_PRIMARY_BOLD;
+    background-color: C_DARK;
+
+    display: table;
+    padding: .35em 1em;
+    margin: 0 auto;
 }
