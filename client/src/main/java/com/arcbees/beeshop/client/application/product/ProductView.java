@@ -18,6 +18,7 @@ package com.arcbees.beeshop.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.Colors;
 import com.arcbees.beeshop.client.resources.FontResources;
@@ -82,6 +83,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     DivElement productInfoDiv;
     @UiField
     DivElement sizeDiv;
+    @UiField(provided = true)
+    BrandPicker brandPicker;
 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
@@ -90,9 +93,11 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     ProductView(
             Binder uiBinder,
             ProductBrandUtil productBrandUtil,
-            PlaceManager placeManager) {
+            PlaceManager placeManager,
+            BrandPicker brandPicker) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
+        this.brandPicker = brandPicker;
 
         initWidget(uiBinder.createAndBindUi(this));
 

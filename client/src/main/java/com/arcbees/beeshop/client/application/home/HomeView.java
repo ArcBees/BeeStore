@@ -18,76 +18,34 @@ package com.arcbees.beeshop.client.application.home;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.common.NameTokens;
-import com.google.gwt.dom.client.AnchorElement;
+import com.arcbees.beeshop.client.application.widget.brandpicker.HomeBrandPicker;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 public class HomeView extends ViewImpl implements HomePresenter.MyView {
     interface Binder extends UiBinder<Widget, HomeView> {
     }
 
     @UiField
-    AnchorElement gaeAnchor;
-    @UiField
-    AnchorElement jukitoAnchor;
-    @UiField
-    AnchorElement gwtpAnchor;
-    @UiField
-    AnchorElement arcbeesAnchor;
-    @UiField
-    AnchorElement gqueryAnchor;
-    @UiField
-    AnchorElement gsssAnchor;
-    @UiField
-    AnchorElement chosenAnchor;
-    @UiField
     HTMLPanel secondaryProducts;
     @UiField
     HTMLPanel mainProducts;
-
-    private final PlaceManager placeManager;
-    private final TokenFormatter tokenFormatter;
+    @UiField(provided = true)
+    HomeBrandPicker brandPicker;
 
     @Inject
     HomeView(
             Binder uiBinder,
-            PlaceManager placeManager,
-            TokenFormatter tokenFormatter) {
-        this.placeManager = placeManager;
-        this.tokenFormatter = tokenFormatter;
+            HomeBrandPicker brandPicker) {
+
+        this.brandPicker = brandPicker;
 
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(HomePresenter.SLOT_MAIN_PRODUCTS, mainProducts);
         bindSlot(HomePresenter.SLOT_SECONDARY_PRODUCTS, secondaryProducts);
-    }
-
-    @Override
-    protected void onAttach() {
-        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
-
-        setAnchor(currentPlaceRequest, NameTokens.GAE_STUDIO, gaeAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.ARCBEES, arcbeesAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.CHOSEN, chosenAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.JUKITO, jukitoAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.GWTP, gwtpAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.GQUERY, gqueryAnchor);
-        setAnchor(currentPlaceRequest, NameTokens.GSSS, gsssAnchor);
-    }
-
-    private void setAnchor(PlaceRequest currentPlaceRequest, String brand, AnchorElement anchor) {
-        PlaceRequest placeRequest = new PlaceRequest.Builder(currentPlaceRequest)
-                .with(NameTokens.PARAM_BRAND, brand)
-                .build();
-
-        anchor.setAttribute("data-brand", brand);
-        anchor.setHref("#" + tokenFormatter.toPlaceToken(placeRequest));
     }
 }

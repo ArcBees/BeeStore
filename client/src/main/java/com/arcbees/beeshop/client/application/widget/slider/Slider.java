@@ -132,7 +132,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                 setOrder(w, String.valueOf(3));
                 setOrder(activeItem, indexOfSelected);
 
-                $(elements).css("transform", "scale(1)");
+                $(children).css("transform", "scale(1)");
                 activeItem = w;
             }
         });
@@ -146,9 +146,5 @@ public class Slider implements IsWidget, AttachEvent.Handler {
 
     public void setAddStyleNames(String style) {
         asWidget().addStyleName(style);
-    }
-
-    public void setAddContentStyleName(String style) {
-        contents.addStyleName(style);
     }
 }
