@@ -70,8 +70,10 @@
 
                     <input ui:field="quantity" type="number" class="{res.style.inputQuantity}" value="1"/>
                     <button ui:field="addToCart" class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
-                    <i class="{font.icons.iconShare}" ui:field="shareButton"/>
-                    <a:ReplacePanel ui:field="sharePanel"/>
+                    <div class="{res.style.share}">
+                        <i class="{font.icons.iconShare}" ui:field="shareButton"/>
+                        <a:ReplacePanel ui:field="sharePanel"/>
+                    </div>
                 </div>
             </div>
         </div>

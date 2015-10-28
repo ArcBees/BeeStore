@@ -125,13 +125,14 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @Override
     public void hideSharePanel() {
         shareButton.setClassName(font.icons().iconShare());
-        $(sharePanel).hide();
+        $(sharePanel).click().removeClass(res.style().animateShare());
     }
 
     @Override
     public void showSharePanel() {
         shareButton.setClassName(font.icons().iconClose() + " " + res.style().share_close());
-        $(sharePanel).show();
+        $(sharePanel).click().removeClass(res.style().share_icons__hidden());
+        $(sharePanel).click().addClass(res.style().animateShare());
     }
 
     @Override

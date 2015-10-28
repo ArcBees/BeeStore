@@ -175,6 +175,10 @@ public interface AppResources extends ClientBundle {
 
         String rightPanel__open();
 
+        String animateShare();
+
+        String share_icons__hidden();
+
         String smallWords();
 
         String smallerWords();
