@@ -27,7 +27,6 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class BrandPicker implements IsWidget, AttachEvent.Handler {
-    @UiTemplate("BrandPicker.ui.xml")
     interface Binder extends UiBinder<IsWidget, BrandPicker> {
     }
 

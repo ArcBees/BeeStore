@@ -25,7 +25,6 @@ public class HomeBrandPicker extends BrandPicker {
     interface Binder extends UiBinder<IsWidget, HomeBrandPicker>{
     }
 
-
     @Inject
     public HomeBrandPicker(PlaceManager placeManager, Binder binder) {
         super(placeManager);
