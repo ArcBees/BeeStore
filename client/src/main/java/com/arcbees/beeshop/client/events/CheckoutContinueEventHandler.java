@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.events;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-interface ShoppingBagUiHandlers extends UiHandlers {
+public interface CheckoutContinueEventHandler extends EventHandler {
+    void onCheckoutContinue(CheckoutContinueEvent event);
 }

@@ -10,7 +10,7 @@
         <div class="{res.style.rightPanel}">
             <div class="{res.style.rightPanel_shoppingBag}">
                 <div class="{res.style.rightPanel_title}">
-                    <h2>Shopping bag
+                    <h2>Shopping cart
                         <span ui:field="numberOfItems"/>
                     </h2>
                 </div>
@@ -21,7 +21,7 @@
                     <h4>Subtotal</h4>
                     <span class="{res.style.orderAmount_price}">12.50$</span>
                 </div>
-                <button class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
+                <button ui:field="checkoutButton" class="{comp.style.btn} {comp.style.btn_outline}">Proceed to checkout</button>
             </div>
         </div>
     </g:HTMLPanel>

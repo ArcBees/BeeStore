@@ -50,7 +50,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel main;
     @UiField
-    SimplePanel shoppingBagWidget;
+    SimplePanel sidePanelContainer;
     @UiField
     ButtonElement cartButton;
     @UiField
@@ -74,7 +74,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     private final LocaleHelper localeHelper;
     private final NameTokensConstants nameTokensConstants;
 
-    private Boolean shoppingBagOpen;
+    private Boolean shoppingCartOpen;
 
     @Inject
     ApplicationView(
@@ -89,7 +89,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_MAIN, main);
-        bindSlot(ApplicationPresenter.SLOT_CART_WIDGET, shoppingBagWidget);
+        bindSlot(ApplicationPresenter.SLOT_SIDE_PANEL, sidePanelContainer);
 
         bind();
     }
@@ -118,8 +118,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
-        $(shoppingBagWidget).hide();
-        shoppingBagOpen = false;
+        $(sidePanelContainer).hide();
+        shoppingCartOpen = false;
 
         $(backTop).click(new Function() {
             @Override
@@ -136,14 +136,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         $(cartButton).click(new Function() {
             @Override
             public void f() {
-                if (shoppingBagOpen) {
-                    $(shoppingBagWidget).show();
+                if (shoppingCartOpen) {
+                    $(sidePanelContainer).show();
                     $(cartIcon).attr("class", font.icons().iconClose());
-                    shoppingBagOpen = false;
+                    shoppingCartOpen = false;
                 } else {
-                    $(shoppingBagWidget).hide();
+                    $(sidePanelContainer).hide();
                     $(cartIcon).attr("class", font.icons().iconCart());
-                    shoppingBagOpen = true;
+                    shoppingCartOpen = true;
                 }
             }
         });

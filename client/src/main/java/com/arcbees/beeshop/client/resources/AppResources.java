@@ -162,6 +162,14 @@ public interface AppResources extends ClientBundle {
 
         String shippingPrice();
 
+        String confirmNumber();
+
+        String rightPanel_confirmation();
+
+        String thankYou();
+
+        String paiementMethod();
+
         String rightPanel_shoppingBag();
     }
 
@@ -179,6 +187,8 @@ public interface AppResources extends ClientBundle {
     SVGResource gquery();
 
     SVGResource gsss();
+
+    SVGResource thankYou();
 
     SVGResource gwtp();
 

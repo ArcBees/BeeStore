@@ -19,28 +19,30 @@ package com.arcbees.beeshop.client.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.arcbees.beeshop.client.events.ShoppingBagChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.common.dto.ContactInfoDto;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
-public class CurrentShoppingBagImpl implements CurrentShoppingBag, HasHandlers {
+public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     private final EventBus eventBus;
 
-    private List<ShoppingBagItem> items = new ArrayList<>();
+    private List<ShoppingCartItem> items = new ArrayList<>();
+    private ContactInfoDto contactInfo;
 
     @Inject
-    CurrentShoppingBagImpl(
+    CurrentOrderImpl(
             EventBus eventBus) {
         this.eventBus = eventBus;
     }
 
     @Override
-    public void addItem(ShoppingBagItem item) {
+    public void addItem(ShoppingCartItem item) {
         items.add(item);
 
-        ShoppingBagChangedEvent.fire(item, this);
+        ShoppingCartChangedEvent.fire(item, this);
     }
 
     @Override
@@ -49,10 +51,20 @@ public class CurrentShoppingBagImpl implements CurrentShoppingBag, HasHandlers {
     }
 
     @Override
-    public void removeItem(ShoppingBagItem item) {
+    public void removeItem(ShoppingCartItem item) {
         items.remove(item);
 
-        ShoppingBagChangedEvent.fire(item, true, this);
+        ShoppingCartChangedEvent.fire(item, true, this);
+    }
+
+    @Override
+    public ContactInfoDto getContactInfo() {
+        return contactInfo;
+    }
+
+    @Override
+    public void setContactInfo(ContactInfoDto contactInfo) {
+        this.contactInfo = contactInfo;
     }
 
     @Override

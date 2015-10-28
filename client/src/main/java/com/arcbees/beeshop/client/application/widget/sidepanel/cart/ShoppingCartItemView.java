@@ -14,9 +14,9 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.common.dto.Product;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
@@ -31,9 +31,9 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ShoppingBagItemView extends ViewWithUiHandlers<ShoppingBagItemUiHandlers>
-        implements ShoppingBagItemPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, ShoppingBagItemView> {
+public class ShoppingCartItemView extends ViewWithUiHandlers<ShoppingCartItemUiHandlers>
+        implements ShoppingCartItemPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, ShoppingCartItemView> {
     }
 
     @UiField
@@ -52,7 +52,7 @@ public class ShoppingBagItemView extends ViewWithUiHandlers<ShoppingBagItemUiHan
     Element delete;
 
     @Inject
-    ShoppingBagItemView(
+    ShoppingCartItemView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
 
@@ -69,7 +69,7 @@ public class ShoppingBagItemView extends ViewWithUiHandlers<ShoppingBagItemUiHan
     }
 
     @Override
-    public void setShoppingBagItem(ShoppingBagItem item) {
+    public void setShoppingCartItem(ShoppingCartItem item) {
         Product product = item.getProductDto().getProduct();
 
         name.setInnerText(product.getName());
