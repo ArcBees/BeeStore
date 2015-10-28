@@ -21,12 +21,12 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.application.CurrentBrand;
 import com.arcbees.beeshop.client.resources.SliderResources;
 import com.arcbees.beeshop.common.dto.Brand;
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.BrowserEvents;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
@@ -141,12 +141,12 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                         activeItem.removeClass(sliderResources.style().activeProduct());
                         w.addClass(sliderResources.style().activeProduct());
 
+                        $(elements).attr("style", "transform: scale(1); -webkit-transform: scale(1);")
+                                .one(Event.ONCLICK, null, createProductClickHandler());
+
                         setOrder(w, String.valueOf(3));
                         setOrder(activeItem, indexOfSelected);
 
-                        $(elements).one(Event.ONCLICK, null, createProductClickHandler());
-
-                        $(children).css("transform", "scale(1)");
                         activeItem = w;
                         activeAnimation = false;
                         if (!calls.isEmpty()) {
@@ -180,11 +180,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     }
 
     private void setOrder(GQuery child, String order) {
-        setOrder(child.get(0).getStyle(), order);
+        String currentStyle = child.attr("style");
+        child.attr("style", Strings.nullToEmpty(currentStyle) + "order:" + order + ";-webkit-order:" + order);
     }
-
-    private native void setOrder(Style style, String order) /*-{
-        style.order = order;
-        style.webkitOrder = order;
-    }-*/;
 }
