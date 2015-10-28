@@ -1,6 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:a='urn:import:com.arcbees.ui'>
+        xmlns:a='urn:import:com.arcbees.ui'
+        xmlns:brandpicker="urn:import:com.arcbees.beeshop.client.application.widget.brandpicker">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
@@ -38,36 +39,7 @@
 
                     <h3>options</h3>
 
-                    <ul class="{page.style.product_option}">
-                        <li>
-                            <i class="{font.icons.iconGquery}"/>
-                            <span class="{res.style.visuallyHidden}">gQuery</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconGsss}"/>
-                            <span class="{res.style.visuallyHidden}">Gsss</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconChosen}"/>
-                            <span class="{res.style.visuallyHidden}">Chosen</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconArcbees}"/>
-                            <span class="{res.style.visuallyHidden}">Arcbees</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconGwtp}"/>
-                            <span class="{res.style.visuallyHidden}">Gwtp</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconJukito}"/>
-                            <span class="{res.style.visuallyHidden}">Jukito</span>
-                        </li>
-                        <li>
-                            <i class="{font.icons.iconGae}"/>
-                            <span class="{res.style.visuallyHidden}">Gae studio</span>
-                        </li>
-                    </ul>
+                    <brandpicker:BrandPicker ui:field="brandPicker"/>
 
                     <div ui:field="sizeDiv">
                         <h3>size</h3>
