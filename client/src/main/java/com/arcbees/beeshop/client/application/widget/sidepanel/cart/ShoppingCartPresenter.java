@@ -62,7 +62,7 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
     }
 
     @Override
-    public void checkout() {
+    public void onCheckout() {
         CheckoutContinueEvent.fire(this);
     }
 

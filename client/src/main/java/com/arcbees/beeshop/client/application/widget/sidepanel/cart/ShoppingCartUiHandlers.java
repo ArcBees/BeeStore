@@ -19,5 +19,5 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 interface ShoppingCartUiHandlers extends UiHandlers {
-    void checkout();
+    void onCheckout();
 }

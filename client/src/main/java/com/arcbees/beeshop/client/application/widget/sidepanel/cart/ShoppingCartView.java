@@ -53,7 +53,7 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
         $(checkoutButton).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().checkout();
+                getUiHandlers().onCheckout();
             }
         });
     }
