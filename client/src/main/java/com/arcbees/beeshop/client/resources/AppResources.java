@@ -178,6 +178,10 @@ public interface AppResources extends ClientBundle {
         String animateShare();
 
         String share_icons__hidden();
+
+        String smallWords();
+
+        String smallerWords();
     }
 
     @Source("img/Beestore-logo.png")

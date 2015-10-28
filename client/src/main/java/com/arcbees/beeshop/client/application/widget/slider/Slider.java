@@ -98,7 +98,6 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                     $(contents).find("a").each(new Function() {
                         @Override
                         public void f() {
-
                             Brand brand = currentBrand.get();
                             String dataBrand = $(this).attr("data-brand");
 
@@ -120,8 +119,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
 
     private void handleClick(final GQuery w) {
         final String indexOfSelected = w.css("order");
-
-        final List<Element> elements = Lists.newArrayList(activeItem.get(0), w.get(0));
+        final List<Element> elements = Lists.newArrayList(w.get(0), activeItem.get(0));
 
         activeItem.bind(TRANSITION_END, new Function() {
             @Override

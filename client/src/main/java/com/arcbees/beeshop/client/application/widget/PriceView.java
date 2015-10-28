@@ -1,7 +1,8 @@
 package com.arcbees.beeshop.client.application.widget;
 
-import com.arcbees.beeshop.client.resources.AppMessages;
+import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.NameTokensConstants;
+import com.arcbees.beeshop.client.resources.PriceMessages;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
@@ -34,9 +35,11 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     AnchorElement shopView;
     @UiField
     AnchorElement priceView;
+    @UiField
+    AppResources res;
 
     private final TokenFormatter tokenFormatter;
-    private final AppMessages messages;
+    private final PriceMessages messages;
     private final PlaceManager placeManager;
     private final NameTokensConstants nameTokensConstants;
 
@@ -44,7 +47,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     PriceView(
             Binder binder,
             TokenFormatter tokenFormatter,
-            AppMessages messages,
+            PriceMessages messages,
             PlaceManager placeManager,
             NameTokensConstants nameTokensConstants) {
         this.tokenFormatter = tokenFormatter;
@@ -57,8 +60,15 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
 
     @Override
     public void setProduct(ProductDto product) {
-        brandName.setInnerText(messages.brandName(product.getBrand()));
-        productName.setInnerText(messages.productName(product.getProduct()));
+        String smallWordsStyleName = res.style().smallWords();
+        String smallerWordsStyle = res.style().smallerWords();
+
+        String brandNameText = messages.brandName(product.getBrand(), smallWordsStyleName, smallerWordsStyle);
+        String productNameText = messages.productName(product.getProduct(), smallWordsStyleName, smallerWordsStyle);
+
+        brandName.setInnerHTML(brandNameText);
+        productName.setInnerHTML(productNameText);
+
         price.setInnerText(product.getPrice() + " $");
 
         buildAnchorUri(product);
