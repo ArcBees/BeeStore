@@ -17,6 +17,7 @@
 package com.arcbees.beeshop.client.resources;
 
 import org.vectomatic.dom.svg.ui.SVGResource;
+
 import com.arcbees.gsss.animation.client.AnimationResources;
 import com.arcbees.gsss.grid.client.GridResources;
 import com.google.gwt.resources.client.ClientBundle;
@@ -177,6 +178,10 @@ public interface AppResources extends ClientBundle {
         String animateShare();
 
         String share_icons__hidden();
+
+        String smallWords();
+
+        String smallerWords();
     }
 
     @Source("img/Beestore-logo.png")

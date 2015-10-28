@@ -1,0 +1,104 @@
+@require "gsss-mixins";
+
+.devProducts_list {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    padding: 0;
+    margin: 38px 0 0;
+    width: 100%;
+    @mixin transition(all, .5s);
+    list-style: none;
+}
+
+.devProducts_list > li {
+    width: calc(100% / 7);
+
+    vertical-align: top;
+
+    @mixin transition(all, .5s);
+}
+
+.devProducts_list > li > a {
+    display: block;
+
+    @mixin transition(all, .5s);
+    @mixin scale(.6, .6);
+}
+
+.devProducts_list li:hover a,
+.devProducts_list li.activeProduct a{
+    @mixin scale(1, 1);
+}
+
+.devProducts_list > li > a .productIcon,
+.devProducts_list > li > a .iconText {
+    fill: C_STRIPE_MEDIUM2;
+}
+
+.devProducts_list > li:hover > a .iconText,
+.devProducts_list > li.activeProduct > a .iconText {
+    fill: C_STRIPE_DARK;
+}
+
+.devProducts_list_gae {
+    margin-top: -10px;
+}
+
+.devProducts_list_chosen {
+    margin-top: -6px;
+}
+
+.devProducts_list > li:hover > a .gsssIcon,
+.devProducts_list > li.activeProduct > a .gsssIcon{
+    fill: C_PRODUCT_GSS;
+}
+
+.devProducts_list > li:hover > a .chosenIcon,
+.devProducts_list > li.activeProduct > a .chosenIcon {
+    fill: C_PRODUCT_CHOSEN;
+}
+
+.devProducts_list > li:hover > a .gwtpIcon,
+.devProducts_list > li.activeProduct > a .gwtpIcon {
+    fill: C_PRODUCT_GWTP;
+}
+
+.devProducts_list > li:hover > a .jukitoIcon,
+.devProducts_list > li.activeProduct > a .jukitoIcon {
+    fill: C_PRODUCT_JUKITO;
+}
+
+.devProducts_list > li:hover > a .gqueryIcon,
+.devProducts_list > li.activeProduct > a .gqueryIcon {
+    fill: C_PRODUCT_GQUERY;
+}
+
+.devProducts_list > li:hover > a .gaeIcon,
+.devProducts_list > li.activeProduct > a .gaeIcon {
+    fill: C_PRODUCT_GAE;
+}
+
+.devProducts_list > li:hover > a .arcbeesIcon,
+.devProducts_list > li.activeProduct > a .arcbeesIcon {
+    fill: C_PRIMARY;
+}
+
+.brandPicker {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.devProducts_list.brandPicker > li > a {
+    display: block;
+
+    @mixin transition(all, .5s);
+    @mixin scale(.1, .1);
+}
+
+.devProducts_list.brandPicker li:hover a,
+.devProducts_list.brandPicker li.activeProduct a{
+    @mixin scale(.3, .3);
+}

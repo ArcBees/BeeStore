@@ -1,0 +1,7 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="sliderResources" type="com.arcbees.beeshop.client.resources.SliderResources"/>
+
+    <g:HTMLPanel tag="ul" ui:field="contents"/>
+</ui:UiBinder>

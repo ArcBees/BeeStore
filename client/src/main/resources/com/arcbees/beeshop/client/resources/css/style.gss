@@ -537,6 +537,14 @@ input[type=number]::-webkit-outer-spin-button {
     float: right;
 }
 
+span.smallWords {
+    font-size: 0.5em;
+}
+
+span.smallerWords {
+    font-size: 0.2em;
+}
+
 .rightPanel_confirmation p {
     text-align: center;
 }
