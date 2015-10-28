@@ -10,7 +10,7 @@
         <div class="{res.style.rightPanel}">
             <div class="{res.style.rightPanel_shoppingBag}">
                 <div class="{res.style.rightPanel_title}">
-                    <h2>Shopping bag
+                    <h2>Shopping cart
                         <span ui:field="numberOfItems"/>
                     </h2>
                 </div>

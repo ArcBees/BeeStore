@@ -16,7 +16,11 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.google.gwt.dom.client.ButtonElement;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
+import com.arcbees.beeshop.common.dto.Product;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.HeadingElement;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -27,39 +31,51 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ShoppingBagView extends ViewWithUiHandlers<ShoppingBagUiHandlers>
-        implements ShoppingBagPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, ShoppingBagView> {
+public class ShoppingCartItemView extends ViewWithUiHandlers<ShoppingCartItemUiHandlers>
+        implements ShoppingCartItemPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, ShoppingCartItemView> {
     }
 
     @UiField
-    SpanElement numberOfItems;
+    HeadingElement name;
     @UiField
-    HTMLPanel itemsContainer;
+    SpanElement color;
     @UiField
-    ButtonElement checkoutButton;
+    SpanElement brand;
+    @UiField
+    SpanElement size;
+    @UiField
+    InputElement quantity;
+    @UiField
+    SpanElement price;
+    @UiField
+    Element delete;
 
     @Inject
-    ShoppingBagView(
+    ShoppingCartItemView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
 
-        bindSlot(ShoppingBagPresenter.SLOT_BAG_ITEM, itemsContainer);
-
-        bind();
+        init();
     }
 
-    private void bind() {
-        $(checkoutButton).click(new Function() {
+    private void init() {
+        $(delete).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().checkout();
+                getUiHandlers().delete();
             }
         });
     }
 
     @Override
-    public void updateItemNumber(int number) {
-        $(numberOfItems).text(String.valueOf(number));
+    public void setShoppingCartItem(ShoppingCartItem item) {
+        Product product = item.getProductDto().getProduct();
+
+        name.setInnerText(product.getName());
+        color.setInnerText(product.getDescription());
+        size.setInnerText(product.getSize());
+        price.setInnerText(String.valueOf(product.getPrice()));
+        quantity.setInnerText(String.valueOf(item.getQuantity()));
     }
 }

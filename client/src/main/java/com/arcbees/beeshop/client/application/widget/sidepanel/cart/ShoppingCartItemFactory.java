@@ -16,8 +16,8 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 
-interface ShoppingBagUiHandlers extends UiHandlers {
-    void checkout();
+public interface ShoppingCartItemFactory {
+    ShoppingCartItemPresenter create(ShoppingCartItem shoppingCartItem);
 }

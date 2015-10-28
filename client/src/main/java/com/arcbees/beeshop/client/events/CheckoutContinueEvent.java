@@ -22,9 +22,6 @@ import com.google.gwt.event.shared.HasHandlers;
 public class CheckoutContinueEvent extends GwtEvent<CheckoutContinueEventHandler> {
     public static final Type<CheckoutContinueEventHandler> TYPE = new Type<>();
 
-    public CheckoutContinueEvent() {
-    }
-
     public static void fire(HasHandlers source) {
         source.fireEvent(new CheckoutContinueEvent());
     }

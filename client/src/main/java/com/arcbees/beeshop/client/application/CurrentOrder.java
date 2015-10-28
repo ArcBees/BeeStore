@@ -19,11 +19,11 @@ package com.arcbees.beeshop.client.application;
 import com.arcbees.beeshop.common.dto.ContactInfoDto;
 
 public interface CurrentOrder {
-    void addItem(ShoppingBagItem item);
+    void addItem(ShoppingCartItem item);
 
     int getSize();
 
-    void removeItem(ShoppingBagItem item);
+    void removeItem(ShoppingCartItem item);
 
     ContactInfoDto getContactInfo();
 
