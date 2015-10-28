@@ -121,7 +121,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     private void handleClick(final GQuery w) {
         final String indexOfSelected = w.css("order");
 
-        final List<Element> elements = Lists.newArrayList(w.get(0), activeItem.get(0));
+        final List<Element> elements = Lists.newArrayList(activeItem.get(0), w.get(0));
 
         activeItem.bind(TRANSITION_END, new Function() {
             @Override
@@ -134,7 +134,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                 setOrder(w, String.valueOf(3));
                 setOrder(activeItem, indexOfSelected);
 
-                $(elements).css("transform", "scale(1)");
+                $(children).css("transform", "scale(1)");
                 activeItem = w;
             }
         });
