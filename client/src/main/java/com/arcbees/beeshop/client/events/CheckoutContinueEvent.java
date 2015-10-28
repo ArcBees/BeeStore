@@ -16,8 +16,23 @@
 
 package com.arcbees.beeshop.client.events;
 
-import com.google.gwt.event.shared.EventHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HasHandlers;
 
-public interface ShoppingBagChangedEventHandler extends EventHandler {
-    void onShoppingBagChanged(ShoppingBagChangedEvent event);
+public class CheckoutContinueEvent extends GwtEvent<CheckoutContinueEventHandler> {
+    public static final Type<CheckoutContinueEventHandler> TYPE = new Type<>();
+
+    public static void fire(HasHandlers source) {
+        source.fireEvent(new CheckoutContinueEvent());
+    }
+
+    @Override
+    public Type<CheckoutContinueEventHandler> getAssociatedType() {
+        return TYPE;
+    }
+
+    @Override
+    protected void dispatch(CheckoutContinueEventHandler handler) {
+        handler.onCheckoutContinue(this);
+    }
 }

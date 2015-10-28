@@ -14,24 +14,15 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
-import com.arcbees.beeshop.common.dto.ProductDto;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public class ShoppingBagItem {
-    private ProductDto productDto;
-    private int quantity;
-
-    public ShoppingBagItem(ProductDto productDto, int quantity) {
-        this.productDto = productDto;
-        this.quantity = quantity;
-    }
-
-    public ProductDto getProductDto() {
-        return productDto;
-    }
-
-    public int getQuantity() {
-        return quantity;
+public class CheckoutModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        bindSingletonPresenterWidget(AddressPresenter.class, AddressPresenter.MyView.class, AddressView.class);
+        bindSingletonPresenterWidget(OrderPresenter.class, OrderPresenter.MyView.class, OrderView.class);
+        bindSingletonPresenterWidget(PaymentPresenter.class, PaymentPresenter.MyView.class, PaymentView.class);
     }
 }
