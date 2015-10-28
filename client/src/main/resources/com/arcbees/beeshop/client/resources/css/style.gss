@@ -327,7 +327,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     display: table;
     height: calc(100% - 100px);
-    margin-right: -25vw;
+    margin-right: -100vw;
 
     position: fixed;
     top: 100px;
