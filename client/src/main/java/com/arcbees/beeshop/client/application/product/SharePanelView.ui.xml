@@ -4,7 +4,7 @@
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
 
-    <g:HTMLPanel addStyleNames="{res.style.share_icons}">
+    <g:HTMLPanel addStyleNames="{res.style.share_icons} {res.style.share_icons__hidden}">
         <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_fb} {font.icons.iconFb}" ui:field="facebook">
             <span class="{res.style.visuallyHidden}">Facebook</span>
         </a>

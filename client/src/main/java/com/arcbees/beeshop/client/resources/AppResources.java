@@ -121,6 +121,10 @@ public interface AppResources extends ClientBundle {
         String share_icons_pinterest();
 
         String slideIn();
+
+        String animateShare();
+
+        String share_icons__hidden();
     }
 
     @Source("img/Beestore-logo.png")
