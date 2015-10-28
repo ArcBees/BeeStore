@@ -5,7 +5,7 @@
     <ui:with field="slider" type="com.arcbees.beeshop.client.resources.SliderResources"/>
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
 
-    <slider:Slider addContentStyleName="{slider.style.devProducts_list}">
+    <slider:Slider addStyleNames="{slider.style.devProducts_list}">
         <slider:content>
             <g:HTMLPanel tag="li">
                 <a ui:field="gaeAnchor">

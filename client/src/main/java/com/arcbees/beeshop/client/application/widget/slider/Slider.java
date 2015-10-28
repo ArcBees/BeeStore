@@ -149,8 +149,4 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     public void setAddStyleNames(String style) {
         asWidget().addStyleName(style);
     }
-
-    public void setAddContentStyleName(String style) {
-        contents.addStyleName(style);
-    }
 }

@@ -7,9 +7,9 @@
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
     <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageProductResources"/>
+    <ui:with field="slider" type="com.arcbees.beeshop.client.resources.SliderResources"/>
 
     <g:HTMLPanel addStyleNames="{page.style.product}">
-
         <div ui:field="productInfoDiv" class="{page.style.product_info}">
 
             <ul class="{page.style.product_nav} {res.style.clearfix}">
@@ -39,7 +39,7 @@
 
                     <h3>options</h3>
 
-                    <brandpicker:BrandPicker ui:field="brandPicker"/>
+                    <brandpicker:BrandPicker ui:field="brandPicker" addStyleNames="{slider.style.brandPicker}"/>
 
                     <div ui:field="sizeDiv">
                         <h3>size</h3>

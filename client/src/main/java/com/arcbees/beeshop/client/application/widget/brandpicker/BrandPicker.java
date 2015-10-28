@@ -87,4 +87,8 @@ public class BrandPicker implements IsWidget, AttachEvent.Handler {
         anchor.setAttribute("data-brand", brand);
         anchor.setHref("#" + placeManager.buildHistoryToken(placeRequest));
     }
+
+    public void setAddStyleNames(String styleName) {
+        asWidget().addStyleName(styleName);
+    }
 }
