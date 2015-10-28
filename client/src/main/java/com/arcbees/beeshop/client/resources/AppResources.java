@@ -174,6 +174,10 @@ public interface AppResources extends ClientBundle {
         String rightPanel_shoppingBag();
 
         String rightPanel__open();
+
+        String smallWords();
+
+        String smallerWords();
     }
 
     @Source("img/Beestore-logo.png")
