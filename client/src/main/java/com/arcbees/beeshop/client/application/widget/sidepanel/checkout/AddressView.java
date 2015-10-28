@@ -16,7 +16,9 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
+import com.arcbees.beeshop.common.dto.ContactInfoDto;
 import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -32,6 +34,24 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
 
     @UiField
     ButtonElement continueButton;
+    @UiField
+    InputElement firstName;
+    @UiField
+    InputElement lastName;
+    @UiField
+    InputElement company;
+    @UiField
+    InputElement address;
+    @UiField
+    InputElement townCity;
+    @UiField
+    InputElement state;
+    @UiField
+    InputElement country;
+    @UiField
+    InputElement email;
+    @UiField
+    InputElement phone;
 
     @Inject
     AddressView(
@@ -39,6 +59,22 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
         initWidget(binder.createAndBindUi(this));
 
         bind();
+    }
+
+    @Override
+    public ContactInfoDto getContactInfo() {
+        ContactInfoDto contactInfo = new ContactInfoDto();
+        contactInfo.setFirstName(firstName.getValue());
+        contactInfo.setLastName(lastName.getValue());
+        contactInfo.setCompany(company.getValue());
+        contactInfo.setAddress(address.getValue());
+        contactInfo.setTownCity(townCity.getValue());
+        contactInfo.setState(state.getValue());
+        contactInfo.setCountry(country.getValue());
+        contactInfo.setEmail(email.getValue());
+        contactInfo.setPhone(phone.getValue());
+
+        return contactInfo;
     }
 
     private void bind() {

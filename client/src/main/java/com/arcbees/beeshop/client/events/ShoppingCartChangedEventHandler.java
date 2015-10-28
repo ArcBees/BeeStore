@@ -14,12 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application;
+package com.arcbees.beeshop.client.events;
 
-public interface CurrentShoppingBag {
-    void addItem(ShoppingBagItem item);
+import com.google.gwt.event.shared.EventHandler;
 
-    int getSize();
-
-    void removeItem(ShoppingBagItem item);
+public interface ShoppingCartChangedEventHandler extends EventHandler {
+    void onShoppingCartChanged(ShoppingCartChangedEvent event);
 }

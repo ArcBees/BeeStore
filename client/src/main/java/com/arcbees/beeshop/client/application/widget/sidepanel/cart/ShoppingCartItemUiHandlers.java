@@ -18,6 +18,6 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.gwtplatform.mvp.client.UiHandlers;
 
-public interface ShoppingBagItemUiHandlers extends UiHandlers {
+public interface ShoppingCartItemUiHandlers extends UiHandlers {
     void delete();
 }

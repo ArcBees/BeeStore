@@ -16,29 +16,29 @@
 
 package com.arcbees.beeshop.client.events;
 
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 
-public class ShoppingBagChangedEvent extends GwtEvent<ShoppingBagChangedEventHandler> {
-    public static final Type<ShoppingBagChangedEventHandler> TYPE = new Type<>();
-    private final ShoppingBagItem item;
+public class ShoppingCartChangedEvent extends GwtEvent<ShoppingCartChangedEventHandler> {
+    public static final Type<ShoppingCartChangedEventHandler> TYPE = new Type<>();
+    private final ShoppingCartItem item;
     private boolean removed;
 
-    public ShoppingBagChangedEvent(ShoppingBagItem item, Boolean removed) {
+    public ShoppingCartChangedEvent(ShoppingCartItem item, Boolean removed) {
         this.item = item;
         this.removed = removed;
     }
 
-    public static void fire(ShoppingBagItem item, HasHandlers source) {
-        source.fireEvent(new ShoppingBagChangedEvent(item, false));
+    public static void fire(ShoppingCartItem item, HasHandlers source) {
+        source.fireEvent(new ShoppingCartChangedEvent(item, false));
     }
 
-    public static void fire(ShoppingBagItem item, Boolean removed, HasHandlers source) {
-        source.fireEvent(new ShoppingBagChangedEvent(item, removed));
+    public static void fire(ShoppingCartItem item, Boolean removed, HasHandlers source) {
+        source.fireEvent(new ShoppingCartChangedEvent(item, removed));
     }
 
-    public ShoppingBagItem getItem() {
+    public ShoppingCartItem getItem() {
         return item;
     }
 
@@ -47,12 +47,12 @@ public class ShoppingBagChangedEvent extends GwtEvent<ShoppingBagChangedEventHan
     }
 
     @Override
-    public Type<ShoppingBagChangedEventHandler> getAssociatedType() {
+    public Type<ShoppingCartChangedEventHandler> getAssociatedType() {
         return TYPE;
     }
 
     @Override
-    protected void dispatch(ShoppingBagChangedEventHandler handler) {
-        handler.onShoppingBagChanged(this);
+    protected void dispatch(ShoppingCartChangedEventHandler handler) {
+        handler.onShoppingCartChanged(this);
     }
 }

@@ -16,14 +16,14 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel;
 
-import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingBagModule;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.ShoppingCartModule;
 import com.arcbees.beeshop.client.application.widget.sidepanel.checkout.CheckoutModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 public class SidePanelModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new ShoppingBagModule());
+        install(new ShoppingCartModule());
         install(new CheckoutModule());
 
         bindSingletonPresenterWidget(SidePanelPresenter.class, SidePanelPresenter.MyView.class, SidePanelView.class);

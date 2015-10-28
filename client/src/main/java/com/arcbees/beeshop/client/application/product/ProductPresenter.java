@@ -20,8 +20,8 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.client.application.ApplicationPresenter;
-import com.arcbees.beeshop.client.application.CurrentShoppingBag;
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.arcbees.beeshop.client.application.CurrentOrder;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
@@ -52,7 +52,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
 
-    private final CurrentShoppingBag currentShoppingBag;
+    private final CurrentOrder currentOrder;
 
     private boolean isSharePanelShown;
 
@@ -62,10 +62,10 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             MyView view,
             MyProxy proxy,
             SharePanelPresenter sharePanel,
-            CurrentShoppingBag currentShoppingBag) {
+            CurrentOrder currentOrder) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
-        this.currentShoppingBag = currentShoppingBag;
+        this.currentOrder = currentOrder;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
@@ -93,7 +93,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     @Override
     public void onAddToCartButtonClicked() {
         // TODO: Populate this object depending on the product selected
-        currentShoppingBag.addItem(dummyItem());
+        currentOrder.addItem(dummyItem());
     }
 
     @Override
@@ -111,11 +111,11 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         isSharePanelShown = false;
     }
 
-    private ShoppingBagItem dummyItem() {
+    private ShoppingCartItem dummyItem() {
         ProductDto productDto = new ProductDto();
         productDto.setBrand(Brand.ARCBEES);
         productDto.setProduct(Product.BAG);
 
-        return new ShoppingBagItem(productDto, 2);
+        return new ShoppingCartItem(productDto, 2);
     }
 }

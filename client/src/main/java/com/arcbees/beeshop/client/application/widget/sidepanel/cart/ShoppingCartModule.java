@@ -16,8 +16,16 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.beeshop.client.application.ShoppingBagItem;
+import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
-public interface ShoppingBagItemFactory {
-    ShoppingBagItemPresenter create(ShoppingBagItem shoppingBagItem);
+public class ShoppingCartModule extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        install(new GinFactoryModuleBuilder().build(ShoppingCartItemFactory.class));
+
+        bind(ShoppingCartItemPresenter.MyView.class).to(ShoppingCartItemView.class);
+        bindSingletonPresenterWidget(ShoppingCartPresenter.class, ShoppingCartPresenter.MyView.class,
+                ShoppingCartView.class);
+    }
 }
