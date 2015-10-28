@@ -77,7 +77,7 @@ h6:first-child {
 
 h2,
 h3 {
-    font-family: "geometria-bold";
+    font-family: "geometriaBold";
     line-height: 1;
     text-transform: uppercase;
 

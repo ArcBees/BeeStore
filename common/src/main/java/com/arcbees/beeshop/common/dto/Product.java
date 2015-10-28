@@ -19,10 +19,10 @@ package com.arcbees.beeshop.common.dto;
 public enum Product {
     SHIRT(1, 30, "Bee Shirt", "Grey Logo", "M"),
     BAG(2, 25, "Bee Bag", "Black Logo", "Unique"),
-    USB_KEY(3, 10, "Bee Key", "Black Logo", "Unique"),
-    MUG(4, 10, "Bee Mug", "Yellow Logo", "Unique"),
-    THERMOS(5, 5, "Bee Cup", "Black Logo", "Unique"),
-    PHONE_CASE(6, 15, "Bee Case", "Black Logo", "Unique");
+    THERMOS(3, 5, "Bee Cup", "Black Logo", "Unique"),
+    PHONE_CASE(4, 15, "Bee Case", "Black Logo", "Unique"),
+    USB_KEY(5, 10, "Bee Key", "Black Logo", "Unique"),
+    MUG(6, 10, "Bee Mug", "Yellow Logo", "Unique");
 
     private final int id;
     private final int price;
@@ -70,5 +70,23 @@ public enum Product {
 
     public String getSize() {
         return size;
+    }
+
+    public Product getPreviousProduct() {
+        int previousId = getId() - 1;
+        if (previousId == 0) {
+            previousId = values().length;
+        }
+
+        return createFromId(previousId);
+    }
+
+    public Product getNextProduct() {
+        int nextId = getId() + 1;
+        if (nextId == values().length + 1) {
+            nextId = 1;
+        }
+
+        return createFromId(nextId);
     }
 }

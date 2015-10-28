@@ -25,4 +25,7 @@ public interface NameTokensConstants extends Constants {
 
     @DefaultStringValue(NameTokens.PRODUCTS)
     String PRODUCTS();
+
+    @DefaultStringValue(NameTokens.PRODUCT)
+    String PRODUCT();
 }
