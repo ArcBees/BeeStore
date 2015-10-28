@@ -30,7 +30,6 @@ public class WidgetModule extends AbstractPresenterModule {
 
         install(new GinFactoryModuleBuilder().build(PriceWidgetFactory.class));
         install(new GinFactoryModuleBuilder().build(ProductFactory.class));
-        install(new GinFactoryModuleBuilder().build(ShoppingBagItemFactory.class));
 
         requestStaticInjection(Slider.class);
     }
