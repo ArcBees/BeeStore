@@ -24,6 +24,7 @@ import com.arcbees.beeshop.client.resources.NameTokensConstants;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.Element;
@@ -50,7 +51,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     SimplePanel main;
     @UiField
-    SimplePanel sidePanelContainer;
+    ReplacePanel sidePanelContainer;
     @UiField
     ButtonElement cartButton;
     @UiField
@@ -118,7 +119,6 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
-        $(sidePanelContainer).hide();
         shoppingCartOpen = false;
 
         $(backTop).click(new Function() {
@@ -137,12 +137,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             @Override
             public void f() {
                 if (shoppingCartOpen) {
-                    $(sidePanelContainer).show();
+                    $(sidePanelContainer).addClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconClose());
+                    $(cartButton).addClass(res.style().active());
                     shoppingCartOpen = false;
                 } else {
-                    $(sidePanelContainer).hide();
+                    $(sidePanelContainer).removeClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconCart());
+                    $(cartButton).removeClass(res.style().active());
                     shoppingCartOpen = true;
                 }
             }

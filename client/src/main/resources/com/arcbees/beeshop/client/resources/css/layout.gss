@@ -176,6 +176,11 @@ header {
     vertical-align: middle;
 }
 
+.header_bottom__right button {
+    display: block;
+    width: 100%;
+}
+
 .wishlist {
     font-size: 2.6rem;
 
@@ -196,7 +201,7 @@ header {
     position: relative;
 }
 
-.cart.active {
+.cart button.active {
     background-color: C_STRIPE_MEDIUM1;
 }
 
@@ -216,6 +221,13 @@ header {
     right: 50%;
 
     border-radius: 50%;
+
+    @mixin scale(1, 1);
+    @mixin transition(all, .25s);
+}
+
+.cart button.active + .cart_notifications {
+    @mixin scale(0, 0);
 }
 
 li.language {

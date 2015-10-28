@@ -1,5 +1,6 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel;
 
+import com.arcbees.beeshop.client.resources.AppResources;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -11,6 +12,8 @@ public class SidePanelView extends ViewImpl implements SidePanelPresenter.MyView
     interface Binder extends UiBinder<Widget, SidePanelView> {
     }
 
+    @UiField
+    AppResources res;
     @UiField
     HTMLPanel main;
 
