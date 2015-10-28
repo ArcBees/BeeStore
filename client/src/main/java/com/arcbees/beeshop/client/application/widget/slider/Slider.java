@@ -29,7 +29,6 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.logical.shared.AttachEvent;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
-import com.google.gwt.query.client.plugins.Events;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.uibinder.client.UiField;
@@ -37,8 +36,6 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
-
-import sun.plugin2.message.EventMessage;
 
 import static com.google.gwt.query.client.GQuery.$;
 
@@ -146,7 +143,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                         setOrder(w, String.valueOf(3));
                         setOrder(activeItem, indexOfSelected);
 
-                        w.add(activeItem).one(Event.ONCLICK, null, createProductClickHandler());
+                        $(elements).one(Event.ONCLICK, null, createProductClickHandler());
 
                         $(children).css("transform", "scale(1)");
                         activeItem = w;
