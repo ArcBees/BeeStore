@@ -15,8 +15,10 @@
     padding: 0;
     margin: 38px 0 0;
     width: 100%;
-    @mixin transition(all, .5s);
+
     list-style: none;
+
+    @mixin transition(all, .1s);
 }
 
 .devProducts_list > li,
