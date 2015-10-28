@@ -103,7 +103,6 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     private void bind() {
-        $(shoppingBagWidget).hide();
         shoppingBagOpen = false;
 
         $(backTop).click(new Function() {
@@ -122,12 +121,14 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             @Override
             public void f() {
                 if (shoppingBagOpen) {
-                    $(shoppingBagWidget).show();
+                    $(shoppingBagWidget).addClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", fontRes.icons().iconClose());
+                    $(cartButton).addClass(res.style().active());
                     shoppingBagOpen = false;
                 } else {
-                    $(shoppingBagWidget).hide();
+                    $(shoppingBagWidget).removeClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", fontRes.icons().iconCart());
+                    $(cartButton).removeClass(res.style().active());
                     shoppingBagOpen = true;
                 }
             }

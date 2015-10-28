@@ -46,15 +46,7 @@
                     </div>
                     <div class="{res.grid.col} {res.grid.col_4}">
                         <nav class="{res.style.header_bottom__right}">
-                            <li class="{res.style.wishlist}">
-                                <button>
-                                    <i class="{font.icons.iconWhishlist}"/>
-                                    <span class="{res.style.visuallyHidden}">
-                                        <ui:msg description="Wishlist">Wishlist</ui:msg>
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="{res.style.cart} {res.style.active}">
+                            <li class="{res.style.cart}">
                                 <button ui:field="cartButton">
                                     <i ui:field="cartIcon" class="{font.icons.iconCart}"/>
                                     <span class="{res.style.visuallyHidden}">cart</span>
@@ -79,7 +71,7 @@
             </header>
 
             <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
-            <g:SimplePanel ui:field="shoppingBagWidget"/>
+            <g:SimplePanel ui:field="shoppingBagWidget" addStyleNames="{res.style.rightPanel}"/>
 
             <div class="{res.style.push}"></div>
         </div>
