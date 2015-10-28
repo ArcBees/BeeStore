@@ -38,7 +38,7 @@
 }
 
 .devProducts_list li:hover a,
-.devProducts_list li.activeProduct a{
+.devProducts_list li.activeProduct a {
     @mixin scale(1, 1);
 }
 
@@ -61,7 +61,7 @@
 }
 
 .devProducts_list > li:hover > a .gsssIcon,
-.devProducts_list > li.activeProduct > a .gsssIcon{
+.devProducts_list > li.activeProduct > a .gsssIcon {
     fill: C_PRODUCT_GSS;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .brandPicker li:hover a,
-.brandPicker li.activeProduct a{
+.brandPicker li.activeProduct a {
     @mixin scale(1.25, 1.25);
 }
 
