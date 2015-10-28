@@ -1,9 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:svg="urn:import:org.vectomatic.dom.svg.ui"
-             ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
-             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
-             ui:generateLocales="default">
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui" 
+        xmlns:arcbees="urn:import:com.arcbees.ui"
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="panel" type="com.arcbees.beeshop.client.resources.AppResources"/>
@@ -46,15 +47,7 @@
                     </div>
                     <div class="{res.grid.col} {res.grid.col_4}">
                         <nav class="{res.style.header_bottom__right}">
-                            <li class="{res.style.wishlist}">
-                                <button>
-                                    <i class="{font.icons.iconWhishlist}"/>
-                                    <span class="{res.style.visuallyHidden}">
-                                        <ui:msg description="Wishlist">Wishlist</ui:msg>
-                                    </span>
-                                </button>
-                            </li>
-                            <li class="{res.style.cart} {res.style.active}">
+                            <li class="{res.style.cart}">
                                 <button ui:field="cartButton">
                                     <i ui:field="cartIcon" class="{font.icons.iconCart}"/>
                                     <span class="{res.style.visuallyHidden}">cart</span>
@@ -79,7 +72,7 @@
             </header>
 
             <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
-            <g:SimplePanel ui:field="sidePanelContainer"/>
+            <arcbees:ReplacePanel ui:field="sidePanelContainer" addStyleName="{res.style.rightPanel}"/>
 
             <div class="{res.style.push}"></div>
         </div>
