@@ -137,12 +137,12 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             @Override
             public void f() {
                 if (shoppingCartOpen) {
-                    $(sidePanelContainer).addClass(res.style().rightPanel__open());
+                    $(sidePanelContainer).removeClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconClose());
                     $(cartButton).addClass(res.style().active());
                     shoppingCartOpen = false;
                 } else {
-                    $(sidePanelContainer).removeClass(res.style().rightPanel__open());
+                    $(sidePanelContainer).addClass(res.style().rightPanel__open());
                     $(cartIcon).attr("class", font.icons().iconCart());
                     $(cartButton).removeClass(res.style().active());
                     shoppingCartOpen = true;
