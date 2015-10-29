@@ -17,7 +17,7 @@
 
     vertical-align: top;
 
-    @mixin transition(transform, .4s);
+    @mixin transition(transform, .5s);
 }
 
 .devProducts_list > li > a {
