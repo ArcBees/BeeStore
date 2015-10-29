@@ -88,7 +88,7 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
 
         name.setInnerText(translatedProductName + " " + translatedProductType);
         itemColor.setInnerText(translatedItemColor);
-        this.size.setInnerText(translatedSize);
+        size.setInnerText(translatedSize);
         price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
     }
