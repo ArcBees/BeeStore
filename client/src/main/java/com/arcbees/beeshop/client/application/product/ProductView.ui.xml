@@ -37,9 +37,11 @@
 
                     <span ui:field="priceText" class="{res.style.itemPrice}">20 $</span>
 
-                    <h3>options</h3>
+                    <div class="{page.style.product_option}">
+                        <h3>options</h3>
 
-                    <brandpicker:BrandPicker ui:field="brandPicker" addStyleNames="{slider.style.brandPicker}"/>
+                        <brandpicker:BrandPicker ui:field="brandPicker" addStyleNames="{slider.style.brandPicker}"/>
+                    </div>
 
                     <div ui:field="sizeDiv">
                         <h3>size</h3>
