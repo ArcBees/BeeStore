@@ -42,7 +42,6 @@ import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
-import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Image;
@@ -93,19 +92,28 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @UiField(provided = true)
     BrandPicker brandPicker;
     @UiField
-    LIElement smallAnchor;
+    LIElement smallLI;
     @UiField
-    LIElement mediumAnchor;
+    LIElement mediumLI;
     @UiField
-    LIElement largeAnchor;
+    LIElement largeLI;
     @UiField
-    LIElement xlargeAnchor;
+    LIElement xlargeLI;
+    @UiField
+    AnchorElement smallAnchor;
+    @UiField
+    AnchorElement mediumAnchor;
+    @UiField
+    AnchorElement largeAnchor;
+    @UiField
+    AnchorElement xLargeAnchor;
 
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
-    private final HashMap<Size, LIElement> sizeMap;
+    private final HashMap<Size, LIElement> sizeLIMap;
+    private final HashMap<Size, AnchorElement> sizeAnchorMap;
 
     @Inject
     ProductView(
@@ -120,14 +128,20 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
-        sizeMap = new HashMap<>();
+        sizeLIMap = new HashMap<>();
+        sizeAnchorMap = new HashMap<>();
 
         initWidget(uiBinder.createAndBindUi(this));
 
-        sizeMap.put(Size.SMALL, smallAnchor);
-        sizeMap.put(Size.MEDIUM, mediumAnchor);
-        sizeMap.put(Size.LARGE, largeAnchor);
-        sizeMap.put(Size.XLARGE, xlargeAnchor);
+        sizeLIMap.put(Size.SMALL, smallLI);
+        sizeLIMap.put(Size.MEDIUM, mediumLI);
+        sizeLIMap.put(Size.LARGE, largeLI);
+        sizeLIMap.put(Size.XLARGE, xlargeLI);
+
+        sizeAnchorMap.put(Size.SMALL, smallAnchor);
+        sizeAnchorMap.put(Size.MEDIUM, mediumAnchor);
+        sizeAnchorMap.put(Size.LARGE, largeAnchor);
+        sizeAnchorMap.put(Size.XLARGE, xLargeAnchor);
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
@@ -190,14 +204,26 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         setAnchorToProduct(previous, productType.getPreviousProduct());
         setAnchorToProduct(next, productType.getNextProduct());
+
+        for (Size size : sizeAnchorMap.keySet()) {
+            setAnchorToSizeIcon(size, sizeAnchorMap.get(size));
+        }
+    }
+
+    private void setAnchorToSizeIcon(Size size, AnchorElement anchor) {
+        PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
+                .with(NameTokens.PARAM_SIZE, size.getValue())
+                .build();
+
+        anchor.setHref("#" + placeManager.buildHistoryToken(request));
     }
 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
-        for (LIElement element : sizeMap.values()) {
+        for (LIElement element : sizeLIMap.values()) {
             $(element).removeClass(page.style().active());
         }
 
-        LIElement activeLIElement = sizeMap.get(productDto.getProduct().getSize());
+        LIElement activeLIElement = sizeLIMap.get(productDto.getProduct().getSize());
         $(activeLIElement).addClass(page.style().active());
     }
 
