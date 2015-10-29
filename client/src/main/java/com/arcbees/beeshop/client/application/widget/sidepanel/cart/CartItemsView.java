@@ -16,12 +16,15 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, CartItemsView> {
@@ -31,6 +34,10 @@ public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView
     HTMLPanel itemsContainer;
     @UiField
     SpanElement subTotal;
+    @UiField
+    DivElement subTotalContainer;
+    @UiField
+    DivElement noItems;
 
     @Inject
     CartItemsView(
@@ -41,7 +48,16 @@ public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView
     }
 
     @Override
-    public void setSubTotal(float subTotal) {
+    public void showAndSetSubTotal(float subTotal) {
         this.subTotal.setInnerText(subTotal + " $");
+
+        $(subTotalContainer).show();
+        $(noItems).hide();
+    }
+
+    @Override
+    public void showEmpty() {
+        $(subTotalContainer).hide();
+        $(noItems).show();
     }
 }

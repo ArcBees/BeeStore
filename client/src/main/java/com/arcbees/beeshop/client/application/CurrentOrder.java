@@ -23,6 +23,8 @@ public interface CurrentOrder {
 
     int getSize();
 
+    boolean isEmpty();
+
     void removeItem(ShoppingCartItem item);
 
     ContactInfoDto getContactInfo();

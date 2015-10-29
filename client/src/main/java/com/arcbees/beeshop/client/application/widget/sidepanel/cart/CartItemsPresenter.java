@@ -28,7 +28,9 @@ import com.gwtplatform.mvp.client.presenter.slots.Slot;
 public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
         implements ShoppingCartChangedEventHandler {
     interface MyView extends View {
-        void setSubTotal(float subTotal);
+        void showAndSetSubTotal(float subTotal);
+
+        void showEmpty();
     }
 
     static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
@@ -59,6 +61,10 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
             addToSlot(SLOT_ITEMS, cartItemFactory.create(event.getItem()));
         }
 
-        getView().setSubTotal(currentOrder.calculateSubTotal());
+        if (currentOrder.isEmpty()) {
+            getView().showEmpty();
+        } else {
+            getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+        }
     }
 }
