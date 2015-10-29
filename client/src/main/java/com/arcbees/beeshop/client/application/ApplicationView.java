@@ -72,7 +72,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     FontResources font;
     @UiField
-    DivElement tooltip;
+    DivElement numberOfItemsTooltip;
 
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
@@ -123,7 +123,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     private void bind() {
         shoppingCartOpen = false;
-        $(tooltip).hide();
+        $(numberOfItemsTooltip).hide();
 
         $(backTop).click(new Function() {
             @Override
@@ -198,10 +198,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @Override
     public void updateItemNumber(int number) {
         if (number == 0) {
-            $(tooltip).hide();
+            $(numberOfItemsTooltip).hide();
         } else {
             $(numberOfItems).text(String.valueOf(number));
-            $(tooltip).show();
+            $(numberOfItemsTooltip).show();
         }
     }
 

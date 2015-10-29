@@ -34,7 +34,7 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     }
 
     @UiField
-    SpanElement itemNumberTooltip;
+    SpanElement numberOfItemsTooltip;
     @UiField
     ButtonElement checkoutButton;
     @UiField
@@ -51,7 +51,7 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     }
 
     private void bind() {
-        $(itemNumberTooltip).hide();
+        $(numberOfItemsTooltip).hide();
 
         $(checkoutButton).click(new Function() {
             @Override
@@ -64,10 +64,10 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     @Override
     public void updateItemNumber(int number) {
         if (number == 0) {
-            $(itemNumberTooltip).hide();
+            $(numberOfItemsTooltip).hide();
         } else {
-            $(itemNumberTooltip).show();
-            $(itemNumberTooltip).text(String.valueOf(number));
+            $(numberOfItemsTooltip).show();
+            $(numberOfItemsTooltip).text(String.valueOf(number));
         }
     }
 }
