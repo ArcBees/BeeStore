@@ -26,6 +26,7 @@ import com.arcbees.beeshop.client.application.widget.ProductFactory;
 import com.arcbees.beeshop.client.application.widget.ProductWidgetType;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -67,32 +68,16 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     protected void onBind() {
         Brand brand = currentBrand.get();
 
-        ProductDto shirt = new ProductDto();
-        shirt.setBrand(brand);
-        shirt.setProduct(Product.SHIRT);
-
-        ProductDto bag = new ProductDto();
-        bag.setBrand(brand);
-        bag.setProduct(Product.BAG);
+        ProductDto shirt = new ProductDto(Product.createShirtWithDefaultSize(), brand);
+        ProductDto bag = new ProductDto(Product.createProduct(ProductType.BAG), brand);
 
         addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_LEFT, shirt));
         addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_RIGHT, bag));
 
-        ProductDto cup = new ProductDto();
-        cup.setBrand(brand);
-        cup.setProduct(Product.THERMOS);
-
-        ProductDto phoneCase = new ProductDto();
-        phoneCase.setBrand(brand);
-        phoneCase.setProduct(Product.PHONE_CASE);
-
-        ProductDto key = new ProductDto();
-        key.setBrand(brand);
-        key.setProduct(Product.USB_KEY);
-
-        ProductDto mug = new ProductDto();
-        mug.setBrand(brand);
-        mug.setProduct(Product.MUG);
+        ProductDto cup = new ProductDto(Product.createProduct(ProductType.THERMOS), brand);
+        ProductDto phoneCase = new ProductDto(Product.createProduct(ProductType.PHONE_CASE), brand);
+        ProductDto key = new ProductDto(Product.createProduct(ProductType.USB_KEY), brand);
+        ProductDto mug = new ProductDto(Product.createProduct(ProductType.MUG), brand);
 
         ProductPresenter cupPresenter = productFactory.create(ProductWidgetType.SECONDARY, cup);
         ProductPresenter keyPresenter = productFactory.create(ProductWidgetType.SECONDARY, key);

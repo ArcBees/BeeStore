@@ -10,8 +10,8 @@
             <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
             <div class="{res.style.orderBox_info}">
                 <h4 ui:field="name" class="{res.style.orderBox_productName}"/>
-                <span ui:field="color" class="{res.style.orderBox_productColor}"/>
-                <span ui:field="brand" class="{res.style.orderBox_productColor}"/>
+                <span ui:field="itemColor" class="{res.style.orderBox_productColor}"/>
+                <span ui:field="logoColor" class="{res.style.orderBox_productColor}"/>
                 <span class="{res.style.orderBox_productSize}">Size:
                     <span ui:field="size"/>
                 </span>

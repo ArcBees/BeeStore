@@ -14,19 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.resources;
+package com.arcbees.beeshop.client.application.product;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.ProductType;
-import com.arcbees.beeshop.common.dto.Size;
-import com.google.gwt.i18n.client.Messages;
+import com.arcbees.beeshop.common.dto.ProductDto;
 
-public interface AppMessages extends Messages {
-    String brandName(@Select Brand brand);
-
-    String productName(@Select ProductType productType);
-
-    String size(@Select Size size);
-
-    String itemColor(@Select ProductType productType, @Select Brand brand);
+public interface CurrentProduct {
+    ProductDto get();
 }

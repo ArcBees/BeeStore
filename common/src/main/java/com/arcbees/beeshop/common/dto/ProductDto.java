@@ -19,7 +19,8 @@ public class ProductDto {
 
         ProductDto that = (ProductDto) o;
 
-        return brand == that.brand && product == that.product;
+        if (brand != that.brand) return false;
+        return !(product != null ? !product.equals(that.product) : that.product != null);
     }
 
     @Override
@@ -27,6 +28,10 @@ public class ProductDto {
         int result = brand != null ? brand.hashCode() : 0;
         result = 31 * result + (product != null ? product.hashCode() : 0);
         return result;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public Brand getBrand() {
@@ -37,15 +42,11 @@ public class ProductDto {
         this.brand = brand;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public ProductType getProductType() {
+        return product.getProductType();
     }
 
     public int getPrice() {
-        return product.getPrice();
+        return product.getProductType().getPrice();
     }
 }

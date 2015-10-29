@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.application.LocaleHelper;
 import com.arcbees.beeshop.common.NameTokens;
 import com.google.common.base.Strings;
-import com.google.gwt.i18n.client.LocaleInfo;
 import com.google.gwt.user.client.History;
 import com.gwtplatform.mvp.client.Bootstrapper;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
@@ -40,7 +39,6 @@ public class BootstrapperImpl implements Bootstrapper {
     public void onBootstrap() {
         PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
         String nameToken = Strings.nullToEmpty(History.getToken());
-        String currentLocale = LocaleInfo.getCurrentLocale().getLocaleName();
 
         if (localeHelper.isEnglish()) {
             if (!Strings.isNullOrEmpty(nameToken) && !NameTokens.isEnglish(nameToken)) {

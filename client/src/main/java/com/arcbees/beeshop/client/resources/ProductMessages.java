@@ -16,17 +16,9 @@
 
 package com.arcbees.beeshop.client.resources;
 
-import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.ProductType;
-import com.arcbees.beeshop.common.dto.Size;
 import com.google.gwt.i18n.client.Messages;
 
-public interface AppMessages extends Messages {
-    String brandName(@Select Brand brand);
-
-    String productName(@Select ProductType productType);
-
-    String size(@Select Size size);
-
-    String itemColor(@Select ProductType productType, @Select Brand brand);
+public interface ProductMessages extends Messages {
+    String productDescription(@Select ProductType productType);
 }

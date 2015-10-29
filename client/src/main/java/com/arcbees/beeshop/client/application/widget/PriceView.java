@@ -64,7 +64,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
         String smallerWordsStyle = res.style().smallerWords();
 
         String brandNameText = messages.brandName(product.getBrand(), smallWordsStyleName, smallerWordsStyle);
-        String productNameText = messages.productName(product.getProduct(), smallWordsStyleName, smallerWordsStyle);
+        String productNameText = messages.productName(product.getProductType(), smallWordsStyleName, smallerWordsStyle);
 
         brandName.setInnerHTML(brandNameText);
         productName.setInnerHTML(productNameText);
@@ -75,7 +75,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     private void buildAnchorUri(ProductDto product) {
-        String productId = String.valueOf(product.getProduct().getId());
+        String productId = String.valueOf(product.getProductType().getId());
 
         PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
                 .nameToken(nameTokensConstants.PRODUCT())

@@ -24,16 +24,16 @@ import com.google.common.collect.Lists;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductTest {
+public class ProductTypeTest {
     @Test
     public void previousTests() {
         List<TestCase> cases = Lists.newArrayList(
-                new TestCase(Product.SHIRT, Product.MUG),
-                new TestCase(Product.BAG, Product.SHIRT),
-                new TestCase(Product.THERMOS, Product.BAG),
-                new TestCase(Product.PHONE_CASE, Product.THERMOS),
-                new TestCase(Product.USB_KEY, Product.PHONE_CASE),
-                new TestCase(Product.MUG, Product.USB_KEY)
+                new TestCase(ProductType.SHIRT, ProductType.MUG),
+                new TestCase(ProductType.BAG, ProductType.SHIRT),
+                new TestCase(ProductType.THERMOS, ProductType.BAG),
+                new TestCase(ProductType.PHONE_CASE, ProductType.THERMOS),
+                new TestCase(ProductType.USB_KEY, ProductType.PHONE_CASE),
+                new TestCase(ProductType.MUG, ProductType.USB_KEY)
         );
 
         for (TestCase testCase : cases) {
@@ -44,12 +44,12 @@ public class ProductTest {
     @Test
     public void nextTests() {
         List<TestCase> cases = Lists.newArrayList(
-                new TestCase(Product.SHIRT, Product.BAG),
-                new TestCase(Product.BAG, Product.THERMOS),
-                new TestCase(Product.THERMOS, Product.PHONE_CASE),
-                new TestCase(Product.PHONE_CASE, Product.USB_KEY),
-                new TestCase(Product.USB_KEY, Product.MUG),
-                new TestCase(Product.MUG, Product.SHIRT)
+                new TestCase(ProductType.SHIRT, ProductType.BAG),
+                new TestCase(ProductType.BAG, ProductType.THERMOS),
+                new TestCase(ProductType.THERMOS, ProductType.PHONE_CASE),
+                new TestCase(ProductType.PHONE_CASE, ProductType.USB_KEY),
+                new TestCase(ProductType.USB_KEY, ProductType.MUG),
+                new TestCase(ProductType.MUG, ProductType.SHIRT)
         );
 
         for (TestCase testCase : cases) {
@@ -58,10 +58,10 @@ public class ProductTest {
     }
 
     private class TestCase {
-        public final Product input;
-        public final Product expected;
+        public final ProductType input;
+        public final ProductType expected;
 
-        public TestCase(Product input, Product expected) {
+        public TestCase(ProductType input, ProductType expected) {
             this.input = input;
             this.expected = expected;
         }
