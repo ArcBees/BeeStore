@@ -22,10 +22,12 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class ShoppingCartModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new GinFactoryModuleBuilder().build(ShoppingCartItemFactory.class));
+        install(new GinFactoryModuleBuilder().build(CartItemFactory.class));
 
-        bind(ShoppingCartItemPresenter.MyView.class).to(ShoppingCartItemView.class);
+        bind(CartItemPresenter.MyView.class).to(CartItemView.class);
         bindSingletonPresenterWidget(ShoppingCartPresenter.class, ShoppingCartPresenter.MyView.class,
                 ShoppingCartView.class);
+        bindPresenterWidget(CartItemsPresenter.class, CartItemsPresenter.MyView.class,
+                CartItemsView.class);
     }
 }

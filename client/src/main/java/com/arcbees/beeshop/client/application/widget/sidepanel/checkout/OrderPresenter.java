@@ -18,24 +18,37 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.CartItemsPresenter;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 
 public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         implements OrderUiHandlers {
     interface MyView extends View, HasUiHandlers<OrderUiHandlers> {
     }
 
+    public static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEMS = new PermanentSlot<>();
+    private final CartItemsPresenter cartItemsPresenter;
+
     @Inject
     OrderPresenter(
             EventBus eventBus,
-            MyView view) {
+            MyView view,
+            CartItemsPresenter cartItemsPresenter) {
         super(eventBus, view);
 
+        this.cartItemsPresenter = cartItemsPresenter;
+
         getView().setUiHandlers(this);
+    }
+
+    @Override
+    protected void onBind() {
+        setInSlot(SLOT_CART_ITEMS, cartItemsPresenter);
     }
 
     @Override
