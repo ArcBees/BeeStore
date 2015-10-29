@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.payment;
+package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response.Status;
@@ -52,7 +52,7 @@ import static org.mockito.Mockito.verify;
 import static com.gwtplatform.dispatch.rest.delegates.test.DelegateTestUtils.givenDelegate;
 
 @RunWith(JukitoRunner.class)
-public class StripePaymentPresenterTest {
+public class PaymentPresenterTest {
     public static class Module extends JukitoModule {
         @Override
         protected void configureTest() {
@@ -67,9 +67,9 @@ public class StripePaymentPresenterTest {
     private static final int EXP_YEAR = 2020;
 
     @Inject
-    private StripePaymentPresenter presenter;
+    private PaymentPresenter presenter;
     @Inject
-    private StripePaymentPresenter.MyView view;
+    private PaymentPresenter.MyView view;
     @Inject
     private ResourceDelegate<PaymentResource> paymentDelegate;
     @Inject
