@@ -46,7 +46,7 @@ public class NameTokens {
 
     public static final String LANGUAGE_ENGLISH = "en";
     public static final String LANGUAGE_FRENCH = "fr";
-    public static final String NOTFOUND = "!/notfound"; // TODO
+    public static final String NOT_FOUND = "!/notfound";
 
     private static final BiMap<String, String> placeKeys;
 

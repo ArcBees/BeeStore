@@ -19,6 +19,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ import com.arcbees.beeshop.server.Version;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Resources;
 
+@Singleton
 public class RootServlet extends HttpServlet {
     private static final long serialVersionUID = Version.VERSION;
 
@@ -49,7 +51,7 @@ public class RootServlet extends HttpServlet {
         context.put("locale", locale);
         context.put("seo", resourceBundle);
 
-        getVelocityEngine().mergeTemplate(TEMPLATE, "UTF-8" , context, response.getWriter());
+        getVelocityEngine().mergeTemplate(TEMPLATE, "UTF-8", context, response.getWriter());
     }
 
     private VelocityEngine getVelocityEngine() {
@@ -70,7 +72,7 @@ public class RootServlet extends HttpServlet {
 
             properties.load(byteSource.openStream());
         } catch (IOException e) {
-            throw new RuntimeException("Unable to load velocity properties from '" + VELOCITY_PROPERTIES + "'." , e);
+            throw new RuntimeException("Unable to load velocity properties from '" + VELOCITY_PROPERTIES + "'.", e);
         }
 
         return properties;
