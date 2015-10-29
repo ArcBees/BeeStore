@@ -32,8 +32,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <!-- TODO: Add link to contact page -->
-                                    <a href="#">
+                                    <a href="http://www.arcbees.com/#!/contact">
                                         <ui:msg description="Contact us">Contact us</ui:msg>
                                     </a>
                                 </li>
