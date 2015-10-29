@@ -16,18 +16,79 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
+import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.FormElement;
+import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+import static com.google.gwt.query.client.GQuery.$;
 
 public class PaymentView extends ViewWithUiHandlers<PaymentUiHandlers> implements PaymentPresenter.MyView {
     interface Binder extends UiBinder<Widget, PaymentView> {
     }
 
+    @UiField
+    FormElement form;
+    @UiField
+    InputElement name;
+    @UiField
+    InputElement number;
+    @UiField
+    InputElement cvs;
+    @UiField
+    InputElement expMonth;
+    @UiField
+    InputElement expYear;
+    @UiField
+    ButtonElement submit;
+
     @Inject
     PaymentView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
+
+        bind();
+
+        disablePaymentSubmit();
+    }
+
+    private void bind() {
+        $(form).submit(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onSubmit(
+                        name.getValue(),
+                        number.getValue(),
+                        cvs.getValue(),
+                        Integer.parseInt(expMonth.getValue()),
+                        Integer.parseInt(expYear.getValue()));
+            }
+        });
+    }
+
+    @Override
+    public void showErrorMessage(String message) {
+        Window.alert(message);
+    }
+
+    @Override
+    public void showSuccessMessage(String message) {
+        Window.alert(message);
+    }
+
+    @Override
+    public void enablePaymentSubmit() {
+        submit.setDisabled(false);
+    }
+
+    @Override
+    public void disablePaymentSubmit() {
+        submit.setDisabled(true);
     }
 }
