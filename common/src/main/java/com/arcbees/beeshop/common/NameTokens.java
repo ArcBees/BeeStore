@@ -29,30 +29,29 @@ public class NameTokens {
     public static final String PARAM_ID = "id";
 
     public static final String WRAPPED_ID = "/{" + PARAM_ID + "}";
+
     public static final String HOME = "!/";
+
     public static final String PRODUCTS = "!/products";
-
     public static final String PRODUCTS_FR = "!/produits";
-    public static final String PRODUCT = PRODUCTS + WRAPPED_ID;
 
+    public static final String PRODUCT = PRODUCTS + WRAPPED_ID;
     public static final String PRODUCT_FR = PRODUCTS_FR + WRAPPED_ID;
+
     public static final String GAE_STUDIO = Brand.GAE_STUDIO.getValue();
     public static final String GWTP = Brand.GWTP.getValue();
     public static final String CHOSEN = Brand.CHOSEN.getValue();
     public static final String JUKITO = Brand.JUKITO.getValue();
     public static final String GSSS = Brand.GSSS.getValue();
     public static final String GQUERY = Brand.GQUERY.getValue();
-
     public static final String ARCBEES = Brand.ARCBEES.getValue();
+
     public static final String LANGUAGE_ENGLISH = "en";
     public static final String LANGUAGE_FRENCH = "fr";
 
     public static final String NOTFOUND = "!/notfound"; // TODO
-    private static final BiMap<String, String> placeKeys;
 
-    public static boolean isEnglish(String nameToken) {
-        return placeKeys.containsKey(nameToken);
-    }
+    private static final BiMap<String, String> placeKeys;
 
     public static String translate(String nameToken) {
         if (isEnglish(nameToken)) {
@@ -60,6 +59,10 @@ public class NameTokens {
         } else {
             return placeKeys.inverse().get(nameToken);
         }
+    }
+
+    public static boolean isEnglish(String nameToken) {
+        return placeKeys.containsKey(nameToken);
     }
 
     static {
