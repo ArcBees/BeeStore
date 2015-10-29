@@ -27,7 +27,7 @@ public class CurrentProductImpl implements CurrentProduct {
     private final PlaceManager placeManager;
 
     @Inject
-    public CurrentProductImpl(
+    CurrentProductImpl(
             PlaceManager placeManager) {
         this.placeManager = placeManager;
     }
