@@ -17,55 +17,54 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
-import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
-import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
+import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
-public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter.MyView>
-        implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler {
-    interface MyView extends View, HasUiHandlers<ShoppingCartUiHandlers> {
-        void updateItemNumber(int number);
+public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
+        implements ShoppingCartChangedEventHandler {
+    interface MyView extends View {
+        void showAndSetSubTotal(float subTotal);
+
+        void showEmpty();
     }
 
-    static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEM = new PermanentSlot<>();
+    static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
 
+    private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
-    private final CartItemsPresenter cartItemsPresenter;
 
     @Inject
-    ShoppingCartPresenter(
+    CartItemsPresenter(
             EventBus eventBus,
             MyView view,
-            CurrentOrder currentOrder,
-            CartItemsPresenter cartItemsPresenter) {
+            CartItemFactory cartItemFactory,
+            CurrentOrder currentOrder) {
         super(eventBus, view);
 
+        this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
-        this.cartItemsPresenter = cartItemsPresenter;
-
-        getView().setUiHandlers(this);
-    }
-
-    @Override
-    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
-    }
-
-    @Override
-    public void onCheckout() {
-        CheckoutContinueEvent.fire(this);
     }
 
     @Override
     protected void onBind() {
-        setInSlot(SLOT_CART_ITEM, cartItemsPresenter);
-
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
+    }
+
+    @Override
+    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
+        if (!event.isRemoved()) {
+            addToSlot(SLOT_ITEMS, cartItemFactory.create(event.getItem()));
+        }
+
+        if (currentOrder.isEmpty()) {
+            getView().showEmpty();
+        } else {
+            getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+        }
     }
 }

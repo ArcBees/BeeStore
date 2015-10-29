@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:arcbees="urn:import:com.arcbees.ui">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
@@ -13,27 +14,8 @@
             <h2>Order</h2>
         </div>
         <h3>Your order</h3>
-        <div class="{res.style.orderBox} {res.style.orderBox__shirt}">
-            <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
-            <div class="{res.style.orderBox_info}">
-                <h4 class="{res.style.orderBox_productName}">Bee shirt</h4>
-                <span class="{res.style.orderBox_productColor}">Grey shirt</span>
-                <span class="{res.style.orderBox_productColor}">Yellow Logo</span>
-                <span class="{res.style.orderBox_productSize}">Size:
-                    <span>M</span>
-                </span>
-                <div>
-                    <input type="number" class="{res.style.inputQuantity}" value="1"/>
-                    <span class="{res.style.orderBox_productTimes}">x</span>
-                    <span class="{res.style.orderBox_productPrice}">35.00 $</span>
-                </div>
-            </div>
-            <i class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
-        </div>
-        <div class="{res.style.orderAmount} {res.style.clearfix}">
-            <h4>subtotal</h4>
-            <span class="{res.style.orderAmount_price}">35.00$</span>
-        </div>
+
+        <arcbees:ReplacePanel ui:field="cartItems"/>
 
         <div class="{res.style.orderBox}">
             <h3>Shipping and handling</h3>

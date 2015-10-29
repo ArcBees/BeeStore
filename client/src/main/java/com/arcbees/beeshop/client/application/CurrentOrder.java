@@ -23,9 +23,13 @@ public interface CurrentOrder {
 
     int getSize();
 
+    boolean isEmpty();
+
     void removeItem(ShoppingCartItem item);
 
     ContactInfoDto getContactInfo();
 
     void setContactInfo(ContactInfoDto contactInfo);
+
+    float calculateSubTotal();
 }

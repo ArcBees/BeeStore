@@ -16,58 +16,48 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
-import com.arcbees.ui.ReplacePanel;
-import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.inject.Inject;
-import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import com.gwtplatform.mvp.client.ViewImpl;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
-        implements ShoppingCartPresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, ShoppingCartView> {
+public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, CartItemsView> {
     }
 
     @UiField
-    SpanElement itemNumberTooltip;
+    HTMLPanel itemsContainer;
     @UiField
-    ButtonElement checkoutButton;
+    SpanElement subTotal;
     @UiField
-    ReplacePanel cartItems;
+    DivElement subTotalContainer;
+    @UiField
+    DivElement noItems;
 
     @Inject
-    ShoppingCartView(
+    CartItemsView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
 
-        bindSlot(ShoppingCartPresenter.SLOT_CART_ITEM, cartItems);
-
-        bind();
-    }
-
-    private void bind() {
-        $(itemNumberTooltip).hide();
-
-        $(checkoutButton).click(new Function() {
-            @Override
-            public void f() {
-                getUiHandlers().onCheckout();
-            }
-        });
+        bindSlot(CartItemsPresenter.SLOT_ITEMS, itemsContainer);
     }
 
     @Override
-    public void updateItemNumber(int number) {
-        if (number == 0) {
-            $(itemNumberTooltip).hide();
-        } else {
-            $(itemNumberTooltip).show();
-            $(itemNumberTooltip).text(String.valueOf(number));
-        }
+    public void showAndSetSubTotal(float subTotal) {
+        this.subTotal.setInnerText(subTotal + " $");
+
+        $(subTotalContainer).show();
+        $(noItems).hide();
+    }
+
+    @Override
+    public void showEmpty() {
+        $(subTotalContainer).hide();
+        $(noItems).show();
     }
 }

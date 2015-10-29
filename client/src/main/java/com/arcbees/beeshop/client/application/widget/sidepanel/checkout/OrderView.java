@@ -18,6 +18,7 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
+import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -32,12 +33,16 @@ public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements Or
     }
 
     @UiField
+    ReplacePanel cartItems;
+    @UiField
     ButtonElement continueButton;
 
     @Inject
     OrderView(
             Binder binder) {
         initWidget(binder.createAndBindUi(this));
+
+        bindSlot(OrderPresenter.SLOT_CART_ITEMS, cartItems);
 
         bind();
     }

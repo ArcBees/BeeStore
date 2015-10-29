@@ -25,9 +25,9 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
-public class ShoppingCartItemPresenter extends PresenterWidget<ShoppingCartItemPresenter.MyView>
-        implements ShoppingCartItemUiHandlers {
-    interface MyView extends View, HasUiHandlers<ShoppingCartItemUiHandlers> {
+public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
+        implements CartItemUiHandlers {
+    interface MyView extends View, HasUiHandlers<CartItemUiHandlers> {
         void setShoppingCartItem(ShoppingCartItem item);
     }
 
@@ -35,7 +35,7 @@ public class ShoppingCartItemPresenter extends PresenterWidget<ShoppingCartItemP
     private CurrentOrder currentOrder;
 
     @Inject
-    ShoppingCartItemPresenter(
+    CartItemPresenter(
             EventBus eventBus,
             MyView view,
             @Assisted ShoppingCartItem item,
