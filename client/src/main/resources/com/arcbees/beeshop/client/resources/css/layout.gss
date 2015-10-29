@@ -205,6 +205,15 @@ header {
     background-color: C_STRIPE_MEDIUM1;
 }
 
+.cart button.active i {
+    font-size: 5rem;
+    font-style: normal;
+
+    display: block;
+
+    @mixin rotate(45deg);
+}
+
 .cart_notifications {
     font-size: 14px;
     background-color: C_PRIMARY;
