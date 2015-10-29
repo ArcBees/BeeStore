@@ -2,11 +2,6 @@ package com.arcbees.beeshop.common.dto;
 
 public class ProductDto {
     private Brand brand;
-
-    public Product getProduct() {
-        return product;
-    }
-
     private Product product;
 
     public ProductDto() {
@@ -15,6 +10,28 @@ public class ProductDto {
     public ProductDto(Product product, Brand brand) {
         this.product = product;
         this.brand = brand;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductDto that = (ProductDto) o;
+
+        if (brand != that.brand) return false;
+        return !(product != null ? !product.equals(that.product) : that.product != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = brand != null ? brand.hashCode() : 0;
+        result = 31 * result + (product != null ? product.hashCode() : 0);
+        return result;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public Brand getBrand() {
