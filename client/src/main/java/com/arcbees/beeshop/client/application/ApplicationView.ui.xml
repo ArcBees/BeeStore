@@ -52,7 +52,7 @@
                                     <i ui:field="cartIcon" class="{font.icons.iconCart}"/>
                                     <span class="{res.style.visuallyHidden}">cart</span>
                                 </button>
-                                <div class="{res.style.cart_notifications}">
+                                <div ui:field="tooltip" class="{res.style.cart_notifications}">
                                     <span ui:field="numberOfItems"/>
                                 </div>
                             </li>

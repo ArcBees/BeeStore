@@ -27,6 +27,7 @@ import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.i18n.client.LocaleInfo;
@@ -70,6 +71,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     AppResources res;
     @UiField
     FontResources font;
+    @UiField
+    DivElement tooltip;
 
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
@@ -120,6 +123,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     private void bind() {
         shoppingCartOpen = false;
+        $(tooltip).hide();
 
         $(backTop).click(new Function() {
             @Override
@@ -138,13 +142,13 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             public void f() {
                 if (shoppingCartOpen) {
                     $(sidePanelContainer).removeClass(res.style().rightPanel__open());
-                    $(cartIcon).attr("class", font.icons().iconClose());
-                    $(cartButton).addClass(res.style().active());
+                    $(cartIcon).attr("class", font.icons().iconCart());
+                    $(cartButton).removeClass(res.style().active());
                     shoppingCartOpen = false;
                 } else {
                     $(sidePanelContainer).addClass(res.style().rightPanel__open());
-                    $(cartIcon).attr("class", font.icons().iconCart());
-                    $(cartButton).removeClass(res.style().active());
+                    $(cartIcon).attr("class", font.icons().iconClose());
+                    $(cartButton).addClass(res.style().active());
                     shoppingCartOpen = true;
                 }
             }
@@ -194,6 +198,12 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @Override
     public void updateItemNumber(int number) {
         $(numberOfItems).text(String.valueOf(number));
+
+        if (number == 0) {
+            $(tooltip).hide();
+        } else {
+            $(tooltip).show();
+        }
     }
 
     private String getStyle(Brand brand) {
