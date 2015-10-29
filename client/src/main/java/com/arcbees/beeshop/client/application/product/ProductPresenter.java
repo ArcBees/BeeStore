@@ -85,7 +85,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
     @Override
     public void prepareFromRequest(PlaceRequest request) {
-        getView().setProduct(currentProduct.get());
+        ProductDto productDto = currentProduct.get();
+        getView().setProduct(productDto);
     }
 
     @Override

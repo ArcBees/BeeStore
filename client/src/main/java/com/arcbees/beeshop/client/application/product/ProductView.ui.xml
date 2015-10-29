@@ -47,23 +47,23 @@
                         <h3>size</h3>
 
                         <ul class="{page.style.product_size}">
-                            <li>
-                                <a href="#">S
+                            <li ui:field="smallAnchor">
+                                <a>S
                                     <span class="{res.style.visuallyHidden}">mall</span>
                                 </a>
                             </li>
-                            <li class="{page.style.active}">
-                                <a href="#">M
+                            <li ui:field="mediumAnchor" class="{page.style.active}">
+                                <a>M
                                     <span class="{res.style.visuallyHidden}">edium</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">L
+                            <li ui:field="largeAnchor">
+                                <a>L
                                     <span class="{res.style.visuallyHidden}">arge</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">XL
+                            <li ui:field="xlargeAnchor">
+                                <a>XL
                                     <span class="{res.style.visuallyHidden}">arge</span>
                                 </a>
                             </li>

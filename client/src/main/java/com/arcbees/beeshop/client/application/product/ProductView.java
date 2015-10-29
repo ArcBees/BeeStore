@@ -16,6 +16,8 @@
 
 package com.arcbees.beeshop.client.application.product;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
@@ -28,16 +30,19 @@ import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.arcbees.beeshop.client.resources.ProductMessages;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
+import com.arcbees.beeshop.common.dto.ProductType;
+import com.arcbees.beeshop.common.dto.Size;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
+import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Image;
@@ -87,11 +92,20 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     DivElement sizeDiv;
     @UiField(provided = true)
     BrandPicker brandPicker;
+    @UiField
+    LIElement smallAnchor;
+    @UiField
+    LIElement mediumAnchor;
+    @UiField
+    LIElement largeAnchor;
+    @UiField
+    LIElement xlargeAnchor;
 
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
+    private final HashMap<Size, LIElement> sizeMap;
 
     @Inject
     ProductView(
@@ -106,8 +120,14 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
+        sizeMap = new HashMap<>();
 
         initWidget(uiBinder.createAndBindUi(this));
+
+        sizeMap.put(Size.SMALL, smallAnchor);
+        sizeMap.put(Size.MEDIUM, mediumAnchor);
+        sizeMap.put(Size.LARGE, largeAnchor);
+        sizeMap.put(Size.XLARGE, xlargeAnchor);
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
@@ -155,10 +175,13 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         productImage.setResource(productBrandUtil.getImage(productType, brand));
 
+
         if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
             $(sizeDiv).show();
+
+            toggleActiveShirtSizeIcon(productDto);
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
@@ -167,6 +190,15 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         setAnchorToProduct(previous, productType.getPreviousProduct());
         setAnchorToProduct(next, productType.getNextProduct());
+    }
+
+    private void toggleActiveShirtSizeIcon(ProductDto productDto) {
+        for (LIElement element : sizeMap.values()) {
+            $(element).removeClass(page.style().active());
+        }
+
+        LIElement activeLIElement = sizeMap.get(productDto.getProduct().getSize());
+        $(activeLIElement).addClass(page.style().active());
     }
 
     private void setAnchorToProduct(AnchorElement anchor, ProductType productType) {

@@ -24,8 +24,9 @@ import org.junit.runner.RunWith;
 
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
+import com.arcbees.beeshop.common.dto.ProductType;
+import com.arcbees.beeshop.common.dto.Size;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -52,10 +53,33 @@ public class CurrentProductImplTest {
         assertThat(result.getBrand()).isEqualTo(brand);
     }
 
+    @Test
+    public void get_willReturnCustomizedShirt() {
+        ProductType productType = ProductType.SHIRT;
+        Brand brand = Brand.GAE_STUDIO;
+        Size size = Size.SMALL;
+        PlaceRequest placeRequest = buildPlaceRequestForShirt(brand, size);
+        given(placeManager.getCurrentPlaceRequest()).willReturn(placeRequest);
+
+        ProductDto result = currentProduct.get();
+
+        assertThat(result.getProductType()).isEqualTo(productType);
+        assertThat(result.getBrand()).isEqualTo(brand);
+        assertThat(result.getProduct().getSize()).isEqualTo(size);
+    }
+
+    private PlaceRequest buildPlaceRequestForShirt(Brand brand, Size size) {
+        return new PlaceRequest.Builder()
+                .with(NameTokens.PARAM_ID, String.valueOf(ProductType.SHIRT.getId()))
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .with(NameTokens.PARAM_SIZE, size.getValue())
+                .build();
+    }
+
     private PlaceRequest buildPlaceRequestForProduct(int productId, String brandValue) {
         return new PlaceRequest.Builder()
-                    .with(NameTokens.PARAM_ID, String.valueOf(productId))
-                    .with(NameTokens.PARAM_BRAND, brandValue)
-                    .build();
+                .with(NameTokens.PARAM_ID, String.valueOf(productId))
+                .with(NameTokens.PARAM_BRAND, brandValue)
+                .build();
     }
 }
