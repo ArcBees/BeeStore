@@ -1,8 +1,0 @@
-<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-        xmlns:g="urn:import:com.google.gwt.user.client.ui"
-        xmlns:arcbees="urn:import:com.arcbees.ui">
-
-    <g:HTMLPanel>
-        <arcbees:ReplacePanel ui:field="stripe"/>
-    </g:HTMLPanel>
-</ui:UiBinder>

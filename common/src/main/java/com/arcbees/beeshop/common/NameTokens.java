@@ -48,9 +48,6 @@ public class NameTokens {
     public static final String LANGUAGE_FRENCH = "fr";
     public static final String NOTFOUND = "!/notfound"; // TODO
 
-    // To be removed when the side panel is implemented
-    public static final String TEMP_PAYMENT = "/payment";
-
     private static final BiMap<String, String> placeKeys;
 
     public static boolean isEnglish(String nameToken) {

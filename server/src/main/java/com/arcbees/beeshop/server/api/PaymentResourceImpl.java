@@ -51,7 +51,6 @@ public class PaymentResourceImpl implements PaymentResource {
 
         try {
             Charge charge = Charge.create(chargeMap, requestOptions);
-            System.out.println(charge);
         } catch (CardException e) {
             throw new CreditCardException(e.getMessage());
         } catch (StripeException e) {
