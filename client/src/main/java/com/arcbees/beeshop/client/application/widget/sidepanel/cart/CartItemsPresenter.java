@@ -66,7 +66,5 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
         } else {
             getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
         }
-
-
     }
 }
