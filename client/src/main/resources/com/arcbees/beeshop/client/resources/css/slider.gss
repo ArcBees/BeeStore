@@ -10,15 +10,16 @@
 .brandPicker {
     display: flex;
     display: -webkit-flex;
-    flex-direction: row;
-    -webkit-flex-direction: row;
     padding: 0;
     margin: 38px 0 0;
     width: 100%;
 
     list-style: none;
 
-    @mixin transition(all, .1s);
+    flex-direction: row;
+    -webkit-flex-direction: row;
+
+    @mixin transition(transform, .5s);
 }
 
 .devProducts_list > li,
@@ -27,13 +28,13 @@
 
     vertical-align: top;
 
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
 }
 
 .devProducts_list > li > a {
     display: block;
 
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
     @mixin scale(.6, .6);
 }
 
@@ -106,7 +107,7 @@
 
     display: block;
 
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
     @mixin scale(1, 1);
 }
 
