@@ -32,8 +32,6 @@ public interface PageProductResources extends ClientBundle {
 
         String product_description();
 
-        String product_price();
-
         String product_option();
 
         String previous();
