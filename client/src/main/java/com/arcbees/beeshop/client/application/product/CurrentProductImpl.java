@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
@@ -39,8 +40,8 @@ public class CurrentProductImpl implements CurrentProduct {
         Brand brand = Brand.createFromValue(paramBrand);
 
         String paramProductId = currentPlaceRequest.getParameter(NameTokens.PARAM_ID, "-1");
-        Product product = Product.createFromId(Integer.parseInt(paramProductId));
+        ProductType productType = ProductType.createFromId(Integer.parseInt(paramProductId));
 
-        return new ProductDto(product, brand);
+        return new ProductDto(Product.createProduct(productType), brand);
     }
 }

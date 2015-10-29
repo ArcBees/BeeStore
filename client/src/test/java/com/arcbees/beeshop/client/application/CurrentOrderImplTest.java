@@ -24,6 +24,7 @@ import org.junit.runner.RunWith;
 
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,7 +36,7 @@ public class CurrentOrderImplTest {
 
     @Test
     public void sumWith1Item1Quantity() {
-        currentOrder.addItem(createItem(Product.SHIRT, 1));
+        currentOrder.addItem(createItem(ProductType.SHIRT, 1));
 
         float result = currentOrder.calculateSubTotal();
 
@@ -44,8 +45,8 @@ public class CurrentOrderImplTest {
 
     @Test
     public void sumWith2Items1Quantity() {
-        currentOrder.addItem(createItem(Product.SHIRT, 1));
-        currentOrder.addItem(createItem(Product.MUG, 1));
+        currentOrder.addItem(createItem(ProductType.SHIRT, 1));
+        currentOrder.addItem(createItem(ProductType.MUG, 1));
 
         float result = currentOrder.calculateSubTotal();
 
@@ -54,8 +55,8 @@ public class CurrentOrderImplTest {
 
     @Test
     public void sumWithSame2Items1Quantity() {
-        currentOrder.addItem(createItem(Product.SHIRT, 1));
-        currentOrder.addItem(createItem(Product.SHIRT, 1));
+        currentOrder.addItem(createItem(ProductType.SHIRT, 1));
+        currentOrder.addItem(createItem(ProductType.SHIRT, 1));
 
         float result = currentOrder.calculateSubTotal();
 
@@ -64,15 +65,15 @@ public class CurrentOrderImplTest {
 
     @Test
     public void sumWith1Item2Quantity() {
-        currentOrder.addItem(createItem(Product.SHIRT, 2));
+        currentOrder.addItem(createItem(ProductType.SHIRT, 2));
 
         float result = currentOrder.calculateSubTotal();
 
         assertThat(result).isEqualTo(60f);
     }
 
-    private ShoppingCartItem createItem(Product product, int quantity) {
-        ProductDto productDto = new ProductDto(product, Brand.getDefaultValue());
+    private ShoppingCartItem createItem(ProductType productType, int quantity) {
+        ProductDto productDto = new ProductDto(Product.createProduct(productType), Brand.getDefaultValue());
         return new ShoppingCartItem(productDto, quantity);
     }
 }

@@ -19,14 +19,16 @@ package com.arcbees.beeshop.client.application.product;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
+import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.Colors;
 import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.client.resources.PageProductResources;
 import com.arcbees.beeshop.client.resources.ProductBrandUtil;
+import com.arcbees.beeshop.client.resources.ProductMessages;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
@@ -86,18 +88,24 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @UiField(provided = true)
     BrandPicker brandPicker;
 
+    private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
+    private final ProductMessages productMessages;
 
     @Inject
     ProductView(
             Binder uiBinder,
             ProductBrandUtil productBrandUtil,
             PlaceManager placeManager,
-            BrandPicker brandPicker) {
+            BrandPicker brandPicker,
+            AppMessages appMessages,
+            ProductMessages productMessages) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
+        this.appMessages = appMessages;
+        this.productMessages = productMessages;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -138,16 +146,16 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @Override
     public void setProduct(ProductDto productDto) {
         Brand brand = productDto.getBrand();
-        Product product = productDto.getProduct();
+        ProductType productType = productDto.getProductType();
 
-        $(brandName).text(brand.getValue());
-        $(productName).text(product.getName());
-        $(productDescription).text(product.getDescription());
-        $(priceText).text(String.valueOf(product.getPrice() + " $"));
+        $(brandName).text(appMessages.brandName(brand));
+        $(productName).text(appMessages.productName(productType));
+        $(productDescription).text(productMessages.productDescription(productType));
+        $(priceText).text(String.valueOf(productType.getPrice() + " $"));
 
-        productImage.setResource(productBrandUtil.getImage(product, brand));
+        productImage.setResource(productBrandUtil.getImage(productType, brand));
 
-        if (product.equals(Product.SHIRT)) {
+        if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
             $(sizeDiv).show();
@@ -157,13 +165,13 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             $(sizeDiv).hide();
         }
 
-        setAnchorToProduct(previous, product.getPreviousProduct());
-        setAnchorToProduct(next, product.getNextProduct());
+        setAnchorToProduct(previous, productType.getPreviousProduct());
+        setAnchorToProduct(next, productType.getNextProduct());
     }
 
-    private void setAnchorToProduct(AnchorElement anchor, Product product) {
+    private void setAnchorToProduct(AnchorElement anchor, ProductType productType) {
         PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
-                .with(NameTokens.PARAM_ID, String.valueOf(product.getId()))
+                .with(NameTokens.PARAM_ID, String.valueOf(productType.getId()))
                 .build();
 
         anchor.setHref("#" + placeManager.buildHistoryToken(request));

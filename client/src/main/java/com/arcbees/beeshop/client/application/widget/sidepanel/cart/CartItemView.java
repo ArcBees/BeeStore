@@ -17,7 +17,10 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
+import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductDto;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.InputElement;
@@ -39,9 +42,9 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
     @UiField
     HeadingElement name;
     @UiField
-    SpanElement color;
+    SpanElement itemColor;
     @UiField
-    SpanElement brand;
+    SpanElement logoColor;
     @UiField
     SpanElement size;
     @UiField
@@ -51,9 +54,13 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
     @UiField
     Element delete;
 
+    private final AppMessages appMessages;
+
     @Inject
     CartItemView(
-            Binder binder) {
+            Binder binder,
+            AppMessages appMessages) {
+        this.appMessages = appMessages;
         initWidget(binder.createAndBindUi(this));
 
         init();
@@ -70,12 +77,19 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
 
     @Override
     public void setShoppingCartItem(ShoppingCartItem item) {
-        Product product = item.getProductDto().getProduct();
+        ProductDto productDto = item.getProductDto();
+        Product product = productDto.getProduct();
+        ProductType productType = product.getProductType();
 
-        name.setInnerText(product.getName());
-        color.setInnerText(product.getDescription());
-        size.setInnerText(product.getSize().name()); // TODO : i18n this
-        price.setInnerText(String.valueOf(product.getPrice()));
+        String translatedProductName = appMessages.brandName(productDto.getBrand());
+        String translatedProductType = appMessages.productName(productType);
+        String translatedItemColor = appMessages.itemColor(productDto.getProductType(), productDto.getBrand());
+        String translatedSize = appMessages.size(product.getSize());
+
+        name.setInnerText(translatedProductName + " " + translatedProductType);
+        itemColor.setInnerText(translatedItemColor);
+        this.size.setInnerText(translatedSize);
+        price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
     }
 }

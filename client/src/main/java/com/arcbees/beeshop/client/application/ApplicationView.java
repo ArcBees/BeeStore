@@ -23,7 +23,7 @@ import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.client.resources.NameTokensConstants;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
@@ -75,7 +75,6 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     DivElement numberOfItemsTooltip;
 
     private final PlaceManager placeManager;
-    private final LocaleHelper localeHelper;
     private final NameTokensConstants nameTokensConstants;
 
     private Boolean shoppingCartOpen;
@@ -84,10 +83,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     ApplicationView(
             Binder uiBinder,
             PlaceManager placeManager,
-            LocaleHelper localeHelper,
             NameTokensConstants nameTokensConstants) {
         this.placeManager = placeManager;
-        this.localeHelper = localeHelper;
         this.nameTokensConstants = nameTokensConstants;
 
         initWidget(uiBinder.createAndBindUi(this));
@@ -110,7 +107,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
                 .nameToken(nameTokensConstants.PRODUCT())
                 .with(NameTokens.PARAM_BRAND, brand.getValue())
-                .with(NameTokens.PARAM_ID, String.valueOf(Product.SHIRT.getId()))
+                .with(NameTokens.PARAM_ID, String.valueOf(ProductType.SHIRT.getId()))
                 .build();
 
         productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));

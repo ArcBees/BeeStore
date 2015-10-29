@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
 
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
@@ -38,14 +38,14 @@ public class CurrentProductImplTest {
 
     @Test
     public void get_willReturnCustomizedProduct() {
-        Product product = Product.PHONE_CASE;
+        ProductType productType = ProductType.PHONE_CASE;
         Brand brand = Brand.GQUERY;
-        PlaceRequest placeRequest = buildPlaceRequestForProduct(product.getId(), brand.getValue());
+        PlaceRequest placeRequest = buildPlaceRequestForProduct(productType.getId(), brand.getValue());
         given(placeManager.getCurrentPlaceRequest()).willReturn(placeRequest);
 
         ProductDto result = currentProduct.get();
 
-        assertThat(result.getProduct()).isEqualTo(product);
+        assertThat(result.getProductType()).isEqualTo(productType);
         assertThat(result.getBrand()).isEqualTo(brand);
     }
 

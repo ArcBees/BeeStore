@@ -22,8 +22,6 @@ import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -96,14 +94,7 @@ public class ProductPresenterTest {
     @Test
     public void prepareFromRequest_setsProduct() {
         PlaceRequest request = new PlaceRequest();
-
-        Product product = Product.MUG;
-        Brand brand = Brand.GAE_STUDIO;
-
         ProductDto productDto = new ProductDto();
-        productDto.setProduct(product);
-        productDto.setBrand(brand);
-
         given(currentProduct.get()).willReturn(productDto);
 
         presenter.prepareFromRequest(request);

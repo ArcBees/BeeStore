@@ -11,14 +11,12 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.arcbees.beeshop.client.resources;
+package com.arcbees.beeshop.common.dto;
 
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.ProductType;
-import com.google.gwt.i18n.client.Messages;
+public enum Size {
+    SMALL, MEDIUM, LARGE, XLARGE, UNIQUE;
 
-public interface PriceMessages extends Messages {
-    String brandName(@Select Brand brand, String smallWordsStyleName, String smallerWordsStyle);
-
-    String productName(@Select ProductType productType, String smallWordStyleName, String smallerWordsStyle);
+    public static Size getDefaultValue() {
+        return MEDIUM;
+    }
 }
