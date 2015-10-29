@@ -53,6 +53,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
 
     private final CurrentOrder currentOrder;
+    private final CurrentProduct currentProduct;
 
     private boolean isSharePanelShown;
 
@@ -62,10 +63,12 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             MyView view,
             MyProxy proxy,
             SharePanelPresenter sharePanel,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            CurrentProduct currentProduct) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         this.currentOrder = currentOrder;
+        this.currentProduct = currentProduct;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
@@ -82,12 +85,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
     @Override
     public void prepareFromRequest(PlaceRequest request) {
-        Product product = Product.createFromId(Integer.parseInt(request.getParameter(NameTokens.PARAM_ID, "")));
-        Brand brand = Brand.createFromValue(request.getParameter(NameTokens.PARAM_BRAND, ""));
-
-        ProductDto productDto = new ProductDto(product, brand);
-
-        getView().setProduct(productDto);
+        getView().setProduct(currentProduct.get());
     }
 
     @Override

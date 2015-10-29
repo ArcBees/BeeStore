@@ -22,12 +22,12 @@ import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
@@ -38,6 +38,8 @@ public class ProductPresenterTest {
     private ProductPresenter presenter;
     @Inject
     private ProductPresenter.MyView view;
+    @Inject
+    private CurrentProduct currentProduct;
 
     @Test
     public void onReveal_hidesSharePanel() {
@@ -93,6 +95,8 @@ public class ProductPresenterTest {
 
     @Test
     public void prepareFromRequest_setsProduct() {
+        PlaceRequest request = new PlaceRequest();
+
         Product product = Product.MUG;
         Brand brand = Brand.GAE_STUDIO;
 
@@ -100,10 +104,7 @@ public class ProductPresenterTest {
         productDto.setProduct(product);
         productDto.setBrand(brand);
 
-        PlaceRequest request = new PlaceRequest.Builder()
-                .with(NameTokens.PARAM_ID, String.valueOf(product.getId()))
-                .with(NameTokens.PARAM_BRAND, brand.getValue())
-                .build();
+        given(currentProduct.get()).willReturn(productDto);
 
         presenter.prepareFromRequest(request);
 
