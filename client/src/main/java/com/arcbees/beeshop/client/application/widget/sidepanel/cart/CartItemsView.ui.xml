@@ -6,9 +6,12 @@
     <g:HTMLPanel>
         <g:HTMLPanel ui:field="itemsContainer"/>
 
-        <div class="{res.style.orderAmount} {res.style.clearfix}">
+        <div class="{res.style.orderAmount} {res.style.clearfix}" ui:field="subTotalContainer" hidden="hidden">
             <h4>Subtotal</h4>
             <span class="{res.style.orderAmount_price}" ui:field="subTotal"/>
+        </div>
+        <div class="{res.style.clearfix}" ui:field="noItems">
+            <h4>Your cart is empty</h4>
         </div>
     </g:HTMLPanel>
 </ui:UiBinder>

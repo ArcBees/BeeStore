@@ -51,6 +51,11 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
     public void removeItem(ShoppingCartItem item) {
         items.remove(item);
 
