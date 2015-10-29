@@ -16,7 +16,7 @@
                     <span ui:field="size"/>
                 </span>
                 <div>
-                    <input ui:field="quantity" type="number" class="{res.style.inputQuantity}" value="1"/>
+                    <input ui:field="quantity" type="number" class="{res.style.inputQuantity}"/>
                     <span class="{res.style.orderBox_productTimes}">x</span>
                     <span class="{res.style.orderBox_productPrice}">
                         <span ui:field="price"/> $

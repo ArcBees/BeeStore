@@ -51,6 +51,11 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
     public void removeItem(ShoppingCartItem item) {
         items.remove(item);
 
@@ -65,6 +70,16 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     @Override
     public void setContactInfo(ContactInfoDto contactInfo) {
         this.contactInfo = contactInfo;
+    }
+
+    @Override
+    public float calculateSubTotal() {
+        float sum = 0;
+        for (ShoppingCartItem item : items) {
+            sum += item.getProductDto().getPrice() * item.getQuantity();
+        }
+
+        return sum;
     }
 
     @Override

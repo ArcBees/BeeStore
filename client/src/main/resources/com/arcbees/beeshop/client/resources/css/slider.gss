@@ -1,18 +1,29 @@
+/**
+ * SLIDER.GSS
+ *
+ * - Classes for the slider of the brand
+ */
+
 @require "gsss-mixins";
 
-.devProducts_list {
-    display: -webkit-flex;
+.devProducts_list,
+.brandPicker {
     display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
+    display: -webkit-flex;
     padding: 0;
     margin: 38px 0 0;
     width: 100%;
-    @mixin transition(transform, .5s);
+
     list-style: none;
+
+    flex-direction: row;
+    -webkit-flex-direction: row;
+
+    @mixin transition(transform, .5s);
 }
 
-.devProducts_list > li {
+.devProducts_list > li,
+.brandPicker > li {
     width: calc(100% / 7);
 
     vertical-align: top;
@@ -28,7 +39,7 @@
 }
 
 .devProducts_list li:hover a,
-.devProducts_list li.activeProduct a{
+.devProducts_list li.activeProduct a {
     @mixin scale(1, 1);
 }
 
@@ -51,7 +62,7 @@
 }
 
 .devProducts_list > li:hover > a .gsssIcon,
-.devProducts_list > li.activeProduct > a .gsssIcon{
+.devProducts_list > li.activeProduct > a .gsssIcon {
     fill: C_PRODUCT_GSS;
 }
 
@@ -87,18 +98,55 @@
 
 .brandPicker {
     width: 300px;
-    display: block;
-    margin: 0 auto;
+    margin: 10px auto 18px;
 }
 
-.devProducts_list.brandPicker > li > a {
+.brandPicker > li > a {
+    color: C_STRIPE_MEDIUM2;
+    font-size: 3.5rem;
+
     display: block;
 
     @mixin transition(transform, .5s);
-    @mixin scale(.1, .1);
+    @mixin scale(1, 1);
 }
 
-.devProducts_list.brandPicker li:hover a,
-.devProducts_list.brandPicker li.activeProduct a{
-    @mixin scale(.3, .3);
+.brandPicker li:hover a,
+.brandPicker li.activeProduct a {
+    @mixin scale(1.25, 1.25);
+}
+
+.brandPicker > li:hover > a.arcbeesIcon,
+.brandPicker > li.activeProduct > a.arcbeesIcon {
+    color: C_PRIMARY;
+}
+
+.brandPicker > li:hover > a.chosenIcon,
+.brandPicker > li.activeProduct > a.chosenIcon {
+    color: C_PRODUCT_CHOSEN;
+}
+
+.brandPicker > li:hover > a.gaeIcon,
+.brandPicker > li.activeProduct > a.gaeIcon {
+    color: C_PRODUCT_GAE;
+}
+
+.brandPicker > li:hover > a.gqueryIcon,
+.brandPicker > li.activeProduct > a.gqueryIcon {
+    color: C_PRODUCT_GQUERY;
+}
+
+.brandPicker > li:hover > a.jukitoIcon,
+.brandPicker > li.activeProduct > a.jukitoIcon {
+    color: C_PRODUCT_JUKITO;
+}
+
+.brandPicker > li:hover > a.gwtpIcon,
+.brandPicker > li.activeProduct > a.gwtpIcon {
+    color: C_PRODUCT_GWTP;
+}
+
+.brandPicker > li:hover > a.gsssIcon,
+.brandPicker > li.activeProduct > a.gsssIcon {
+    color: C_PRODUCT_GSS;
 }

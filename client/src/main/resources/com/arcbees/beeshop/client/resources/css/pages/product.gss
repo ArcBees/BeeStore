@@ -92,23 +92,16 @@ ul.product_nav {
     vertical-align: middle;
 }
 
+.product_description h3 {
+    font-size: 1.4rem;
+}
+
 .product_description p span {
     display: block;
 }
 
-.product_price {
-    background-color: C_PRIMARY;
-    font-family: F_PRIMARY_BOLD;
-    font-size: 2rem;
-
-    display: inline-block;
-    padding: 2px 15px;
-    margin-bottom: 27px;
-}
-
 .product_option {
-    margin: 0;
-    padding: 0;
+    margin: 45px 0 10px;
 }
 
 .product_size {
