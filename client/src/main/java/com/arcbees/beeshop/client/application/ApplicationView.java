@@ -197,11 +197,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     @Override
     public void updateItemNumber(int number) {
-        $(numberOfItems).text(String.valueOf(number));
-
         if (number == 0) {
             $(tooltip).hide();
         } else {
+            $(numberOfItems).text(String.valueOf(number));
             $(tooltip).show();
         }
     }
