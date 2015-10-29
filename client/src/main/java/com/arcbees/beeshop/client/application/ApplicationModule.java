@@ -19,7 +19,6 @@ package com.arcbees.beeshop.client.application;
 import javax.inject.Singleton;
 
 import com.arcbees.beeshop.client.application.home.HomeModule;
-import com.arcbees.beeshop.client.application.payment.PaymentModule;
 import com.arcbees.beeshop.client.application.product.ProductModule;
 import com.arcbees.beeshop.client.application.widget.WidgetModule;
 import com.arcbees.beeshop.client.resources.ProductBrandUtil;
@@ -28,7 +27,6 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        install(new PaymentModule());
         install(new HomeModule());
         install(new ProductModule());
         install(new WidgetModule());

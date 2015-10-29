@@ -29,26 +29,30 @@
 
         <h3>credit card</h3>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="text" placeholder="Name on the card*" required=""/>
-            <input class="{comp.style.field}" type="text" placeholder="Company name" required=""/>
-        </fieldset>
+        <form action="javascript:;" ui:field="form">
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Name on the card" required="required" ui:field="name"/>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="email" placeholder="Card number*" required=""/>
-            <input class="{comp.style.field}" type="tel" placeholder="VAT number*" required=""/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Card number" required="required" ui:field="number"/>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="email" placeholder="CVS*" required=""/>
-            <input class="{comp.style.field}" type="tel" placeholder="MM/YY*" required=""/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="CVS" required="required" ui:field="cvs"/>
+                <input class="{comp.style.field}" type="number" placeholder="MM" required="required" min="1" step="1" max="12" ui:field="expMonth"/>
+                /
+                <input class="{comp.style.field}" type="number" placeholder="YYYY" required="required" min="2015" step="1" max="2100" ui:field="expYear"/>
+            </fieldset>
+
+            <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}" type="submit" ui:field="submit">
+                Place order
+            </button>
+        </form>
 
         <p>We don't store any credit information on our server.
-            <a href="#">Learn more</a>
+            <a href="https://stripe.com/about">Learn more</a>
         </p>
-
-        <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Place order</button>
     </g:HTMLPanel>
 </ui:UiBinder>
 

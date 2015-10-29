@@ -19,4 +19,5 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface PaymentUiHandlers extends UiHandlers {
+    void onSubmit(String name, String number, String cvs, int expMonth, int expYear);
 }
