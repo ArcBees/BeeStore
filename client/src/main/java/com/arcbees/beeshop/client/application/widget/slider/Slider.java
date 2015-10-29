@@ -13,8 +13,8 @@
 
 package com.arcbees.beeshop.client.application.widget.slider;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 import javax.inject.Inject;
 
@@ -34,6 +34,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
@@ -57,14 +58,14 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     SliderResources sliderResources;
 
     private final HTMLPanel root;
-    private final Stack<Function> calls;
+    private final LinkedList<Function> calls;
 
     private List<IsWidget> children = Lists.newArrayList();
     private GQuery activeItem;
     private boolean activeAnimation;
 
     public Slider() {
-        calls = new Stack<>();
+        calls = new LinkedList<>();
 
         root = BINDER.createAndBindUi(this);
 
@@ -106,7 +107,9 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                             String dataBrand = $(this).attr("data-brand");
 
                             if (brand.getValue().equals(dataBrand)) {
-                                handleClick($(this).parent());
+                                GQuery li = $(this).parent();
+                                li.unbind(BrowserEvents.CLICK);
+                                handleClick(li);
                             }
                         }
                     });
@@ -125,7 +128,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
         asWidget().addStyleName(style);
     }
 
-    Function doIt(final GQuery w) {
+    Function createAnimation(final GQuery w) {
         return new Function() {
             @Override
             public void f() {
@@ -141,18 +144,14 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                         activeItem.removeClass(sliderResources.style().activeProduct());
                         w.addClass(sliderResources.style().activeProduct());
 
-                        $(elements).attr("style", "transform: scale(1); -webkit-transform: scale(1);")
+                        $(elements).attr("style", "transform: scale(1);")
                                 .one(Event.ONCLICK, null, createProductClickHandler());
 
                         setOrder(w, String.valueOf(3));
                         setOrder(activeItem, indexOfSelected);
 
-                        activeItem = w;
-                        activeAnimation = false;
-                        if (!calls.isEmpty()) {
-                            Function nextCall = calls.pop();
-                            nextCall.f();
-                        }
+                        activeItem = $(w.get(0));
+                        queueFinishAnimation();
                     }
                 });
 
@@ -161,17 +160,30 @@ public class Slider implements IsWidget, AttachEvent.Handler {
         };
     }
 
+    private void queueFinishAnimation() {
+        new Timer() {
+            @Override
+            public void run() {
+                activeAnimation = false;
+                if (!calls.isEmpty()) {
+                    Function nextCall = calls.poll();
+                    nextCall.f();
+                }
+            }
+        }.schedule(550);
+    }
+
     private Function createProductClickHandler() {
         return new Function() {
             @Override
             public void f() {
-                handleClick($(this));
+                handleClick($(getElement()));
             }
         };
     }
 
     private void handleClick(final GQuery w) {
-        Function function = doIt(w);
+        Function function = createAnimation(w);
         if (activeAnimation) {
             calls.add(function);
         } else {

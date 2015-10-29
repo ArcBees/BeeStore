@@ -1,14 +1,14 @@
 @require "gsss-mixins";
 
 .devProducts_list {
-    display: flex;
     display: -webkit-flex;
-    flex-direction: row;
+    display: flex;
     -webkit-flex-direction: row;
+    flex-direction: row;
     padding: 0;
     margin: 38px 0 0;
     width: 100%;
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
     list-style: none;
 }
 
@@ -17,13 +17,13 @@
 
     vertical-align: top;
 
-    @mixin transition(all, .4s);
+    @mixin transition(transform, .4s);
 }
 
 .devProducts_list > li > a {
     display: block;
 
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
     @mixin scale(.6, .6);
 }
 
@@ -94,7 +94,7 @@
 .devProducts_list.brandPicker > li > a {
     display: block;
 
-    @mixin transition(all, .5s);
+    @mixin transition(transform, .5s);
     @mixin scale(.1, .1);
 }
 
