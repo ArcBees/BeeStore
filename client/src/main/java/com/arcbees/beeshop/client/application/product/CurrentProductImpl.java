@@ -20,6 +20,7 @@ import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.beeshop.common.dto.ProductDto;
+import com.arcbees.beeshop.common.dto.Size;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -41,6 +42,13 @@ public class CurrentProductImpl implements CurrentProduct {
 
         String paramProductId = currentPlaceRequest.getParameter(NameTokens.PARAM_ID, "-1");
         ProductType productType = ProductType.createFromId(Integer.parseInt(paramProductId));
+
+        if (productType == ProductType.SHIRT) {
+            String paramSize = currentPlaceRequest.getParameter(NameTokens.PARAM_SIZE, "");
+            Size size = Size.createFromValue(paramSize);
+
+            return new ProductDto(Product.createShirt(size), brand);
+        }
 
         return new ProductDto(Product.createProduct(productType), brand);
     }

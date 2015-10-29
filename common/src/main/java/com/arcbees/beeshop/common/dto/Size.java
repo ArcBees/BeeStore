@@ -14,9 +14,33 @@
 package com.arcbees.beeshop.common.dto;
 
 public enum Size {
-    SMALL, MEDIUM, LARGE, XLARGE, UNIQUE;
+    SMALL("small"),
+    MEDIUM("medium"),
+    LARGE("large"),
+    XLARGE("x-large"),
+    UNIQUE("unique");
+
+    private String value;
+
+    Size(String value) {
+        this.value = value;
+    }
 
     public static Size getDefaultValue() {
         return MEDIUM;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public static Size createFromValue(String value) {
+        for (Size size : values()) {
+            if (size.value.equals(value)) {
+                return size;
+            }
+        }
+
+        return getDefaultValue();
     }
 }
