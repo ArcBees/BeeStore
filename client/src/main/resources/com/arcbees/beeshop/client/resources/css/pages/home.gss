@@ -146,7 +146,7 @@
     display: block;
     margin: 25px auto 10px;
     height: 50px;
-    width: 100px;
+    width: auto;
     border: 4px solid C_DARK;
 }
 
