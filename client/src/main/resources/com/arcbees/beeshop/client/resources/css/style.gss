@@ -469,9 +469,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox_img,
-.orderBox_info,
-.orderBox_delete {
-    display: table-cell;
+.orderBox_info {
+    display: inline-block;
     vertical-align: top;
 }
 
@@ -523,6 +522,7 @@ input[type=number]::-webkit-outer-spin-button {
 .orderBox_delete {
     font-size: 2rem;
 
+    display: table-cell;
     width: 20px;
 
     vertical-align: middle;
