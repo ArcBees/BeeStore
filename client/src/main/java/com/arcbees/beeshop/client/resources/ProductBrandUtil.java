@@ -115,8 +115,8 @@ public class ProductBrandUtil {
 
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.SHIRT), resources.chosenShirtThumb());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.BAG), resources.chosenBagThumb());
-        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.MUG), resources.chosenCup());
-        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.THERMOS), resources.chosenThermos());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.MUG), resources.chosenCupThumb());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.THERMOS), resources.chosenThermosThumb());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.USB_KEY), resources.chosenUsbThumb());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.PHONE_CASE), resources.chosenCaseThumb());
 
@@ -170,8 +170,8 @@ public class ProductBrandUtil {
 
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.SHIRT), resources.chosenShirt());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.BAG), resources.chosenBag());
-        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.MUG), resources.chosenCup());
-        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.THERMOS), resources.chosenThermos());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.MUG), resources.chosenCupBig());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.THERMOS), resources.chosenThermosBig());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.USB_KEY), resources.chosenUsbBig());
         images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.PHONE_CASE), resources.chosenCaseBig());
 
