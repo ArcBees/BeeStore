@@ -7,10 +7,10 @@
     <g:HTMLPanel ui:field="panel" addStyleNames="{page.style.pricePresenter}">
         <a ui:field="priceView" class="{page.style.itemForSale_info}">
             <div class="{page.style.itemForSale_info_name}">
-                <span ui:field="brandName"/>
-                <span ui:field="productName"/>
+                <div ui:field="brandName" class="{res.style.brandName}"/>
+                <div ui:field="productName" class="{res.style.productName}"/>
             </div>
-            <div class="{res.style.itemPrice}" ui:field="price"/>
+            <div class="{res.style.itemPrice} {page.style.itemPrice}" ui:field="price"/>
         </a>
         <a ui:field="shopView" class="{page.style.itemForSale_info}">
             <span class="{page.style.itemForSale_info_shop}">Shop</span>

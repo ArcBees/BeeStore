@@ -45,6 +45,8 @@ public interface PageHomeResources extends ClientBundle {
         String itemForSale_info_shop();
 
         String pricePresenter();
+
+        String itemPrice();
     }
 
     @Source("img/products/arcbees/arcbees-shirt.png")
