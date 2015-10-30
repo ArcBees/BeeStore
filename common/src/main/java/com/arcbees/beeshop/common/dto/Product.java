@@ -52,4 +52,22 @@ public class Product {
     public void setSize(Size size) {
         this.size = size;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (productType != product.productType) return false;
+        return size == product.size;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = productType != null ? productType.hashCode() : 0;
+        result = 31 * result + (size != null ? size.hashCode() : 0);
+        return result;
+    }
 }

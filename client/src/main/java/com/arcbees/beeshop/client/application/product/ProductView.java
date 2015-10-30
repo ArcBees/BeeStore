@@ -38,6 +38,7 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
@@ -107,6 +108,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     AnchorElement largeAnchor;
     @UiField
     AnchorElement xLargeAnchor;
+    @UiField
+    InputElement quantity;
 
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
@@ -159,7 +162,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         $(addToCart).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().onAddToCartButtonClicked();
+                int itemQuantity = Integer.parseInt(quantity.getValue());
+                getUiHandlers().onAddToCartButtonClicked(itemQuantity);
             }
         });
     }
@@ -189,13 +193,16 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         productImage.setResource(productBrandUtil.getImage(productType, brand));
 
-
         if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
             $(sizeDiv).show();
 
             toggleActiveShirtSizeIcon(productDto);
+
+            for (Size size : sizeAnchorAssociation.keySet()) {
+                setAnchorToSizeIcon(size, sizeAnchorAssociation.get(size));
+            }
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
@@ -208,6 +215,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         for (Size size : sizeAnchorAssociation.keySet()) {
             setAnchorToSizeIcon(size, sizeAnchorAssociation.get(size));
         }
+
+        brandPicker.updateAnchors();
     }
 
     private void setAnchorToSizeIcon(Size size, AnchorElement anchor) {

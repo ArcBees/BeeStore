@@ -21,10 +21,14 @@ import javax.inject.Inject;
 import org.jukito.JukitoRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 
+import com.arcbees.beeshop.client.application.CurrentOrder;
+import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
@@ -38,6 +42,8 @@ public class ProductPresenterTest {
     private ProductPresenter.MyView view;
     @Inject
     private CurrentProduct currentProduct;
+    @Inject
+    private CurrentOrder currentOrder;
 
     @Test
     public void onReveal_hidesSharePanel() {
@@ -100,5 +106,21 @@ public class ProductPresenterTest {
         presenter.prepareFromRequest(request);
 
         verify(view).setProduct(productDto);
+    }
+
+    @Test
+    public void onAddToCartButtonClicked_addItemToCurrentOrder() {
+        int itemQuantity = 32;
+        ProductDto productToAdd = new ProductDto();
+        given(currentProduct.get()).willReturn(productToAdd);
+
+        presenter.onAddToCartButtonClicked(itemQuantity);
+
+        ArgumentCaptor<ShoppingCartItem> captor = ArgumentCaptor.forClass(ShoppingCartItem.class);
+        verify(currentOrder).addItem(captor.capture());
+
+        ShoppingCartItem addedItem = captor.getValue();
+        assertThat(addedItem.getProductDto()).isEqualTo(productToAdd);
+        assertThat(addedItem.getQuantity()).isEqualTo(itemQuantity);
     }
 }
