@@ -92,13 +92,13 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @UiField(provided = true)
     BrandPicker brandPicker;
     @UiField
-    LIElement smallLI;
+    LIElement smallSizeListItem;
     @UiField
-    LIElement mediumLI;
+    LIElement mediumSizeListItem;
     @UiField
-    LIElement largeLI;
+    LIElement largeSizeListItem;
     @UiField
-    LIElement xlargeLI;
+    LIElement xlargeSizeListItem;
     @UiField
     AnchorElement smallAnchor;
     @UiField
@@ -112,8 +112,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
-    private final HashMap<Size, LIElement> sizeLIMap;
-    private final HashMap<Size, AnchorElement> sizeAnchorMap;
+    private final HashMap<Size, LIElement> sizeListItemAssociation;
+    private final HashMap<Size, AnchorElement> sizeAnchorAssociation;
 
     @Inject
     ProductView(
@@ -128,20 +128,20 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
-        sizeLIMap = new HashMap<>();
-        sizeAnchorMap = new HashMap<>();
+        sizeListItemAssociation = new HashMap<>();
+        sizeAnchorAssociation = new HashMap<>();
 
         initWidget(uiBinder.createAndBindUi(this));
 
-        sizeLIMap.put(Size.SMALL, smallLI);
-        sizeLIMap.put(Size.MEDIUM, mediumLI);
-        sizeLIMap.put(Size.LARGE, largeLI);
-        sizeLIMap.put(Size.XLARGE, xlargeLI);
+        sizeListItemAssociation.put(Size.SMALL, smallSizeListItem);
+        sizeListItemAssociation.put(Size.MEDIUM, mediumSizeListItem);
+        sizeListItemAssociation.put(Size.LARGE, largeSizeListItem);
+        sizeListItemAssociation.put(Size.XLARGE, xlargeSizeListItem);
 
-        sizeAnchorMap.put(Size.SMALL, smallAnchor);
-        sizeAnchorMap.put(Size.MEDIUM, mediumAnchor);
-        sizeAnchorMap.put(Size.LARGE, largeAnchor);
-        sizeAnchorMap.put(Size.XLARGE, xLargeAnchor);
+        sizeAnchorAssociation.put(Size.SMALL, smallAnchor);
+        sizeAnchorAssociation.put(Size.MEDIUM, mediumAnchor);
+        sizeAnchorAssociation.put(Size.LARGE, largeAnchor);
+        sizeAnchorAssociation.put(Size.XLARGE, xLargeAnchor);
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
@@ -205,8 +205,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         setAnchorToProduct(previous, productType.getPreviousProduct());
         setAnchorToProduct(next, productType.getNextProduct());
 
-        for (Size size : sizeAnchorMap.keySet()) {
-            setAnchorToSizeIcon(size, sizeAnchorMap.get(size));
+        for (Size size : sizeAnchorAssociation.keySet()) {
+            setAnchorToSizeIcon(size, sizeAnchorAssociation.get(size));
         }
     }
 
@@ -219,11 +219,11 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     }
 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
-        for (LIElement element : sizeLIMap.values()) {
+        for (LIElement element : sizeListItemAssociation.values()) {
             $(element).removeClass(page.style().active());
         }
 
-        LIElement activeLIElement = sizeLIMap.get(productDto.getProduct().getSize());
+        LIElement activeLIElement = sizeListItemAssociation.get(productDto.getProduct().getSize());
         $(activeLIElement).addClass(page.style().active());
     }
 
