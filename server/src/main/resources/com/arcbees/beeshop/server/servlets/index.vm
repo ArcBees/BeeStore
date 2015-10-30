@@ -2,9 +2,7 @@
 #set($title = ${seo.getString("title")})
 #set($description = ${seo.getString("description")})
 #set($keywords = ${seo.getString("keywords")})
-<!doctype html>
 <html lang="$locale">
-<html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="gwt:property" content="locale=$locale">
