@@ -14,11 +14,11 @@
 package com.arcbees.beeshop.client.resources;
 
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
+import com.arcbees.beeshop.common.dto.ProductType;
 import com.google.gwt.i18n.client.Messages;
 
 public interface PriceMessages extends Messages {
     String brandName(@Select Brand brand, String smallWordsStyleName, String smallerWordsStyle);
 
-    String productName(@Select Product product, String smallWordStyleName, String smallerWordsStyle);
+    String productName(@Select ProductType productType, String smallWordStyleName, String smallerWordsStyle);
 }

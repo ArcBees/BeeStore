@@ -16,6 +16,8 @@
 
 package com.arcbees.beeshop.client.application.product;
 
+import javax.inject.Singleton;
+
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
 public class ProductModule extends AbstractPresenterModule {
@@ -25,5 +27,7 @@ public class ProductModule extends AbstractPresenterModule {
                 ProductPresenter.MyProxy.class);
 
         bindPresenterWidget(SharePanelPresenter.class, SharePanelPresenter.MyView.class, SharePanelView.class);
+
+        bind(CurrentProduct.class).to(CurrentProductImpl.class).in(Singleton.class);
     }
 }

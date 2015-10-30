@@ -24,12 +24,14 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 public class NameTokens {
+    public static final String PARAM_SIZE = "size";
     public static final String PARAM_BRAND = "brand";
     public static final String PARAM_ID = "id";
 
     public static final String WRAPPED_ID = "/{" + PARAM_ID + "}";
 
     public static final String HOME = "!/";
+
     public static final String PRODUCTS = "!/products";
     public static final String PRODUCTS_FR = "!/produits";
 
@@ -46,13 +48,10 @@ public class NameTokens {
 
     public static final String LANGUAGE_ENGLISH = "en";
     public static final String LANGUAGE_FRENCH = "fr";
+
     public static final String NOT_FOUND = "!/notfound";
 
     private static final BiMap<String, String> placeKeys;
-
-    public static boolean isEnglish(String nameToken) {
-        return placeKeys.containsKey(nameToken);
-    }
 
     public static String translate(String nameToken) {
         if (isEnglish(nameToken)) {
@@ -60,6 +59,10 @@ public class NameTokens {
         } else {
             return placeKeys.inverse().get(nameToken);
         }
+    }
+
+    public static boolean isEnglish(String nameToken) {
+        return placeKeys.containsKey(nameToken);
     }
 
     static {

@@ -16,26 +16,33 @@
 
 package com.arcbees.beeshop.client.application.product;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
+import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.Colors;
 import com.arcbees.beeshop.client.resources.FontResources;
 import com.arcbees.beeshop.client.resources.PageProductResources;
 import com.arcbees.beeshop.client.resources.ProductBrandUtil;
+import com.arcbees.beeshop.client.resources.ProductMessages;
 import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
+import com.arcbees.beeshop.common.dto.ProductType;
+import com.arcbees.beeshop.common.dto.Size;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
+import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Image;
@@ -85,21 +92,42 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     DivElement sizeDiv;
     @UiField(provided = true)
     BrandPicker brandPicker;
+    @UiField
+    LIElement smallAnchor;
+    @UiField
+    LIElement mediumAnchor;
+    @UiField
+    LIElement largeAnchor;
+    @UiField
+    LIElement xlargeAnchor;
 
+    private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
+    private final ProductMessages productMessages;
+    private final HashMap<Size, LIElement> sizeMap;
 
     @Inject
     ProductView(
             Binder uiBinder,
             ProductBrandUtil productBrandUtil,
             PlaceManager placeManager,
-            BrandPicker brandPicker) {
+            BrandPicker brandPicker,
+            AppMessages appMessages,
+            ProductMessages productMessages) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
+        this.appMessages = appMessages;
+        this.productMessages = productMessages;
+        sizeMap = new HashMap<>();
 
         initWidget(uiBinder.createAndBindUi(this));
+
+        sizeMap.put(Size.SMALL, smallAnchor);
+        sizeMap.put(Size.MEDIUM, mediumAnchor);
+        sizeMap.put(Size.LARGE, largeAnchor);
+        sizeMap.put(Size.XLARGE, xlargeAnchor);
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
@@ -138,32 +166,44 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @Override
     public void setProduct(ProductDto productDto) {
         Brand brand = productDto.getBrand();
-        Product product = productDto.getProduct();
+        ProductType productType = productDto.getProductType();
 
-        $(brandName).text(brand.getValue());
-        $(productName).text(product.getName());
-        $(productDescription).text(product.getDescription());
-        $(priceText).text(String.valueOf(product.getPrice() + " $"));
+        $(brandName).text(appMessages.brandName(brand));
+        $(productName).text(appMessages.productName(productType));
+        $(productDescription).text(productMessages.productDescription(productType));
+        $(priceText).text(String.valueOf(productType.getPrice() + " $"));
 
-        productImage.setResource(productBrandUtil.getImage(product, brand));
+        productImage.setResource(productBrandUtil.getImage(productType, brand));
 
-        if (product.equals(Product.SHIRT)) {
+
+        if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
             $(sizeDiv).show();
+
+            toggleActiveShirtSizeIcon(productDto);
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
             $(sizeDiv).hide();
         }
 
-        setAnchorToProduct(previous, product.getPreviousProduct());
-        setAnchorToProduct(next, product.getNextProduct());
+        setAnchorToProduct(previous, productType.getPreviousProduct());
+        setAnchorToProduct(next, productType.getNextProduct());
     }
 
-    private void setAnchorToProduct(AnchorElement anchor, Product product) {
+    private void toggleActiveShirtSizeIcon(ProductDto productDto) {
+        for (LIElement element : sizeMap.values()) {
+            $(element).removeClass(page.style().active());
+        }
+
+        LIElement activeLIElement = sizeMap.get(productDto.getProduct().getSize());
+        $(activeLIElement).addClass(page.style().active());
+    }
+
+    private void setAnchorToProduct(AnchorElement anchor, ProductType productType) {
         PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
-                .with(NameTokens.PARAM_ID, String.valueOf(product.getId()))
+                .with(NameTokens.PARAM_ID, String.valueOf(productType.getId()))
                 .build();
 
         anchor.setHref("#" + placeManager.buildHistoryToken(request));

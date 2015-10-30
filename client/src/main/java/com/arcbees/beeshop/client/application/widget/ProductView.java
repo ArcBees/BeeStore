@@ -71,6 +71,6 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView {
 
     @Override
     public void setProduct(ProductDto productDto) {
-        image.setResource(productBrandUtil.getImage(productDto.getProduct(), productDto.getBrand()));
+        image.setResource(productBrandUtil.getImage(productDto.getProductType(), productDto.getBrand()));
     }
 }
