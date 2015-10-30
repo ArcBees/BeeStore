@@ -40,8 +40,7 @@ public class ProductBrandUtil {
     }
 
     private Map<SimpleEntry<Brand, ProductType>, ImageResource> initializeNormalImages(PageHomeResources resources) {
-        Map<SimpleEntry<Brand, ProductType>, ImageResource> images;
-        images = new HashMap<>();
+        Map<SimpleEntry<Brand, ProductType>, ImageResource> images = new HashMap<>();
 
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.SHIRT), resources.arcbeesShirt());
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.BAG), resources.arcbeesBag());
@@ -97,7 +96,6 @@ public class ProductBrandUtil {
 
     private Map<SimpleEntry<Brand, ProductType>, ImageResource> initializeThumbnailImages(PageHomeResources resources) {
         Map<SimpleEntry<Brand, ProductType>, ImageResource> images = new HashMap<>();
-
 
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.SHIRT), resources.arcbeesShirtThumb());
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.BAG), resources.arcbeesBagThumb());
