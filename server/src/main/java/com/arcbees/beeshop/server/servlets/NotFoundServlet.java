@@ -27,6 +27,6 @@ import com.arcbees.beeshop.common.NameTokens;
 public class NotFoundServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/#" + NameTokens.NOTFOUND);
+        resp.sendRedirect("/#" + NameTokens.NOT_FOUND);
     }
 }

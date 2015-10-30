@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+        xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <ui:with field="nametokens" type="com.arcbees.beeshop.client.resources.NameTokensConstants"/>
+
+    <g:HTMLPanel>
+        Not found.
+        <a href="#{nametokens.HOME}">Back to home</a>
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -19,6 +19,7 @@ package com.arcbees.beeshop.client.application;
 import javax.inject.Singleton;
 
 import com.arcbees.beeshop.client.application.home.HomeModule;
+import com.arcbees.beeshop.client.application.notfound.NotFoundModule;
 import com.arcbees.beeshop.client.application.product.ProductModule;
 import com.arcbees.beeshop.client.application.widget.WidgetModule;
 import com.arcbees.beeshop.client.resources.ProductBrandUtil;
@@ -30,6 +31,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new HomeModule());
         install(new ProductModule());
         install(new WidgetModule());
+        install(new NotFoundModule());
 
         bind(BrandChangeHandler.class).asEagerSingleton();
         bind(CurrentBrand.class).to(CurrentBrandImpl.class).in(Singleton.class);

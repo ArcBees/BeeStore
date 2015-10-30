@@ -35,7 +35,7 @@ public class ClientModule extends AbstractGinModule {
                 .tokenFormatter(RouteTokenFormatter.class)
                 .defaultPlace(NameTokens.HOME)
                 .unauthorizedPlace(NameTokens.HOME)
-                .errorPlace(NameTokens.HOME)
+                .errorPlace(NameTokens.NOT_FOUND)
                 .build());
         install(new ApplicationModule());
         install(new StripeModule());
