@@ -24,7 +24,6 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
-
 public class BootstrapperImpl implements Bootstrapper {
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
@@ -42,22 +41,20 @@ public class BootstrapperImpl implements Bootstrapper {
 
     @Override
     public void onBootstrap() {
-        PlaceRequest currentPlaceRequest = tokenFormatter.toPlaceRequest(History.getToken());
+        String historyToken = History.getToken();
+        PlaceRequest currentPlaceRequest =
+                tokenFormatter.toPlaceRequest(historyToken.isEmpty() ? NameTokens.HOME : historyToken);
         String nameToken = currentPlaceRequest.getNameToken();
 
         if (localeHelper.isEnglish()) {
             if (!Strings.isNullOrEmpty(nameToken) && !NameTokens.isEnglish(nameToken)) {
                 revealTranslatedNameToken(currentPlaceRequest);
                 return;
-            } else if (Strings.isNullOrEmpty(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest);
             }
         } else if (localeHelper.isFrench()) {
             if (NameTokens.isEnglish(nameToken)) {
                 revealTranslatedNameToken(currentPlaceRequest);
                 return;
-            } else if (Strings.isNullOrEmpty(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest);
             }
         }
 
