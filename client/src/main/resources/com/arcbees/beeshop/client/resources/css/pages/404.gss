@@ -1,0 +1,140 @@
+/**
+ * 404.GSS
+ * Syle for the 404 page
+ *
+ *
+ */
+
+@require "gsss-mixins";
+
+/* -- Page : 404 ---------------------------------------- */
+
+.img404 {
+    margin-bottom: 35px;
+
+    width: 480px;
+    margin-top: 150px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.img404 img {
+    width: 100%;
+}
+
+.text404 {
+    position: relative;
+    z-index: 99;
+}
+
+.honeyLost {
+    font-family: F_PRIMARY_BOLD;
+    font-size: 4rem;
+    text-align: center;
+    line-height: 1;
+
+    position: relative;
+    z-index: 1;
+}
+
+.tears {
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    z-index: 2;
+}
+
+.tearDrop {
+    @mixin animation_name(tears);
+    @mixin animation_duration(4s);
+    @mixin animation_timing_function(linear);
+}
+
+@-webkit-keyframes tears {
+    0% {
+        -webkit-transform: scale(.25) translate(0, 0);
+    }
+    100% {
+        -webkit-transform: scale(.75) translate(0, 1000px);
+    }
+}
+
+@keyframes tears {
+    0% {
+        @mixin transform(scale(.25) translate(0, 0));
+    }
+
+    100% {
+        @mixin transform(scale(.75) translate(0, 1000px));
+    }
+}
+
+.tears2 {
+    margin-left: -5px;
+
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    z-index: 2;
+}
+
+.tearDrop2 {
+    @mixin animation_name(tears2);
+    @mixin animation_duration(4s);
+    @mixin animation_delay(.5s);
+    @mixin animation_timing_function(linear);
+}
+
+@-webkit-keyframes tears2 {
+    0% {
+        -webkit-transform: scale(.25) translate(0, 0);
+    }
+    100% {
+        -webkit-transform: scale(.75) translate(0, 1000px);
+    }
+}
+
+@keyframes tears2 {
+    0% {
+        @mixin transform(scale(.25) translate(0, 0));
+    }
+    100% {
+        @mixin transform(scale(.75) translate(0, 1000px));
+    }
+}
+
+.tears3 {
+    margin-left: -25px;
+
+    position: absolute;
+    left: 50%;
+    top: 50px;
+    z-index: 2;
+}
+
+.tearDrop3 {
+    @mixin animation_name(tears3);
+    @mixin animation_duration(4.25s);
+    @mixin animation_delay(.25s);
+    @mixin animation_timing_function(linear);
+}
+
+@-webkit-keyframes tears3 {
+    0% {
+        -webkit-transform: scale(.25) translate(0, 0);
+    }
+    100% {
+        -webkit-transform: scale(.75) translate(0, 1000px);
+    }
+}
+
+@keyframes tears3 {
+    0% {
+        @mixin transform(scale(.25) translate(0, 0));
+    }
+
+    100% {
+        @mixin transform(scale(.75) translate(0, 1000px));
+    }
+}
