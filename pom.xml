@@ -286,4 +286,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>local-target</id>
+            <url>file://${project.build.directory}/distribution/release</url>
+        </repository>
+    </distributionManagement>
 </project>
