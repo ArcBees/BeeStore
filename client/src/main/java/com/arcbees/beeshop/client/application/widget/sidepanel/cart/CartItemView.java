@@ -92,4 +92,9 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
         price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
     }
+
+    @Override
+    public void updateQuantity(int newQuantity) {
+        quantity.setValue(String.valueOf(newQuantity));
+    }
 }
