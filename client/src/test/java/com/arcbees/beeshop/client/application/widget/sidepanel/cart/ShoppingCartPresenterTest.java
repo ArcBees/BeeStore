@@ -43,6 +43,7 @@ public class ShoppingCartPresenterTest {
             bind(AutobindDisable.class).toInstance(new AutobindDisable(true));
         }
     }
+
     @Inject
     private ShoppingCartPresenter presenter;
     @Inject

@@ -153,19 +153,29 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         if (shoppingCartOpen) {
             closeCart();
         } else {
-            $(sidePanelContainer).addClass(res.style().rightPanel__open());
-            $(cartIcon).text("+");
-            $(cartIcon).removeClass("class", font.icons().iconCart());
-            $(cartButton).addClass(res.style().active());
-            shoppingCartOpen = true;
+            openCart();
         }
+    }
+
+    private void openCart() {
+        $(sidePanelContainer).addClass(res.style().rightPanel__open());
+
+        $(cartIcon).text("+");
+        $(cartIcon).removeClass(font.icons().iconCart());
+
+        $(cartButton).addClass(res.style().active());
+
+        shoppingCartOpen = true;
     }
 
     private void closeCart() {
         $(sidePanelContainer).removeClass(res.style().rightPanel__open());
-        $(cartIcon).attr("class", font.icons().iconCart());
-        $(cartButton).removeClass(res.style().active());
+
         $(cartIcon).text("");
+        $(cartIcon).addClass(font.icons().iconCart());
+
+        $(cartButton).removeClass(res.style().active());
+
         shoppingCartOpen = false;
     }
 
