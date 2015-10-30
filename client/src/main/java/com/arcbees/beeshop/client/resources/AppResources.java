@@ -188,6 +188,20 @@ public interface AppResources extends ClientBundle {
         String brandName();
 
         String productName();
+
+        String shirtArcbees();
+
+        String shirtGQuery();
+
+        String shirtGaeStudio();
+
+        String shirtGWTP();
+
+        String shirtJukito();
+
+        String shirtGSSS();
+
+        String shirtChosen();
     }
 
     @Source("img/Beestore-logo.png")

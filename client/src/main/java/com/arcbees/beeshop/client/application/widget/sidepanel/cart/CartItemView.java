@@ -19,7 +19,6 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.client.resources.AppResources;
-import com.arcbees.beeshop.client.resources.Colors;
 import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
@@ -64,14 +63,17 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
 
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
+    private final CartItemColorUtil cartItemColorUtil;
 
     @Inject
     CartItemView(
             Binder binder,
             AppMessages appMessages,
-            ProductBrandUtil productBrandUtil) {
+            ProductBrandUtil productBrandUtil,
+            CartItemColorUtil cartItemColorUtil) {
         this.appMessages = appMessages;
         this.productBrandUtil = productBrandUtil;
+        this.cartItemColorUtil = cartItemColorUtil;
         initWidget(binder.createAndBindUi(this));
 
         init();
@@ -105,7 +107,7 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
         productThumbnail.setResource(productBrandUtil.getThumbnail(productType, productDto.getBrand()));
 
         if (productType.equals(ProductType.SHIRT)) {
-            $(asWidget()).css("background-color", Colors.getBrandColor(productDto.getBrand()));
+            $(asWidget()).addClass(cartItemColorUtil.getShirtClass(productDto.getBrand()));
         }
     }
 
