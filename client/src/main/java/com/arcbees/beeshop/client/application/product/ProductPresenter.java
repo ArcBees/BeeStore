@@ -90,9 +90,9 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     @Override
-    public void onAddToCartButtonClicked() {
-        // TODO: Populate this object depending on the product selected
-        currentOrder.addItem(dummyItem());
+    public void onAddToCartButtonClicked(int quantity) {
+        ShoppingCartItem shoppingCartItem = new ShoppingCartItem(currentProduct.get(), quantity);
+        currentOrder.addItem(shoppingCartItem);
     }
 
     @Override

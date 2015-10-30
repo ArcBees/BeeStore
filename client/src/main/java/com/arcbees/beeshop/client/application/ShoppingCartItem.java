@@ -31,7 +31,26 @@ public class ShoppingCartItem {
         return productDto;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ShoppingCartItem that = (ShoppingCartItem) o;
+
+        return !(productDto != null ? !productDto.equals(that.productDto) : that.productDto != null);
+    }
+
+    @Override
+    public int hashCode() {
+        return productDto != null ? productDto.hashCode() : 0;
+    }
+
     public int getQuantity() {
         return quantity;
+    }
+
+    public void addMore(int quantity) {
+        this.quantity += quantity;
     }
 }

@@ -18,6 +18,8 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
 import com.google.web.bindery.event.shared.EventBus;
@@ -26,20 +28,22 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
-        implements CartItemUiHandlers {
+        implements CartItemUiHandlers, ShoppingCartQuantityUpdatedEventHandler {
     interface MyView extends View, HasUiHandlers<CartItemUiHandlers> {
         void setShoppingCartItem(ShoppingCartItem item);
+
+        void updateQuantity(int newQuantity);
     }
 
-    private ShoppingCartItem item;
-    private CurrentOrder currentOrder;
+    private final CurrentOrder currentOrder;
+    private final ShoppingCartItem item;
 
     @Inject
     CartItemPresenter(
             EventBus eventBus,
             MyView view,
-            @Assisted ShoppingCartItem item,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            @Assisted ShoppingCartItem item) {
         super(eventBus, view);
 
         this.currentOrder = currentOrder;
@@ -53,6 +57,18 @@ public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
         currentOrder.removeItem(item);
 
         this.removeFromParentSlot();
+    }
+
+    @Override
+    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
+        if (item == event.getExistingItem()) {
+            getView().updateQuantity(event.getNewQuantity());
+        }
+    }
+
+    @Override
+    protected void onBind() {
+        addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
     }
 
     @Override
