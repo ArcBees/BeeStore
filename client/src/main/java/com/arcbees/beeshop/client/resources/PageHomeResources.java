@@ -47,32 +47,47 @@ public interface PageHomeResources extends ClientBundle {
         String pricePresenter();
     }
 
-    @Source("img/t-shirt-men.png")
-    ImageResource tshirt();
-
-    @Source("img/products/product-bag.png")
-    ImageResource productBag();
-
     @Source("img/products/arcbees/arcbees-shirt.png")
     ImageResource arcbeesShirt();
+
+    @Source("img/products/arcbees/arcbees-shirt-thumb.png")
+    ImageResource arcbeesShirtThumb();
 
     @Source("img/products/gwtp/gwtp-shirt.png")
     ImageResource gwtpShirt();
 
+    @Source("img/products/gwtp/gwtp-shirt-thumb.png")
+    ImageResource gwtpShirtThumb();
+
     @Source("img/products/gae/gae-shirt.png")
     ImageResource gaeShirt();
+
+    @Source("img/products/gae/gae-shirt-thumb.png")
+    ImageResource gaeShirtThumb();
 
     @Source("img/products/gquery/gquery-shirt.png")
     ImageResource gqueryShirt();
 
+    @Source("img/products/gquery/gquery-shirt-thumb.png")
+    ImageResource gqueryShirtThumb();
+
     @Source("img/products/chosen/chosen-shirt.png")
     ImageResource chosenShirt();
+
+    @Source("img/products/chosen/chosen-shirt-thumb.png")
+    ImageResource chosenShirtThumb();
 
     @Source("img/products/jukito/jukito-shirt.png")
     ImageResource jukitoShirt();
 
+    @Source("img/products/jukito/jukito-shirt-thumb.png")
+    ImageResource jukitoShirtThumb();
+
     @Source("img/products/gsss/gsss-shirt.png")
     ImageResource gsssShirt();
+
+    @Source("img/products/gsss/gsss-shirt-thumb.png")
+    ImageResource gsssShirtThumb();
 
     @Source("img/products/arcbees/arcbees-bag.png")
     ImageResource arcbeesBag();
@@ -95,6 +110,27 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/jukito/jukito-bag.png")
     ImageResource jukitoBag();
 
+    @Source("img/products/arcbees/arcbees-bag-thumb.png")
+    ImageResource arcbeesBagThumb();
+
+    @Source("img/products/chosen/chosen-bag-thumb.png")
+    ImageResource chosenBagThumb();
+
+    @Source("img/products/gae/gae-bag-thumb.png")
+    ImageResource gaeBagThumb();
+
+    @Source("img/products/gquery/gquery-bag-thumb.png")
+    ImageResource gqueryBagThumb();
+
+    @Source("img/products/gsss/gsss-bag-thumb.png")
+    ImageResource gsssBagThumb();
+
+    @Source("img/products/gwtp/gwtp-bag-thumb.png")
+    ImageResource gwtpBagThumb();
+
+    @Source("img/products/jukito/jukito-bag-thumb.png")
+    ImageResource jukitoBagThumb();
+
     @Source("img/products/arcbees/arcbees-case.png")
     ImageResource arcbeesCase();
 
@@ -115,6 +151,48 @@ public interface PageHomeResources extends ClientBundle {
 
     @Source("img/products/jukito/jukito-case.png")
     ImageResource jukitoCase();
+
+    @Source("img/products/arcbees/arcbees-case-thumb.png")
+    ImageResource arcbeesCaseThumb();
+
+    @Source("img/products/chosen/chosen-case-thumb.png")
+    ImageResource chosenCaseThumb();
+
+    @Source("img/products/gae/gae-case-thumb.png")
+    ImageResource gaeCaseThumb();
+
+    @Source("img/products/gquery/gquery-case-thumb.png")
+    ImageResource gqueryCaseThumb();
+
+    @Source("img/products/gsss/gsss-case-thumb.png")
+    ImageResource gsssCaseThumb();
+
+    @Source("img/products/gwtp/gwtp-case-thumb.png")
+    ImageResource gwtpCaseThumb();
+
+    @Source("img/products/jukito/jukito-case-thumb.png")
+    ImageResource jukitoCaseThumb();
+
+    @Source("img/products/arcbees/arcbees-case-Big.png")
+    ImageResource arcbeesCaseBig();
+
+    @Source("img/products/chosen/chosen-case-Big.png")
+    ImageResource chosenCaseBig();
+
+    @Source("img/products/gae/gae-case-Big.png")
+    ImageResource gaeCaseBig();
+
+    @Source("img/products/gquery/gquery-case-Big.png")
+    ImageResource gqueryCaseBig();
+
+    @Source("img/products/gsss/gsss-case-Big.png")
+    ImageResource gsssCaseBig();
+
+    @Source("img/products/gwtp/gwtp-case-Big.png")
+    ImageResource gwtpCaseBig();
+
+    @Source("img/products/jukito/jukito-case-Big.png")
+    ImageResource jukitoCaseBig();
 
     @Source("img/products/arcbees/arcbees-usb.png")
     ImageResource arcbeesUsb();
@@ -137,6 +215,48 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/jukito/jukito-usb.png")
     ImageResource jukitoUsb();
 
+    @Source("img/products/arcbees/arcbees-usb-thumb.png")
+    ImageResource arcbeesUsbThumb();
+
+    @Source("img/products/chosen/chosen-usb-thumb.png")
+    ImageResource chosenUsbThumb();
+
+    @Source("img/products/gae/gae-usb-thumb.png")
+    ImageResource gaeUsbThumb();
+
+    @Source("img/products/gquery/gquery-usb-thumb.png")
+    ImageResource gqueryUsbThumb();
+
+    @Source("img/products/gsss/gsss-usb-thumb.png")
+    ImageResource gsssUsbThumb();
+
+    @Source("img/products/gwtp/gwtp-usb-thumb.png")
+    ImageResource gwtpUsbThumb();
+
+    @Source("img/products/jukito/jukito-usb-thumb.png")
+    ImageResource jukitoUsbThumb();
+
+    @Source("img/products/arcbees/arcbees-usb-Big.png")
+    ImageResource arcbeesUsbBig();
+
+    @Source("img/products/chosen/chosen-usb-Big.png")
+    ImageResource chosenUsbBig();
+
+    @Source("img/products/gae/gae-usb-Big.png")
+    ImageResource gaeUsbBig();
+
+    @Source("img/products/gquery/gquery-usb-Big.png")
+    ImageResource gqueryUsbBig();
+
+    @Source("img/products/gsss/gsss-usb-Big.png")
+    ImageResource gsssUsbBig();
+
+    @Source("img/products/gwtp/gwtp-usb-Big.png")
+    ImageResource gwtpUsbBig();
+
+    @Source("img/products/jukito/jukito-usb-Big.png")
+    ImageResource jukitoUsbBig();
+
     @Source("img/products/arcbees/arcbees-thermos.png")
     ImageResource arcbeesThermos();
 
@@ -152,11 +272,53 @@ public interface PageHomeResources extends ClientBundle {
     @Source("img/products/gsss/gsss-thermos.png")
     ImageResource gsssThermos();
 
-    @Source("img/products/gwtp/gwtp-thermos1.png")
+    @Source("img/products/gwtp/gwtp-thermos.png")
     ImageResource gwtpThermos();
 
     @Source("img/products/jukito/jukito-thermos.png")
     ImageResource jukitoThermos();
+
+    @Source("img/products/arcbees/arcbees-thermos-thumb.png")
+    ImageResource arcbeesThermosThumb();
+
+    @Source("img/products/chosen/chosen-thermos-thumb.png")
+    ImageResource chosenThermosThumb();
+
+    @Source("img/products/gae/gae-thermos-thumb.png")
+    ImageResource gaeThermosThumb();
+
+    @Source("img/products/gquery/gquery-thermos-thumb.png")
+    ImageResource gqueryThermosThumb();
+
+    @Source("img/products/gsss/gsss-thermos-thumb.png")
+    ImageResource gsssThermosThumb();
+
+    @Source("img/products/gwtp/gwtp-thermos-thumb.png")
+    ImageResource gwtpThermosThumb();
+
+    @Source("img/products/jukito/jukito-thermos-thumb.png")
+    ImageResource jukitoThermosThumb();
+
+    @Source("img/products/arcbees/arcbees-thermos-Big.png")
+    ImageResource arcbeesThermosBig();
+
+    @Source("img/products/chosen/chosen-thermos-Big.png")
+    ImageResource chosenThermosBig();
+
+    @Source("img/products/gae/gae-thermos-Big.png")
+    ImageResource gaeThermosBig();
+
+    @Source("img/products/gquery/gquery-thermos-Big.png")
+    ImageResource gqueryThermosBig();
+
+    @Source("img/products/gsss/gsss-thermos-Big.png")
+    ImageResource gsssThermosBig();
+
+    @Source("img/products/gwtp/gwtp-thermos-Big.png")
+    ImageResource gwtpThermosBig();
+
+    @Source("img/products/jukito/jukito-thermos-Big.png")
+    ImageResource jukitoThermosBig();
 
     @Source("img/products/arcbees/arcbees-cup.png")
     ImageResource arcbeesCup();
@@ -178,6 +340,48 @@ public interface PageHomeResources extends ClientBundle {
 
     @Source("img/products/jukito/jukito-cup.png")
     ImageResource jukitoCup();
+
+    @Source("img/products/arcbees/arcbees-cup-thumb.png")
+    ImageResource arcbeesCupThumb();
+
+    @Source("img/products/chosen/chosen-cup-thumb.png")
+    ImageResource chosenCupThumb();
+
+    @Source("img/products/gae/gae-cup-thumb.png")
+    ImageResource gaeCupThumb();
+
+    @Source("img/products/gquery/gquery-cup-thumb.png")
+    ImageResource gqueryCupThumb();
+
+    @Source("img/products/gsss/gsss-cup-thumb.png")
+    ImageResource gsssCupThumb();
+
+    @Source("img/products/gwtp/gwtp-cup-thumb.png")
+    ImageResource gwtpCupThumb();
+
+    @Source("img/products/jukito/jukito-cup-thumb.png")
+    ImageResource jukitoCupThumb();
+
+    @Source("img/products/arcbees/arcbees-cup-Big.png")
+    ImageResource arcbeesCupBig();
+
+    @Source("img/products/chosen/chosen-cup-Big.png")
+    ImageResource chosenCupBig();
+
+    @Source("img/products/gae/gae-cup-Big.png")
+    ImageResource gaeCupBig();
+
+    @Source("img/products/gquery/gquery-cup-Big.png")
+    ImageResource gqueryCupBig();
+
+    @Source("img/products/gsss/gsss-cup-Big.png")
+    ImageResource gsssCupBig();
+
+    @Source("img/products/gwtp/gwtp-cup-Big.png")
+    ImageResource gwtpCupBig();
+
+    @Source("img/products/jukito/jukito-cup-Big.png")
+    ImageResource jukitoCupBig();
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
             "css/colors.gss",
