@@ -191,7 +191,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         $(productDescription).text(productMessages.productDescription(productType));
         $(priceText).text(String.valueOf(productType.getPrice() + " $"));
 
-        productImage.setResource(productBrandUtil.getImage(productType, brand));
+        productImage.setResource(productBrandUtil.getBigImage(productType, brand));
 
         if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));

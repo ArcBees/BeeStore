@@ -30,11 +30,13 @@ import static java.util.AbstractMap.SimpleEntry;
 public class ProductBrandUtil {
     private final Map<SimpleEntry<Brand, ProductType>, ImageResource> images;
     private final Map<SimpleEntry<Brand, ProductType>, ImageResource> thumbnailImages;
+    private final Map<SimpleEntry<Brand, ProductType>, ImageResource> bigImages;
 
     @Inject
     public ProductBrandUtil(PageHomeResources resources) {
         images = initializeNormalImages(resources);
         thumbnailImages = initializeThumbnailImages(resources);
+        bigImages = initializeBigImages(resources);
     }
 
     private Map<SimpleEntry<Brand, ProductType>, ImageResource> initializeNormalImages(PageHomeResources resources) {
@@ -94,8 +96,8 @@ public class ProductBrandUtil {
     }
 
     private Map<SimpleEntry<Brand, ProductType>, ImageResource> initializeThumbnailImages(PageHomeResources resources) {
-        Map<SimpleEntry<Brand, ProductType>, ImageResource> images;
-        images = new HashMap<>();
+        Map<SimpleEntry<Brand, ProductType>, ImageResource> images = new HashMap<>();
+
 
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.SHIRT), resources.arcbeesShirtThumb());
         images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.BAG), resources.arcbeesBagThumb());
@@ -147,6 +149,65 @@ public class ProductBrandUtil {
         images.put(new SimpleEntry<>(Brand.GSSS, ProductType.PHONE_CASE), resources.gsssCaseThumb());
 
         return images;
+    }
+
+    private Map<SimpleEntry<Brand, ProductType>, ImageResource> initializeBigImages(PageHomeResources resources) {
+        Map<SimpleEntry<Brand, ProductType>, ImageResource> images = new HashMap<>();
+
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.SHIRT), resources.arcbeesShirt());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.BAG), resources.arcbeesBag());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.MUG), resources.arcbeesCupBig());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.THERMOS), resources.arcbeesThermosBig());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.USB_KEY), resources.arcbeesUsbBig());
+        images.put(new SimpleEntry<>(Brand.ARCBEES, ProductType.PHONE_CASE), resources.arcbeesCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.SHIRT), resources.gwtpShirt());
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.BAG), resources.gwtpBag());
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.MUG), resources.gwtpCupBig());
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.THERMOS), resources.gwtpThermosBig());
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.USB_KEY), resources.gwtpUsbBig());
+        images.put(new SimpleEntry<>(Brand.GWTP, ProductType.PHONE_CASE), resources.gwtpCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.SHIRT), resources.chosenShirt());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.BAG), resources.chosenBag());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.MUG), resources.chosenCup());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.THERMOS), resources.chosenThermos());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.USB_KEY), resources.chosenUsbBig());
+        images.put(new SimpleEntry<>(Brand.CHOSEN, ProductType.PHONE_CASE), resources.chosenCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.SHIRT), resources.jukitoShirt());
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.BAG), resources.jukitoBag());
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.MUG), resources.jukitoCupBig());
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.THERMOS), resources.jukitoThermosBig());
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.USB_KEY), resources.jukitoUsbBig());
+        images.put(new SimpleEntry<>(Brand.JUKITO, ProductType.PHONE_CASE), resources.jukitoCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.SHIRT), resources.gqueryShirt());
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.BAG), resources.gqueryBag());
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.MUG), resources.gqueryCupBig());
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.THERMOS), resources.gqueryThermosBig());
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.USB_KEY), resources.gqueryUsbBig());
+        images.put(new SimpleEntry<>(Brand.GQUERY, ProductType.PHONE_CASE), resources.gqueryCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.SHIRT), resources.gaeShirt());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.BAG), resources.gaeBag());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.MUG), resources.gaeCupBig());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.THERMOS), resources.gaeThermosBig());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.USB_KEY), resources.gaeUsbBig());
+        images.put(new SimpleEntry<>(Brand.GAE_STUDIO, ProductType.PHONE_CASE), resources.gaeCaseBig());
+
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.SHIRT), resources.gsssShirt());
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.BAG), resources.gsssBag());
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.MUG), resources.gsssCupBig());
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.THERMOS), resources.gsssThermosBig());
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.USB_KEY), resources.gsssUsbBig());
+        images.put(new SimpleEntry<>(Brand.GSSS, ProductType.PHONE_CASE), resources.gsssCaseBig());
+
+        return images;
+    }
+
+    public ImageResource getBigImage(ProductType productType, Brand brand) {
+        return bigImages.get(new SimpleEntry<>(brand, productType));
     }
 
     public ImageResource getImage(ProductType productType, Brand brand) {
