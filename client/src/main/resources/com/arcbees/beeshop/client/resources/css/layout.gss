@@ -1,6 +1,3 @@
-@require "fonts";
-@require "colors";
-
 /**
  * LAYOUT.GSS
  * Framework application style
@@ -11,6 +8,9 @@
  * - MAIN CONTAINER            Style for the layout - container, wrapper, main sections, stripes
  * - FOOTER                    Classes for differents elements
  */
+
+@require "fonts";
+@require "colors";
 
 /* -- BASE
 ------------------------ */
@@ -264,6 +264,7 @@ footer {
     padding: 35px 30px 20px;
 
     position: relative;
+    z-index: 999;
 }
 
 
