@@ -20,7 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beeshop.common.dto.ContactInfoDto;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.inject.Inject;
@@ -39,10 +42,21 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
-    public void addItem(ShoppingCartItem item) {
-        items.add(item);
+    public void addItem(final ShoppingCartItem item) {
+        ShoppingCartItem existingItemOfSameType = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
+            @Override
+            public boolean apply(ShoppingCartItem shoppingCartItem) {
+                return shoppingCartItem.equals(item);
+            }
+        }).orNull();
 
-        ShoppingCartChangedEvent.fire(item, this);
+        if (existingItemOfSameType != null) {
+            existingItemOfSameType.addMore(item.getQuantity());
+            ShoppingCartQuantityChangeEvent.fire(this, existingItemOfSameType, existingItemOfSameType.getQuantity());
+        } else {
+            items.add(item);
+            ShoppingCartChangedEvent.fire(item, this);
+        }
     }
 
     @Override
@@ -91,5 +105,9 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     @Override
     public void fireEvent(GwtEvent<?> gwtEvent) {
         eventBus.fireEventFromSource(gwtEvent, this);
+    }
+
+    protected List<ShoppingCartItem> getItems() {
+        return items;
     }
 }
