@@ -32,7 +32,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="http://www.arcbees.com/#!/contact">
+                                    <a href="http://www.arcbees.com/#!/contact" target="_blank">
                                         <ui:msg description="Contact us">Contact us</ui:msg>
                                     </a>
                                 </li>

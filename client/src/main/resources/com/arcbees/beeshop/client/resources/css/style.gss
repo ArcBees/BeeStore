@@ -16,6 +16,27 @@
     padding: 2px 15px;
 }
 
+.productName {
+    font-size: 2rem;
+}
+
+.brandName {
+    margin-bottom: 5px;
+}
+
+.brandName > span,
+.productName > span {
+    display: block;
+}
+
+.smallWords {
+    font-size: 1.5rem;
+}
+
+.smallerWords {
+    font-size: 1.6rem;
+}
+
 /* -- ARCBEES
 ------------------------ */
 
@@ -46,6 +67,10 @@
     background-color: C_PRODUCT_CHOSEN;
 }
 
+.chosen .brandName {
+    font-size: 2.4rem;
+}
+
 /* -- JUKITO
 ------------------------ */
 
@@ -74,6 +99,10 @@
     color: C_TEXT_LIGHT;
 }
 
+.gquery .brandName {
+    font-size: 2.3rem;
+}
+
 /* -- GSSS
 ------------------------ */
 
@@ -96,6 +125,15 @@
 .gaestudio .itemPrice,
 .gaestudio .mainProducts_bg {
     background-color: C_PRODUCT_GAE;
+}
+
+.gaestudio .brandName .smallWords {
+    font-size: 3rem;
+    line-height: .8em;
+}
+
+.gaestudio .brandName .smallerWords {
+    font-size: 1.6rem;
 }
 
 /* -- GENERIC STYLE
@@ -550,14 +588,6 @@ input[type=number]::-webkit-outer-spin-button {
 
     font-family: F_PRIMARY_BOLD;
     float: right;
-}
-
-span.smallWords {
-    font-size: 0.5em;
-}
-
-span.smallerWords {
-    font-size: 0.2em;
 }
 
 .rightPanel_confirmation p {
