@@ -16,8 +16,6 @@
 
 package com.arcbees.beeshop.client.application.product;
 
-import java.util.HashMap;
-
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.widget.brandpicker.BrandPicker;
@@ -32,16 +30,15 @@ import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
-import com.arcbees.beeshop.common.dto.Size;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.InputElement;
-import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.dom.client.UListElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -93,21 +90,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     @UiField(provided = true)
     BrandPicker brandPicker;
     @UiField
-    LIElement smallSizeListItem;
-    @UiField
-    LIElement mediumSizeListItem;
-    @UiField
-    LIElement largeSizeListItem;
-    @UiField
-    LIElement xlargeSizeListItem;
-    @UiField
-    AnchorElement smallAnchor;
-    @UiField
-    AnchorElement mediumAnchor;
-    @UiField
-    AnchorElement largeAnchor;
-    @UiField
-    AnchorElement xLargeAnchor;
+    UListElement sizes;
     @UiField
     InputElement quantity;
 
@@ -115,8 +98,6 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
-    private final HashMap<Size, LIElement> sizeListItemAssociation;
-    private final HashMap<Size, AnchorElement> sizeAnchorAssociation;
 
     @Inject
     ProductView(
@@ -131,20 +112,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
-        sizeListItemAssociation = new HashMap<>();
-        sizeAnchorAssociation = new HashMap<>();
 
         initWidget(uiBinder.createAndBindUi(this));
-
-        sizeListItemAssociation.put(Size.SMALL, smallSizeListItem);
-        sizeListItemAssociation.put(Size.MEDIUM, mediumSizeListItem);
-        sizeListItemAssociation.put(Size.LARGE, largeSizeListItem);
-        sizeListItemAssociation.put(Size.XLARGE, xlargeSizeListItem);
-
-        sizeAnchorAssociation.put(Size.SMALL, smallAnchor);
-        sizeAnchorAssociation.put(Size.MEDIUM, mediumAnchor);
-        sizeAnchorAssociation.put(Size.LARGE, largeAnchor);
-        sizeAnchorAssociation.put(Size.XLARGE, xLargeAnchor);
 
         bindSlot(SLOT_SHARE_PANEL, sharePanel);
 
@@ -200,43 +169,41 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
             toggleActiveShirtSizeIcon(productDto);
 
-            for (Size size : sizeAnchorAssociation.keySet()) {
-                setAnchorToSizeIcon(size, sizeAnchorAssociation.get(size));
-            }
+            setTargetToSizeAnchors();
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
             $(sizeDiv).hide();
         }
 
-        setAnchorToProduct(previous, productType.getPreviousProduct());
-        setAnchorToProduct(next, productType.getNextProduct());
-
-        for (Size size : sizeAnchorAssociation.keySet()) {
-            setAnchorToSizeIcon(size, sizeAnchorAssociation.get(size));
-        }
+        setTargetToNavigationAnchor(previous, productType.getPreviousProduct());
+        setTargetToNavigationAnchor(next, productType.getNextProduct());
 
         brandPicker.updateAnchors();
     }
 
-    private void setAnchorToSizeIcon(Size size, AnchorElement anchor) {
-        PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
-                .with(NameTokens.PARAM_SIZE, size.getValue())
-                .build();
+    private void setTargetToSizeAnchors() {
+        $("a", sizes).each(new Function() {
+            @Override
+            public void f(Element e) {
+                String size = $(e).attr("data-size");
 
-        anchor.setHref("#" + placeManager.buildHistoryToken(request));
+                PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
+                        .with(NameTokens.PARAM_SIZE, size)
+                        .build();
+
+                $(e).attr("href", "#" + placeManager.buildHistoryToken(request));
+            }
+        });
     }
 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
-        for (LIElement element : sizeListItemAssociation.values()) {
-            $(element).removeClass(page.style().active());
-        }
+        $("li", sizes).removeClass(page.style().active());
 
-        LIElement activeLIElement = sizeListItemAssociation.get(productDto.getProduct().getSize());
-        $(activeLIElement).addClass(page.style().active());
+        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active());
     }
 
-    private void setAnchorToProduct(AnchorElement anchor, ProductType productType) {
+    private void setTargetToNavigationAnchor(AnchorElement anchor, ProductType productType) {
         PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
                 .with(NameTokens.PARAM_ID, String.valueOf(productType.getId()))
                 .build();
