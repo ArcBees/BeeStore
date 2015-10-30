@@ -6,7 +6,7 @@
     <ui:with field="font" type="com.arcbees.beeshop.client.resources.FontResources"/>
 
     <g:HTMLPanel styleName="{res.style.orderBox}">
-        <g:Image resource="{res.beestoreLogo}" addStyleNames="{res.style.orderBox_img}"/>
+        <g:Image ui:field="productThumbnail" addStyleNames="{res.style.orderBox_img}"/>
         <div class="{res.style.orderBox_info}">
             <h4 ui:field="name" class="{res.style.orderBox_productName}"/>
             <span ui:field="itemColor" class="{res.style.orderBox_productColor}"/>

@@ -20,6 +20,7 @@ import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.client.resources.AppMessages;
 import com.arcbees.beeshop.client.resources.AppResources;
 import com.arcbees.beeshop.client.resources.Colors;
+import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
@@ -31,6 +32,7 @@ import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -57,14 +59,19 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
     Element delete;
     @UiField
     AppResources res;
+    @UiField
+    Image productThumbnail;
 
     private final AppMessages appMessages;
+    private final ProductBrandUtil productBrandUtil;
 
     @Inject
     CartItemView(
             Binder binder,
-            AppMessages appMessages) {
+            AppMessages appMessages,
+            ProductBrandUtil productBrandUtil) {
         this.appMessages = appMessages;
+        this.productBrandUtil = productBrandUtil;
         initWidget(binder.createAndBindUi(this));
 
         init();
@@ -95,6 +102,7 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
         size.setInnerText(translatedSize);
         price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
+        productThumbnail.setResource(productBrandUtil.getThumbnail(productType, productDto.getBrand()));
 
         if (productType.equals(ProductType.SHIRT)) {
             $(asWidget()).css("background-color", Colors.getBrandColor(productDto.getBrand()));
