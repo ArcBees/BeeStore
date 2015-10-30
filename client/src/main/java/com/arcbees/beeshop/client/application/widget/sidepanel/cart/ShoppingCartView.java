@@ -39,6 +39,8 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     ButtonElement checkoutButton;
     @UiField
     ReplacePanel cartItems;
+    @UiField
+    ButtonElement closeCart;
 
     @Inject
     ShoppingCartView(
@@ -52,11 +54,19 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
 
     private void bind() {
         $(numberOfItemsTooltip).hide();
+        $(checkoutButton).hide();
 
         $(checkoutButton).click(new Function() {
             @Override
             public void f() {
                 getUiHandlers().onCheckout();
+            }
+        });
+
+        $(closeCart).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onClose();
             }
         });
     }
@@ -69,5 +79,17 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
             $(numberOfItemsTooltip).show();
             $(numberOfItemsTooltip).text(String.valueOf(number));
         }
+    }
+
+    @Override
+    public void showEmptyCart() {
+        $(checkoutButton).hide();
+        $(closeCart).show();
+    }
+
+    @Override
+    public void showCheckout() {
+        $(checkoutButton).show();
+        $(closeCart).hide();
     }
 }

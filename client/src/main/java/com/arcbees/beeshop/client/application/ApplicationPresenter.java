@@ -21,6 +21,8 @@ import javax.inject.Inject;
 import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
+import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
+import com.arcbees.beeshop.client.events.CloseShoppingCartEventHandler;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
@@ -37,7 +39,8 @@ import com.gwtplatform.mvp.client.proxy.NavigationHandler;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
-        implements BrandChangedEventHandler, NavigationHandler, ShoppingCartChangedEventHandler {
+        implements BrandChangedEventHandler, NavigationHandler, ShoppingCartChangedEventHandler,
+        CloseShoppingCartEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -49,13 +52,15 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         void updateItemNumber(int number);
 
         void updateNavigationHref();
+
+        void closeShoppingCart();
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
-    
+
     private CurrentOrder currentOrder;
 
     @Inject
@@ -72,6 +77,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onCloseShoppingCart(CloseShoppingCartEvent event) {
+        getView().closeShoppingCart();
+    }
+
+    @Override
     protected void onBind() {
         setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
@@ -80,6 +90,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         addVisibleHandler(ShoppingCartChangedEvent.TYPE, this);
 
         addVisibleHandler(NavigationEvent.getType(), this);
+
+        addVisibleHandler(CloseShoppingCartEvent.TYPE, this);
     }
 
     @ProxyEvent

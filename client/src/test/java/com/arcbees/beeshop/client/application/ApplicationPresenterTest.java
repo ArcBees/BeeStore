@@ -22,8 +22,8 @@ import org.junit.runner.RunWith;
 
 import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
+import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.common.dto.Brand;
-import com.gwtplatform.mvp.client.AutobindDisable;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -61,5 +61,12 @@ public class ApplicationPresenterTest {
         presenter.onNavigation(event);
 
         verify(view).updateNavigationHref();
+    }
+
+    @Test
+    public void onCloseShoppingCart_closeShoppingCart() {
+        presenter.onCloseShoppingCart(mock(CloseShoppingCartEvent.class));
+
+        verify(view).closeShoppingCart();
     }
 }
