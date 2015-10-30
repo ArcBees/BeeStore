@@ -184,6 +184,10 @@ public interface AppResources extends ClientBundle {
         String smallerWords();
 
         String rightPanel_empty();
+
+        String brandName();
+
+        String productName();
     }
 
     @Source("img/Beestore-logo.png")

@@ -26,9 +26,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     @UiField
-    SpanElement brandName;
+    DivElement brandName;
     @UiField
-    SpanElement productName;
+    DivElement productName;
     @UiField
     DivElement price;
     @UiField
