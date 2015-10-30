@@ -70,7 +70,7 @@
                         </ul>
                     </div>
 
-                    <input ui:field="quantity" type="number" class="{res.style.inputQuantity}" value="1"/>
+                    <input ui:field="quantity" type="number" min="1" class="{res.style.inputQuantity}" value="1"/>
                     <button ui:field="addToCart" class="{comp.style.btn} {comp.style.btn_outline}">Add to cart</button>
                     <div class="{res.style.share}">
                         <i class="{font.icons.iconShare}" ui:field="shareButton"/>
