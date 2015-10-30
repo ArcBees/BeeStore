@@ -18,7 +18,6 @@ package com.arcbees.beeshop.client.resources;
 
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
-import com.google.gwt.resources.client.ImageResource;
 
 public interface PageProductResources extends ClientBundle {
     interface Style extends CssResource {
@@ -50,7 +49,4 @@ public interface PageProductResources extends ClientBundle {
             "fonts/fonts.gss",
             "css/pages/product.gss"})
     Style style();
-
-    @Source("img/products/product-bag.png")
-    ImageResource productBag();
 }
