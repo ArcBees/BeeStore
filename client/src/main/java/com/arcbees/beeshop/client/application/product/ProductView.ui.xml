@@ -1,7 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
         xmlns:a='urn:import:com.arcbees.ui'
-        xmlns:brandpicker="urn:import:com.arcbees.beeshop.client.application.widget.brandpicker">
+        xmlns:brandpicker="urn:import:com.arcbees.beeshop.client.application.widget.brandpicker"
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beeshop.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beeshop.client.resources.ComponentsResources"/>
@@ -98,9 +101,9 @@
                 </div>
             </div>
         </div>
+
         <div ui:field="productImageDiv" class="{page.style.product_img}">
             <g:Image ui:field="productImage"/>
         </div>
-
     </g:HTMLPanel>
 </ui:UiBinder>
