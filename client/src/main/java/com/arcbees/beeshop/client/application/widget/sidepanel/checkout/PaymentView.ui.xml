@@ -36,23 +36,22 @@
 
             <fieldset>
                 <input class="{comp.style.field}" type="text" placeholder="Card number" required="required" ui:field="number"/>
+                <input class="{comp.style.field}" type="text" placeholder="CVS" required="required" ui:field="cvs"/>
             </fieldset>
 
             <fieldset>
-                <input class="{comp.style.field}" type="text" placeholder="CVS" required="required" ui:field="cvs"/>
                 <input class="{comp.style.field}" type="number" placeholder="MM" required="required" min="1" step="1" max="12" ui:field="expMonth"/>
-                /
                 <input class="{comp.style.field}" type="number" placeholder="YYYY" required="required" min="2015" step="1" max="2100" ui:field="expYear"/>
             </fieldset>
+
+            <p>We don't store any credit information on our server.
+                <a href="https://stripe.com/about">Learn more</a>
+            </p>
 
             <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}" type="submit" ui:field="submit">
                 Place order
             </button>
         </form>
-
-        <p>We don't store any credit information on our server.
-            <a href="https://stripe.com/about">Learn more</a>
-        </p>
     </g:HTMLPanel>
 </ui:UiBinder>
 
