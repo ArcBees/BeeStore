@@ -9,6 +9,8 @@
     <ui:with field="page" type="com.arcbees.beeshop.client.resources.PageProductResources"/>
     <ui:with field="slider" type="com.arcbees.beeshop.client.resources.SliderResources"/>
 
+    <ui:import field="com.arcbees.beeshop.common.dto.Size.*"/>
+
     <g:HTMLPanel addStyleNames="{page.style.product}">
         <div ui:field="productInfoDiv" class="{page.style.product_info}">
 
@@ -46,24 +48,24 @@
                     <div ui:field="sizeDiv">
                         <h3>size</h3>
 
-                        <ul class="{page.style.product_size}">
-                            <li ui:field="smallSizeListItem">
-                                <a ui:field="smallAnchor">S
+                        <ul class="{page.style.product_size}" ui:field="sizes">
+                            <li data-size="{SMALL.getValue}">
+                                <a data-size="{SMALL.getValue}">S
                                     <span class="{res.style.visuallyHidden}">mall</span>
                                 </a>
                             </li>
-                            <li ui:field="mediumSizeListItem" class="{page.style.active}">
-                                <a ui:field="mediumAnchor">M
+                            <li class="{page.style.active}" data-size="{MEDIUM.getValue}">
+                                <a data-size="{MEDIUM.getValue}">M
                                     <span class="{res.style.visuallyHidden}">edium</span>
                                 </a>
                             </li>
-                            <li ui:field="largeSizeListItem">
-                                <a ui:field="largeAnchor">L
+                            <li data-size="{LARGE.getValue}">
+                                <a data-size="{LARGE.getValue}">L
                                     <span class="{res.style.visuallyHidden}">arge</span>
                                 </a>
                             </li>
-                            <li ui:field="xlargeSizeListItem">
-                                <a ui:field="xLargeAnchor">XL
+                            <li data-size="{XLARGE.getValue}">
+                                <a data-size="{XLARGE.getValue}">XL
                                     <span class="{res.style.visuallyHidden}">arge</span>
                                 </a>
                             </li>
