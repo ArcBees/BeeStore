@@ -17,10 +17,13 @@
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitems.CartItemsPresenter;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -29,7 +32,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 
 public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter.MyView>
-        implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler {
+        implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler {
     interface MyView extends View, HasUiHandlers<ShoppingCartUiHandlers> {
         void updateItemNumber(int number);
 
@@ -66,6 +69,11 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
         showCartContent();
     }
 
+    @Override
+    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
+        getView().updateItemNumber(currentOrder.getSize());
+    }
+
     private void showCartContent() {
         if (currentOrder.isEmpty()) {
             getView().showEmptyCart();
@@ -89,6 +97,7 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
         setInSlot(SLOT_CART_ITEM, cartItemsPresenter);
 
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
+        addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         showCartContent();
     }

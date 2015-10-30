@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem;
 
 import javax.inject.Inject;
 

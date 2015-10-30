@@ -14,9 +14,11 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitems;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.CartItemFactory;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.CartItemPresenter;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.google.inject.Inject;

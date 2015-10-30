@@ -16,6 +16,9 @@
 
 package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.CartItemFactory;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.CartItemModule;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitems.CartItemsModule;
 import com.google.gwt.inject.client.assistedinject.GinFactoryModuleBuilder;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
@@ -23,11 +26,10 @@ public class ShoppingCartModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
         install(new GinFactoryModuleBuilder().build(CartItemFactory.class));
+        install(new CartItemModule());
+        install(new CartItemsModule());
 
-        bind(CartItemPresenter.MyView.class).to(CartItemView.class);
         bindSingletonPresenterWidget(ShoppingCartPresenter.class, ShoppingCartPresenter.MyView.class,
                 ShoppingCartView.class);
-        bindPresenterWidget(CartItemsPresenter.class, CartItemsPresenter.MyView.class,
-                CartItemsView.class);
     }
 }

@@ -14,10 +14,13 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
+package com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.inject.client.AbstractGinModule;
 
-public interface CartItemUiHandlers extends UiHandlers {
-    void delete();
+public class CartItemModule extends AbstractGinModule {
+    @Override
+    protected void configure() {
+        bind(CartItemPresenter.MyView.class).to(CartItemView.class);
+    }
 }

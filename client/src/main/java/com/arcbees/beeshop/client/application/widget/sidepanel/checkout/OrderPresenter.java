@@ -18,7 +18,7 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
-import com.arcbees.beeshop.client.application.widget.sidepanel.cart.CartItemsPresenter;
+import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitems.CartItemsPresenter;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
