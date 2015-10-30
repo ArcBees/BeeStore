@@ -18,6 +18,8 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.client.resources.AppMessages;
+import com.arcbees.beeshop.client.resources.AppResources;
+import com.arcbees.beeshop.client.resources.Colors;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
@@ -53,6 +55,8 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
     SpanElement price;
     @UiField
     Element delete;
+    @UiField
+    AppResources res;
 
     private final AppMessages appMessages;
 
@@ -91,6 +95,10 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
         size.setInnerText(translatedSize);
         price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
+
+        if (productType.equals(ProductType.SHIRT)) {
+            $(asWidget()).css("background-color", Colors.getBrandColor(productDto.getBrand()));
+        }
     }
 
     @Override
