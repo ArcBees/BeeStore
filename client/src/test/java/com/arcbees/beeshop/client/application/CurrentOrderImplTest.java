@@ -76,4 +76,14 @@ public class CurrentOrderImplTest {
         ProductDto productDto = new ProductDto(Product.createProduct(productType), Brand.getDefaultValue());
         return new ShoppingCartItem(productDto, quantity);
     }
+
+    @Test
+    public void getSize_withManyOfTheSameItem_countsForMany() {
+        currentOrder.addItem(createItem(ProductType.SHIRT, 3));
+        currentOrder.addItem(createItem(ProductType.BAG, 5));
+
+        int result = currentOrder.getSize();
+
+        assertThat(result).isEqualTo(8);
+    }
 }

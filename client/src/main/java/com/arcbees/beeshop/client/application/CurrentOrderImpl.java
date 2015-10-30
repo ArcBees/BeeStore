@@ -47,7 +47,13 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     @Override
     public int getSize() {
-        return items.size();
+        int size = 0;
+
+        for (ShoppingCartItem item : items) {
+            size += item.getQuantity();
+        }
+
+        return size;
     }
 
     @Override

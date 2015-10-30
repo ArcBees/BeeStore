@@ -63,19 +63,34 @@ public class BrandPicker implements IsWidget, AttachEvent.Handler {
         setRoot(binder.createAndBindUi(this));
     }
 
+    protected void setRoot(IsWidget widget) {
+        root = widget;
+
+        asWidget().addAttachHandler(this);
+    }
+
+    @Override
+    public Widget asWidget() {
+        return root.asWidget();
+    }
+
     @Override
     public void onAttachOrDetach(AttachEvent event) {
         if (event.isAttached()) {
-            PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
-
-            setAnchor(currentPlaceRequest, NameTokens.GAE_STUDIO, gaeAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.ARCBEES, arcbeesAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.CHOSEN, chosenAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.JUKITO, jukitoAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.GWTP, gwtpAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.GQUERY, gqueryAnchor);
-            setAnchor(currentPlaceRequest, NameTokens.GSSS, gsssAnchor);
+            updateAnchors();
         }
+    }
+
+    public void updateAnchors() {
+        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
+
+        setAnchor(currentPlaceRequest, NameTokens.GAE_STUDIO, gaeAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.ARCBEES, arcbeesAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.CHOSEN, chosenAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.JUKITO, jukitoAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.GWTP, gwtpAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.GQUERY, gqueryAnchor);
+        setAnchor(currentPlaceRequest, NameTokens.GSSS, gsssAnchor);
     }
 
     private void setAnchor(PlaceRequest currentPlaceRequest, String brand, AnchorElement anchor) {
@@ -89,16 +104,5 @@ public class BrandPicker implements IsWidget, AttachEvent.Handler {
 
     public void setAddStyleNames(String styleName) {
         asWidget().addStyleName(styleName);
-    }
-
-    @Override
-    public Widget asWidget() {
-        return root.asWidget();
-    }
-
-    protected void setRoot(IsWidget widget) {
-        root = widget;
-
-        asWidget().addAttachHandler(this);
     }
 }

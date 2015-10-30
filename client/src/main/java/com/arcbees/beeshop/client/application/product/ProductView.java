@@ -38,10 +38,12 @@ import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
+import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Image;
@@ -107,6 +109,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     AnchorElement largeAnchor;
     @UiField
     AnchorElement xLargeAnchor;
+    @UiField
+    InputElement quantity;
 
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
@@ -159,7 +163,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         $(addToCart).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().onAddToCartButtonClicked();
+                int itemQuantity = Integer.parseInt(quantity.getValue());
+                getUiHandlers().onAddToCartButtonClicked(itemQuantity);
             }
         });
     }
@@ -189,13 +194,16 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         productImage.setResource(productBrandUtil.getImage(productType, brand));
 
-
         if (productType.equals(ProductType.SHIRT)) {
             $(productImageDiv).css("background-color", Colors.getBrandColor(brand));
             $(productInfoDiv).css("background-color", Colors.getBrandColor(brand));
             $(sizeDiv).show();
 
             toggleActiveShirtSizeIcon(productDto);
+
+            for (Size size : sizeAnchorMap.keySet()) {
+                setAnchorToSizeIcon(size, sizeAnchorMap.get(size));
+            }
         } else {
             $(productImageDiv).css("background-color", "");
             $(productInfoDiv).css("background-color", "");
@@ -204,18 +212,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         setAnchorToProduct(previous, productType.getPreviousProduct());
         setAnchorToProduct(next, productType.getNextProduct());
-
-        for (Size size : sizeAnchorMap.keySet()) {
-            setAnchorToSizeIcon(size, sizeAnchorMap.get(size));
-        }
-    }
-
-    private void setAnchorToSizeIcon(Size size, AnchorElement anchor) {
-        PlaceRequest request = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
-                .with(NameTokens.PARAM_SIZE, size.getValue())
-                .build();
-
-        anchor.setHref("#" + placeManager.buildHistoryToken(request));
+        brandPicker.updateAnchors();
     }
 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
@@ -225,6 +222,14 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
 
         LIElement activeLIElement = sizeLIMap.get(productDto.getProduct().getSize());
         $(activeLIElement).addClass(page.style().active());
+    }
+
+    private void setAnchorToSizeIcon(Size size, AnchorElement anchor) {
+        PlaceRequest placeRequest = new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
+                .with(NameTokens.PARAM_SIZE, size.getValue())
+                .build();
+
+        anchor.setHref("#" + placeManager.buildHistoryToken(placeRequest));
     }
 
     private void setAnchorToProduct(AnchorElement anchor, ProductType productType) {
