@@ -14,12 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
+package com.arcbees.beeshop.client.events;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-interface ShoppingCartUiHandlers extends UiHandlers {
-    void onCheckout();
-
-    void onClose();
+public interface CloseShoppingCartEventHandler extends EventHandler {
+    void onCloseShoppingCart(CloseShoppingCartEvent event);
 }

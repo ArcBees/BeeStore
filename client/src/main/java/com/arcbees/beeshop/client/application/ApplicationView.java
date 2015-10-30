@@ -118,6 +118,11 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         setI18nAnchors();
     }
 
+    @Override
+    public void closeShoppingCart() {
+        closeCart();
+    }
+
     private void bind() {
         shoppingCartOpen = false;
         $(numberOfItemsTooltip).hide();
@@ -137,23 +142,41 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         $(cartButton).click(new Function() {
             @Override
             public void f() {
-                if (shoppingCartOpen) {
-                    $(sidePanelContainer).removeClass(res.style().rightPanel__open());
-                    $(cartIcon).attr("class", font.icons().iconCart());
-                    $(cartButton).removeClass(res.style().active());
-                    $(cartIcon).text("");
-                    shoppingCartOpen = false;
-                } else {
-                    $(sidePanelContainer).addClass(res.style().rightPanel__open());
-                    $(cartIcon).text("+");
-                    $(cartIcon).removeClass("class", font.icons().iconCart());
-                    $(cartButton).addClass(res.style().active());
-                    shoppingCartOpen = true;
-                }
+                toggleCartVisibility();
             }
         });
 
         setI18nAnchors();
+    }
+
+    private void toggleCartVisibility() {
+        if (shoppingCartOpen) {
+            closeCart();
+        } else {
+            openCart();
+        }
+    }
+
+    private void openCart() {
+        $(sidePanelContainer).addClass(res.style().rightPanel__open());
+
+        $(cartIcon).text("+");
+        $(cartIcon).removeClass(font.icons().iconCart());
+
+        $(cartButton).addClass(res.style().active());
+
+        shoppingCartOpen = true;
+    }
+
+    private void closeCart() {
+        $(sidePanelContainer).removeClass(res.style().rightPanel__open());
+
+        $(cartIcon).text("");
+        $(cartIcon).addClass(font.icons().iconCart());
+
+        $(cartButton).removeClass(res.style().active());
+
+        shoppingCartOpen = false;
     }
 
     private void setI18nAnchors() {

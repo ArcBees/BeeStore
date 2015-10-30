@@ -18,6 +18,7 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.events.CheckoutContinueEvent;
+import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.google.inject.Inject;
@@ -31,6 +32,10 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
         implements ShoppingCartUiHandlers, ShoppingCartChangedEventHandler {
     interface MyView extends View, HasUiHandlers<ShoppingCartUiHandlers> {
         void updateItemNumber(int number);
+
+        void showEmptyCart();
+
+        void showCheckout();
     }
 
     static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEM = new PermanentSlot<>();
@@ -54,7 +59,19 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
+        int orderSize = currentOrder.getSize();
+
+        getView().updateItemNumber(orderSize);
+
+        showCartContent();
+    }
+
+    private void showCartContent() {
+        if (currentOrder.isEmpty()) {
+            getView().showEmptyCart();
+        } else {
+            getView().showCheckout();
+        }
     }
 
     @Override
@@ -63,9 +80,16 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
     }
 
     @Override
+    public void onClose() {
+        CloseShoppingCartEvent.fire(this);
+    }
+
+    @Override
     protected void onBind() {
         setInSlot(SLOT_CART_ITEM, cartItemsPresenter);
 
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
+
+        showCartContent();
     }
 }
