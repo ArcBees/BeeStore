@@ -23,10 +23,12 @@ import org.junit.runner.RunWith;
 import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresenter;
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -39,10 +41,14 @@ public class ApplicationPresenterTest {
         }
     }
 
+    private static final int ORDER_SIZE = 423;
+
     @Inject
     private ApplicationPresenter presenter;
     @Inject
     private ApplicationPresenter.MyView view;
+    @Inject
+    private CurrentOrder currentOrder;
 
     @Test
     public void onBrandChanged_changeBrandInView() {
@@ -68,5 +74,14 @@ public class ApplicationPresenterTest {
         presenter.onCloseShoppingCart(mock(CloseShoppingCartEvent.class));
 
         verify(view).closeShoppingCart();
+    }
+
+    @Test
+    public void onCartQuantityChanged_updateQuantityTooltip() {
+        given(currentOrder.getSize()).willReturn(ORDER_SIZE);
+
+        presenter.onShoppingCartQuantityChanged(mock(ShoppingCartQuantityChangeEvent.class));
+
+        verify(view).updateItemNumber(ORDER_SIZE);
     }
 }

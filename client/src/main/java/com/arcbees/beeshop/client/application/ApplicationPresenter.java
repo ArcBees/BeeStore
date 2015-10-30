@@ -25,6 +25,8 @@ import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.client.events.CloseShoppingCartEventHandler;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -40,7 +42,7 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
         implements BrandChangedEventHandler, NavigationHandler, ShoppingCartChangedEventHandler,
-        CloseShoppingCartEventHandler {
+        CloseShoppingCartEventHandler, ShoppingCartQuantityUpdatedEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -82,6 +84,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
+        getView().updateItemNumber(currentOrder.getSize());
+    }
+
+    @Override
     protected void onBind() {
         setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
@@ -92,6 +99,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         addVisibleHandler(NavigationEvent.getType(), this);
 
         addVisibleHandler(CloseShoppingCartEvent.TYPE, this);
+
+        addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
     }
 
     @ProxyEvent
