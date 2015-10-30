@@ -43,12 +43,12 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem existingItemOfSameType = Iterables.find(items, new Predicate<ShoppingCartItem>() {
+        ShoppingCartItem existingItemOfSameType = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
             @Override
             public boolean apply(ShoppingCartItem shoppingCartItem) {
                 return shoppingCartItem.equals(item);
             }
-        }, null);
+        }).orNull();
 
         if (existingItemOfSameType != null) {
             existingItemOfSameType.addMore(item.getQuantity());

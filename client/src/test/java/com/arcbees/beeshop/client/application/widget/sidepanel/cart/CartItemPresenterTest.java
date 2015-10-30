@@ -42,41 +42,38 @@ public class CartItemPresenterTest {
             install(new FactoryModuleBuilder().build(CartItemFactory.class));
         }
     }
+    final static int SOME_QUANTITY = 333;
+    final static int NEW_QUANTITY = 414;
 
     @Inject
     private CartItemFactory cartItemFactory;
-
-    private CartItemPresenter presenter;
-    private ProductDto productDto;
-    private int initialQuantity;
-    private ShoppingCartItem currentShoppingCartItem;
     @Inject
     private CartItemPresenter.MyView view;
+    private CartItemPresenter presenter;
+    private ShoppingCartItem currentShoppingCartItem;
 
     @Before
     public void setUp() {
-        currentShoppingCartItem = new ShoppingCartItem(productDto, initialQuantity);
+        currentShoppingCartItem = new ShoppingCartItem(new ProductDto(), SOME_QUANTITY);
 
         presenter = cartItemFactory.create(currentShoppingCartItem);
     }
 
     @Test
     public void onShoppingCartQuantityUpdated_updatesViewWithNewQuantity_whenCartItemIsSameAsCurrentOne() {
-        int newQuantity = 414;
         ShoppingCartQuantityChangeEvent updateEvent =
-                new ShoppingCartQuantityChangeEvent(currentShoppingCartItem, newQuantity);
+                new ShoppingCartQuantityChangeEvent(currentShoppingCartItem, NEW_QUANTITY);
 
         presenter.onShoppingCartQuantityChanged(updateEvent);
 
-        verify(view).updateQuantity(newQuantity);
+        verify(view).updateQuantity(NEW_QUANTITY);
     }
 
     @Test
     public void onShoppingCartQuantityUpdated_doesNothing_whenItemIsNotTheSameAsCurrentOne() {
-        int someQuantity = 333;
         ShoppingCartItem otherItem = mock(ShoppingCartItem.class);
         ShoppingCartQuantityChangeEvent updateEvent =
-                new ShoppingCartQuantityChangeEvent(otherItem, someQuantity);
+                new ShoppingCartQuantityChangeEvent(otherItem, SOME_QUANTITY);
 
         presenter.onShoppingCartQuantityChanged(updateEvent);
 
