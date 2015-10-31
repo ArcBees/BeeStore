@@ -32,21 +32,21 @@ public class CartItemColorUtil {
     String getShirtClass(Brand brand) {
         switch (brand) {
             case ARCBEES:
-                return appResources.style().shirtArcbees();
+                return appResources.style().orderBox__arcbeesShirt();
             case GQUERY:
-                return appResources.style().shirtGQuery();
+                return appResources.style().orderBox__gQueryShirt();
             case GAE_STUDIO:
-                return appResources.style().shirtGaeStudio();
+                return appResources.style().orderBox__gaeStudioShirt();
             case GWTP:
-                return appResources.style().shirtGWTP();
+                return appResources.style().orderBox__gwtpShirt();
             case JUKITO:
-                return appResources.style().shirtJukito();
+                return appResources.style().orderBox__jukitoShirt();
             case GSSS:
-                return appResources.style().shirtGSSS();
+                return appResources.style().orderBox__gsssShirt();
             case CHOSEN:
-                return appResources.style().shirtChosen();
+                return appResources.style().orderBox__chosenShirt();
             default:
-                return appResources.style().shirtArcbees();
+                return appResources.style().orderBox__arcbeesShirt();
         }
     }
 }
