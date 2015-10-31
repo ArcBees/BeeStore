@@ -526,7 +526,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox__gwtpShirt {
-    color: C_TEXT_LIGHT;
     background-color: C_PRODUCT_GWTP;
 }
 
