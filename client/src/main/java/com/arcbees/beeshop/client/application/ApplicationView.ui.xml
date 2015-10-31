@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui" 
+        xmlns:svg="urn:import:org.vectomatic.dom.svg.ui"
         xmlns:arcbees="urn:import:com.arcbees.ui"
         ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
         ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
@@ -17,57 +17,49 @@
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
             <header>
-                <div class="{res.style.header_bottom} {res.grid.row}">
-                    <div class="{res.grid.col} {res.grid.col_4}">
-                        <nav class="{res.style.header_menu}">
-                            <ul>
-                                <li>
-                                    <a ui:field="homeAnchor">
-                                        <ui:msg description="Home">Home</ui:msg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a ui:field="productsAnchor">
-                                        <ui:msg description="Products">Products</ui:msg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://www.arcbees.com/#!/contact" target="_blank">
-                                        <ui:msg description="Contact us">Contact us</ui:msg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="{res.grid.col} {res.grid.col_4} {res.style.beestore_logo}">
-                        <a href="#{nametokens.HOME}">
-                            <svg:SVGImage resource="{res.logoBeestore}"/>
-                        </a>
-                    </div>
-                    <div class="{res.grid.col} {res.grid.col_4}">
-                        <nav class="{res.style.header_bottom__right}">
-                            <li class="{res.style.cart}">
-                                <button ui:field="cartButton">
-                                    <i ui:field="cartIcon" class="{font.icons.iconCart}"/>
-                                    <span class="{res.style.visuallyHidden}">cart</span>
-                                </button>
-                                <div ui:field="numberOfItemsTooltip" class="{res.style.cart_notifications}">
-                                    <span ui:field="numberOfItems"/>
-                                </div>
-                            </li>
-                            <li class="{res.style.language}">
-                                <a ui:field="englishAnchor">ENG
-                                    <span class="{res.style.visuallyHidden}">LISH</span>
-                                </a>
-                            </li>
-                            <li class="{res.style.language}">
-                                <a ui:field="frenchAnchor">FR
-                                    <span class="{res.style.visuallyHidden}">ANÇAIS</span>
-                                </a>
-                            </li>
-                        </nav>
-                    </div>
-                </div>
+                <nav role="navigation" class="{res.style.header_menu}">
+                    <ul class="{res.style.clearfix}">
+                        <li class="{res.style.header_menu_item} {res.style.beestore_logo}">
+                            <a href="#{nametokens.HOME}">
+                                <svg:SVGImage resource="{res.logoBeestore}"/>
+                            </a>
+                        </li>
+                        <li class="{res.style.header_menu_item}">
+                            <a ui:field="homeAnchor">
+                                <ui:msg description="Home">Home</ui:msg>
+                            </a>
+                        </li>
+                        <li class="{res.style.header_menu_item}">
+                            <a ui:field="productsAnchor">
+                                <ui:msg description="Products">Products</ui:msg>
+                            </a>
+                        </li>
+                        <li class="{res.style.header_menu_item}">
+                            <a href="http://www.arcbees.com/#!/contact" target="_blank">
+                                <ui:msg description="Contact us">Contact us</ui:msg>
+                            </a>
+                        </li>
+                        <li class="{res.style.header_menu_item} {res.style.cart}">
+                            <button ui:field="cartButton">
+                                <i ui:field="cartIcon" class="{font.icons.iconCart}"/>
+                                <span class="{res.style.visuallyHidden}">cart</span>
+                            </button>
+                            <div ui:field="numberOfItemsTooltip" class="{res.style.cart_notifications}">
+                                <span ui:field="numberOfItems"/>
+                            </div>
+                        </li>
+                        <li class="{res.style.header_menu_item} {res.style.language}">
+                            <a ui:field="englishAnchor">ENG
+                                <span class="{res.style.visuallyHidden}">LISH</span>
+                            </a>
+                        </li>
+                        <li class="{res.style.header_menu_item} {res.style.language}">
+                            <a ui:field="frenchAnchor">FR
+                                <span class="{res.style.visuallyHidden}">ANÇAIS</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
 
             <g:SimplePanel ui:field="main" addStyleNames="{res.style.main}"/>
@@ -96,8 +88,7 @@
                             </a>
                         </li>
                         <li>
-                            <!-- TODO Add Link to contact page-->
-                            <a>
+                            <a href="http://www.arcbees.com/#!/contact" target="_blank">
                                 <ui:msg description="Contact us">Contact us</ui:msg>
                             </a>
                         </li>
@@ -120,11 +111,10 @@
 
             <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3}">
                 <ul class="{res.style.footer_linkArcbees}">
-                    <li>Arcbees
-                        <i class="{font.icons.iconArrowOutside}"/>
-                    </li>
-                    <li>Developer's platform
-                        <i class="{font.icons.iconArrowOutside}"/>
+                    <li>
+                        <a href="http://www.arcbees.com" target="_blank">Arcbees
+                            <i class="{font.icons.iconArrowOutside}"/>
+                        </a>
                     </li>
                 </ul>
                 <ul class="{res.style.footer_linkSocial}">

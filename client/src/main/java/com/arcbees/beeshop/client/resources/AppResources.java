@@ -45,11 +45,7 @@ public interface AppResources extends ClientBundle {
 
         String header_menu();
 
-        String header_bottom();
-
-        String header_bottom__right();
-
-        String wishlist();
+        String header_menu_item();
 
         String cart();
 
@@ -202,6 +198,8 @@ public interface AppResources extends ClientBundle {
         String orderBox__gsssShirt();
 
         String orderBox__chosenShirt();
+
+        String closeCart();
     }
 
     @Source("img/Beestore-logo.png")
