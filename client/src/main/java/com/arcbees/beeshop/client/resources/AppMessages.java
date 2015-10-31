@@ -29,4 +29,6 @@ public interface AppMessages extends Messages {
     String size(@Select Size size);
 
     String itemColor(@Select ProductType productType, @Select Brand brand);
+
+    String logoColor(@Select ProductType productType, @Select Brand brand);
 }

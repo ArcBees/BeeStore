@@ -19,6 +19,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.CurrentBrand;
+import com.arcbees.beeshop.client.events.BrandChangedEvent;
+import com.arcbees.beeshop.client.events.BrandChangedEventHandler;
 import com.arcbees.beeshop.client.resources.SliderResources;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.common.base.Strings;
@@ -38,18 +40,22 @@ import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class Slider implements IsWidget, AttachEvent.Handler {
+public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventHandler {
     interface Binder extends UiBinder<HTMLPanel, Slider> {
     }
 
-    private static final String DATA_INDEX = "data-index";
     private static final String TRANSITION_END = "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd";
+    public static final int ANIMATION_DURATION = 550;
 
     @Inject
     private static CurrentBrand currentBrand;
+    @Inject
+    private static EventBus eventBus;
     private static Binder BINDER = GWT.create(Binder.class);
 
     @UiField
@@ -63,6 +69,8 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     private List<IsWidget> children = Lists.newArrayList();
     private GQuery activeItem;
     private boolean activeAnimation;
+    private HandlerRegistration handlerRegistration;
+    private Brand brand;
 
     public Slider() {
         calls = new LinkedList<>();
@@ -86,6 +94,8 @@ public class Slider implements IsWidget, AttachEvent.Handler {
     @Override
     public void onAttachOrDetach(AttachEvent event) {
         if (event.isAttached()) {
+            handlerRegistration = eventBus.addHandler(BrandChangedEvent.TYPE, this);
+
             $(contents).find("li")
                     .one(Event.ONCLICK, null, createProductClickHandler())
                     .removeClass(sliderResources.style().activeProduct());
@@ -100,22 +110,12 @@ public class Slider implements IsWidget, AttachEvent.Handler {
             Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
                 @Override
                 public void execute() {
-                    $(contents).find("a").each(new Function() {
-                        @Override
-                        public void f() {
-                            Brand brand = currentBrand.get();
-                            String dataBrand = $(this).attr("data-brand");
-
-                            if (brand.getValue().equals(dataBrand)) {
-                                GQuery li = $(this).parent();
-                                li.unbind(BrowserEvents.CLICK);
-                                handleClick(li);
-                            }
-                        }
-                    });
+                    updateFromCurrentBrand();
                 }
             });
         } else {
+            handlerRegistration.removeHandler();
+
             for (final IsWidget child : children) {
                 $(child).unbind(BrowserEvents.CLICK);
             }
@@ -124,8 +124,36 @@ public class Slider implements IsWidget, AttachEvent.Handler {
         }
     }
 
+    public void updateFromCurrentBrand() {
+        Brand newBrand = currentBrand.get();
+
+        if (newBrand == brand || activeAnimation) {
+            return;
+        }
+
+        brand =  newBrand;
+
+        $(contents).find("a").each(new Function() {
+            @Override
+            public void f() {
+                String dataBrand = $(this).attr("data-brand");
+
+                if (brand.getValue().equals(dataBrand)) {
+                    GQuery li = $(this).parent();
+                    li.unbind(BrowserEvents.CLICK);
+                    handleClick(li);
+                }
+            }
+        });
+    }
+
     public void setAddStyleNames(String style) {
         asWidget().addStyleName(style);
+    }
+
+    @Override
+    public void onBrandChanged(BrandChangedEvent event) {
+        updateFromCurrentBrand();
     }
 
     Function createAnimation(final GQuery w) {
@@ -170,7 +198,7 @@ public class Slider implements IsWidget, AttachEvent.Handler {
                     nextCall.f();
                 }
             }
-        }.schedule(550);
+        }.schedule(ANIMATION_DURATION);
     }
 
     private Function createProductClickHandler() {
