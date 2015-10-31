@@ -5,6 +5,10 @@
  *
  * - REQUIRED
  * - PRODUCT                   Classes for products for sale
+ * - NAV                       Classes for next - previous navigation
+ * - DESCRIPTION               Classes for description of the product
+ * - PRODUCT SIZE              Classes for size of the product
+ * - IMG                       Classes for the img of the product
  */
 
 @require "fonts";
@@ -29,6 +33,9 @@
 
     vertical-align: top;
 }
+
+/* -- NAV
+------------------------ */
 
 ul.product_nav {
     text-transform: uppercase;
@@ -76,6 +83,9 @@ ul.product_nav {
     font-size: 1.3rem;
 }
 
+/* -- DESCRIPTION
+------------------------ */
+
 .product_description {
     background-color: C_LIGHT;
     text-align: center;
@@ -103,6 +113,9 @@ ul.product_nav {
 .product_option {
     margin: 45px 0 10px;
 }
+
+/* -- SIZE
+------------------------ */
 
 .product_size {
     margin-bottom: 55px;
@@ -145,37 +158,33 @@ ul.product_nav {
 
     position: absolute;
     left: 50%;
-    top: 0;
     z-index: -1;
 
-    @mixin rotate(90deg);
-    @mixin transition(all, .5s);
+    transform-origin: center center;
+    @mixin transform(rotate(90deg) scale(1));
+    @mixin transition(transform, .5s);
 }
 
 .product_size > li.active a {
     line-height: 3.8rem;
 
-    height: 38px;
-    width: 38px;
+    @mixin scale(1.1, 1.1);
 }
 
 .product_size > li.active a:before {
     color: C_DARK;
-    font-size: 3.8rem;
 
-    margin-left: -19px;
-
-    @mixin transform(rotate(90deg) scale(1.1));
+    @mixin transform(rotate(90deg) scale(1.05));
 }
 
-.product_size > li a:hover:before {
+.product_size > li a:hover::before {
     color: C_PRIMARY;
-    font-size: 3.4rem;
-
-    margin-left: -17px;
 
     @mixin transform(rotate(0deg) scale(1.05));
 }
+
+/* -- IMAGE
+------------------------ */
 
 .product_img {
     display: table-cell;
