@@ -21,7 +21,7 @@
             <p>
                 <ui:msg description="Your bag is so lonely">Your bag is so lonely</ui:msg>
                 <span>
-                    <ui:msg description="add some gears in it">add some gears in it</ui:msg>
+                    <ui:msg description="add some gear in it">add some gear to it</ui:msg>
                 </span>
             </p>
         </div>
