@@ -22,8 +22,6 @@ import com.arcbees.beeshop.client.application.ApplicationPresenter;
 import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.common.NameTokens;
-import com.arcbees.beeshop.common.dto.Brand;
-import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -108,11 +106,5 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     private void hideSharePanel() {
         getView().hideSharePanel();
         isSharePanelShown = false;
-    }
-
-    private ShoppingCartItem dummyItem() {
-        ProductDto productDto = new ProductDto(Product.createShirtWithDefaultSize(), Brand.getDefaultValue());
-
-        return new ShoppingCartItem(productDto, 2);
     }
 }

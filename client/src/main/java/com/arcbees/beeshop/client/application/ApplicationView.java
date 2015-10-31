@@ -42,6 +42,7 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 import static com.google.gwt.query.client.GQuery.$;
+import static com.google.gwt.query.client.GQuery.body;
 
 public class ApplicationView extends ViewImpl implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
@@ -99,8 +100,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     @Override
     public void changeBrand(Brand brand) {
-        $("body").removeClass();
-        $("body").addClass(getStyle(brand));
+        $(body).removeClass().addClass(getStyle(brand));
 
         setHomeHref(brand);
         setProductsHref(brand);
