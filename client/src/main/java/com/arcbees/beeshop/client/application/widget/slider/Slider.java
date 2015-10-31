@@ -50,7 +50,7 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
     }
 
     private static final String TRANSITION_END = "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd";
-    public static final int ANIMATION_DURATION = 550;
+    private static final int ANIMATION_DURATION = 550;
 
     @Inject
     private static CurrentBrand currentBrand;
