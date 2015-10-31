@@ -189,6 +189,8 @@ public interface AppResources extends ClientBundle {
 
         String productName();
 
+        String orderBox_productQuantity();
+
         String shirtArcbees();
 
         String shirtGQuery();

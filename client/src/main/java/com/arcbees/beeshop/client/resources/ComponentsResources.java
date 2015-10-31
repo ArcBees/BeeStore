@@ -63,7 +63,8 @@ public interface ComponentsResources extends ClientBundle {
         String btn__center();
     }
 
-    @Source({"css/colors.gss",
+    @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
+            "css/colors.gss",
             "fonts/fonts.gss",
             "css/forms.gss",
             "css/btns.gss"})

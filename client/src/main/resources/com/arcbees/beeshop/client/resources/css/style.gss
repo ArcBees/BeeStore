@@ -17,7 +17,7 @@
 }
 
 .productName {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .brandName {
@@ -176,6 +176,12 @@
     vertical-align: middle;
 
     cursor: pointer;
+
+    @mixin transition(border, .35s);
+}
+
+.inputQuantity:focus {
+    border: 4px solid C_PRIMARY;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -541,6 +547,10 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: F_PRIMARY_BOLD;
 }
 
+.orderBox_productQuantity {
+    margin-top: 10px;
+}
+
 .orderBox_productTimes {
     font-size: 2rem;
     text-transform: uppercase;
@@ -558,12 +568,27 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox_delete {
-    font-size: 2rem;
-
     display: table-cell;
     width: 20px;
 
     vertical-align: middle;
+
+}
+
+.orderBox_delete i {
+    font-size: 2rem;
+
+    display: block;
+
+    cursor: pointer;
+
+    @mixin transition(all, .5s);
+    @mixin transform(scale(1, 1) rotate(0deg));
+    transform-origin: center center;
+}
+
+.orderBox_delete i:hover {
+    @mixin transform(scale(1.1, 1.1) rotate(90deg));
 }
 
 .orderAmount {

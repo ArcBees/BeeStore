@@ -88,6 +88,8 @@
     color: C_DARK;
 
     border: 4px solid C_DARK;
+
+    @mixin transition(all, .5s);
 }
 
 .btn_outline:hover {
