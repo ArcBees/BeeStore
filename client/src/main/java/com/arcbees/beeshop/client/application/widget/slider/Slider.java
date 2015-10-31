@@ -126,7 +126,6 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
 
     public void updateFromCurrentBrand() {
         Brand newBrand = currentBrand.get();
-
         if (newBrand == brand || activeAnimation) {
             return;
         }
@@ -137,7 +136,6 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
             @Override
             public void f() {
                 String dataBrand = $(this).attr("data-brand");
-
                 if (brand.getValue().equals(dataBrand)) {
                     GQuery li = $(this).parent();
                     li.unbind(BrowserEvents.CLICK);
