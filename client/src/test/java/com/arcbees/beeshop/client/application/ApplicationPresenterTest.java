@@ -24,6 +24,7 @@ import com.arcbees.beeshop.client.application.widget.sidepanel.SidePanelPresente
 import com.arcbees.beeshop.client.events.BrandChangedEvent;
 import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.gwtplatform.mvp.client.proxy.NavigationEvent;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
@@ -62,7 +63,8 @@ public class ApplicationPresenterTest {
 
     @Test
     public void onNavigation_updateLanguageSwitchAnchors() {
-        NavigationEvent event = new NavigationEvent(mock(PlaceRequest.class));
+        PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.PRODUCT).build();
+        NavigationEvent event = new NavigationEvent(request);
 
         presenter.onNavigation(event);
 
@@ -83,5 +85,25 @@ public class ApplicationPresenterTest {
         presenter.onShoppingCartQuantityChanged(mock(ShoppingCartQuantityChangeEvent.class));
 
         verify(view).updateItemNumber(ORDER_SIZE);
+    }
+
+    @Test
+    public void onNavigation_setActiveTab_whenNameTokenMatchesFrench() {
+        PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.PRODUCT).build();
+        NavigationEvent event = new NavigationEvent(request);
+
+        presenter.onNavigation(event);
+
+        verify(view).setProductAnchorActive();
+    }
+
+    @Test
+    public void onNavigation_setActiveTab_whenNameTokenMatchesEnglish() {
+        PlaceRequest request = new PlaceRequest.Builder().nameToken(NameTokens.PRODUCT_FR).build();
+        NavigationEvent event = new NavigationEvent(request);
+
+        presenter.onNavigation(event);
+
+        verify(view).setProductAnchorActive();
     }
 }

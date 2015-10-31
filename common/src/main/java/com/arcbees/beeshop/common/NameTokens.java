@@ -53,6 +53,12 @@ public class NameTokens {
 
     private static final BiMap<String, String> placeKeys;
 
+    public static boolean matchesAnyLanguageOfNameToken(String nametokenToCheck, String nametokenToCheckAgainst) {
+        String translated = translate(nametokenToCheckAgainst);
+
+        return nametokenToCheck.equals(translated) || nametokenToCheck.equals(nametokenToCheckAgainst);
+    }
+
     public static String translate(String nameToken) {
         if (isEnglish(nameToken)) {
             return placeKeys.get(nameToken);

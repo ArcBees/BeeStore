@@ -97,45 +97,6 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         bind();
     }
 
-    @Override
-    public void changeBrand(Brand brand) {
-        $("body").removeClass();
-        $("body").addClass(getStyle(brand));
-
-        setHomeHref(brand);
-        setProductsHref(brand);
-    }
-
-    private void setHomeHref(Brand brand) {
-        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
-                .nameToken(nameTokensConstants.HOME())
-                .with(NameTokens.PARAM_BRAND, brand.getValue())
-                .build();
-
-        homeAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
-
-    }
-
-    private void setProductsHref(Brand brand) {
-        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
-                .nameToken(nameTokensConstants.PRODUCT())
-                .with(NameTokens.PARAM_BRAND, brand.getValue())
-                .with(NameTokens.PARAM_ID, String.valueOf(ProductType.SHIRT.getId()))
-                .build();
-
-        productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
-    }
-
-    @Override
-    public void updateNavigationHref() {
-        setI18nAnchors();
-    }
-
-    @Override
-    public void closeShoppingCart() {
-        closeCart();
-    }
-
     private void bind() {
         shoppingCartOpen = false;
         $(numberOfItemsTooltip).hide();
@@ -170,15 +131,15 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         }
     }
 
-    private void openCart() {
-        $(sidePanelContainer).addClass(res.style().rightPanel__open());
+    private void setI18nAnchors() {
+        if (isFrench()) {
+            setAnchorHighlighted(frenchAnchor);
+        } else {
+            setAnchorHighlighted(englishAnchor);
+        }
 
-        $(cartIcon).text("+");
-        $(cartIcon).removeClass(font.icons().iconCart());
-
-        $(cartButton).addClass(res.style().active());
-
-        shoppingCartOpen = true;
+        setLanguageAnchor(NameTokens.LANGUAGE_FRENCH, frenchAnchor);
+        setLanguageAnchor(NameTokens.LANGUAGE_ENGLISH, englishAnchor);
     }
 
     private void closeCart() {
@@ -192,15 +153,20 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         shoppingCartOpen = false;
     }
 
-    private void setI18nAnchors() {
-        if (isFrench()) {
-            setAnchorHighlighted(frenchAnchor);
-        } else {
-            setAnchorHighlighted(englishAnchor);
-        }
+    private void openCart() {
+        $(sidePanelContainer).addClass(res.style().rightPanel__open());
 
-        setLanguageAnchor(NameTokens.LANGUAGE_FRENCH, frenchAnchor);
-        setLanguageAnchor(NameTokens.LANGUAGE_ENGLISH, englishAnchor);
+        $(cartIcon).text("+");
+        $(cartIcon).removeClass(font.icons().iconCart());
+
+        $(cartButton).addClass(res.style().active());
+
+        shoppingCartOpen = true;
+    }
+
+    private boolean isFrench() {
+        LocaleInfo currentLocale = LocaleInfo.getCurrentLocale();
+        return currentLocale.getLocaleName().equals(NameTokens.LANGUAGE_FRENCH);
     }
 
     private void setAnchorHighlighted(AnchorElement languageAnchor) {
@@ -209,11 +175,6 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
     private void setLanguageAnchor(String language, AnchorElement anchorElement) {
         anchorElement.setHref(buildPath(language));
-    }
-
-    private boolean isFrench() {
-        LocaleInfo currentLocale = LocaleInfo.getCurrentLocale();
-        return currentLocale.getLocaleName().equals(NameTokens.LANGUAGE_FRENCH);
     }
 
     private String buildPath(String language) {
@@ -231,13 +192,12 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     @Override
-    public void updateItemNumber(int number) {
-        if (number == 0) {
-            $(numberOfItemsTooltip).hide();
-        } else {
-            $(numberOfItems).text(String.valueOf(number));
-            $(numberOfItemsTooltip).show();
-        }
+    public void changeBrand(Brand brand) {
+        $("body").removeClass();
+        $("body").addClass(getStyle(brand));
+
+        setHomeHref(brand);
+        setProductsHref(brand);
     }
 
     private String getStyle(Brand brand) {
@@ -259,6 +219,57 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             default:
                 GQuery.console.log("Couldn't determine the selected brand, picking up Arcbees.");
                 return res.style().arcbees();
+        }
+    }
+
+    private void setHomeHref(Brand brand) {
+        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
+                .nameToken(nameTokensConstants.HOME())
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .build();
+
+        homeAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
+    }
+
+    private void setProductsHref(Brand brand) {
+        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
+                .nameToken(nameTokensConstants.PRODUCT())
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .with(NameTokens.PARAM_ID, String.valueOf(ProductType.SHIRT.getId()))
+                .build();
+
+        productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
+    }
+
+    @Override
+    public void updateNavigationHref() {
+        setI18nAnchors();
+    }
+
+    @Override
+    public void closeShoppingCart() {
+        closeCart();
+    }
+
+    @Override
+    public void setProductAnchorActive() {
+        $(homeAnchor).removeClass(res.style().active());
+        $(productsAnchor).addClass(res.style().active());
+    }
+
+    @Override
+    public void setHomeAnchorActive() {
+        $(productsAnchor).removeClass(res.style().active());
+        $(homeAnchor).addClass(res.style().active());
+    }
+
+    @Override
+    public void updateItemNumber(int number) {
+        if (number == 0) {
+            $(numberOfItemsTooltip).hide();
+        } else {
+            $(numberOfItems).text(String.valueOf(number));
+            $(numberOfItemsTooltip).show();
         }
     }
 }

@@ -27,6 +27,7 @@ import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartQuantityUpdatedEventHandler;
+import com.arcbees.beeshop.common.NameTokens;
 import com.arcbees.beeshop.common.dto.Brand;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
@@ -56,6 +57,10 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         void updateNavigationHref();
 
         void closeShoppingCart();
+
+        void setProductAnchorActive();
+
+        void setHomeAnchorActive();
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
@@ -96,11 +101,11 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
         addVisibleHandler(ShoppingCartChangedEvent.TYPE, this);
 
-        addVisibleHandler(NavigationEvent.getType(), this);
-
         addVisibleHandler(CloseShoppingCartEvent.TYPE, this);
 
         addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
+
+        addRegisteredHandler(NavigationEvent.getType(), this);
     }
 
     @ProxyEvent
@@ -114,8 +119,17 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         getView().updateItemNumber(currentOrder.getSize());
     }
 
+    @ProxyEvent
     @Override
     public void onNavigation(NavigationEvent navigationEvent) {
+        String newNameToken = navigationEvent.getRequest().getNameToken();
+
+        if (NameTokens.matchesAnyLanguageOfNameToken(newNameToken, NameTokens.HOME)) {
+            getView().setHomeAnchorActive();
+        } else if (NameTokens.matchesAnyLanguageOfNameToken(newNameToken, NameTokens.PRODUCT)) {
+            getView().setProductAnchorActive();
+        }
+
         getView().updateNavigationHref();
     }
 }
