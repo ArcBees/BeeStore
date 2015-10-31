@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
 import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.events.CloseShoppingCartEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.AutobindDisable;
 
@@ -43,6 +44,8 @@ public class ShoppingCartPresenterTest {
             bind(AutobindDisable.class).toInstance(new AutobindDisable(true));
         }
     }
+
+    private static final java.lang.Integer ORDER_SIZE = 456;
 
     @Inject
     private ShoppingCartPresenter presenter;
@@ -94,5 +97,14 @@ public class ShoppingCartPresenterTest {
         presenter.onBind();
 
         view.showEmptyCart();
+    }
+
+    @Test
+    public void onCartQuantityChange_updateCartTooltip() {
+        given(currentOrder.getSize()).willReturn(ORDER_SIZE);
+
+        presenter.onShoppingCartQuantityChanged(mock(ShoppingCartQuantityChangeEvent.class));
+
+        verify(view).updateItemNumber(ORDER_SIZE);
     }
 }
