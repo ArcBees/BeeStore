@@ -6,11 +6,8 @@
  * Buttons application style
  *
  * - BASE                       Base style of a button
- * - SIZE                       Different size of buttons
- * - COLOR                      Color of buttons
  * - VARIANT                    Variant of buttons - Outline, Multiple lines
  * - STATE                      State of buttons - Alert, Disabled
- * - GROUP                      Group of buttons
  */
 
 /* -- BASE
@@ -36,48 +33,34 @@
 
     position: relative;
     vertical-align: middle;
+    z-index: 1;
 
     cursor: pointer;
 }
 
+.btn::after {
+    content: '';
+    background-color: C_TEXT;
+
+    width: 100%;
+    height: 0;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    @mixin transition(height, .2s);
+}
+
 .btn:hover {
-    color: C_TEXT;
-    background-color: C_LIGHT;
+    color: C_TEXT_LIGHT;
+
+    cursor: pointer;
 }
 
-/* -- SIZE
------------------------- */
-
-.btn_small {
-    padding: .2rem 1.5rem;
-}
-
-.btn_large {
-    padding: 1rem 1.5rem;
-}
-
-.btn_wide {
-    display: block;
-}
-
-/* -- COLOR
------------------------- */
-
-.btn_primary {
-    color: C_DARK;
-    background-color: #2da2bb;
-}
-
-.btn_primary:hover {
-    background-color: #006699;
-}
-
-.btn_secondary {
-    background-color: #fbe983;
-}
-
-.btn_secondary:hover {
-    background-color: #f2d52f;
+.btn:hover::after {
+    height: 100%;
 }
 
 /* -- VARIANT
@@ -88,50 +71,8 @@
     color: C_DARK;
 
     border: 4px solid C_DARK;
-}
 
-.btn_outline:hover {
-    color: C_TEXT_LIGHT;
-    background-color: C_DARK;
-
-    border-color: C_DARK;
-}
-
-.btn_outline.btn_primary {
-    color: #2da2bb;
-
-    border-color: #2da2bb;
-}
-
-.btn_outline.btn_primary:hover {
-    color: #006699;
-
-    border-color: #006699;
-}
-
-.btn_outline.btn_secondary {
-    color: #fbe983;
-
-    border-color: #fbe983;
-}
-
-.btn_outline.btn_secondary:hover {
-    color: #f2d52f;
-
-    border-color: #f2d52f;
-}
-
-.btn_content {
-    text-align: left;
-
-    display: inline-block;
-    margin-left: .2rem;
-
-    vertical-align: middle;
-}
-
-.btn_content span {
-    display: block;
+    @mixin transition(all, .5s);
 }
 
 .btn__center {
@@ -142,15 +83,6 @@
 /* -- STATE
 ------------------------ */
 
-.btn_alert {
-    background-color: #d14836;
-    color: #fff;
-}
-
-.btn_alert:hover {
-    background-color: #cc0000;
-}
-
 .btn[disabled],
 .btn_disabled,
 .btn_disabled:hover,
@@ -160,29 +92,4 @@
     cursor: default;
     pointer-events: none;
     opacity: .4;
-}
-
-/*  -- GROUP OF BUTTONS
------------------------- */
-
-.btns_group {
-    display: inline-block;
-
-    position: relative;
-}
-
-.btns_group .btn {
-    margin: 0;
-
-    float: left;
-}
-
-.btns_group.btns_group__round .btn:first-child {
-    border-top-left-radius: .25rem;
-    border-bottom-left-radius: .25rem;
-}
-
-.btns_group.btns_group__round .btn:last-child {
-    border-top-right-radius: .25rem;
-    border-bottom-right-radius: .25rem;
 }
