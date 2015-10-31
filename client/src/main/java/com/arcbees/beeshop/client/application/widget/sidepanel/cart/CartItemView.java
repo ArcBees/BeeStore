@@ -94,13 +94,15 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
         Product product = productDto.getProduct();
         ProductType productType = product.getProductType();
 
-        String translatedProductName = appMessages.brandName(productDto.getBrand());
+        String translatedBrandName = appMessages.brandName(productDto.getBrand());
         String translatedProductType = appMessages.productName(productType);
-        String translatedItemColor = appMessages.itemColor(productDto.getProductType(), productDto.getBrand());
+        String translatedItemColor = appMessages.itemColor(productType, productDto.getBrand());
+        String translatedLogoColor = appMessages.logoColor(productType, productDto.getBrand());
         String translatedSize = appMessages.size(product.getSize());
 
-        name.setInnerText(translatedProductName + " " + translatedProductType);
+        name.setInnerText(translatedBrandName + " " + translatedProductType);
         itemColor.setInnerText(translatedItemColor);
+        logoColor.setInnerText(translatedLogoColor);
         size.setInnerText(translatedSize);
         price.setInnerText(String.valueOf(productType.getPrice()));
         quantity.setValue(String.valueOf(item.getQuantity()));
