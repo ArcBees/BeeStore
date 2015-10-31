@@ -17,52 +17,51 @@ import javax.inject.Inject;
 
 import com.arcbees.beeshop.client.application.LocaleHelper;
 import com.arcbees.beeshop.common.NameTokens;
-import com.google.common.base.Strings;
 import com.google.gwt.user.client.History;
 import com.gwtplatform.mvp.client.Bootstrapper;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import com.gwtplatform.mvp.shared.proxy.TokenFormatter;
 
 public class BootstrapperImpl implements Bootstrapper {
     private final PlaceManager placeManager;
     private final LocaleHelper localeHelper;
+    private final TokenFormatter tokenFormatter;
 
     @Inject
     BootstrapperImpl(
             PlaceManager placeManager,
-            LocaleHelper localeHelper) {
+            LocaleHelper localeHelper,
+            TokenFormatter tokenFormatter) {
         this.placeManager = placeManager;
         this.localeHelper = localeHelper;
+        this.tokenFormatter = tokenFormatter;
     }
 
     @Override
     public void onBootstrap() {
-        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
-        String nameToken = Strings.nullToEmpty(History.getToken());
+        String historyToken = History.getToken();
+        PlaceRequest currentPlaceRequest =
+                tokenFormatter.toPlaceRequest(historyToken.isEmpty() ? NameTokens.HOME : historyToken);
+        String nameToken = currentPlaceRequest.getNameToken();
 
-        if (localeHelper.isEnglish()) {
-            if (!Strings.isNullOrEmpty(nameToken) && !NameTokens.isEnglish(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest, nameToken);
-                return;
-            } else if (Strings.isNullOrEmpty(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest, NameTokens.HOME);
-            }
-        } else if (localeHelper.isFrench()) {
-            if (NameTokens.isEnglish(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest, nameToken);
-                return;
-            } else if (Strings.isNullOrEmpty(nameToken)) {
-                revealTranslatedNameToken(currentPlaceRequest, NameTokens.HOME);
-            }
+        if (nameTokenInWrongLanguage(nameToken)) {
+            revealTranslatedNameToken(currentPlaceRequest);
+        } else {
+            placeManager.revealCurrentPlace();
         }
-
-        placeManager.revealCurrentPlace();
     }
 
-    private void revealTranslatedNameToken(PlaceRequest currentPlaceRequest, String nameToken) {
+    private boolean nameTokenInWrongLanguage(String nameToken) {
+        return localeHelper.isEnglish() && !NameTokens.isEnglish(nameToken)
+                || localeHelper.isFrench() && NameTokens.isEnglish(nameToken);
+    }
+
+    private void revealTranslatedNameToken(PlaceRequest currentPlaceRequest) {
         PlaceRequest placeRequest = new PlaceRequest.Builder(currentPlaceRequest)
-                .nameToken(NameTokens.translate(nameToken))
+                .nameToken(NameTokens.translate(currentPlaceRequest.getNameToken()))
                 .build();
+
         placeManager.revealPlace(placeRequest);
     }
 }
