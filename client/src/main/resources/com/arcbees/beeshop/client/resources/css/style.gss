@@ -617,12 +617,12 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
 
     @mixin transition(all, .5s);
-    @mixin transform(scale(1, 1) rotate(0deg));
+    @mixin scale(1, 1);
     transform-origin: center center;
 }
 
 .orderBox_delete i:hover {
-    @mixin transform(scale(1.1, 1.1) rotate(90deg));
+    @mixin scale(1.1, 1.1);
 }
 
 .orderAmount {
