@@ -21,6 +21,8 @@ import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.Car
 import com.arcbees.beeshop.client.application.widget.sidepanel.cart.cartitem.CartItemPresenter;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beeshop.client.events.ShoppingCartChangedEventHandler;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beeshop.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -28,7 +30,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
 public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
-        implements ShoppingCartChangedEventHandler {
+        implements ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler {
     interface MyView extends View {
         void showAndSetSubTotal(float subTotal);
 
@@ -55,6 +57,7 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
     @Override
     protected void onBind() {
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
+        addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
     }
 
     @Override
@@ -68,5 +71,10 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
         } else {
             getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
         }
+    }
+
+    @Override
+    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
+        getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
     }
 }

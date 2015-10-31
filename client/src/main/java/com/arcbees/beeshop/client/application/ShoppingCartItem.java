@@ -50,6 +50,10 @@ public class ShoppingCartItem {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public void addMore(int quantity) {
         this.quantity += quantity;
     }
