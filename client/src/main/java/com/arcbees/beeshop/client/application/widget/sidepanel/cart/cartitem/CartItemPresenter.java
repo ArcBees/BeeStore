@@ -60,6 +60,16 @@ public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
     }
 
     @Override
+    public void onQuantityChangedInView(int quantity) {
+        if (quantity == 0) {
+            delete();
+        } else {
+            item.setQuantity(quantity);
+            ShoppingCartQuantityChangeEvent.fire(this, item, quantity);
+        }
+    }
+
+    @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
         if (item == event.getExistingItem()) {
             getView().updateQuantity(event.getNewQuantity());

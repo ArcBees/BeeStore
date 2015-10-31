@@ -31,6 +31,7 @@ import com.arcbees.beeshop.common.dto.Brand;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
 import com.arcbees.ui.ReplacePanel;
+import com.google.common.base.Strings;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
@@ -131,10 +132,21 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         $(addToCart).click(new Function() {
             @Override
             public void f() {
-                int itemQuantity = Integer.parseInt(quantity.getValue());
-                getUiHandlers().onAddToCartButtonClicked(itemQuantity);
+                int quantity = getQuantity();
+                if (quantity > 0) {
+                    getUiHandlers().onAddToCartButtonClicked(quantity);
+                }
             }
         });
+    }
+
+    private int getQuantity() {
+        int quantity = 0;
+        if (!Strings.isNullOrEmpty(this.quantity.getValue())) {
+            quantity = Integer.parseInt(this.quantity.getValue());
+        }
+
+        return quantity;
     }
 
     @Override

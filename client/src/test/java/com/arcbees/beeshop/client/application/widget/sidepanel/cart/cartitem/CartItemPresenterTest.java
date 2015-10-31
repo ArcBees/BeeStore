@@ -24,11 +24,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.arcbees.beeshop.client.application.CurrentOrder;
 import com.arcbees.beeshop.client.application.ShoppingCartItem;
 import com.arcbees.beeshop.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -42,6 +44,7 @@ public class CartItemPresenterTest {
             install(new FactoryModuleBuilder().build(CartItemFactory.class));
         }
     }
+
     final static int SOME_QUANTITY = 333;
     final static int NEW_QUANTITY = 414;
 
@@ -49,6 +52,9 @@ public class CartItemPresenterTest {
     private CartItemFactory cartItemFactory;
     @Inject
     private CartItemPresenter.MyView view;
+    @Inject
+    private CurrentOrder currentOrder;
+
     private CartItemPresenter presenter;
     private ShoppingCartItem currentShoppingCartItem;
 
@@ -57,6 +63,22 @@ public class CartItemPresenterTest {
         currentShoppingCartItem = new ShoppingCartItem(new ProductDto(), SOME_QUANTITY);
 
         presenter = cartItemFactory.create(currentShoppingCartItem);
+    }
+
+    @Test
+    public void onQuantityChangedInView_deletesItem_whenQuantityIs0() {
+        presenter.onQuantityChangedInView(0);
+
+        verify(currentOrder).removeItem(currentShoppingCartItem);
+    }
+
+    @Test
+    public void onQuantityChangedInView_updatesQuantityInItem_whenQuantityIsOver0() {
+        currentShoppingCartItem.setQuantity(4);
+
+        presenter.onQuantityChangedInView(2);
+
+        assertThat(currentShoppingCartItem.getQuantity()).isEqualTo(2);
     }
 
     @Test

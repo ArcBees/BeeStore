@@ -20,4 +20,6 @@ import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface CartItemUiHandlers extends UiHandlers {
     void delete();
+
+    void onQuantityChangedInView(int quantity);
 }

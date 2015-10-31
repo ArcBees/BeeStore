@@ -23,6 +23,7 @@ import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
+import com.google.common.base.Strings;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.InputElement;
@@ -35,10 +36,10 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
+import static com.google.gwt.event.dom.client.KeyCodes.KEY_ENTER;
 import static com.google.gwt.query.client.GQuery.$;
 
-public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
-        implements CartItemPresenter.MyView {
+public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> implements CartItemPresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, CartItemView> {
     }
 
@@ -86,6 +87,37 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers>
                 getUiHandlers().delete();
             }
         });
+
+        $(quantity).blur(new Function() {
+            @Override
+            public void f() {
+                updateQuantity();
+            }
+        }).keypress(new Function() {
+            @Override
+            public void f() {
+                if (getEvent().getKeyCode() == KEY_ENTER) {
+                    updateQuantity();
+                }
+            }
+        });
+    }
+
+    private void updateQuantity() {
+        getUiHandlers().onQuantityChangedInView(getQuantity());
+    }
+
+    private int getQuantity() {
+        int quantity = 0;
+        if (!Strings.isNullOrEmpty(this.quantity.getValue())) {
+            quantity = Integer.parseInt(this.quantity.getValue());
+        }
+
+        if (quantity < 0) {
+            quantity = 1;
+        }
+
+        return quantity;
     }
 
     @Override
