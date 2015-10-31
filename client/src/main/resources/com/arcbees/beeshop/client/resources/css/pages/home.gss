@@ -63,9 +63,9 @@
 }
 
 .welcome > p {
-    font-size: 1.8rem;
+    font-size: 2rem;
 
-    margin-bottom: 27px;
+    margin-bottom: 0;
 }
 
 .welcome > p > span {

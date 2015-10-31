@@ -18,8 +18,8 @@
                 <ui:msg description="Size">Size:</ui:msg>
                 <span ui:field="size"/>
             </span>
-            <div>
-                <input ui:field="quantity" type="number" min="1" class="{res.style.inputQuantity}"/>
+            <div class="{res.style.orderBox_productQuantity}">
+                <input ui:field="quantity" type="number" class="{res.style.inputQuantity}"/>
                 <span class="{res.style.orderBox_productTimes}">x</span>
                 <span class="{res.style.orderBox_productPrice}">
                     <span ui:field="price"/>
@@ -27,6 +27,8 @@
                 </span>
             </div>
         </div>
-        <i ui:field="delete" class="{res.style.orderBox_delete} {font.icons.iconDeleteCircle}"/>
+        <div class="{res.style.orderBox_delete}">
+            <i ui:field="delete" class="{font.icons.iconDeleteCircle}"/>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>

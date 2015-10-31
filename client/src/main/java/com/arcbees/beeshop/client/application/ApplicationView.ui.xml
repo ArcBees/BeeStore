@@ -22,7 +22,7 @@
                         <nav class="{res.style.header_menu}">
                             <ul>
                                 <li>
-                                    <a href="#{nametokens.HOME}">
+                                    <a ui:field="homeAnchor">
                                         <ui:msg description="Home">Home</ui:msg>
                                     </a>
                                 </li>

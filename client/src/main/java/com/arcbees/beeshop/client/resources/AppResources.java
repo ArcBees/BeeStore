@@ -141,8 +141,6 @@ public interface AppResources extends ClientBundle {
 
         String orderBox_delete();
 
-        String orderBox__shirt();
-
         String rightPanel_title();
 
         String rightPanel_step();
@@ -189,19 +187,21 @@ public interface AppResources extends ClientBundle {
 
         String productName();
 
-        String shirtArcbees();
+        String orderBox_productQuantity();
 
-        String shirtGQuery();
+        String orderBox__arcbeesShirt();
 
-        String shirtGaeStudio();
+        String orderBox__gQueryShirt();
 
-        String shirtGWTP();
+        String orderBox__gaeStudioShirt();
 
-        String shirtJukito();
+        String orderBox__gwtpShirt();
 
-        String shirtGSSS();
+        String orderBox__jukitoShirt();
 
-        String shirtChosen();
+        String orderBox__gsssShirt();
+
+        String orderBox__chosenShirt();
     }
 
     @Source("img/Beestore-logo.png")

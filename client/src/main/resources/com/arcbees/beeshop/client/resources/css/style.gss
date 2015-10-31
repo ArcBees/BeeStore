@@ -17,7 +17,7 @@
 }
 
 .productName {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 
 .brandName {
@@ -176,6 +176,12 @@
     vertical-align: middle;
 
     cursor: pointer;
+
+    @mixin transition(border, .35s);
+}
+
+.inputQuantity:focus {
+    border: 4px solid C_PRIMARY;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -502,8 +508,39 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: -30px;
 }
 
-.orderBox__shirt {
+.orderBox__arcbeesShirt {
     background-color: C_PRIMARY;
+}
+
+.orderBox__arcbeesShirt .inputQuantity:focus {
+    border: 4px solid C_LIGHT;
+}
+
+.orderBox__gQueryShirt {
+    color: C_TEXT_LIGHT;
+    background-color: C_PRODUCT_GQUERY;
+}
+
+.orderBox__gaeStudioShirt {
+    background-color: C_PRODUCT_GAE;
+}
+
+.orderBox__gwtpShirt {
+    background-color: C_PRODUCT_GWTP;
+}
+
+.orderBox__jukitoShirt {
+    color: C_TEXT_LIGHT;
+    background-color: C_PRODUCT_JUKITO;
+}
+
+.orderBox__gsssShirt {
+    color: C_TEXT_LIGHT;
+    background-color: C_PRODUCT_GSS;
+}
+
+.orderBox__chosenShirt {
+    background-color: C_PRODUCT_CHOSEN;
 }
 
 .orderBox_img,
@@ -541,6 +578,10 @@ input[type=number]::-webkit-outer-spin-button {
     font-family: F_PRIMARY_BOLD;
 }
 
+.orderBox_productQuantity {
+    margin-top: 10px;
+}
+
 .orderBox_productTimes {
     font-size: 2rem;
     text-transform: uppercase;
@@ -558,12 +599,27 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox_delete {
-    font-size: 2rem;
-
     display: table-cell;
     width: 20px;
 
     vertical-align: middle;
+
+}
+
+.orderBox_delete i {
+    font-size: 2rem;
+
+    display: block;
+
+    cursor: pointer;
+
+    @mixin transition(all, .5s);
+    @mixin transform(scale(1, 1) rotate(0deg));
+    transform-origin: center center;
+}
+
+.orderBox_delete i:hover {
+    @mixin transform(scale(1.1, 1.1) rotate(90deg));
 }
 
 .orderAmount {
@@ -649,17 +705,3 @@ input[type=number]::-webkit-outer-spin-button {
     padding: .35em 1em;
     margin: 0 auto;
 }
-
-.shirtArcbees { }
-
-.shirtGQuery { }
-
-.shirtGaeStudio { }
-
-.shirtGWTP { }
-
-.shirtJukito { }
-
-.shirtGSSS { }
-
-.shirtChosen { }
