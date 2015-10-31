@@ -66,6 +66,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     Element cartIcon;
     @UiField
+    AnchorElement homeAnchor;
+    @UiField
     AnchorElement productsAnchor;
     @UiField
     AppResources res;
@@ -100,7 +102,18 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         $("body").removeClass();
         $("body").addClass(getStyle(brand));
 
+        setHomeHref(brand);
         setProductsHref(brand);
+    }
+
+    private void setHomeHref(Brand brand) {
+        PlaceRequest newPlaceRequest = new PlaceRequest.Builder()
+                .nameToken(nameTokensConstants.HOME())
+                .with(NameTokens.PARAM_BRAND, brand.getValue())
+                .build();
+
+        homeAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
+
     }
 
     private void setProductsHref(Brand brand) {
