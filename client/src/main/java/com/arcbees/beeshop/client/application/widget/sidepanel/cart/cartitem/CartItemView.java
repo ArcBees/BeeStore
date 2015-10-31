@@ -23,6 +23,7 @@ import com.arcbees.beeshop.client.resources.ProductBrandUtil;
 import com.arcbees.beeshop.common.dto.Product;
 import com.arcbees.beeshop.common.dto.ProductDto;
 import com.arcbees.beeshop.common.dto.ProductType;
+import com.google.common.base.Strings;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.InputElement;
@@ -103,7 +104,20 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
     }
 
     private void updateQuantity() {
-        getUiHandlers().onQuantityChangedInView(Integer.parseInt(quantity.getValue()));
+        getUiHandlers().onQuantityChangedInView(getQuantity());
+    }
+
+    private int getQuantity() {
+        int quantity = 0;
+        if (!Strings.isNullOrEmpty(this.quantity.getValue())) {
+            quantity = Integer.parseInt(this.quantity.getValue());
+        }
+
+        if (quantity < 0) {
+            quantity = 1;
+        }
+
+        return quantity;
     }
 
     @Override
