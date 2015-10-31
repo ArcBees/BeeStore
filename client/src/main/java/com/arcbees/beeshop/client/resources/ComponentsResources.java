@@ -26,25 +26,7 @@ public interface ComponentsResources extends ClientBundle {
 
         String btn_outline();
 
-        String btn_small();
-
-        String btn_large();
-
-        String btn_wide();
-
-        String btn_primary();
-
-        String btn_secondary();
-
-        String btn_content();
-
-        String btn_alert();
-
         String btn_disabled();
-
-        String btns_group();
-
-        String btns_group__round();
 
         String input__error();
 
