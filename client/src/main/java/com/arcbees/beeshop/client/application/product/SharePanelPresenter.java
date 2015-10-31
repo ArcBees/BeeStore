@@ -16,6 +16,7 @@
 
 package com.arcbees.beeshop.client.application.product;
 
+import com.google.gwt.http.client.URL;
 import com.google.gwt.user.client.Window;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -36,6 +37,6 @@ public class SharePanelPresenter extends PresenterWidget<SharePanelPresenter.MyV
 
     @Override
     protected void onReveal() {
-        getView().updateShareUrls(Window.Location.getHref());
+        getView().updateShareUrls(URL.encodeQueryString(Window.Location.getHref()));
     }
 }
