@@ -18,6 +18,7 @@ package com.arcbees.beeshop.client.application.widget.sidepanel.cart;
 
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -35,6 +36,8 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
 
     @UiField
     SpanElement numberOfItemsTooltip;
+    @UiField
+    DivElement checkoutContainer;
     @UiField
     ButtonElement checkoutButton;
     @UiField
@@ -54,7 +57,7 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
 
     private void bind() {
         $(numberOfItemsTooltip).hide();
-        $(checkoutButton).hide();
+        $(checkoutContainer).hide();
 
         $(checkoutButton).click(new Function() {
             @Override
@@ -83,13 +86,13 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
 
     @Override
     public void showEmptyCart() {
-        $(checkoutButton).hide();
+        $(checkoutContainer).hide();
         $(closeCart).show();
     }
 
     @Override
     public void showCheckout() {
-        $(checkoutButton).show();
+        $(checkoutContainer).show();
         $(closeCart).hide();
     }
 }
