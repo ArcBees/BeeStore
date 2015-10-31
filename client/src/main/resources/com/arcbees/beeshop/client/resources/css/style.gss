@@ -295,8 +295,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .share_icons a:before {
+    background-color: C_LIGHT;
     color: C_STRIPE_MEDIUM2;
     font-size: 3rem;
+
+    border-radius: 50%;
 
     @mixin transition(all, .5s);
 }
