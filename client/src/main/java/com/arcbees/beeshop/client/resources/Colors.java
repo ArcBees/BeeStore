@@ -37,6 +37,7 @@ public class Colors {
     public static final String C_STRIPE_MEDIUM2 = "#e6e6e6";
     public static final String C_STRIPE_MEDIUM3 = "#dedddd";
     public static final String C_STRIPE_MEDIUM4 = "#d4d4d4";
+    public static final String C_STRIPE_MEDIUM5 = "#333333";
     public static final String C_STRIPE_DARK = C_DARK;
     public static final String C_STRIPE_COLORED = C_PRIMARY;
 

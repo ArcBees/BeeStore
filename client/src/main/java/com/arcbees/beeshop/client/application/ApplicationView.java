@@ -146,7 +146,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     private void closeCart() {
         $(sidePanelContainer).removeClass(res.style().rightPanel__open());
 
-        $(cartIcon).text("");
+        $(cartIcon).removeClass(res.style().closeCart());
         $(cartIcon).addClass(font.icons().iconCart());
 
         $(cartButton).removeClass(res.style().active());
@@ -157,7 +157,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     private void openCart() {
         $(sidePanelContainer).addClass(res.style().rightPanel__open());
 
-        $(cartIcon).text("+");
+        $(cartIcon).addClass(res.style().closeCart());
         $(cartIcon).removeClass(font.icons().iconCart());
 
         $(cartButton).addClass(res.style().active());

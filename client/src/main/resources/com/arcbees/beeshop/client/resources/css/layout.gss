@@ -25,7 +25,7 @@ body {
 }
 
 .main {
-    min-height: calc(100vh - 240px);
+    min-height: calc(100vh - 222px);
     padding-top: 100px;
 }
 
@@ -44,11 +44,11 @@ body {
 .wrap {
     height: auto !important;
     min-height: 100%;
-    margin: 0 auto -140px;
+    margin: 0 auto -122px;
 }
 
 .push {
-    height: 140px;
+    height: 122px;
 
     clear: both;
 }
@@ -57,6 +57,8 @@ body {
 ------------------------ */
 
 header {
+    background-color: C_LIGHT;
+
     width: 100%;
 
     position: fixed;
@@ -129,29 +131,41 @@ header {
     vertical-align: text-top;
 }
 
-.header_bottom {
-    background-color: C_LIGHT;
+.header_menu {
+    margin: 0 24px;
+}
 
-    padding: 15px 0;
+.header_menu ul {
+    text-align: right;
+
+    margin: 0;
+    width: 100%;
+}
+
+.header_menu_item {
+    font-size: 1.4rem;
+    font-family: F_PRIMARY_BOLD;
+    text-transform: uppercase;
+    line-height: 100px;
+
+    display: inline-block;
+    margin: 0 60px 0 0;
 
     position: relative;
 }
 
-.header_menu {
-    margin: 25px 0 0 24px;
+.header_menu_item:first-child {
+    margin-left: -6.15rem;
+    margin-right: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 15px;
+    left: 50%;
 }
 
-.header_menu li {
-    font-size: 1.4rem;
-    font-family: F_PRIMARY_BOLD;
-    text-transform: uppercase;
-
-    display: inline;
-    margin-right: 60px;
-}
-
-.header_menu li > a {
-    color: C_TEXT;
+.header_menu_item:first-child a:hover::after {
+    width: 0;
 }
 
 .beestore_logo svg {
@@ -161,57 +175,74 @@ header {
     margin: 0 auto;
 }
 
-.header_bottom__right {
-    height: 100%;
-
-    position: absolute;
-    top: 0;
-    right: 30px;
+.header_menu_item:nth-child(2),
+.header_menu_item:nth-child(3),
+.header_menu_item:nth-child(4) {
+    float: left;
 }
 
-.header_bottom__right > li {
-    display: inline-block;
-    margin-bottom: 0;
+.header_menu_item > a {
+    color: C_TEXT;
 
-    vertical-align: middle;
-}
-
-.header_bottom__right button {
     display: block;
-    width: 100%;
-}
-
-.wishlist {
-    font-size: 2.6rem;
-
-    margin-left: 27px;
-
-    vertical-align: top;
-}
-
-.cart {
-    font-size: 2.9rem;
-    text-align: center;
-    line-height: 100px;
-
-    height: 100px;
-    width: 63px;
-    margin-left: 20px;
 
     position: relative;
 }
 
-.cart button.active {
-    background-color: C_STRIPE_MEDIUM1;
+.header_menu_item > a:after {
+    content: "";
+    background-color: C_PRIMARY;
+
+    height: 4px;
+    width: 0;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    @mixin transition(width, .5s);
 }
 
-.cart button.active i {
+.header_menu_item > a:hover::after,
+.header_menu_item > a.active::after {
+    content: "";
+    background-color: C_PRIMARY;
+
+    position: absolute;
+    height: 4px;
+    width: 98%;
+}
+
+.cart {
+    width: 63px;
+    margin-right: 0;
+}
+
+.cart button {
+    display: block;
+    width: 100%;
+}
+
+.cart > button > i:before {
+    font-size: 2.9rem;
+}
+
+.cart > button > i.closeCart:before {
+    content: "+";
     font-size: 5rem;
     font-style: normal;
+    font-family: F_PRIMARY;
+    line-height: 100%;
 
-    display: block;
+    display: inline-block;
+
+    vertical-align: middle;
 
     @mixin rotate(45deg);
+}
+
+.cart button.active {
+    background-color: C_STRIPE_MEDIUM1;
 }
 
 .cart_notifications {
@@ -219,6 +250,7 @@ header {
     background-color: C_PRIMARY;
     color: C_TEXT;
     line-height: 22px;
+    text-align: center;
 
     height: 22px;
     width: 22px;
@@ -239,19 +271,21 @@ header {
     @mixin scale(0, 0);
 }
 
-li.language {
-    font-size: 1.6rem;
-    font-family: F_PRIMARY_BOLD;
-
-    margin-left: 10px;
+.language {
+    margin: 0 0 0 10px;
 }
 
-li.language a {
-    color: #c7c5c5;
+.language > a {
+    color: C_STRIPE_MEDIUM3;
 }
 
-li.language a.active {
+.language > a.active {
     color: C_TEXT;
+}
+
+.language > a:hover::after,
+.language > a.active::after {
+    width: 0;
 }
 
 /* -- FOOTER
@@ -267,6 +301,9 @@ footer {
     z-index: 999;
 }
 
+footer ul {
+    margin: 0;
+}
 
 .backTop i {
     font-size: 2.5rem;
@@ -284,8 +321,12 @@ footer {
     @mixin rotate(180deg);
 }
 
+.footer_menu {
+    margin-bottom: 22px;
+}
+
 .footer_menu li {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-family: F_PRIMARY_BOLD;
     text-transform: uppercase;
 
@@ -293,14 +334,24 @@ footer {
     margin-right: 60px;
 }
 
-.footer_menu li > a {
+.footer_menu li > a,
+.footer_linkArcbees > li > a{
     color: C_TEXT_LIGHT;
+
+    @mixin transition(color, .25s);
+}
+
+.footer_menu li > a:hover,
+.footer_linkArcbees > li > a:hover{
+    color: C_PRIMARY;
 }
 
 .footer_caseStudy {
     color: #c6c6c6;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     line-height: 1.25em;
+
+    margin-bottom: 0;
 }
 
 .footer_caseStudy span {
@@ -313,15 +364,21 @@ footer {
 
 .footer_logoArcbees i {
     display: block;
-    margin-top: -16px;
+    height: 70px;
+    margin: 0 auto;
+    width: 90px;
 }
 
 .footer_logoArcbees i:before {
-    font-size: 10rem;
+    font-size: 9rem;
 }
 
 .footer_contact {
     text-align: right;
+}
+
+.footer_linkArcbees {
+    margin-bottom: 20px;
 }
 
 .footer_linkArcbees > li {
@@ -350,7 +407,9 @@ footer {
 }
 
 .footer_linkSocial > li > a {
-    color: #333;
+    color: C_STRIPE_MEDIUM5;
+
+    @mixin transition(color, .5s);
 }
 
 .footer_linkSocial > li > a:hover {
