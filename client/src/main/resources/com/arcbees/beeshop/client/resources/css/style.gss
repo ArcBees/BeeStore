@@ -586,9 +586,9 @@ h4.orderBox_productName {
     margin-top: 10px;
 }
 
-.orderBox__gsssShirt .orderBox_productQuantity .inputQuantity,
-.orderBox__jukitoShirt .orderBox_productQuantity .inputQuantity,
-.orderBox__gQueryShirt .orderBox_productQuantity .inputQuantity {
+.orderBox__gsssShirt .inputQuantity,
+.orderBox__jukitoShirt .inputQuantity,
+.orderBox__gQueryShirt .inputQuantity {
     color: C_TEXT_LIGHT;
 
     border-color: C_LIGHT;
