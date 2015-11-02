@@ -17,7 +17,7 @@
 }
 
 .productName {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 @media (max-width: 979px) {
@@ -413,15 +413,16 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .rightPanel h2 span {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
     background-color: C_PRIMARY;
     color: C_TEXT;
-    line-height: 40px;
+    line-height: 38px;
 
     display: inline-block;
     height: 40px;
     width: 40px;
     padding: 2px;
+    margin-top: -10px;
 
     border-radius: 50%;
 }
@@ -493,7 +494,7 @@ input[type=number]::-webkit-outer-spin-button {
 .rightPanel_confirmation {
     display: inline-block;
     vertical-align: top;
-    width: 25vw;
+    width: 425px;
     height: calc(100vh - 100px);
     padding: 30px;
 
@@ -520,7 +521,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     display: table;
     width: calc(100% + 60px);
-    padding: 30px;
+    padding: 20px;
     margin-left: -30px;
 }
 
@@ -571,11 +572,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox_info {
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
-.orderBox_productName {
-    font-size: 2rem;
+h4.orderBox_productName {
+    font-size: 1.6rem;
     font-family: F_PRIMARY_BOLD;
     text-transform: uppercase;
 
@@ -584,7 +585,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .orderBox_productColor,
 .orderBox_productSize {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     text-transform: uppercase;
 
     display: block;
@@ -598,13 +599,24 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: 10px;
 }
 
+.orderBox__gsssShirt .inputQuantity,
+.orderBox__jukitoShirt .inputQuantity,
+.orderBox__gQueryShirt .inputQuantity {
+    color: C_TEXT_LIGHT;
+
+    border-color: C_LIGHT;
+}
+
 .orderBox_productTimes {
-    font-size: 2rem;
+    font-size: 3.5rem;
     text-transform: uppercase;
 
+    display: inline-block;
     margin-right: 15px;
 
     vertical-align: middle;
+
+    @mixin rotate(45deg);
 }
 
 .orderBox_productPrice {
@@ -641,7 +653,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderAmount {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .orderAmount h4 {
