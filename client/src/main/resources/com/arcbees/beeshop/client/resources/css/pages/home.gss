@@ -32,6 +32,7 @@
 .mainProducts img {
     display: table;
     margin: 0 auto;
+    height: 100%;
 }
 
 .mainProducts_left .itemForSale_info {
@@ -106,6 +107,13 @@
     @mixin scale(.95,.95);
 }
 
+
+@media (max-width: 979px) {
+    .itemForSale_img {
+        width: 90%;
+    }
+}
+
 .itemForSale:hover .itemForSale_img {
     @mixin scale(1,1);
 }
@@ -131,11 +139,24 @@
     margin: 0 auto;
 }
 
+@media (max-width: 979px) {
+    .itemForSale_info {
+        width: 120px;
+        height: 120px;
+    }
+}
+
 .itemForSale_info_name {
     font-size: 3rem;
     line-height: 1;
 
     margin: 0 0 10px;
+}
+
+@media (max-width: 979px) {
+    .itemForSale_info_name {
+        font-size: 2rem;
+    }
 }
 
 .itemForSale_info_shop {

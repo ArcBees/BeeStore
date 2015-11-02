@@ -34,13 +34,27 @@
 .devProducts_list > li > a {
     display: block;
 
+    transform-origin: center center;
     @mixin transition(transform, .5s);
     @mixin scale(.6, .6);
+}
+
+@media (max-width: 979px) {
+    .devProducts_list > li > a {
+        @mixin scale(.4, .4);
+    }
 }
 
 .devProducts_list li:hover a,
 .devProducts_list li.activeProduct a {
     @mixin scale(1, 1);
+}
+
+@media (max-width: 979px) {
+    .devProducts_list li:hover a,
+    .devProducts_list li.activeProduct a {
+        @mixin scale(.6, .6);
+    }
 }
 
 .devProducts_list > li > a .productIcon,
@@ -57,8 +71,20 @@
     margin-top: -10px;
 }
 
+@media (max-width: 979px) {
+    .devProducts_list_gae {
+        margin-top: -17px;
+    }
+}
+
 .devProducts_list_chosen {
     margin-top: -6px;
+}
+
+@media (max-width: 979px) {
+    .devProducts_list_chosen {
+        margin-top: -11px;
+    }
 }
 
 .devProducts_list > li:hover > a .gsssIcon,

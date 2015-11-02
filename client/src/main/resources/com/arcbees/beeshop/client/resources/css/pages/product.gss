@@ -46,6 +46,12 @@ ul.product_nav {
     list-style: none;
 }
 
+@media (max-width: 979px) {
+    ul.product_nav {
+        margin: 15px 30px;
+    }
+}
+
 .product_nav > li {
     margin-bottom: 0;
 }
@@ -100,6 +106,15 @@ ul.product_nav {
     padding: 40px;
 
     vertical-align: middle;
+}
+
+@media (max-width: 979px) {
+    .product_description_content {
+        text-align: left;
+        width: 50%;
+
+        float: right;
+    }
 }
 
 .product_description h3 {
@@ -191,6 +206,12 @@ ul.product_nav {
     width: 50%;
 
     vertical-align: top;
+}
+
+@media (max-width: 979px) {
+    .product_img {
+        display: none;
+    }
 }
 
 .product_img img {

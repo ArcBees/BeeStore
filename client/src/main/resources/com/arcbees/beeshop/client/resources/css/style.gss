@@ -20,6 +20,12 @@
     font-size: 3rem;
 }
 
+@media (max-width: 979px) {
+    .productName {
+        font-size: 2rem;
+    }
+}
+
 .brandName {
     margin-bottom: 5px;
 }
@@ -195,6 +201,13 @@ input[type=number]::-webkit-outer-spin-button {
     display: inline-block;
 
     position: relative;
+}
+
+@media (max-width: 979px) {
+    .share {
+        display: block;
+        margin-top: 30px;
+    }
 }
 
 .share > i {
@@ -602,6 +615,8 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .orderBox_delete {
+    font-size: 2rem;
+
     display: table-cell;
     width: 20px;
 

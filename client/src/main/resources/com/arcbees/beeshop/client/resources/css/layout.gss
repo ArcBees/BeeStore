@@ -154,6 +154,16 @@ header {
     position: relative;
 }
 
+@media (max-width: 979px) {
+    .header_menu_item {
+        margin-right: 20px;
+    }
+}
+
+.header_menu li > a {
+    color: C_TEXT;
+}
+
 .header_menu_item:first-child {
     margin-left: -6.15rem;
     margin-right: 0;
@@ -334,6 +344,12 @@ footer ul {
     margin-right: 60px;
 }
 
+@media (max-width: 979px) {
+    .footer_menu li {
+        margin-right: 15px;
+    }
+}
+
 .footer_menu li > a,
 .footer_linkArcbees > li > a{
     color: C_TEXT_LIGHT;
@@ -356,6 +372,12 @@ footer ul {
 
 .footer_caseStudy span {
     display: block;
+}
+
+@media (max-width: 979px) {
+    .footer_caseStudy span {
+        display: inline;
+    }
 }
 
 .footer_logoArcbees {
