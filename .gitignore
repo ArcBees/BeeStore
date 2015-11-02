@@ -5,5 +5,5 @@ extras/
 /gen
 .DS_Store
 
-client/src/main/resources/com/arcbees/beeshop/client/Config.properties
-server/src/main/resources/com/arcbees/beeshop/server/Config.properties
+client/src/main/resources/com/arcbees/beestore/client/Config.properties
+server/src/main/resources/com/arcbees/beestore/server/Config.properties
