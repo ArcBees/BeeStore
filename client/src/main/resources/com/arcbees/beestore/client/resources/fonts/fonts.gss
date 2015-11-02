@@ -1,0 +1,6 @@
+@provide 'fonts';
+
+@def F_PRIMARY                  eval("Fonts.F_PRIMARY");
+@def F_PRIMARY_BOLD             eval("Fonts.F_PRIMARY_BOLD");
+@def F_PRIMARY_LIGHT            eval("Fonts.F_PRIMARY_LIGHT");
+@def F_PRIMARY_LIGHT_ITALIC     eval("Fonts.F_PRIMARY_LIGHT_ITALIC");

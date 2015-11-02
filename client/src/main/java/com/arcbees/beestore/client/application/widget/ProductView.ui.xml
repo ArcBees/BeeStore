@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        xmlns:arcbees="urn:import:com.arcbees.ui">
+
+    <ui:with field="page" type="com.arcbees.beestore.client.resources.PageHomeResources"/>
+    <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
+
+    <g:HTMLPanel ui:field="panel">
+        <g:Image ui:field="image"/>
+
+        <arcbees:ReplacePanel ui:field="pricePanel"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

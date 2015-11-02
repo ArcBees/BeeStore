@@ -1,0 +1,60 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:arcbees="urn:import:com.arcbees.ui"
+        xmlns:slider="urn:import:com.arcbees.beestore.client.application.widget.slider">
+
+    <ui:with field="slider" type="com.arcbees.beestore.client.resources.SliderResources"/>
+    <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
+    <ui:with field="font" type="com.arcbees.beestore.client.resources.FontResources"/>
+
+    <slider:Slider>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="gaeAnchor" class="{font.icons.iconGae} {slider.style.gaeIcon}">
+                    <span class="{res.style.visuallyHidden}">GAE STUDIO</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="gwtpAnchor" class="{font.icons.iconGwtp} {slider.style.gwtpIcon}">
+                    <span class="{res.style.visuallyHidden}">GWTP</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="jukitoAnchor" class="{font.icons.iconJukito} {slider.style.jukitoIcon}">
+                    <span class="{res.style.visuallyHidden}">JUKITO</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="arcbeesAnchor" class="{font.icons.iconArcbees} {slider.style.arcbeesIcon}">
+                    <span class="{res.style.visuallyHidden}">arcbees</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="gqueryAnchor" class="{font.icons.iconGquery}  {slider.style.gqueryIcon}">
+                    <span class="{res.style.visuallyHidden}">gQuery</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="gsssAnchor" class="{font.icons.iconGsss} {slider.style.gsssIcon}">
+                    <span class="{res.style.visuallyHidden}">GSSS</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+        <slider:content>
+            <g:HTMLPanel tag="li">
+                <a ui:field="chosenAnchor" class="{font.icons.iconChosen} {slider.style.chosenIcon}">
+                    <span class="{res.style.visuallyHidden}">GWT chosen</span>
+                </a>
+            </g:HTMLPanel>
+        </slider:content>
+    </slider:Slider>
+</ui:UiBinder>

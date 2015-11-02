@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.6.1//EN"
-        "http://gwtproject.org/doctype/2.7.0/gwt-module.dtd">
-<module rename-to="beeshop">
-    <inherits name="com.arcbees.beeshop.BeeShopCore"/>
-
-    <add-linker name="xsiframe"/>
-</module>
