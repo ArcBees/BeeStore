@@ -74,7 +74,7 @@
                 <i ui:field="backTop" class="{font.icons.iconArrowDown}"></i>
             </div>
 
-            <div class="{res.grid.col} {res.grid.col_1_3}">
+            <div class="{res.grid.col} {res.grid.col_1_3} {res.grid.col_m_full}">
                 <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
                         <li>
@@ -105,11 +105,11 @@
                 </p>
             </div>
 
-            <div class="{res.style.footer_logoArcbees} {res.grid.col} {res.grid.col_1_3}">
+            <div class="{res.style.footer_logoArcbees} {res.grid.col} {res.grid.col_1_3} {res.grid.col_m_full}">
                 <i class="{font.icons.iconArcbeesName}"/>
             </div>
 
-            <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3}">
+            <div class="{res.style.footer_contact} {res.grid.col} {res.grid.col_1_3} {res.grid.col_m_full}">
                 <ul class="{res.style.footer_linkArcbees}">
                     <li>
                         <a href="http://www.arcbees.com" target="_blank">Arcbees

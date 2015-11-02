@@ -22,6 +22,12 @@
     @mixin transition(transform, .5s);
 }
 
+@media (max-width: 649px) {
+    .devProducts_list {
+        overflow-x: auto;
+    }
+}
+
 .devProducts_list > li,
 .brandPicker > li {
     width: calc(100% / 7);
@@ -29,6 +35,12 @@
     vertical-align: top;
 
     @mixin transition(transform, .5s);
+}
+
+@media (max-width: 649px) {
+    .devProducts_list > li {
+        width: 100%;
+    }
 }
 
 .devProducts_list > li > a {

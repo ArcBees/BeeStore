@@ -21,6 +21,12 @@
     width: 100%;
 }
 
+@media (max-width: 979px) {
+    .mainProducts {
+        padding-top: 0;
+    }
+}
+
 .mainProducts_left,
 .mainProducts_right {
     display: table-cell;
@@ -29,10 +35,25 @@
     position: relative;
 }
 
+@media (max-width: 649px) {
+    .mainProducts_left,
+    .mainProducts_right {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
 .mainProducts img {
     display: table;
     margin: 0 auto;
     height: 100%;
+}
+
+@media (max-width: 979px) {
+    .mainProducts img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .mainProducts_left .itemForSale_info {
@@ -45,6 +66,13 @@
     position: absolute;
     top: 50%;
     left: 40px;
+}
+
+@media (max-width: 649px) {
+    .mainProducts_right .itemForSale_info {
+        right: 40px;
+        left: auto;
+    }
 }
 
 /* -- SHOPPING BY PRODUCTS
@@ -73,11 +101,24 @@
     display: block;
 }
 
+@media (max-width: 649px) {
+    .welcome {
+        padding: 60px 30px;
+    }
+
+    .welcome > p {
+        font-size: 1.5rem;
+    }
+
+    .welcome > p > span {
+        display: inline;
+    }
+}
+
 /* -- PRODUCTS
 ------------------------ */
 
 .itemsForSale {
-    display: table;
     width: 100%;
     height: 720px;
 }
@@ -85,11 +126,24 @@
 .itemForSale {
     color: C_TEXT;
 
-    display: table-cell;
     width: 25%;
+    height: 720px;
     padding: 100px 0;
 
     position: relative;
+    float: left;
+}
+
+@media (max-width: 979px) {
+    .itemForSale {
+        width: 50%;
+    }
+}
+
+@media (max-width: 649px) {
+    .itemForSale {
+        width: 100%;
+    }
 }
 
 .itemForSale:hover {
@@ -107,13 +161,6 @@
     @mixin scale(.95,.95);
 }
 
-
-@media (max-width: 979px) {
-    .itemForSale_img {
-        width: 90%;
-    }
-}
-
 .itemForSale:hover .itemForSale_img {
     @mixin scale(1,1);
 }
@@ -124,6 +171,15 @@
     position: absolute;
     left: 50%;
     bottom: 140px;
+}
+
+@media (max-width: 979px) {
+    .itemForSale .pricePresenter {
+        position: relative;
+        margin: 0 auto;
+        left: auto;
+        bottom: auto;
+    }
 }
 
 .itemForSale_info {
@@ -142,7 +198,7 @@
 @media (max-width: 979px) {
     .itemForSale_info {
         width: 120px;
-        height: 120px;
+        height: auto;
     }
 }
 
@@ -180,4 +236,14 @@
     position: absolute;
     bottom: 10px;
     left: 50%;
+}
+
+@media (max-width: 979px) {
+    .itemPrice {
+        margin: 0 auto;
+
+        position: relative;
+        bottom: auto;
+        left: auto;
+    }
 }

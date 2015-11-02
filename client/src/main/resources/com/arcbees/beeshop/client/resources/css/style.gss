@@ -397,8 +397,25 @@ input[type=number]::-webkit-outer-spin-button {
     @mixin transition_effect(all, .5s, ease-in-out);
 }
 
+@media (max-width: 649px) {
+    .rightPanel {
+        height: 100%;
+        top: -100vh;
+        margin: 0;
+    }
+}
+
 .rightPanel__open {
     margin-right: 0;
+}
+
+@media (max-width: 649px) {
+    .rightPanel__open {
+        margin-right: 0;
+        width: 100%;
+
+        top: 85px;
+    }
 }
 
 .rightPanel_title {
@@ -501,6 +518,17 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
 
     overflow: auto;
+}
+
+@media (max-width: 649px) {
+    .rightPanel_shoppingBag,
+    .rightPanel_address,
+    .rightPanel_order,
+    .rightPanel_paiement,
+    .rightPanel_confirmation {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .rightPanel_order h3,
