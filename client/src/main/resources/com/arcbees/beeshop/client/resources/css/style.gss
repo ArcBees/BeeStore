@@ -197,17 +197,16 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+@media (max-width: 649px) {
+    .inputQuantity {
+        margin: 0 5px 0 0;
+    }
+}
+
 .share {
     display: inline-block;
 
     position: relative;
-}
-
-@media (max-width: 979px) {
-    .share {
-        display: block;
-        margin-top: 30px;
-    }
 }
 
 .share > i {
@@ -254,6 +253,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .share > i.share_close:active:before {
     font-size: 2rem;
+}
+
+@media (max-width: 649px) {
+    .share {
+        text-align: left;
+
+        display: block;
+        margin: 15px 0;
+    }
 }
 
 .share_icons_fb,
@@ -397,19 +405,17 @@ input[type=number]::-webkit-outer-spin-button {
     @mixin transition_effect(all, .5s, ease-in-out);
 }
 
+.rightPanel__open {
+    margin-right: 0;
+}
+
 @media (max-width: 649px) {
     .rightPanel {
         height: 100%;
         top: -100vh;
         margin: 0;
     }
-}
 
-.rightPanel__open {
-    margin-right: 0;
-}
-
-@media (max-width: 649px) {
     .rightPanel__open {
         margin-right: 0;
         width: 100%;
@@ -661,7 +667,6 @@ h4.orderBox_productName {
     width: 20px;
 
     vertical-align: middle;
-
 }
 
 .orderBox_delete i {

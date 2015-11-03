@@ -47,6 +47,12 @@ body {
     margin: 0 auto;
 }
 
+@media (max-width: 649px) {
+    .wrapper {
+        width: 90%;
+    }
+}
+
 .wrap {
     height: auto !important;
     min-height: 100%;
@@ -57,6 +63,14 @@ body {
     height: 122px;
 
     clear: both;
+}
+
+.col:first-child {
+    border-left: 0;
+}
+
+.col:last-child {
+    border-right: 0;
 }
 
 /* -- HEADER
@@ -307,6 +321,10 @@ header {
     .cart > button > i:before {
         font-size: 2.2rem;
     }
+
+    .cart button.active {
+        background-color: C_LIGHT;
+    }
 }
 
 .cart_notifications {
@@ -372,11 +390,11 @@ header {
 
         position: absolute;
         top: 25px;
-        left: 45px;
+        left: 15px;
     }
 
-    .language:first-of-type {
-        left: 15px;
+    .language.language_fr {
+        left: 60px;
     }
 }
 

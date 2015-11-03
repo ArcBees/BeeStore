@@ -53,7 +53,7 @@
                                 <span class="{res.style.visuallyHidden}">LISH</span>
                             </a>
                         </li>
-                        <li class="{res.style.header_menu_item} {res.style.language}">
+                        <li class="{res.style.header_menu_item} {res.style.language} {res.style.language_fr}">
                             <a ui:field="frenchAnchor">FR
                                 <span class="{res.style.visuallyHidden}">ANÇAIS</span>
                             </a>

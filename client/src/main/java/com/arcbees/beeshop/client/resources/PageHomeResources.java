@@ -22,8 +22,6 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface PageHomeResources extends ClientBundle {
     interface Style extends CssResource {
-        String itemsForSale();
-
         String itemForSale();
 
         String itemForSale_img();

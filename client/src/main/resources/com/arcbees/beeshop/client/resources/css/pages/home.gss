@@ -16,31 +16,9 @@
 /* -- MAIN PRODUCTS
 ------------------------ */
 
-.mainProducts {
-    display: table;
-    width: 100%;
-}
-
-@media (max-width: 979px) {
-    .mainProducts {
-        padding-top: 0;
-    }
-}
-
 .mainProducts_left,
 .mainProducts_right {
-    display: table-cell;
-    width: 50%;
-
     position: relative;
-}
-
-@media (max-width: 649px) {
-    .mainProducts_left,
-    .mainProducts_right {
-        display: inline-block;
-        width: 100%;
-    }
 }
 
 .mainProducts img {
@@ -51,20 +29,20 @@
 
 @media (max-width: 979px) {
     .mainProducts img {
-        width: 100%;
+        width: 90%;
         height: auto;
     }
 }
 
-.mainProducts_left .itemForSale_info {
+.mainProducts_left .itemForSale_info,
+.mainProducts_right .itemForSale_info {
     position: absolute;
     top: 50%;
     right: 40px;
 }
 
 .mainProducts_right .itemForSale_info {
-    position: absolute;
-    top: 50%;
+    right: auto;
     left: 40px;
 }
 
@@ -118,36 +96,28 @@
 /* -- PRODUCTS
 ------------------------ */
 
-.itemsForSale {
-    width: 100%;
-    height: 720px;
-}
-
 .itemForSale {
     color: C_TEXT;
 
-    width: 25%;
     height: 720px;
     padding: 100px 0;
 
     position: relative;
-    float: left;
-}
-
-@media (max-width: 979px) {
-    .itemForSale {
-        width: 50%;
-    }
-}
-
-@media (max-width: 649px) {
-    .itemForSale {
-        width: 100%;
-    }
 }
 
 .itemForSale:hover {
     background-color: C_STRIPE_MEDIUM2;
+}
+
+@media (max-width: 649px) {
+    .itemForSale {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .itemForSale:nth-child(odd) {
+        background-color: C_STRIPE_MEDIUM2;
+    }
 }
 
 .itemForSale_img {
@@ -173,15 +143,6 @@
     bottom: 140px;
 }
 
-@media (max-width: 979px) {
-    .itemForSale .pricePresenter {
-        position: relative;
-        margin: 0 auto;
-        left: auto;
-        bottom: auto;
-    }
-}
-
 .itemForSale_info {
     background-color: C_LIGHT;
     font-family: F_PRIMARY_BOLD;
@@ -195,13 +156,6 @@
     margin: 0 auto;
 }
 
-@media (max-width: 979px) {
-    .itemForSale_info {
-        width: 120px;
-        height: auto;
-    }
-}
-
 .itemForSale_info_name {
     font-size: 3rem;
     line-height: 1;
@@ -210,6 +164,19 @@
 }
 
 @media (max-width: 979px) {
+    .itemForSale .pricePresenter {
+        margin: 0 auto;
+
+        position: relative;
+        left: auto;
+        bottom: auto;
+    }
+
+    .itemForSale_info {
+        width: 120px;
+        height: auto;
+    }
+
     .itemForSale_info_name {
         font-size: 2rem;
     }
