@@ -1,0 +1,27 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
+    <ui:with field="font" type="com.arcbees.beestore.client.resources.FontResources"/>
+
+    <g:HTMLPanel addStyleNames="{res.style.share_icons} {res.style.share_icons__hidden}">
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_fb} {font.icons.iconFb}" target="_blank" ui:field="facebook">
+            <span class="{res.style.visuallyHidden}">Facebook</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_pinterest} {font.icons.iconPinterest}" target="_blank" ui:field="pinterest">
+            <span class="{res.style.visuallyHidden}">Pinterest</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_gplus} {font.icons.iconGPlus}" target="_blank" ui:field="googleplus">
+            <span class="{res.style.visuallyHidden}">Google+</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_twitter} {font.icons.iconTwitter}" target="_blank" ui:field="twitter">
+            <span class="{res.style.visuallyHidden}">Twitter</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_tumblr} {font.icons.iconTumblr}" target="_blank" ui:field="tumblr">
+            <span class="{res.style.visuallyHidden}">Tumblr</span>
+        </a>
+        <a href="#" class="{res.style.animation} {res.style.slideIn} {res.style.share_icons_mail} {font.icons.iconEmailCircle}" ui:field="mail">
+            <span class="{res.style.visuallyHidden}">Mail</span>
+        </a>
+    </g:HTMLPanel>
+</ui:UiBinder>

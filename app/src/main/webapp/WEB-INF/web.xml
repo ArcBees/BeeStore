@@ -5,7 +5,7 @@
     <display-name>Bee Shop</display-name>
 
     <listener>
-        <listener-class>com.arcbees.beeshop.server.guice.GuiceServletConfig</listener-class>
+        <listener-class>com.arcbees.beestore.server.guice.GuiceServletConfig</listener-class>
     </listener>
 
     <filter>

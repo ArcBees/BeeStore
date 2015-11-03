@@ -1,0 +1,57 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
+    <ui:with field="comp" type="com.arcbees.beestore.client.resources.ComponentsResources"/>
+    <ui:with field="font" type="com.arcbees.beestore.client.resources.FontResources"/>
+
+    <g:HTMLPanel styleName="{res.style.rightPanel_paiement}">
+        <div class="{res.style.rightPanel_title}">
+            <div class="{res.style.rightPanel_step}">
+                <span>3</span>
+            </div>
+            <h2>Payment</h2>
+        </div>
+
+        <h3>Payment method</h3>
+
+        <div class="{res.style.paiementMethod}">
+            <div class="{comp.style.inputRadio}">
+                <input type="radio" name="paeiment method" id="paypal"/>
+                <label for="paypal">paypal</label>
+            </div>
+
+            <div class="{comp.style.inputRadio}">
+                <input type="radio" name="paeiment method" id="credit card"/>
+                <label for="credit card">credit card</label>
+            </div>
+        </div>
+
+        <h3>credit card</h3>
+
+        <form action="javascript:;" ui:field="form">
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Name on the card" required="required" ui:field="name"/>
+            </fieldset>
+
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Card number" required="required" ui:field="number"/>
+                <input class="{comp.style.field}" type="text" placeholder="CVS" required="required" ui:field="cvs"/>
+            </fieldset>
+
+            <fieldset>
+                <input class="{comp.style.field}" type="number" placeholder="MM" required="required" min="1" step="1" max="12" ui:field="expMonth"/>
+                <input class="{comp.style.field}" type="number" placeholder="YYYY" required="required" min="2015" step="1" max="2100" ui:field="expYear"/>
+            </fieldset>
+
+            <p>We don't store any credit information on our server.
+                <a href="https://stripe.com/about">Learn more</a>
+            </p>
+
+            <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}" type="submit" ui:field="submit">
+                Place order
+            </button>
+        </form>
+    </g:HTMLPanel>
+</ui:UiBinder>
+

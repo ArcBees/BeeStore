@@ -1,0 +1,21 @@
+@provide 'colors';
+
+@def C_PRIMARY              eval("Colors.C_PRIMARY");
+@def C_LIGHT                eval("Colors.C_LIGHT");
+@def C_DARK                 eval("Colors.C_DARK");
+@def C_TEXT                 eval("Colors.C_TEXT");
+@def C_TEXT_LIGHT           eval("Colors.C_TEXT_LIGHT");
+@def C_STRIPE_LIGHT         eval("Colors.C_STRIPE_LIGHT");
+@def C_STRIPE_MEDIUM1       eval("Colors.C_STRIPE_MEDIUM1");
+@def C_STRIPE_MEDIUM2       eval("Colors.C_STRIPE_MEDIUM2");
+@def C_STRIPE_MEDIUM3       eval("Colors.C_STRIPE_MEDIUM3");
+@def C_STRIPE_MEDIUM4       eval("Colors.C_STRIPE_MEDIUM4");
+@def C_STRIPE_MEDIUM5       eval("Colors.C_STRIPE_MEDIUM5");
+@def C_STRIPE_DARK          eval("Colors.C_STRIPE_DARK");
+@def C_STRIPE_COLORED       eval("Colors.C_STRIPE_COLORED");
+@def C_PRODUCT_CHOSEN       eval("Colors.C_PRODUCT_CHOSEN");
+@def C_PRODUCT_GAE          eval("Colors.C_PRODUCT_GAE");
+@def C_PRODUCT_GWTP         eval("Colors.C_PRODUCT_GWTP");
+@def C_PRODUCT_JUKITO       eval("Colors.C_PRODUCT_JUKITO");
+@def C_PRODUCT_GQUERY       eval("Colors.C_PRODUCT_GQUERY");
+@def C_PRODUCT_GSS          eval("Colors.C_PRODUCT_GSS");
