@@ -22,7 +22,7 @@
     @mixin transition(transform, .5s);
 }
 
-@media (max-width: 649px) {
+@media (max-width: 979px) {
     .devProducts_list {
         overflow-x: auto;
     }
@@ -51,7 +51,7 @@
     @mixin scale(.6, .6);
 }
 
-@media (max-width: 979px) {
+@media (max-width: 1290px) {
     .devProducts_list > li > a {
         @mixin scale(.4, .4);
     }
@@ -62,7 +62,7 @@
     @mixin scale(1, 1);
 }
 
-@media (max-width: 979px) {
+@media (max-width: 1290px) {
     .devProducts_list li:hover a,
     .devProducts_list li.activeProduct a {
         @mixin scale(.6, .6);
@@ -187,4 +187,8 @@
 .brandPicker > li:hover > a.gsssIcon,
 .brandPicker > li.activeProduct > a.gsssIcon {
     color: C_PRODUCT_GSS;
+}
+
+.arcbees {
+    margin-left: -15px;
 }
