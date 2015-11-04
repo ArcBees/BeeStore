@@ -46,8 +46,6 @@
 /* -- ARCBEES
 ------------------------ */
 
-.arcbees {}
-
 .arcbees .itemPrice,
 .arcbees .mainProducts_bg {
     background-color: C_PRIMARY;
@@ -56,8 +54,6 @@
 /* -- GWTP
 ------------------------ */
 
-.gwtp {}
-
 .gwtp .itemPrice,
 .gwtp .mainProducts_bg {
     background-color: C_PRODUCT_GWTP;
@@ -65,8 +61,6 @@
 
 /* -- CHOSEN
 ------------------------ */
-
-.chosen {}
 
 .chosen .itemPrice,
 .chosen .mainProducts_bg {
@@ -80,8 +74,6 @@
 /* -- JUKITO
 ------------------------ */
 
-.jukito {}
-
 .jukito .itemPrice,
 .jukito .mainProducts_bg {
     background-color: C_PRODUCT_JUKITO;
@@ -93,8 +85,6 @@
 
 /* -- GQUERY
 ------------------------ */
-
-.gquery {}
 
 .gquery .itemPrice,
 .gquery .mainProducts_bg {
@@ -112,8 +102,6 @@
 /* -- GSSS
 ------------------------ */
 
-.gsss {}
-
 .gsss .itemPrice,
 .gsss .mainProducts_bg {
     background-color: C_PRODUCT_GSS;
@@ -125,8 +113,6 @@
 
 /* -- GAE STUDIO
 ------------------------ */
-
-.gaestudio {}
 
 .gaestudio .itemPrice,
 .gaestudio .mainProducts_bg {

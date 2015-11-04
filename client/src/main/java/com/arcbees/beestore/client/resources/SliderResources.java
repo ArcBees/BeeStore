@@ -45,6 +45,8 @@ public interface SliderResources extends ClientBundle {
         String devProducts_list();
 
         String brandPicker();
+
+        String arcbees();
     }
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "css/colors.gss", "css/slider.gss"})
