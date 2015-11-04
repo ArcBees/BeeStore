@@ -381,7 +381,7 @@ input[type=number]::-webkit-outer-spin-button {
 
     display: table;
     height: calc(100% - 100px);
-    margin-right: -425px;
+    margin-right: -460px;
 
     position: fixed;
     top: 100px;
@@ -403,13 +403,11 @@ input[type=number]::-webkit-outer-spin-button {
     .rightPanel {
         height: 100%;
         top: -100vh;
+        width: 100%;
         margin: 0;
     }
 
     .rightPanel__open {
-        margin-right: 0;
-        width: 100%;
-
         top: 85px;
     }
 }
@@ -506,12 +504,12 @@ input[type=number]::-webkit-outer-spin-button {
 .rightPanel_paiement,
 .rightPanel_confirmation {
     display: inline-block;
-    vertical-align: top;
-    width: 425px;
+    width: 460px;
     height: calc(100vh - 100px);
     padding: 30px;
 
     position: relative;
+    vertical-align: top;
 
     overflow: auto;
 }
