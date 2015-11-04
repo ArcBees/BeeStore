@@ -25,7 +25,7 @@ body {
 }
 
 .main {
-    min-height: calc(100vh - 222px);
+    min-height: calc(100vh - 225px);
     padding-top: 100px;
 }
 
@@ -56,11 +56,11 @@ body {
 .wrap {
     height: auto !important;
     min-height: 100%;
-    margin: 0 auto -122px;
+    margin: 0 auto -125px;
 }
 
 .push {
-    height: 122px;
+    height: 125px;
 
     clear: both;
 }
@@ -172,6 +172,7 @@ header {
     margin: 0 60px 0 0;
 
     position: relative;
+    vertical-align: middle;
 }
 
 @media (max-width: 979px) {
@@ -276,6 +277,7 @@ header {
 }
 
 .cart {
+    display: inline-block;
     width: 63px;
     margin-right: 0;
 }
