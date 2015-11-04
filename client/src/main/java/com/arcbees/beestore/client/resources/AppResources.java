@@ -28,7 +28,7 @@ public interface AppResources extends ClientBundle {
     interface Normalize extends CssResource {
     }
 
-    interface Style extends AnimationResources.Animation {
+    interface Style extends AnimationResources.Animation, GridResources.Grid {
         String stripe();
 
         String footer_contact();
@@ -200,6 +200,8 @@ public interface AppResources extends ClientBundle {
         String orderBox__chosenShirt();
 
         String closeCart();
+
+        String language_fr();
     }
 
     @Source("img/Beestore-logo.png")
@@ -229,6 +231,8 @@ public interface AppResources extends ClientBundle {
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss",
             "com/arcbees/gsss/animation/client/animationsettings.gss",
             "com/arcbees/gsss/animation/client/animations.gss",
+            "com/arcbees/gsss/grid/client/gridsettings.gss",
+            "com/arcbees/gsss/grid/client/grid.gss",
             "css/base.gss",
             "css/colors.gss",
             "fonts/fonts.gss",

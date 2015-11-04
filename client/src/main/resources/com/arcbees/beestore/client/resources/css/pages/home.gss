@@ -16,34 +16,41 @@
 /* -- MAIN PRODUCTS
 ------------------------ */
 
-.mainProducts {
-    display: table;
-    width: 100%;
-}
-
 .mainProducts_left,
 .mainProducts_right {
-    display: table-cell;
-    width: 50%;
-
     position: relative;
 }
 
 .mainProducts img {
     display: table;
     margin: 0 auto;
+    height: 100%;
 }
 
-.mainProducts_left .itemForSale_info {
+@media (max-width: 979px) {
+    .mainProducts img {
+        width: 90%;
+        height: auto;
+    }
+}
+
+.mainProducts_left .itemForSale_info,
+.mainProducts_right .itemForSale_info {
     position: absolute;
     top: 50%;
     right: 40px;
 }
 
 .mainProducts_right .itemForSale_info {
-    position: absolute;
-    top: 50%;
+    right: auto;
     left: 40px;
+}
+
+@media (max-width: 649px) {
+    .mainProducts_right .itemForSale_info {
+        right: 40px;
+        left: auto;
+    }
 }
 
 /* -- SHOPPING BY PRODUCTS
@@ -72,20 +79,27 @@
     display: block;
 }
 
+@media (max-width: 649px) {
+    .welcome {
+        padding: 60px 30px;
+    }
+
+    .welcome > p {
+        font-size: 1.5rem;
+    }
+
+    .welcome > p > span {
+        display: inline;
+    }
+}
+
 /* -- PRODUCTS
 ------------------------ */
-
-.itemsForSale {
-    display: table;
-    width: 100%;
-    height: 720px;
-}
 
 .itemForSale {
     color: C_TEXT;
 
-    display: table-cell;
-    width: 25%;
+    height: 720px;
     padding: 100px 0;
 
     position: relative;
@@ -93,6 +107,17 @@
 
 .itemForSale:hover {
     background-color: C_STRIPE_MEDIUM2;
+}
+
+@media (max-width: 649px) {
+    .itemForSale {
+        height: auto;
+        padding: 40px 0;
+    }
+
+    .itemForSale:nth-child(odd) {
+        background-color: C_STRIPE_MEDIUM2;
+    }
 }
 
 .itemForSale_img {
@@ -138,6 +163,25 @@
     margin: 0 0 10px;
 }
 
+@media (max-width: 979px) {
+    .itemForSale .pricePresenter {
+        margin: 0 auto;
+
+        position: relative;
+        left: auto;
+        bottom: auto;
+    }
+
+    .itemForSale_info {
+        width: 120px;
+        height: auto;
+    }
+
+    .itemForSale_info_name {
+        font-size: 2rem;
+    }
+}
+
 .itemForSale_info_shop {
     color: C_TEXT;
     font-size: 2rem;
@@ -159,4 +203,14 @@
     position: absolute;
     bottom: 10px;
     left: 50%;
+}
+
+@media (max-width: 979px) {
+    .itemPrice {
+        margin: 0 auto;
+
+        position: relative;
+        bottom: auto;
+        left: auto;
+    }
 }

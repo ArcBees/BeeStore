@@ -34,6 +34,44 @@
     vertical-align: top;
 }
 
+@media (max-width: 979px) {
+    .product {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-flex-direction: row-reverse;
+        -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse;
+        -webkit-flex-wrap: wrap-reverse;
+        -ms-flex-wrap: wrap-reverse;
+        flex-wrap: wrap-reverse;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .product_info {
+        width: 100%;
+
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+    }
+}
+
 /* -- NAV
 ------------------------ */
 
@@ -44,6 +82,23 @@ ul.product_nav {
     margin: 15px 0 15px 30px;
 
     list-style: none;
+}
+
+@media (max-width: 979px) {
+    ul.product_nav {
+        margin: 0;
+        width: 100%;
+        padding: 0 20px;
+
+        position: absolute;
+        top: 130px;
+    }
+}
+
+@media (max-width: 649px) {
+    ul.product_nav {
+        top: 100px;
+    }
 }
 
 .product_nav > li {
@@ -83,6 +138,18 @@ ul.product_nav {
     font-size: 1.3rem;
 }
 
+@media (max-width: 649px) {
+    .previous,
+    .next {
+        font-size: 1rem;
+    }
+
+    .previous span,
+    .next span {
+        display: none;
+    }
+}
+
 /* -- DESCRIPTION
 ------------------------ */
 
@@ -112,6 +179,16 @@ ul.product_nav {
 
 .product_option {
     margin: 45px 0 10px;
+}
+
+@media (max-width: 649px) {
+    .product_description_content {
+        padding: 40px 20px;
+    }
+
+    .product_option {
+        margin: 45px 0 40px;
+    }
 }
 
 /* -- SIZE
@@ -198,4 +275,25 @@ ul.product_nav {
     height: 100%;
     width: auto;
     margin: 0 auto;
+}
+
+@media (max-width: 979px) {
+    .product_img {
+        width: 100%;
+
+        -webkit-order: 0;
+        -ms-flex-order: 0;
+        order: 0;
+        -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+        -webkit-align-self: auto;
+        -ms-flex-item-align: auto;
+        align-self: auto;
+    }
+
+    .product_img img {
+        height: auto;
+        width: 62%;
+    }
 }

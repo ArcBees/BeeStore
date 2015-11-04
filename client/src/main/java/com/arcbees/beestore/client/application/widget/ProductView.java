@@ -59,12 +59,12 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView {
     @Override
     public void setStyle(ProductWidgetType productWidgetType) {
         if (ProductWidgetType.MAIN_LEFT == productWidgetType) {
-            panel.addStyleName(page.style().mainProducts_left());
+            panel.addStyleName(page.style().mainProducts_left() + " " + res.style().col() + " " + res.grid().col_6() + " " + res.grid().col_m_full());
             panel.addStyleName(res.style().mainProducts_bg());
         } else if (ProductWidgetType.MAIN_RIGHT == productWidgetType) {
-            panel.addStyleName(page.style().mainProducts_right());
+            panel.addStyleName(page.style().mainProducts_right() + " " + res.style().col() + " " + res.grid().col_6() + " " + res.grid().col_m_full());
         } else {
-            panel.setStyleName(page.style().itemForSale());
+            panel.setStyleName(page.style().itemForSale() + " " + res.style().col() + " " + res.grid().col_3() + " " + res.grid().col_m_full() + " " + res.grid().col_t_6() + " " + res.grid().col_m_full());
             image.setStyleName(page.style().itemForSale_img());
         }
     }

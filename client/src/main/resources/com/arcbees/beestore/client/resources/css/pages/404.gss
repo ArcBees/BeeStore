@@ -19,6 +19,13 @@
     z-index: 1;
 }
 
+@media (max-width: 649px) {
+    .img404 {
+        width: 80%;
+        margin-top: 50px;
+    }
+}
+
 .img404 img {
     width: 100%;
 }
@@ -136,5 +143,13 @@
 
     100% {
         @mixin transform(scale(.75) translate(0, 1000px));
+    }
+}
+
+@media (max-width: 649px) {
+    .tearDrop,
+    .tearDrop2,
+    .tearDrop3 {
+        display: none;
     }
 }

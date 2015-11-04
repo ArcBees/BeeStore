@@ -12,7 +12,7 @@
     <ui:with field="slider" type="com.arcbees.beestore.client.resources.SliderResources"/>
 
     <g:HTMLPanel>
-        <g:HTMLPanel tag="section" ui:field="mainProducts" styleName="{page.style.mainProducts}"/>
+        <g:HTMLPanel tag="section" ui:field="mainProducts" styleName="{page.style.mainProducts} {res.style.row}"/>
 
         <section class="{res.style.stripe} {res.style.txt_center} {page.style.shoppingByProduct}">
             <h3>
@@ -33,7 +33,7 @@
             </p>
         </section>
 
-        <g:HTMLPanel ui:field="secondaryProducts" tag="section" styleName="{page.style.itemsForSale}"/>
+        <g:HTMLPanel ui:field="secondaryProducts" tag="section" styleName="{res.grid.row}"/>
 
     </g:HTMLPanel>
 </ui:UiBinder>

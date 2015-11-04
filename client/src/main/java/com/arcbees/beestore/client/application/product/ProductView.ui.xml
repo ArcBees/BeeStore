@@ -21,12 +21,13 @@
                 <li class="{page.style.previous}">
                     <a ui:field="previous">
                         <i class="{font.icons.iconArrowDown}"/>
-                        <ui:msg description="previous product">Previous Product</ui:msg>
+                        <ui:msg description="previous product">Previous <span>Product</span>
+                        </ui:msg>
                     </a>
                 </li>
                 <li class="{page.style.next}">
                     <a ui:field="next">
-                        <ui:msg description="next product">Next Product</ui:msg>
+                        <ui:msg description="next product">Next <span>Product</span></ui:msg>
                         <i class="{font.icons.iconArrowDown}"/>
                     </a>
                 </li>

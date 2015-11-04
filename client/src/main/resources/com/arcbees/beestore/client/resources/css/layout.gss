@@ -25,8 +25,14 @@ body {
 }
 
 .main {
-    min-height: calc(100vh - 222px);
+    min-height: calc(100vh - 225px);
     padding-top: 100px;
+}
+
+@media (max-width: 649px) {
+    .main {
+        padding-top: 85px;
+    }
 }
 
 .stripe {
@@ -41,16 +47,30 @@ body {
     margin: 0 auto;
 }
 
+@media (max-width: 649px) {
+    .wrapper {
+        width: 90%;
+    }
+}
+
 .wrap {
     height: auto !important;
     min-height: 100%;
-    margin: 0 auto -122px;
+    margin: 0 auto -125px;
 }
 
 .push {
-    height: 122px;
+    height: 125px;
 
     clear: both;
+}
+
+.col:first-child {
+    border-left: 0;
+}
+
+.col:last-child {
+    border-right: 0;
 }
 
 /* -- HEADER
@@ -63,7 +83,7 @@ header {
 
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 999999;
 }
 
 .header_top {
@@ -152,6 +172,23 @@ header {
     margin: 0 60px 0 0;
 
     position: relative;
+    vertical-align: middle;
+}
+
+@media (max-width: 979px) {
+    .header_menu_item {
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 649px) {
+    .header_menu_item {
+        font-size: 1.2rem;
+    }
+}
+
+.header_menu li > a {
+    color: C_TEXT;
 }
 
 .header_menu_item:first-child {
@@ -175,10 +212,36 @@ header {
     margin: 0 auto;
 }
 
+@media (max-width: 649px) {
+    .header_menu_item:first-child {
+        margin-left: -3.5rem;
+        margin-right: 0;
+
+        top: 5px;
+    }
+
+    .beestore_logo svg {
+        width: 70px;
+        height: auto;
+    }
+}
+
 .header_menu_item:nth-child(2),
 .header_menu_item:nth-child(3),
 .header_menu_item:nth-child(4) {
     float: left;
+}
+
+@media (max-width: 649px) {
+    .header_menu_item:nth-child(2),
+    .header_menu_item:nth-child(3),
+    .header_menu_item:nth-child(4) {
+        text-align: center;
+        line-height: 35px;
+
+        width: 33%;
+        margin: 50px 0 0 0;
+    }
 }
 
 .header_menu_item > a {
@@ -214,6 +277,7 @@ header {
 }
 
 .cart {
+    display: inline-block;
     width: 63px;
     margin-right: 0;
 }
@@ -245,6 +309,26 @@ header {
     background-color: C_STRIPE_MEDIUM1;
 }
 
+@media (max-width: 649px) {
+    .cart {
+        line-height: 40px;
+
+        width: 40px;
+
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+
+    .cart > button > i:before {
+        font-size: 2.2rem;
+    }
+
+    .cart button.active {
+        background-color: C_LIGHT;
+    }
+}
+
 .cart_notifications {
     font-size: 14px;
     background-color: C_PRIMARY;
@@ -271,6 +355,20 @@ header {
     @mixin scale(0, 0);
 }
 
+@media (max-width: 649px) {
+    .cart_notifications {
+        font-size: 10px;
+        line-height: 17px;
+
+        height: 15px;
+        width: 15px;
+        margin-right: -17px;
+        padding: 0;
+
+        top: 0;
+    }
+}
+
 .language {
     margin: 0 0 0 10px;
 }
@@ -286,6 +384,20 @@ header {
 .language > a:hover::after,
 .language > a.active::after {
     width: 0;
+}
+
+@media (max-width: 649px) {
+    .language {
+        line-height: 1rem;
+
+        position: absolute;
+        top: 25px;
+        left: 15px;
+    }
+
+    .language.language_fr {
+        left: 60px;
+    }
 }
 
 /* -- FOOTER
@@ -334,6 +446,18 @@ footer ul {
     margin-right: 60px;
 }
 
+@media (max-width: 979px) {
+    .footer_menu li {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 649px) {
+    .footer_menu li {
+        margin: 0 15px;
+    }
+}
+
 .footer_menu li > a,
 .footer_linkArcbees > li > a{
     color: C_TEXT_LIGHT;
@@ -358,6 +482,19 @@ footer ul {
     display: block;
 }
 
+@media (max-width: 979px) {
+    .footer_caseStudy span {
+        display: inline;
+    }
+}
+
+@media (max-width: 649px) {
+    .footer_menu,
+    .footer_caseStudy {
+        text-align: center;
+    }
+}
+
 .footer_logoArcbees {
     text-align: center;
 }
@@ -371,6 +508,16 @@ footer ul {
 
 .footer_logoArcbees i:before {
     font-size: 9rem;
+}
+
+@media (max-width: 649px) {
+    .footer_logoArcbees {
+        margin-top: 20px;
+    }
+
+    .footer_logoArcbees i:before {
+        font-size: 6rem;
+    }
 }
 
 .footer_contact {
@@ -395,6 +542,18 @@ footer ul {
     margin-left: 5px;
 
     vertical-align: middle;
+}
+
+@media (max-width: 649px) {
+    .footer_linkArcbees {
+        display: none;
+    }
+
+    .footer_linkSocial {
+        text-align: center;
+
+        padding: 0;
+    }
 }
 
 .footer_linkSocial > li {

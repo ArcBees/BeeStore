@@ -20,6 +20,12 @@
     font-size: 2rem;
 }
 
+@media (max-width: 979px) {
+    .productName {
+        font-size: 2rem;
+    }
+}
+
 .brandName {
     margin-bottom: 5px;
 }
@@ -191,6 +197,12 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+@media (max-width: 649px) {
+    .inputQuantity {
+        margin: 0 5px 0 0;
+    }
+}
+
 .share {
     display: inline-block;
 
@@ -241,6 +253,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .share > i.share_close:active:before {
     font-size: 2rem;
+}
+
+@media (max-width: 649px) {
+    .share {
+        text-align: left;
+
+        display: block;
+        margin: 15px 0;
+    }
 }
 
 .share_icons_fb,
@@ -374,18 +395,37 @@ input[type=number]::-webkit-outer-spin-button {
 
     display: table;
     height: calc(100% - 100px);
-    margin-right: -100vw;
+    margin-right: -425px;
 
     position: fixed;
     top: 100px;
     right: 0;
     z-index: 99999;
 
+    visibility: hidden;
+
     @mixin transition_effect(all, .5s, ease-in-out);
 }
 
 .rightPanel__open {
     margin-right: 0;
+
+    visibility: visible;
+}
+
+@media (max-width: 649px) {
+    .rightPanel {
+        height: 100%;
+        top: -100vh;
+        margin: 0;
+    }
+
+    .rightPanel__open {
+        margin-right: 0;
+        width: 100%;
+
+        top: 85px;
+    }
 }
 
 .rightPanel_title {
@@ -488,6 +528,17 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
 
     overflow: auto;
+}
+
+@media (max-width: 649px) {
+    .rightPanel_shoppingBag,
+    .rightPanel_address,
+    .rightPanel_order,
+    .rightPanel_paiement,
+    .rightPanel_confirmation {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .rightPanel_order h3,
@@ -614,11 +665,12 @@ h4.orderBox_productName {
 }
 
 .orderBox_delete {
+    font-size: 2rem;
+
     display: table-cell;
     width: 20px;
 
     vertical-align: middle;
-
 }
 
 .orderBox_delete i {
