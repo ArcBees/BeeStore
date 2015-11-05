@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
+import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -29,7 +30,7 @@ import com.google.gwt.event.shared.HasHandlers;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
-public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
+public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCartQuantityUpdatedEventHandler {
     private final EventBus eventBus;
     private final SessionStorageHandler storageHandler;
 
@@ -42,34 +43,39 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
             SessionStorageHandler storageHandler) {
         this.eventBus = eventBus;
         this.storageHandler = storageHandler;
+
+        eventBus.addHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
     }
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem existingItemInCart = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
-            @Override
-            public boolean apply(ShoppingCartItem shoppingCartItem) {
-                return shoppingCartItem.equals(item);
-            }
-        }).orNull();
+        ShoppingCartItem existingItemInCart = getExistingItemFromCart(item);
+        ShoppingCartItem existingItemInSession = getExistingItemFromSession(item);
 
-        ShoppingCartItem existingItemInSession = Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
-            @Override
-            public boolean apply(ShoppingCartItem shoppingCartItem) {
-                return shoppingCartItem.equals(item);
-            }
-        }).orNull();
-
-        if (existingItemInSession != null && existingItemInCart != null) {
-            existingItemInCart.addMore(item.getQuantity());
-            storageHandler.updateFromSessionStorage(String.valueOf(item.hashCode()), item.getQuantity());
-            ShoppingCartQuantityChangeEvent.fire(this, existingItemInCart, existingItemInCart.getQuantity());
-        } else if (existingItemInSession != null) {
+        if (existingItemInSession != null && existingItemInCart == null) {
             addItemToCart(item);
         } else if (existingItemInCart == null) {
             addItemToCart(item);
             addItemToSession(item);
         }
+    }
+
+    private ShoppingCartItem getExistingItemFromSession(final ShoppingCartItem item) {
+        return Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
+            @Override
+            public boolean apply(ShoppingCartItem shoppingCartItem) {
+                return shoppingCartItem.equals(item);
+            }
+        }).orNull();
+    }
+
+    private ShoppingCartItem getExistingItemFromCart(final ShoppingCartItem item) {
+        return Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
+            @Override
+            public boolean apply(ShoppingCartItem shoppingCartItem) {
+                return shoppingCartItem.equals(item);
+            }
+        }).orNull();
     }
 
     private void addItemToCart(ShoppingCartItem item) {
@@ -131,5 +137,14 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     protected List<ShoppingCartItem> getItems() {
         return items;
+    }
+
+    @Override
+    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
+        ShoppingCartItem existingItemFromCart = getExistingItemFromCart(event.getExistingItem());
+        String key = String.valueOf(existingItemFromCart.hashCode());
+
+        existingItemFromCart.setQuantity(event.getNewQuantity());
+        storageHandler.updateFromSessionStorage(key, existingItemFromCart.getQuantity());
     }
 }
