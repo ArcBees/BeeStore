@@ -16,9 +16,14 @@
 
 package com.arcbees.beestore.common.dto;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private ProductType productType;
     private Size size;
+
+    public Product() {
+    }
 
     private Product(ProductType productType, Size size) {
         this.productType = productType;

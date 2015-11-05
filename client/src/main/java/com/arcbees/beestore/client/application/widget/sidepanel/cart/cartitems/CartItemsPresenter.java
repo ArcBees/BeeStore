@@ -16,7 +16,11 @@
 
 package com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitems;
 
+import java.util.List;
+
 import com.arcbees.beestore.client.application.CurrentOrder;
+import com.arcbees.beestore.client.application.SessionStorageHandler;
+import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemFactory;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemPresenter;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
@@ -41,23 +45,43 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
     private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
+    private final SessionStorageHandler sessionStorageHandler;
+    private boolean itemsPopulated;
 
     @Inject
     CartItemsPresenter(
             EventBus eventBus,
             MyView view,
             CartItemFactory cartItemFactory,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            SessionStorageHandler sessionStorageHandler) {
         super(eventBus, view);
 
         this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
+        this.sessionStorageHandler = sessionStorageHandler;
     }
 
     @Override
     protected void onBind() {
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
         addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
+    }
+
+    @Override
+    protected void onReset() {
+        if (!itemsPopulated) {
+            populateCartItemsFromSessionStorage();
+
+            itemsPopulated = true;
+        }
+    }
+
+    private void populateCartItemsFromSessionStorage() {
+        List<ShoppingCartItem> items = sessionStorageHandler.getItems();
+        for (ShoppingCartItem item : items) {
+            currentOrder.addItem(item);
+        }
     }
 
     @Override

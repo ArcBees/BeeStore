@@ -16,11 +16,16 @@
 
 package com.arcbees.beestore.client.application;
 
+import java.io.Serializable;
+
 import com.arcbees.beestore.common.dto.ProductDto;
 
-public class ShoppingCartItem {
+public class ShoppingCartItem implements Serializable {
     private ProductDto productDto;
     private int quantity;
+
+    public ShoppingCartItem() {
+    }
 
     public ShoppingCartItem(ProductDto productDto, int quantity) {
         this.productDto = productDto;

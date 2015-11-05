@@ -1,6 +1,8 @@
 package com.arcbees.beestore.common.dto;
 
-public class ProductDto {
+import java.io.Serializable;
+
+public class ProductDto implements Serializable {
     private Brand brand;
     private Product product;
 

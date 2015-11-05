@@ -14,6 +14,7 @@
     <inherits name="com.google.common.base.Base"/>
     <inherits name="com.google.common.collect.Collect"/>
     <inherits name="com.arcbees.stripe.GwtStripe"/>
+    <inherits name="com.seanchenxi.gwt.storage.Storage" />
 
     <extend-configuration-property name="gin.ginjector.modules"
             value="com.arcbees.beestore.client.application.gin.ClientModule"/>
@@ -36,6 +37,9 @@
 
     <!-- Set locale to english (removes 'default' permutation) -->
     <set-property name="locale" value="en,fr"/>
+
+    <!-- This is used to disable gwt-storage finder -->
+    <set-configuration-property name="storage.type.finder" value="xml"/>
 
     <set-property-fallback name="locale" value="en"/>
 </module>
