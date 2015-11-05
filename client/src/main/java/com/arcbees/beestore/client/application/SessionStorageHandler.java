@@ -72,7 +72,7 @@ public class SessionStorageHandler {
         return items;
     }
 
-    private int getSize() {
+    public int getSize() {
         return sessionStorage.size();
     }
 }

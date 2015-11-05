@@ -46,22 +46,39 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem existingItemOfSameType = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
+        ShoppingCartItem existingItemInCart = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
             @Override
             public boolean apply(ShoppingCartItem shoppingCartItem) {
                 return shoppingCartItem.equals(item);
             }
         }).orNull();
 
-        if (existingItemOfSameType != null) {
-            existingItemOfSameType.addMore(item.getQuantity());
+        ShoppingCartItem existingItemInSession = Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
+            @Override
+            public boolean apply(ShoppingCartItem shoppingCartItem) {
+                return shoppingCartItem.equals(item);
+            }
+        }).orNull();
+
+        if (existingItemInSession != null && existingItemInCart != null) {
+            existingItemInCart.addMore(item.getQuantity());
             storageHandler.updateFromSessionStorage(String.valueOf(item.hashCode()), item.getQuantity());
-            ShoppingCartQuantityChangeEvent.fire(this, existingItemOfSameType, existingItemOfSameType.getQuantity());
-        } else {
-            items.add(item);
-            storageHandler.addToSessionStorage(item);
-            ShoppingCartChangedEvent.fire(item, this);
+            ShoppingCartQuantityChangeEvent.fire(this, existingItemInCart, existingItemInCart.getQuantity());
+        } else if (existingItemInSession != null) {
+            addItemToCart(item);
+        } else if (existingItemInCart == null) {
+            addItemToCart(item);
+            addItemToSession(item);
         }
+    }
+
+    private void addItemToCart(ShoppingCartItem item) {
+        items.add(item);
+        ShoppingCartChangedEvent.fire(item, this);
+    }
+
+    private void addItemToSession(ShoppingCartItem item) {
+        storageHandler.addToSessionStorage(item);
     }
 
     @Override

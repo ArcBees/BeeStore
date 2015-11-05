@@ -101,4 +101,9 @@ public class ShoppingCartPresenter extends PresenterWidget<ShoppingCartPresenter
 
         showCartContent();
     }
+
+    @Override
+    protected void onReset() {
+        super.onReset();
+    }
 }

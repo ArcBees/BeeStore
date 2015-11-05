@@ -16,6 +16,8 @@
 
 package com.arcbees.beestore.client.application;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import com.arcbees.beestore.client.application.widget.sidepanel.SidePanelPresenter;
@@ -29,6 +31,7 @@ import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
+import com.google.gwt.core.client.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -69,6 +72,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     private final SidePanelPresenter sidePanelPresenter;
 
     private CurrentOrder currentOrder;
+    private final SessionStorageHandler sessionStorageHandler;
 
     @Inject
     ApplicationPresenter(
@@ -76,11 +80,13 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy,
             SidePanelPresenter sidePanelPresenter,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            SessionStorageHandler sessionStorageHandler) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.sidePanelPresenter = sidePanelPresenter;
         this.currentOrder = currentOrder;
+        this.sessionStorageHandler = sessionStorageHandler;
     }
 
     @Override
@@ -108,6 +114,24 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         addRegisteredHandler(NavigationEvent.getType(), this);
     }
 
+    @Override
+    protected void onReveal() {
+        populateCurrentOrderFromSession();
+        updateItemNumberTooltip();
+    }
+
+    private void populateCurrentOrderFromSession() {
+        List<ShoppingCartItem> items = sessionStorageHandler.getItems();
+        for (ShoppingCartItem item : items) {
+            currentOrder.addItem(item);
+            GWT.log(item.getProductDto().getProductType().name());
+        }
+    }
+
+    private void updateItemNumberTooltip() {
+        getView().updateItemNumber(currentOrder.getSize());
+    }
+
     @ProxyEvent
     @Override
     public void onBrandChanged(BrandChangedEvent event) {
@@ -116,7 +140,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
+        updateItemNumberTooltip();
     }
 
     @ProxyEvent
