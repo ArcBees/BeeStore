@@ -80,6 +80,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
 
     private void addItemToCart(ShoppingCartItem item) {
         items.add(item);
+
         ShoppingCartChangedEvent.fire(item, this);
     }
 
@@ -107,6 +108,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     public void removeItem(ShoppingCartItem item) {
         items.remove(item);
         storageHandler.deleteFromSessionStorage(item);
+
         ShoppingCartChangedEvent.fire(item, true, this);
     }
 
@@ -142,9 +144,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
         ShoppingCartItem existingItemFromCart = getExistingItemFromCart(event.getExistingItem());
-        String key = String.valueOf(existingItemFromCart.hashCode());
 
-        existingItemFromCart.setQuantity(event.getNewQuantity());
-        storageHandler.updateFromSessionStorage(key, existingItemFromCart.getQuantity());
+        storageHandler.updateFromSessionStorage(existingItemFromCart.getIdentifier(), event.getNewQuantity());
     }
 }

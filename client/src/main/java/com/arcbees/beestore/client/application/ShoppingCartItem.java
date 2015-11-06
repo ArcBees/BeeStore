@@ -62,4 +62,8 @@ public class ShoppingCartItem implements Serializable {
     public void addMore(int quantity) {
         this.quantity += quantity;
     }
+
+    public String getIdentifier() {
+        return productDto.getBrand().getValue() + "" + productDto.getProductType().name();
+    }
 }
