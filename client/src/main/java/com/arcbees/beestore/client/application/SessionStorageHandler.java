@@ -16,7 +16,6 @@
 
 package com.arcbees.beestore.client.application;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,26 +35,25 @@ public class SessionStorageHandler {
         this.keyProvider = keyProvider;
     }
 
-    public void deleteFromSessionStorage(ShoppingCartItem item) {
-        StorageKey<ShoppingCartItem> key = getStorageKey(item);
-        sessionStorage.remove(key);
-    }
-
-    private StorageKey<ShoppingCartItem> getStorageKey(ShoppingCartItem item) {
-        return StorageKeyFactory.serializableKey(item.getIdentifier());
-    }
-
     public void addToSessionStorage(ShoppingCartItem item) {
         try {
-            sessionStorage.put(keyProvider.shoppingCartItemKey(item.getIdentifier()), item);
+            sessionStorage.put(keyProvider.shoppingCartItemKey(item.getStorageKeyName()), item);
         } catch (SerializationException e) {
             e.printStackTrace();
         }
     }
 
+    public void deleteFromSessionStorage(ShoppingCartItem item) {
+        String keyName = item.getStorageKeyName();
+        StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
+
+        sessionStorage.remove(key);
+    }
+
     public void updateFromSessionStorage(String keyName, int newQuantity) {
+        StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
+
         try {
-            StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
             ShoppingCartItem itemToUpdate = sessionStorage.get(key);
             itemToUpdate.setQuantity(newQuantity);
             sessionStorage.put(key, itemToUpdate);

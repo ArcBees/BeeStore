@@ -70,9 +70,9 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
+    private final SessionStorageHandler sessionStorageHandler;
 
     private CurrentOrder currentOrder;
-    private final SessionStorageHandler sessionStorageHandler;
 
     @Inject
     ApplicationPresenter(
@@ -124,7 +124,6 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         List<ShoppingCartItem> items = sessionStorageHandler.getItems();
         for (ShoppingCartItem item : items) {
             currentOrder.addItem(item);
-            GWT.log(item.getProductDto().getProductType().name());
         }
     }
 

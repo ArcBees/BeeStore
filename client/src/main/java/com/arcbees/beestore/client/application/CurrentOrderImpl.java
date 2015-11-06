@@ -49,19 +49,19 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem existingItemInCart = getExistingItemFromCart(item);
-        ShoppingCartItem existingItemInSession = getExistingItemFromSession(item);
+        ShoppingCartItem cartItem = getItemFromCart(item);
+        ShoppingCartItem sessionItem = getItemFromSession(item);
 
-        if (existingItemInSession != null && existingItemInCart == null) {
+        if (sessionItem != null && cartItem == null) {
             addItemToCart(item);
-        } else if (existingItemInCart == null) {
+        } else if (cartItem == null) {
             addItemToCart(item);
             addItemToSession(item);
         }
     }
 
-    private ShoppingCartItem getExistingItemFromSession(final ShoppingCartItem item) {
-        return Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
+    private ShoppingCartItem getItemFromCart(final ShoppingCartItem item) {
+        return Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
             @Override
             public boolean apply(ShoppingCartItem shoppingCartItem) {
                 return shoppingCartItem.equals(item);
@@ -69,8 +69,8 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
         }).orNull();
     }
 
-    private ShoppingCartItem getExistingItemFromCart(final ShoppingCartItem item) {
-        return Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
+    private ShoppingCartItem getItemFromSession(final ShoppingCartItem item) {
+        return Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
             @Override
             public boolean apply(ShoppingCartItem shoppingCartItem) {
                 return shoppingCartItem.equals(item);
@@ -89,6 +89,14 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     }
 
     @Override
+    public void removeItem(ShoppingCartItem item) {
+        items.remove(item);
+        storageHandler.deleteFromSessionStorage(item);
+
+        ShoppingCartChangedEvent.fire(item, true, this);
+    }
+
+    @Override
     public int getSize() {
         int size = 0;
 
@@ -102,14 +110,6 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     @Override
     public boolean isEmpty() {
         return items.isEmpty();
-    }
-
-    @Override
-    public void removeItem(ShoppingCartItem item) {
-        items.remove(item);
-        storageHandler.deleteFromSessionStorage(item);
-
-        ShoppingCartChangedEvent.fire(item, true, this);
     }
 
     @Override
@@ -137,14 +137,15 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
         eventBus.fireEventFromSource(gwtEvent, this);
     }
 
-    protected List<ShoppingCartItem> getItems() {
-        return items;
-    }
-
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        ShoppingCartItem existingItemFromCart = getExistingItemFromCart(event.getExistingItem());
+        ShoppingCartItem existingItem = event.getExistingItem();
 
-        storageHandler.updateFromSessionStorage(existingItemFromCart.getIdentifier(), event.getNewQuantity());
+        String keyName = existingItem.getStorageKeyName();
+        storageHandler.updateFromSessionStorage(keyName, event.getNewQuantity());
+    }
+
+    protected List<ShoppingCartItem> getItems() {
+        return items;
     }
 }

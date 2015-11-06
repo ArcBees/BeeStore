@@ -38,8 +38,5 @@
     <!-- Set locale to english (removes 'default' permutation) -->
     <set-property name="locale" value="en,fr"/>
 
-    <!-- This is used to disable gwt-storage finder -->
-    <set-configuration-property name="storage.type.finder" value="xml"/>
-
     <set-property-fallback name="locale" value="en"/>
 </module>
