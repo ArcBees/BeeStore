@@ -16,16 +16,21 @@
 
 package com.arcbees.beestore.common.dto;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Product implements Serializable {
+public class Product {
     private ProductType productType;
     private Size size;
 
     public Product() {
     }
 
-    private Product(ProductType productType, Size size) {
+    @JsonCreator
+    private Product(
+            @JsonProperty("productType") ProductType productType,
+            @JsonProperty("size") Size size) {
         this.productType = productType;
         this.size = size;
     }
@@ -42,6 +47,7 @@ public class Product implements Serializable {
         return new Product(productType, Size.UNIQUE);
     }
 
+    @JsonIgnore
     public int getPrice() {
         return productType.getPrice();
     }

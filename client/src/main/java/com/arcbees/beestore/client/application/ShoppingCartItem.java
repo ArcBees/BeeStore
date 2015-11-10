@@ -16,24 +16,31 @@
 
 package com.arcbees.beestore.client.application;
 
-import java.io.Serializable;
-
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ShoppingCartItem implements Serializable {
+public class ShoppingCartItem {
     private ProductDto productDto;
     private int quantity;
 
     public ShoppingCartItem() {
     }
 
-    public ShoppingCartItem(ProductDto productDto, int quantity) {
+    @JsonCreator
+    public ShoppingCartItem(
+            @JsonProperty("productDto") ProductDto productDto,
+            @JsonProperty("quantity") int quantity) {
         this.productDto = productDto;
         this.quantity = quantity;
     }
 
     public ProductDto getProductDto() {
         return productDto;
+    }
+
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
     }
 
     @Override
@@ -61,9 +68,5 @@ public class ShoppingCartItem implements Serializable {
 
     public void addMore(int quantity) {
         this.quantity += quantity;
-    }
-
-    public String getStorageKeyName() {
-        return productDto.getBrand().getValue() + "" + productDto.getProductType().name();
     }
 }

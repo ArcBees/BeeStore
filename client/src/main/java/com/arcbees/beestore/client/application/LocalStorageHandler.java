@@ -19,29 +19,35 @@ package com.arcbees.beestore.client.application;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
+import com.github.nmorel.gwtjackson.client.ObjectMapper;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.inject.Inject;
 import com.seanchenxi.gwt.storage.client.StorageExt;
 import com.seanchenxi.gwt.storage.client.StorageKey;
+import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
 
 public class LocalStorageHandler {
-    private final LocalStorageKeyProvider keyProvider;
+    interface CartMapper extends ObjectMapper<List<ShoppingCartItem>> {
+    }
+
+    private static final StorageKey<String> STORAGE_KEY = StorageKeyFactory.stringKey("shopping-cart");
+
     private final StorageExt localStorage = StorageExt.getLocalStorage();
+    private final CartMapper mapper;
 
     @Inject
     LocalStorageHandler(
-            LocalStorageKeyProvider keyProvider) {
-        this.keyProvider = keyProvider;
+            CartMapper mapper) {
+        this.mapper = mapper;
     }
 
     public List<ShoppingCartItem> getItems() {
         List<ShoppingCartItem> items = new ArrayList<>();
         try {
-            ShoppingCartItem[] shoppingCartItems = localStorage.get(getStorageKey());
+            String shoppingCartItems = localStorage.get(STORAGE_KEY);
             if (shoppingCartItems != null) {
-                items = Lists.newArrayList(shoppingCartItems);
+                items = mapper.read(shoppingCartItems);
             }
         } catch (SerializationException e) {
             GQuery.console.error(e);
@@ -51,16 +57,10 @@ public class LocalStorageHandler {
     }
 
     public void update(List<ShoppingCartItem> cartItems) {
-        ShoppingCartItem[] items = cartItems.toArray(new ShoppingCartItem[cartItems.size()]);
-
         try {
-            localStorage.put(getStorageKey(), items);
+            localStorage.put(STORAGE_KEY, mapper.write(cartItems));
         } catch (SerializationException e) {
             GQuery.console.error(e);
         }
-    }
-
-    private StorageKey<ShoppingCartItem[]> getStorageKey() {
-        return keyProvider.shoppingCartItemsKey("SHOPPING_CART");
     }
 }
