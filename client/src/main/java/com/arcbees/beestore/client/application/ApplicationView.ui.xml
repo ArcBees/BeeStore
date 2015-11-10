@@ -18,7 +18,9 @@
         <div class="{res.style.wrap}">
             <header>
                 <div class="{res.style.header_top}">
-                    <p><i class="{font.icons.iconClose}"/> The Beestore is a case study from Arcbees. Its purpose is to show our products. You'll eventually be able to buy items. Enjoy!</p>
+                    <p><i class="{font.icons.iconClose}"/> The Beestore is a case study from Arcbees. Its purpose is to show our products.
+                        <span>You'll eventually be able to buy items. Enjoy!</span>
+                    </p>
                 </div>
                 <nav role="navigation" class="{res.style.header_menu}">
                     <ul class="{res.style.clearfix}">

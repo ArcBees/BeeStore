@@ -101,6 +101,22 @@ header {
     margin-bottom: 0;
 }
 
+@media (max-width: 979px) {
+    .header_top p span {
+        display: block;
+    }
+}
+
+@media (max-width: 649px) {
+    .header_top p {
+        font-size: 1rem;
+    }
+
+    .header_top p span {
+        display: inline;
+    }
+}
+
 .header_top i:before {
     margin: -3px 10px 0 0;
 }
