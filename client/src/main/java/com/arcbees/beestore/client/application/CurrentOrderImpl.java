@@ -31,24 +31,22 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     private final EventBus eventBus;
+    private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
     private List<ShoppingCartItem> items = new ArrayList<>();
     private ContactInfoDto contactInfo;
 
     @Inject
     CurrentOrderImpl(
-            EventBus eventBus) {
+            EventBus eventBus,
+            ShoppingCartLocalStorage shoppingCartLocalStorage) {
         this.eventBus = eventBus;
+        this.shoppingCartLocalStorage = shoppingCartLocalStorage;
     }
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem existingItemOfSameType = Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
-            @Override
-            public boolean apply(ShoppingCartItem shoppingCartItem) {
-                return shoppingCartItem.equals(item);
-            }
-        }).orNull();
+        ShoppingCartItem existingItemOfSameType = getItemFromCart(item);
 
         if (existingItemOfSameType != null) {
             existingItemOfSameType.addMore(item.getQuantity());
@@ -57,6 +55,26 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
             items.add(item);
             ShoppingCartChangedEvent.fire(item, this);
         }
+
+        shoppingCartLocalStorage.update(items);
+    }
+
+    private ShoppingCartItem getItemFromCart(final ShoppingCartItem item) {
+        return Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
+            @Override
+            public boolean apply(ShoppingCartItem shoppingCartItem) {
+                return shoppingCartItem.equals(item);
+            }
+        }).orNull();
+    }
+
+    @Override
+    public void removeItem(ShoppingCartItem item) {
+        items.remove(item);
+
+        shoppingCartLocalStorage.update(items);
+
+        ShoppingCartChangedEvent.fire(item, true, this);
     }
 
     @Override
@@ -73,13 +91,6 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     @Override
     public boolean isEmpty() {
         return items.isEmpty();
-    }
-
-    @Override
-    public void removeItem(ShoppingCartItem item) {
-        items.remove(item);
-
-        ShoppingCartChangedEvent.fire(item, true, this);
     }
 
     @Override

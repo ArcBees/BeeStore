@@ -76,6 +76,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     FontResources font;
     @UiField
     DivElement numberOfItemsTooltip;
+    @UiField
+    DivElement caseStudyMessage;
+    @UiField
+    ButtonElement closeMessage;
 
     private final PlaceManager placeManager;
     private final NameTokensConstants nameTokensConstants;
@@ -121,6 +125,13 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
             }
         });
 
+        $(closeMessage).click(new Function() {
+            @Override
+            public void f() {
+                closeTopBar();
+            }
+        });
+
         setI18nAnchors();
     }
 
@@ -141,6 +152,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
 
         setLanguageAnchor(NameTokens.LANGUAGE_FRENCH, frenchAnchor);
         setLanguageAnchor(NameTokens.LANGUAGE_ENGLISH, englishAnchor);
+    }
+
+    private void closeTopBar() {
+        $(caseStudyMessage).addClass(res.style().topBarClose());
     }
 
     private void closeCart() {
@@ -264,7 +279,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     @Override
-    public void updateItemNumber(int number) {
+    public void updateNumberOfItems(int number) {
         if (number == 0) {
             $(numberOfItemsTooltip).hide();
         } else {

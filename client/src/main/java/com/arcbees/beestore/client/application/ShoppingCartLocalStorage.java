@@ -14,14 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beestore.client.resources;
+package com.arcbees.beestore.client.application;
 
-import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.ProductType;
-import com.google.gwt.i18n.client.Messages;
+import java.util.List;
 
-public interface PriceMessages extends Messages {
-    String brandName(@Select Brand brand, String smallWordsStyleName, String smallerWordsStyle);
+public interface ShoppingCartLocalStorage {
+    List<ShoppingCartItem> getItems();
 
-    String productName(@Select ProductType productType, String smallWordStyleName, String smallerWordsStyle);
+    void update(List<ShoppingCartItem> cartItems);
 }

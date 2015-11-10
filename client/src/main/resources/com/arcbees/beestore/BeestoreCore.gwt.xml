@@ -13,7 +13,9 @@
     <inherits name="com.arcbees.ui.ui"/>
     <inherits name="com.google.common.base.Base"/>
     <inherits name="com.google.common.collect.Collect"/>
+    <inherits name="com.github.nmorel.gwtjackson.GwtJackson" />
     <inherits name="com.arcbees.stripe.GwtStripe"/>
+    <inherits name="com.seanchenxi.gwt.storage.Storage" />
 
     <extend-configuration-property name="gin.ginjector.modules"
             value="com.arcbees.beestore.client.application.gin.ClientModule"/>

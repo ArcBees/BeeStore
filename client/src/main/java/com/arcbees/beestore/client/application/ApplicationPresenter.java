@@ -16,6 +16,8 @@
 
 package com.arcbees.beestore.client.application;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import com.arcbees.beestore.client.application.widget.sidepanel.SidePanelPresenter;
@@ -52,7 +54,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     interface MyView extends View {
         void changeBrand(Brand brand);
 
-        void updateItemNumber(int number);
+        void updateNumberOfItems(int number);
 
         void updateNavigationHref();
 
@@ -67,6 +69,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
+    private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
     private CurrentOrder currentOrder;
 
@@ -76,11 +79,13 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy,
             SidePanelPresenter sidePanelPresenter,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            ShoppingCartLocalStorage shoppingCartLocalStorage) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.sidePanelPresenter = sidePanelPresenter;
         this.currentOrder = currentOrder;
+        this.shoppingCartLocalStorage = shoppingCartLocalStorage;
     }
 
     @Override
@@ -90,7 +95,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
+        getView().updateNumberOfItems(currentOrder.getSize());
     }
 
     @Override
@@ -98,14 +103,25 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
         addVisibleHandler(BrandChangedEvent.TYPE, this);
-
         addVisibleHandler(ShoppingCartChangedEvent.TYPE, this);
-
         addVisibleHandler(CloseShoppingCartEvent.TYPE, this);
-
         addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         addRegisteredHandler(NavigationEvent.getType(), this);
+
+        populateCurrentOrderFromStorage();
+        updateNumberOfItems();
+    }
+
+    private void populateCurrentOrderFromStorage() {
+        List<ShoppingCartItem> items = shoppingCartLocalStorage.getItems();
+        for (ShoppingCartItem item : items) {
+            currentOrder.addItem(item);
+        }
+    }
+
+    private void updateNumberOfItems() {
+        getView().updateNumberOfItems(currentOrder.getSize());
     }
 
     @ProxyEvent
@@ -116,7 +132,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
+        updateNumberOfItems();
     }
 
     @ProxyEvent
