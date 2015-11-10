@@ -31,7 +31,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     private final EventBus eventBus;
-    private final LocalStorageHandler storageHandler;
+    private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
     private List<ShoppingCartItem> items = new ArrayList<>();
     private ContactInfoDto contactInfo;
@@ -39,9 +39,9 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     @Inject
     CurrentOrderImpl(
             EventBus eventBus,
-            LocalStorageHandler storageHandler) {
+            ShoppingCartLocalStorage shoppingCartLocalStorage) {
         this.eventBus = eventBus;
-        this.storageHandler = storageHandler;
+        this.shoppingCartLocalStorage = shoppingCartLocalStorage;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
             ShoppingCartChangedEvent.fire(item, this);
         }
 
-        storageHandler.update(items);
+        shoppingCartLocalStorage.update(items);
     }
 
     private ShoppingCartItem getItemFromCart(final ShoppingCartItem item) {
@@ -72,7 +72,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     public void removeItem(ShoppingCartItem item) {
         items.remove(item);
 
-        storageHandler.update(items);
+        shoppingCartLocalStorage.update(items);
 
         ShoppingCartChangedEvent.fire(item, true, this);
     }

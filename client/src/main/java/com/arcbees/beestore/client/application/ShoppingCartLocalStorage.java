@@ -27,7 +27,7 @@ import com.seanchenxi.gwt.storage.client.StorageExt;
 import com.seanchenxi.gwt.storage.client.StorageKey;
 import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
 
-public class LocalStorageHandler {
+public class ShoppingCartLocalStorage {
     interface CartMapper extends ObjectMapper<List<ShoppingCartItem>> {
     }
 
@@ -37,7 +37,7 @@ public class LocalStorageHandler {
     private final CartMapper mapper;
 
     @Inject
-    LocalStorageHandler(
+    ShoppingCartLocalStorage(
             CartMapper mapper) {
         this.mapper = mapper;
     }

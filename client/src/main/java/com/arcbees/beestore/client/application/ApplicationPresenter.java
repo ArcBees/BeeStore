@@ -69,7 +69,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
-    private final LocalStorageHandler localStorageHandler;
+    private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
     private CurrentOrder currentOrder;
 
@@ -80,12 +80,12 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyProxy proxy,
             SidePanelPresenter sidePanelPresenter,
             CurrentOrder currentOrder,
-            LocalStorageHandler localStorageHandler) {
+            ShoppingCartLocalStorage shoppingCartLocalStorage) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.sidePanelPresenter = sidePanelPresenter;
         this.currentOrder = currentOrder;
-        this.localStorageHandler = localStorageHandler;
+        this.shoppingCartLocalStorage = shoppingCartLocalStorage;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     private void populateCurrentOrderFromSession() {
-        List<ShoppingCartItem> items = localStorageHandler.getItems();
+        List<ShoppingCartItem> items = shoppingCartLocalStorage.getItems();
         for (ShoppingCartItem item : items) {
             currentOrder.addItem(item);
         }
