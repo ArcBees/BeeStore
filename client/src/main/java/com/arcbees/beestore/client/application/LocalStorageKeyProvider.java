@@ -21,5 +21,5 @@ import com.seanchenxi.gwt.storage.client.StorageKeyProvider;
 
 public interface LocalStorageKeyProvider extends StorageKeyProvider {
     @Key
-    StorageKey<ShoppingCartItem> shoppingCartItemKey(String keyName);
+    StorageKey<ShoppingCartItem[]> shoppingCartItemsKey(String keyName);
 }

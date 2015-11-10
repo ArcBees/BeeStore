@@ -19,12 +19,12 @@ package com.arcbees.beestore.client.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.inject.Inject;
 import com.seanchenxi.gwt.storage.client.StorageExt;
 import com.seanchenxi.gwt.storage.client.StorageKey;
-import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
 
 public class LocalStorageHandler {
     private final LocalStorageKeyProvider keyProvider;
@@ -36,52 +36,31 @@ public class LocalStorageHandler {
         this.keyProvider = keyProvider;
     }
 
-    public void addToSessionStorage(ShoppingCartItem item) {
-        try {
-            localStorage.put(keyProvider.shoppingCartItemKey(item.getStorageKeyName()), item);
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
-        }
-    }
-
-    public void deleteFromSessionStorage(ShoppingCartItem item) {
-        String keyName = item.getStorageKeyName();
-        StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
-
-        localStorage.remove(key);
-    }
-
-    public void updateFromSessionStorage(String keyName, int newQuantity) {
-        StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
-
-        try {
-            ShoppingCartItem itemToUpdate = localStorage.get(key);
-            itemToUpdate.setQuantity(newQuantity);
-            localStorage.put(key, itemToUpdate);
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
-        }
-    }
-
     public List<ShoppingCartItem> getItems() {
         List<ShoppingCartItem> items = new ArrayList<>();
-
-        for (int i = 0; i < getSize(); i++) {
-            String keyValue = localStorage.key(i);
-            StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyValue);
-
-            try {
-                ShoppingCartItem item = localStorage.get(key);
-                items.add(item);
-            } catch (SerializationException e) {
-                GQuery.console.error(e);
+        try {
+            ShoppingCartItem[] shoppingCartItems = localStorage.get(getStorageKey());
+            if (shoppingCartItems != null) {
+                items = Lists.newArrayList(shoppingCartItems);
             }
+        } catch (SerializationException e) {
+            GQuery.console.error(e);
         }
 
         return items;
     }
 
-    public int getSize() {
-        return localStorage.size();
+    public void update(List<ShoppingCartItem> cartItems) {
+        ShoppingCartItem[] items = cartItems.toArray(new ShoppingCartItem[cartItems.size()]);
+
+        try {
+            localStorage.put(getStorageKey(), items);
+        } catch (SerializationException e) {
+            GQuery.console.error(e);
+        }
+    }
+
+    private StorageKey<ShoppingCartItem[]> getStorageKey() {
+        return keyProvider.shoppingCartItemsKey("SHOPPING_CART");
     }
 }

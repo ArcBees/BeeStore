@@ -21,7 +21,6 @@ import java.util.List;
 
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
-import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -30,7 +29,7 @@ import com.google.gwt.event.shared.HasHandlers;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
-public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCartQuantityUpdatedEventHandler {
+public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     private final EventBus eventBus;
     private final LocalStorageHandler storageHandler;
 
@@ -43,21 +42,21 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
             LocalStorageHandler storageHandler) {
         this.eventBus = eventBus;
         this.storageHandler = storageHandler;
-
-        eventBus.addHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
     }
 
     @Override
     public void addItem(final ShoppingCartItem item) {
-        ShoppingCartItem cartItem = getItemFromCart(item);
-        ShoppingCartItem sessionItem = getItemFromSession(item);
+        ShoppingCartItem existingItemOfSameType = getItemFromCart(item);
 
-        if (sessionItem != null && cartItem == null) {
-            addItemToCart(item);
-        } else if (cartItem == null) {
-            addItemToCart(item);
-            addItemToSession(item);
+        if (existingItemOfSameType != null) {
+            existingItemOfSameType.addMore(item.getQuantity());
+            ShoppingCartQuantityChangeEvent.fire(this, existingItemOfSameType, existingItemOfSameType.getQuantity());
+        } else {
+            items.add(item);
+            ShoppingCartChangedEvent.fire(item, this);
         }
+
+        storageHandler.update(items);
     }
 
     private ShoppingCartItem getItemFromCart(final ShoppingCartItem item) {
@@ -69,29 +68,11 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
         }).orNull();
     }
 
-    private ShoppingCartItem getItemFromSession(final ShoppingCartItem item) {
-        return Iterables.tryFind(storageHandler.getItems(), new Predicate<ShoppingCartItem>() {
-            @Override
-            public boolean apply(ShoppingCartItem shoppingCartItem) {
-                return shoppingCartItem.equals(item);
-            }
-        }).orNull();
-    }
-
-    private void addItemToCart(ShoppingCartItem item) {
-        items.add(item);
-
-        ShoppingCartChangedEvent.fire(item, this);
-    }
-
-    private void addItemToSession(ShoppingCartItem item) {
-        storageHandler.addToSessionStorage(item);
-    }
-
     @Override
     public void removeItem(ShoppingCartItem item) {
         items.remove(item);
-        storageHandler.deleteFromSessionStorage(item);
+
+        storageHandler.update(items);
 
         ShoppingCartChangedEvent.fire(item, true, this);
     }
@@ -135,14 +116,6 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     @Override
     public void fireEvent(GwtEvent<?> gwtEvent) {
         eventBus.fireEventFromSource(gwtEvent, this);
-    }
-
-    @Override
-    public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        ShoppingCartItem existingItem = event.getExistingItem();
-
-        String keyName = existingItem.getStorageKeyName();
-        storageHandler.updateFromSessionStorage(keyName, event.getNewQuantity());
     }
 
     protected List<ShoppingCartItem> getItems() {
