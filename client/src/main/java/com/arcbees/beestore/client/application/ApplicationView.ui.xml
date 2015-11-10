@@ -17,8 +17,8 @@
     <g:HTMLPanel addStyleNames="{res.style.container}">
         <div class="{res.style.wrap}">
             <header>
-                <div class="{res.style.header_top}">
-                    <p><i class="{font.icons.iconClose}"/> The Beestore is a case study from Arcbees. Its purpose is to show our products.
+                <div ui:field="caseStudyMessage" class="{res.style.header_top}">
+                    <p><button ui:field="closeMessage" class="{res.style.closeMessage} {font.icons.iconClose}"/> The Beestore is a case study from Arcbees. Its purpose is to show our products.
                         <span>You'll eventually be able to buy items. Enjoy!</span>
                     </p>
                 </div>

@@ -111,6 +111,13 @@
     background-color: C_STRIPE_MEDIUM2;
 }
 
+@media (max-width: 979px) {
+    .itemForSale {
+        height: auto;
+        padding: 60px 0;
+    }
+}
+
 @media (max-width: 649px) {
     .itemForSale {
         height: auto;

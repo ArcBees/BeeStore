@@ -90,9 +90,16 @@ header {
     color: C_TEXT_LIGHT;
     background-color: C_DARK;
 
-    padding: 10px 0;
+    padding: 10px 30px;
+    height: 40px;
 
     position: relative;
+
+    @mixin transition(margin, .5s);
+}
+
+.topBarClose {
+    margin-top: -40px;
 }
 
 .header_top p {
@@ -102,12 +109,24 @@ header {
 }
 
 @media (max-width: 979px) {
+    .header_top {
+        height: 60px;
+    }
+
     .header_top p span {
         display: block;
+    }
+
+    .topBarClose {
+        margin-top: -60px;
     }
 }
 
 @media (max-width: 649px) {
+    .header_top {
+        height: 55px;
+    }
+
     .header_top p {
         font-size: 1rem;
     }
@@ -115,10 +134,16 @@ header {
     .header_top p span {
         display: inline;
     }
+
+    .topBarClose {
+        margin-top: -55px;
+    }
 }
 
-.header_top i:before {
+.header_top .closeMessage:before {
     margin: -3px 10px 0 0;
+
+    cursor: pointer;
 }
 
 .mobileDisplay {
