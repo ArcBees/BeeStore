@@ -32,7 +32,7 @@ import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCartQuantityUpdatedEventHandler {
     private final EventBus eventBus;
-    private final SessionStorageHandler storageHandler;
+    private final LocalStorageHandler storageHandler;
 
     private List<ShoppingCartItem> items = new ArrayList<>();
     private ContactInfoDto contactInfo;
@@ -40,7 +40,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers, ShoppingCart
     @Inject
     CurrentOrderImpl(
             EventBus eventBus,
-            SessionStorageHandler storageHandler) {
+            LocalStorageHandler storageHandler) {
         this.eventBus = eventBus;
         this.storageHandler = storageHandler;
 

@@ -19,27 +19,28 @@ package com.arcbees.beestore.client.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gwt.query.client.GQuery;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.inject.Inject;
 import com.seanchenxi.gwt.storage.client.StorageExt;
 import com.seanchenxi.gwt.storage.client.StorageKey;
 import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
 
-public class SessionStorageHandler {
-    private final SessionStorageKeyProvider keyProvider;
-    private final StorageExt sessionStorage = StorageExt.getSessionStorage();
+public class LocalStorageHandler {
+    private final LocalStorageKeyProvider keyProvider;
+    private final StorageExt localStorage = StorageExt.getLocalStorage();
 
     @Inject
-    SessionStorageHandler(
-            SessionStorageKeyProvider keyProvider) {
+    LocalStorageHandler(
+            LocalStorageKeyProvider keyProvider) {
         this.keyProvider = keyProvider;
     }
 
     public void addToSessionStorage(ShoppingCartItem item) {
         try {
-            sessionStorage.put(keyProvider.shoppingCartItemKey(item.getStorageKeyName()), item);
+            localStorage.put(keyProvider.shoppingCartItemKey(item.getStorageKeyName()), item);
         } catch (SerializationException e) {
-            e.printStackTrace();
+            GQuery.console.error(e);
         }
     }
 
@@ -47,18 +48,18 @@ public class SessionStorageHandler {
         String keyName = item.getStorageKeyName();
         StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
 
-        sessionStorage.remove(key);
+        localStorage.remove(key);
     }
 
     public void updateFromSessionStorage(String keyName, int newQuantity) {
         StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyName);
 
         try {
-            ShoppingCartItem itemToUpdate = sessionStorage.get(key);
+            ShoppingCartItem itemToUpdate = localStorage.get(key);
             itemToUpdate.setQuantity(newQuantity);
-            sessionStorage.put(key, itemToUpdate);
+            localStorage.put(key, itemToUpdate);
         } catch (SerializationException e) {
-            e.printStackTrace();
+            GQuery.console.error(e);
         }
     }
 
@@ -66,14 +67,14 @@ public class SessionStorageHandler {
         List<ShoppingCartItem> items = new ArrayList<>();
 
         for (int i = 0; i < getSize(); i++) {
-            String keyValue = sessionStorage.key(i);
+            String keyValue = localStorage.key(i);
             StorageKey<ShoppingCartItem> key = StorageKeyFactory.serializableKey(keyValue);
 
             try {
-                ShoppingCartItem item = sessionStorage.get(key);
+                ShoppingCartItem item = localStorage.get(key);
                 items.add(item);
             } catch (SerializationException e) {
-                e.printStackTrace();
+                GQuery.console.error(e);
             }
         }
 
@@ -81,6 +82,6 @@ public class SessionStorageHandler {
     }
 
     public int getSize() {
-        return sessionStorage.size();
+        return localStorage.size();
     }
 }

@@ -19,7 +19,7 @@ package com.arcbees.beestore.client.application;
 import com.seanchenxi.gwt.storage.client.StorageKey;
 import com.seanchenxi.gwt.storage.client.StorageKeyProvider;
 
-public interface SessionStorageKeyProvider extends StorageKeyProvider {
+public interface LocalStorageKeyProvider extends StorageKeyProvider {
     @Key
     StorageKey<ShoppingCartItem> shoppingCartItemKey(String keyName);
 }

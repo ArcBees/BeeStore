@@ -31,7 +31,6 @@ import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
-import com.google.gwt.core.client.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -70,7 +69,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     public static final SingleSlot SLOT_SIDE_PANEL = new SingleSlot();
 
     private final SidePanelPresenter sidePanelPresenter;
-    private final SessionStorageHandler sessionStorageHandler;
+    private final LocalStorageHandler localStorageHandler;
 
     private CurrentOrder currentOrder;
 
@@ -81,12 +80,12 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyProxy proxy,
             SidePanelPresenter sidePanelPresenter,
             CurrentOrder currentOrder,
-            SessionStorageHandler sessionStorageHandler) {
+            LocalStorageHandler localStorageHandler) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.sidePanelPresenter = sidePanelPresenter;
         this.currentOrder = currentOrder;
-        this.sessionStorageHandler = sessionStorageHandler;
+        this.localStorageHandler = localStorageHandler;
     }
 
     @Override
@@ -121,7 +120,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     private void populateCurrentOrderFromSession() {
-        List<ShoppingCartItem> items = sessionStorageHandler.getItems();
+        List<ShoppingCartItem> items = localStorageHandler.getItems();
         for (ShoppingCartItem item : items) {
             currentOrder.addItem(item);
         }
