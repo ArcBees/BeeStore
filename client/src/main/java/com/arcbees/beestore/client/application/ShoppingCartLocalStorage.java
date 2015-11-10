@@ -16,51 +16,10 @@
 
 package com.arcbees.beestore.client.application;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.github.nmorel.gwtjackson.client.ObjectMapper;
-import com.google.gwt.query.client.GQuery;
-import com.google.gwt.user.client.rpc.SerializationException;
-import com.google.inject.Inject;
-import com.seanchenxi.gwt.storage.client.StorageExt;
-import com.seanchenxi.gwt.storage.client.StorageKey;
-import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
+public interface ShoppingCartLocalStorage {
+    List<ShoppingCartItem> getItems();
 
-public class ShoppingCartLocalStorage {
-    interface CartMapper extends ObjectMapper<List<ShoppingCartItem>> {
-    }
-
-    private static final StorageKey<String> STORAGE_KEY = StorageKeyFactory.stringKey("shopping-cart");
-
-    private final StorageExt localStorage = StorageExt.getLocalStorage();
-    private final CartMapper mapper;
-
-    @Inject
-    ShoppingCartLocalStorage(
-            CartMapper mapper) {
-        this.mapper = mapper;
-    }
-
-    public List<ShoppingCartItem> getItems() {
-        List<ShoppingCartItem> items = new ArrayList<>();
-        try {
-            String shoppingCartItems = localStorage.get(STORAGE_KEY);
-            if (shoppingCartItems != null) {
-                items = mapper.read(shoppingCartItems);
-            }
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
-        }
-
-        return items;
-    }
-
-    public void update(List<ShoppingCartItem> cartItems) {
-        try {
-            localStorage.put(STORAGE_KEY, mapper.write(cartItems));
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
-        }
-    }
+    void update(List<ShoppingCartItem> cartItems);
 }
