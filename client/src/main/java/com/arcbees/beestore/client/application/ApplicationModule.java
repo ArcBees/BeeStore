@@ -33,6 +33,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new WidgetModule());
         install(new NotFoundModule());
 
+        bind(ShoppingCartLocalStorage.class).to(ShoppingCartLocalStorageImpl.class).asEagerSingleton();
         bind(BrandChangeHandler.class).asEagerSingleton();
         bind(CurrentBrand.class).to(CurrentBrandImpl.class).in(Singleton.class);
         bind(ProductBrandUtil.class).in(Singleton.class);

@@ -17,18 +17,30 @@
 package com.arcbees.beestore.client.application;
 
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ShoppingCartItem {
     private ProductDto productDto;
     private int quantity;
 
-    public ShoppingCartItem(ProductDto productDto, int quantity) {
+    public ShoppingCartItem() {
+    }
+
+    @JsonCreator
+    public ShoppingCartItem(
+            @JsonProperty("productDto") ProductDto productDto,
+            @JsonProperty("quantity") int quantity) {
         this.productDto = productDto;
         this.quantity = quantity;
     }
 
     public ProductDto getProductDto() {
         return productDto;
+    }
+
+    public void setProductDto(ProductDto productDto) {
+        this.productDto = productDto;
     }
 
     @Override

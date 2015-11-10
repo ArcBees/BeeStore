@@ -33,6 +33,11 @@
             <artifactId>gwt-user</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.nmorel.gwtjackson</groupId>
+            <artifactId>gwt-jackson</artifactId>
+        </dependency>
+
         <!-- DI -->
         <dependency>
             <groupId>com.google.gwt.inject</groupId>
@@ -87,6 +92,10 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-gwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.seanchenxi.gwt</groupId>
+            <artifactId>gwt-storage</artifactId>
         </dependency>
     </dependencies>
 

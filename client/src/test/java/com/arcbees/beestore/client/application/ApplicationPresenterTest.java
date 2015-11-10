@@ -84,7 +84,7 @@ public class ApplicationPresenterTest {
 
         presenter.onShoppingCartQuantityChanged(mock(ShoppingCartQuantityChangeEvent.class));
 
-        verify(view).updateItemNumber(ORDER_SIZE);
+        verify(view).updateNumberOfItems(ORDER_SIZE);
     }
 
     @Test
