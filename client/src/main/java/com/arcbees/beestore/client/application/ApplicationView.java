@@ -264,7 +264,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     @Override
-    public void updateItemNumber(int number) {
+    public void updateNumberOfItems(int number) {
         if (number == 0) {
             $(numberOfItemsTooltip).hide();
         } else {

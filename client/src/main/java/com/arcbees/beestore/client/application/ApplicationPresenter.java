@@ -54,7 +54,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     interface MyView extends View {
         void changeBrand(Brand brand);
 
-        void updateItemNumber(int number);
+        void updateNumberOfItems(int number);
 
         void updateNavigationHref();
 
@@ -95,7 +95,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        getView().updateItemNumber(currentOrder.getSize());
+        getView().updateNumberOfItems(currentOrder.getSize());
     }
 
     @Override
@@ -103,31 +103,25 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
         addVisibleHandler(BrandChangedEvent.TYPE, this);
-
         addVisibleHandler(ShoppingCartChangedEvent.TYPE, this);
-
         addVisibleHandler(CloseShoppingCartEvent.TYPE, this);
-
         addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         addRegisteredHandler(NavigationEvent.getType(), this);
+
+        populateCurrentOrderFromStorage();
+        updateNumberOfItems();
     }
 
-    @Override
-    protected void onReveal() {
-        populateCurrentOrderFromSession();
-        updateItemNumberTooltip();
-    }
-
-    private void populateCurrentOrderFromSession() {
+    private void populateCurrentOrderFromStorage() {
         List<ShoppingCartItem> items = shoppingCartLocalStorage.getItems();
         for (ShoppingCartItem item : items) {
             currentOrder.addItem(item);
         }
     }
 
-    private void updateItemNumberTooltip() {
-        getView().updateItemNumber(currentOrder.getSize());
+    private void updateNumberOfItems() {
+        getView().updateNumberOfItems(currentOrder.getSize());
     }
 
     @ProxyEvent
@@ -138,7 +132,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        updateItemNumberTooltip();
+        updateNumberOfItems();
     }
 
     @ProxyEvent
