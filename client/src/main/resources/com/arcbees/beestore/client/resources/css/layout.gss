@@ -90,7 +90,19 @@ header {
     color: C_TEXT_LIGHT;
     background-color: C_DARK;
 
+    padding: 10px 0;
+
     position: relative;
+}
+
+.header_top p {
+    text-align: center;
+
+    margin-bottom: 0;
+}
+
+.header_top i:before {
+    margin: -3px 10px 0 0;
 }
 
 .mobileDisplay {
@@ -160,6 +172,8 @@ header {
 
     margin: 0;
     width: 100%;
+
+    position: relative;
 }
 
 .header_menu_item {
