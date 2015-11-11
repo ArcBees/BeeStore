@@ -71,6 +71,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     AnchorElement productsAnchor;
     @UiField
+    AnchorElement productsAnchorFooter;
+    @UiField
     AppResources res;
     @UiField
     FontResources font;
@@ -254,6 +256,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 .build();
 
         productsAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
+        productsAnchorFooter.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
     }
 
     @Override
