@@ -90,19 +90,24 @@ header {
     color: C_TEXT_LIGHT;
     background-color: C_DARK;
 
-    padding: 10px 30px;
-    height: 40px;
+    padding: 3px 30px;
+    height: 22px;
+    width: 100%;
 
-    position: relative;
+    position: absolute;
+    z-index: 9;
+
+    opacity: .5;
 
     @mixin transition(margin, .5s);
 }
 
 .topBarClose {
-    margin-top: -40px;
+    margin-top: -22px;
 }
 
 .header_top p {
+    font-size: 1.2rem;
     text-align: center;
 
     margin-bottom: 0;
@@ -110,21 +115,27 @@ header {
 
 @media (max-width: 979px) {
     .header_top {
-        height: 60px;
+        height: 40px;
+
+        position: relative;
+    }
+
+    .topBarClose {
+        margin-top: -40px;
     }
 
     .header_top p span {
         display: block;
     }
-
-    .topBarClose {
-        margin-top: -60px;
-    }
 }
 
 @media (max-width: 649px) {
     .header_top {
-        height: 55px;
+        height: 37px;
+    }
+
+    .topBarClose {
+        margin-top: -37px;
     }
 
     .header_top p {
@@ -133,10 +144,6 @@ header {
 
     .header_top p span {
         display: inline;
-    }
-
-    .topBarClose {
-        margin-top: -55px;
     }
 }
 
@@ -428,7 +435,7 @@ header {
     margin: 0 0 0 10px;
 }
 
-.language > a {
+.header_menu_item.language > a {
     color: C_STRIPE_MEDIUM3;
 }
 
