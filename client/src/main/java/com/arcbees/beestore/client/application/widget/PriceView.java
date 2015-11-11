@@ -113,7 +113,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
             @Override
             public void f() {
                 Element element = Element.as(getEvent().getEventTarget());
-                if (!element.hasClassName(res.style().productSection())) {
+                if (isPricePanel(element)) {
                     return;
                 }
 
@@ -125,7 +125,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
             @Override
             public void f() {
                 Element element = Element.as(getEvent().getEventTarget());
-                if (!element.hasClassName(res.style().productSection())) {
+                if (isPricePanel(element)) {
                     return;
                 }
 
@@ -142,5 +142,12 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
             $(shopView).hide();
             $(priceView).show();
         }
+    }
+
+    private boolean isPricePanel(Element element) {
+        if (!element.hasClassName(res.style().productSection())) {
+            return true;
+        }
+        return false;
     }
 }
