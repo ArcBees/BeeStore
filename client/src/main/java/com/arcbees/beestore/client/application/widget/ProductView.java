@@ -22,6 +22,8 @@ import com.arcbees.beestore.client.resources.ProductBrandUtil;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.LoadEvent;
+import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -31,7 +33,7 @@ import com.gwtplatform.mvp.client.ViewImpl;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ProductView extends ViewImpl implements ProductPresenter.MyView {
+public class ProductView extends ViewImpl implements ProductPresenter.MyView, LoadHandler {
     interface Binder extends UiBinder<HTMLPanel, ProductView> {
     }
 
@@ -56,24 +58,9 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView {
 
         initWidget(binder.createAndBindUi(this));
 
+        image.addLoadHandler(this);
+
         bindSlot(ProductPresenter.SLOT_PRICE, pricePanel);
-    }
-
-    @Override
-    protected void onAttach() {
-        String loaded = $(image).parent().data("loaded");
-        if (loaded != null) {
-            return;
-        }
-
-        $(image).parent().css("display", "none").data("loaded", "");
-
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                $(image).parent().css("display", "block");
-            }
-        });
     }
 
     @Override
@@ -92,5 +79,17 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView {
     @Override
     public void setProduct(ProductDto productDto) {
         image.setResource(productBrandUtil.getImage(productDto.getProductType(), productDto.getBrand()));
+    }
+
+    @Override
+    public void onLoad(LoadEvent event) {
+        $(image).css("display", "none");
+
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+                $(image).css("display", "block");
+            }
+        });
     }
 }
