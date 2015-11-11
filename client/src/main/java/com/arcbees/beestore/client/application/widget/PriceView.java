@@ -145,9 +145,6 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     }
 
     private boolean isPricePanel(Element element) {
-        if (!element.hasClassName(res.style().productSection())) {
-            return true;
-        }
-        return false;
+        return !element.hasClassName(res.style().productSection());
     }
 }
