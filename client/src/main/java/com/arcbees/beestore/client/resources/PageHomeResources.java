@@ -52,7 +52,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource arcbeesShirt();
 
     @Source("img/products/arcbees/arcbees-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesShirtThumb();
 
     @Source("img/products/gwtp/gwtp-shirt.png")
@@ -60,7 +59,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gwtpShirt();
 
     @Source("img/products/gwtp/gwtp-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpShirtThumb();
 
     @Source("img/products/gae/gae-shirt.png")
@@ -68,7 +66,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gaeShirt();
 
     @Source("img/products/gae/gae-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gaeShirtThumb();
 
     @Source("img/products/gquery/gquery-shirt.png")
@@ -76,7 +73,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gqueryShirt();
 
     @Source("img/products/gquery/gquery-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gqueryShirtThumb();
 
     @Source("img/products/chosen/chosen-shirt.png")
@@ -84,7 +80,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource chosenShirt();
 
     @Source("img/products/chosen/chosen-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenShirtThumb();
 
     @Source("img/products/jukito/jukito-shirt.png")
@@ -92,7 +87,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource jukitoShirt();
 
     @Source("img/products/jukito/jukito-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoShirtThumb();
 
     @Source("img/products/gsss/gsss-shirt.png")
@@ -100,7 +94,6 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gsssShirt();
 
     @Source("img/products/gsss/gsss-shirt-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssShirtThumb();
 
     @Source("img/products/arcbees/arcbees-bag.png")
@@ -132,31 +125,24 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource jukitoBag();
 
     @Source("img/products/arcbees/arcbees-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesBagThumb();
 
     @Source("img/products/chosen/chosen-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenBagThumb();
 
     @Source("img/products/gae/gae-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gaeBagThumb();
 
     @Source("img/products/gquery/gquery-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gqueryBagThumb();
 
     @Source("img/products/gsss/gsss-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssBagThumb();
 
     @Source("img/products/gwtp/gwtp-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpBagThumb();
 
     @Source("img/products/jukito/jukito-bag-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoBagThumb();
 
     @Source("img/products/arcbees/arcbees-case.png")
@@ -188,11 +174,9 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource jukitoCase();
 
     @Source("img/products/arcbees/arcbees-case-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesCaseThumb();
 
     @Source("img/products/chosen/chosen-case-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenCaseThumb();
 
     @Source("img/products/gae/gae-case-thumb.png")
@@ -204,15 +188,12 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gqueryCaseThumb();
 
     @Source("img/products/gsss/gsss-case-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssCaseThumb();
 
     @Source("img/products/gwtp/gwtp-case-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpCaseThumb();
 
     @Source("img/products/jukito/jukito-case-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoCaseThumb();
 
     @Source("img/products/arcbees/arcbees-case-Big.png")
@@ -272,31 +253,24 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource jukitoUsb();
 
     @Source("img/products/arcbees/arcbees-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesUsbThumb();
 
     @Source("img/products/chosen/chosen-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenUsbThumb();
 
     @Source("img/products/gae/gae-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gaeUsbThumb();
 
     @Source("img/products/gquery/gquery-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gqueryUsbThumb();
 
     @Source("img/products/gsss/gsss-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssUsbThumb();
 
     @Source("img/products/gwtp/gwtp-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpUsbThumb();
 
     @Source("img/products/jukito/jukito-usb-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoUsbThumb();
 
     @Source("img/products/arcbees/arcbees-usb-Big.png")
@@ -356,31 +330,24 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource jukitoThermos();
 
     @Source("img/products/arcbees/arcbees-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesThermosThumb();
 
     @Source("img/products/chosen/chosen-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenThermosThumb();
 
     @Source("img/products/gae/gae-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gaeThermosThumb();
 
     @Source("img/products/gquery/gquery-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gqueryThermosThumb();
 
     @Source("img/products/gsss/gsss-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssThermosThumb();
 
     @Source("img/products/gwtp/gwtp-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpThermosThumb();
 
     @Source("img/products/jukito/jukito-thermos-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoThermosThumb();
 
     @Source("img/products/arcbees/arcbees-thermos-Big.png")
@@ -436,35 +403,27 @@ public interface PageHomeResources extends ClientBundle {
     ImageResource gwtpCup();
 
     @Source("img/products/jukito/jukito-cup.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoCup();
 
     @Source("img/products/arcbees/arcbees-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource arcbeesCupThumb();
 
     @Source("img/products/chosen/chosen-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource chosenCupThumb();
 
     @Source("img/products/gae/gae-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gaeCupThumb();
 
     @Source("img/products/gquery/gquery-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gqueryCupThumb();
 
     @Source("img/products/gsss/gsss-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gsssCupThumb();
 
     @Source("img/products/gwtp/gwtp-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource gwtpCupThumb();
 
     @Source("img/products/jukito/jukito-cup-thumb.png")
-    @ImageResource.ImageOptions(preventInlining = true)
     ImageResource jukitoCupThumb();
 
     @Source("img/products/arcbees/arcbees-cup-Big.png")
