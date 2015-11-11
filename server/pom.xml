@@ -19,6 +19,15 @@
         </dependency>
 
         <dependency>
+            <groupId>com.gwtplatform</groupId>
+            <artifactId>gwtp-crawler-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gwtplatform</groupId>
+            <artifactId>gwtp-crawler</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.stripe</groupId>
             <artifactId>stripe-java</artifactId>
         </dependency>

@@ -22,11 +22,22 @@ import com.arcbees.beestore.server.servlets.NotFoundServlet;
 import com.arcbees.beestore.server.servlets.RootServlet;
 import com.arcbees.guicyresteasy.GuiceRestEasyFilterDispatcher;
 import com.google.inject.servlet.ServletModule;
+import com.gwtplatform.crawler.server.ServiceKey;
+import com.gwtplatform.crawler.server.ServiceUrl;
+import com.gwtplatform.crawlerservice.server.HtmlUnitTimeoutMillis;
 
 public class DispatchServletModule extends ServletModule {
     @Override
     protected void configureServlets() {
         filter(ApiPaths.ROOT + "/*").through(GuiceRestEasyFilterDispatcher.class);
+
+        bindConstant().annotatedWith(ServiceKey.class).to("ab12cd34");
+        bindConstant().annotatedWith(com.gwtplatform.crawlerservice.server.ServiceKey.class).to("ab12cd34");
+        bindConstant().annotatedWith(ServiceUrl.class).to("http://store.arcbees.com/");
+        bindConstant().annotatedWith(HtmlUnitTimeoutMillis.class).to(6000L);
+
+        requestStaticInjection(CrawlerRequest.class);
+        filter("/*").through(CrawlerFilter.class);
 
         serve("/").with(RootServlet.class);
 
