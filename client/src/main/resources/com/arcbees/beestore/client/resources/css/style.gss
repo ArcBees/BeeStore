@@ -756,3 +756,7 @@ h4.orderBox_productName {
     padding: .35em 1em;
     margin: 0 auto;
 }
+
+.productSection {
+    /* this is a marker class */
+}

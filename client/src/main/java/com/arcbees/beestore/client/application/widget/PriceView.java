@@ -23,9 +23,11 @@ import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -52,6 +54,8 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     AnchorElement priceView;
     @UiField
     AppResources res;
+    @UiField
+    HTMLPanel panel;
 
     private final TokenFormatter tokenFormatter;
     private final PriceMessages messages;
@@ -105,16 +109,26 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
     protected void onAttach() {
         setShopViewVisible(false);
 
-        $(asWidget()).mouseover(new Function() {
+        $(panel).mouseenter(new Function() {
             @Override
             public void f() {
+                Element element = Element.as(getEvent().getEventTarget());
+                if (isPricePanel(element)) {
+                    return;
+                }
+
                 setShopViewVisible(true);
             }
         });
 
-        $(asWidget()).mouseout(new Function() {
+        $(panel).mouseleave(new Function() {
             @Override
             public void f() {
+                Element element = Element.as(getEvent().getEventTarget());
+                if (isPricePanel(element)) {
+                    return;
+                }
+
                 setShopViewVisible(false);
             }
         });
@@ -128,5 +142,9 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
             $(shopView).hide();
             $(priceView).show();
         }
+    }
+
+    private boolean isPricePanel(Element element) {
+        return !element.hasClassName(res.style().productSection());
     }
 }

@@ -18,16 +18,16 @@ package com.arcbees.beestore.client.application.home;
 
 import javax.inject.Inject;
 
-import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.client.application.ApplicationPresenter;
 import com.arcbees.beestore.client.application.CurrentBrand;
-import com.arcbees.beestore.client.application.widget.ProductPresenter;
 import com.arcbees.beestore.client.application.widget.ProductFactory;
+import com.arcbees.beestore.client.application.widget.ProductPresenter;
 import com.arcbees.beestore.client.application.widget.ProductWidgetType;
+import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.Product;
-import com.arcbees.beestore.common.dto.ProductType;
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.arcbees.beestore.common.dto.ProductType;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -40,13 +40,13 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     interface MyView extends View {
     }
 
-    static Slot<ProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
-    static Slot<ProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
-
     @ProxyStandard
     @NameToken(NameTokens.HOME)
     interface MyProxy extends ProxyPlace<HomePresenter> {
     }
+
+    static Slot<ProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
+    static Slot<ProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
     private final ProductFactory productFactory;
     private final CurrentBrand currentBrand;

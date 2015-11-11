@@ -206,6 +206,8 @@ public interface AppResources extends ClientBundle {
         String closeMessage();
 
         String topBarClose();
+
+        String productSection();
     }
 
     @Source("img/Beestore-logo.png")

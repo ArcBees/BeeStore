@@ -7,7 +7,7 @@
     <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
     <ui:with field="page" type="com.arcbees.beestore.client.resources.PageHomeResources"/>
 
-    <g:HTMLPanel ui:field="panel" addStyleNames="{page.style.pricePresenter}">
+    <g:HTMLPanel ui:field="panel" addStyleNames="{page.style.pricePresenter} {res.style.productSection}">
         <a ui:field="priceView" class="{page.style.itemForSale_info}">
             <div class="{page.style.itemForSale_info_name}">
                 <div ui:field="brandName" class="{res.style.brandName}"/>
