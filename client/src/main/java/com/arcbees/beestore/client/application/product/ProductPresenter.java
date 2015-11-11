@@ -41,6 +41,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         void showSharePanel();
 
         void setProduct(ProductDto productDto);
+
+        void setSeoElements(ProductDto productDto);
     }
 
     @ProxyStandard
@@ -85,6 +87,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     public void prepareFromRequest(PlaceRequest request) {
         ProductDto productDto = currentProduct.get();
         getView().setProduct(productDto);
+
+        getView().setSeoElements(productDto);
     }
 
     @Override

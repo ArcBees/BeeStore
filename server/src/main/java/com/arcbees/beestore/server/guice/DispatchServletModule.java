@@ -21,12 +21,29 @@ import com.arcbees.beestore.server.servlets.LocaleExtractor;
 import com.arcbees.beestore.server.servlets.NotFoundServlet;
 import com.arcbees.beestore.server.servlets.RootServlet;
 import com.arcbees.guicyresteasy.GuiceRestEasyFilterDispatcher;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.IncorrectnessListener;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.google.inject.Provides;
 import com.google.inject.servlet.ServletModule;
+import com.gwtplatform.crawler.server.ServiceKey;
+import com.gwtplatform.crawler.server.ServiceUrl;
+import com.gwtplatform.crawlerservice.server.HtmlUnitTimeoutMillis;
+
+import static com.arcbees.beestore.common.Constants.ROOT_URL;
 
 public class DispatchServletModule extends ServletModule {
     @Override
     protected void configureServlets() {
         filter(ApiPaths.ROOT + "/*").through(GuiceRestEasyFilterDispatcher.class);
+
+        bindConstant().annotatedWith(ServiceKey.class).to("ab12cd34");
+        bindConstant().annotatedWith(com.gwtplatform.crawlerservice.server.ServiceKey.class).to("ab12cd34");
+        bindConstant().annotatedWith(ServiceUrl.class).to(ROOT_URL);
+        bindConstant().annotatedWith(HtmlUnitTimeoutMillis.class).to(6000L);
+
+        requestStaticInjection(CrawlerRequest.class);
+        filter("/*").through(CrawlerFilter.class);
 
         serve("/").with(RootServlet.class);
 
@@ -35,5 +52,18 @@ public class DispatchServletModule extends ServletModule {
         }
 
         serve("/*").with(NotFoundServlet.class);
+    }
+
+    @Provides
+    WebClient getWebClient() {
+        WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
+
+        webClient.setIncorrectnessListener(new IncorrectnessListener() {
+            @Override
+            public void notify(String message, Object origin) {
+            }
+        });
+
+        return webClient;
     }
 }

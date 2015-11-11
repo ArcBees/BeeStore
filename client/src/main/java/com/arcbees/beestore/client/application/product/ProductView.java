@@ -26,10 +26,14 @@ import com.arcbees.beestore.client.resources.FontResources;
 import com.arcbees.beestore.client.resources.PageProductResources;
 import com.arcbees.beestore.client.resources.ProductBrandUtil;
 import com.arcbees.beestore.client.resources.ProductMessages;
+import com.arcbees.beestore.client.resources.SeoImages;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
+import com.arcbees.seo.OpenGraph;
+import com.arcbees.seo.SeoElements;
+import com.arcbees.seo.TagsInjector;
 import com.arcbees.ui.ReplacePanel;
 import com.google.common.base.Strings;
 import com.google.gwt.dom.client.AnchorElement;
@@ -99,6 +103,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
+    private final TagsInjector tagsInjector;
+    private final SeoImages seoImages;
 
     @Inject
     ProductView(
@@ -107,12 +113,16 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             PlaceManager placeManager,
             BrandPicker brandPicker,
             AppMessages appMessages,
-            ProductMessages productMessages) {
+            ProductMessages productMessages,
+            TagsInjector tagsInjector,
+            SeoImages seoImages) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
+        this.tagsInjector = tagsInjector;
+        this.seoImages = seoImages;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -192,6 +202,27 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         setTargetToNavigationAnchor(next, productType.getNextProduct());
 
         brandPicker.updateAnchors();
+    }
+
+    @Override
+    public void setSeoElements(ProductDto productDto) {
+        ProductType productType = productDto.getProductType();
+        Brand brand = productDto.getBrand();
+
+        String title = "BeeStore - " + appMessages.productName(productType);
+        String description = appMessages.itemColor(productType, brand);
+
+        OpenGraph openGraph = new OpenGraph.Builder()
+                .withImage(seoImages.getImage(productType, brand))
+                .build();
+
+        SeoElements seoElements = new SeoElements.Builder()
+                .withTitle(title)
+                .withDescription(description)
+                .withOpenGraph(openGraph)
+                .build();
+
+        tagsInjector.inject(seoElements);
     }
 
     private void setTargetToSizeAnchors() {
