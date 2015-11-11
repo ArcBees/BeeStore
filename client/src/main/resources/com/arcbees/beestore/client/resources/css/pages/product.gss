@@ -91,13 +91,13 @@ ul.product_nav {
         padding: 0 20px;
 
         position: absolute;
-        top: 130px;
+        top: 150px;
     }
 }
 
 @media (max-width: 649px) {
     ul.product_nav {
-        top: 100px;
+        top: 130px;
     }
 }
 
