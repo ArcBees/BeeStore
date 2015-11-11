@@ -18,20 +18,17 @@
 ------------------------ */
 
 .product {
-    display: table;
     height: 100%;
-    min-height: calc(100vh - 222px);
+    min-height: calc(100vh - 225px);
     width: 100%;
-
-    table-layout: fixed;
 }
 
 .product_info {
-    display: table-cell;
-    height: 100%;
+    height: calc(100vh - 225px);
+    min-height: 600px;
     width: 50%;
 
-    vertical-align: top;
+    float: left;
 }
 
 @media (max-width: 979px) {
@@ -46,29 +43,12 @@
         -webkit-flex-wrap: wrap-reverse;
         -ms-flex-wrap: wrap-reverse;
         flex-wrap: wrap-reverse;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        -webkit-align-content: stretch;
-        -ms-flex-line-pack: stretch;
-        align-content: stretch;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
     }
 
     .product_info {
         width: 100%;
-
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
+        height: auto;
+        min-height: auto;
     }
 }
 
@@ -158,8 +138,15 @@ ul.product_nav {
     text-align: center;
 
     height: calc(100% - 100px);
+    min-height: 540px;
     width: 100%;
     display: table;
+}
+
+@media (max-width: 649px) {
+    .product_description {
+        height: auto;
+    }
 }
 
 .product_description_content {
@@ -264,10 +251,11 @@ ul.product_nav {
 ------------------------ */
 
 .product_img {
-    display: table-cell;
     width: 50%;
+    height: calc(100vh - 225px);
+    min-height: 600px;
 
-    vertical-align: top;
+    float: right;
 }
 
 .product_img img {
@@ -280,20 +268,11 @@ ul.product_nav {
 @media (max-width: 979px) {
     .product_img {
         width: 100%;
-
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 0 1 auto;
-        -ms-flex: 0 1 auto;
-        flex: 0 1 auto;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
+        height: auto;
+        min-height: auto;
     }
 
     .product_img img {
-        height: auto;
         width: 62%;
     }
 }
