@@ -10,6 +10,7 @@
     <inherits name="org.vectomatic.libgwtsvg"/>
     <inherits name="com.arcbees.gsss.mixin.Mixin"/>
     <inherits name="com.arcbees.gsss.animation.Animation"/>
+    <inherits name="com.arcbees.seo.Seo"/>
     <inherits name="com.arcbees.ui.ui"/>
     <inherits name="com.google.common.base.Base"/>
     <inherits name="com.google.common.collect.Collect"/>

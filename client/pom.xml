@@ -78,6 +78,10 @@
             <artifactId>gsss</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.arcbees.seo</groupId>
+            <artifactId>gwt-seo</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.googlecode.gwtquery</groupId>
             <artifactId>gwtquery</artifactId>
         </dependency>

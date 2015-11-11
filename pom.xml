@@ -15,6 +15,7 @@
         <gwt.version>2.7.0</gwt.version>
         <gwtp.version>1.5</gwtp.version>
         <gsss.version>1.1</gsss.version>
+        <gwt-seo.version>0.1</gwt-seo.version>
         <gwtquery.version>1.4.3</gwtquery.version>
         <gwt-jackson.version>0.9.0</gwt-jackson.version>
         <jackson-annotations.version>2.6.0</jackson-annotations.version>
@@ -124,6 +125,11 @@
                 <artifactId>gsss</artifactId>
                 <version>${gsss.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.arcbees.seo</groupId>
+                <artifactId>gwt-seo</artifactId>
+                <version>${gwt-seo.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.googlecode.gwtquery</groupId>

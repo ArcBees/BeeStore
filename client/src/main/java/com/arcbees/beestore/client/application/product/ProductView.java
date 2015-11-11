@@ -30,6 +30,8 @@ import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
+import com.arcbees.seo.SeoElements;
+import com.arcbees.seo.TagsInjector;
 import com.arcbees.ui.ReplacePanel;
 import com.google.common.base.Strings;
 import com.google.gwt.dom.client.AnchorElement;
@@ -99,6 +101,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final ProductBrandUtil productBrandUtil;
     private final PlaceManager placeManager;
     private final ProductMessages productMessages;
+    private final TagsInjector tagsInjector;
 
     @Inject
     ProductView(
@@ -107,12 +110,14 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             PlaceManager placeManager,
             BrandPicker brandPicker,
             AppMessages appMessages,
-            ProductMessages productMessages) {
+            ProductMessages productMessages,
+            TagsInjector tagsInjector) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
         this.appMessages = appMessages;
         this.productMessages = productMessages;
+        this.tagsInjector = tagsInjector;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -192,6 +197,14 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         setTargetToNavigationAnchor(next, productType.getNextProduct());
 
         brandPicker.updateAnchors();
+    }
+
+    @Override
+    public void setSeoElements(ProductDto productDto) {
+        tagsInjector.inject(new SeoElements.Builder()
+                .withDescription(productDto.getProduct().getProductType().name())
+                .withTitle("Product")
+                .build());
     }
 
     private void setTargetToSizeAnchors() {
