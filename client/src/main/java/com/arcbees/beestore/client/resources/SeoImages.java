@@ -24,10 +24,10 @@ import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.ProductType;
 import com.arcbees.seo.Image;
 
+import static com.arcbees.beestore.common.Constants.IMAGES_ROOT_URL;
 import static com.arcbees.seo.widget.OgImage.MimeType.PNG;
 
 public class SeoImages {
-    private static final String IMAGES_ROOT_URL = "http://store.arcbees.com/img/";
     private static final int HEIGHT = 315;
     private static final int WIDTH = 600;
 
