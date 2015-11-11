@@ -66,13 +66,12 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView {
             return;
         }
 
-        $(image).parent().css("display", "none");
-        $(image).parent().data("loaded", "");
+        $(image).parent().css("display", "none").data("loaded", "");
 
         Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
             @Override
             public void execute() {
-                $(image).parent().first().css("display", "block");
+                $(image).parent().css("display", "block");
             }
         });
     }
