@@ -108,7 +108,10 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         addRegisteredHandler(NavigationEvent.getType(), this);
+    }
 
+    @Override
+    protected void onReveal() {
         populateCurrentOrderFromStorage();
         updateNumberOfItems();
     }
