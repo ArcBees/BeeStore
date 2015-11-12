@@ -28,6 +28,7 @@ import com.google.inject.Provides;
 import com.google.inject.servlet.ServletModule;
 import com.gwtplatform.crawler.server.ServiceKey;
 import com.gwtplatform.crawler.server.ServiceUrl;
+import com.gwtplatform.crawlerservice.server.CachedPageTimeoutSec;
 import com.gwtplatform.crawlerservice.server.HtmlUnitTimeoutMillis;
 
 import static com.arcbees.beestore.common.Constants.ROOT_URL;
@@ -41,6 +42,7 @@ public class DispatchServletModule extends ServletModule {
         bindConstant().annotatedWith(com.gwtplatform.crawlerservice.server.ServiceKey.class).to("ab12cd34");
         bindConstant().annotatedWith(ServiceUrl.class).to(ROOT_URL);
         bindConstant().annotatedWith(HtmlUnitTimeoutMillis.class).to(6000L);
+        bindConstant().annotatedWith(CachedPageTimeoutSec.class).to(86400L);
 
         requestStaticInjection(CrawlerRequest.class);
         filter("/*").through(CrawlerFilter.class);
