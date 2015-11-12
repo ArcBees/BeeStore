@@ -28,6 +28,7 @@ import com.arcbees.beestore.client.resources.PageProductResources;
 import com.arcbees.beestore.client.resources.ProductBrandUtil;
 import com.arcbees.beestore.client.resources.ProductMessages;
 import com.arcbees.beestore.client.resources.SeoImages;
+import com.arcbees.beestore.client.resources.SeoMessages;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.ProductDto;
@@ -106,6 +107,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final TagsInjector tagsInjector;
     private final SeoImages seoImages;
     private final TwitterCardProvider twitterCardProvider;
+    private final SeoMessages seoMessages;
 
     @Inject
     ProductView(
@@ -117,7 +119,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             ProductMessages productMessages,
             TagsInjector tagsInjector,
             SeoImages seoImages,
-            TwitterCardProvider twitterCardProvider) {
+            TwitterCardProvider twitterCardProvider,
+            SeoMessages seoMessages) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
@@ -126,6 +129,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.tagsInjector = tagsInjector;
         this.seoImages = seoImages;
         this.twitterCardProvider = twitterCardProvider;
+        this.seoMessages = seoMessages;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -212,8 +216,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         ProductType productType = productDto.getProductType();
         Brand brand = productDto.getBrand();
 
-        String title = "BeeStore - " + appMessages.productName(productType);
-        String description = appMessages.itemColor(productType, brand);
+        String title = "Beestore - " + seoMessages.productTitle(productType, brand);
+        String description = seoMessages.productDescription(productType, brand);
 
         SeoElements seoElements = new SeoElements.Builder()
                 .withTitle(title)
