@@ -83,12 +83,12 @@
                 <nav role="navigation" class="{res.style.footer_menu}">
                     <ul>
                         <li>
-                            <a href="#{nametokens.HOME}">
+                            <a ui:field="homeAnchorFooter">
                                 <ui:msg description="Home">Home</ui:msg>
                             </a>
                         </li>
                         <li>
-                            <a  ui:field="productsAnchorFooter">
+                            <a ui:field="productsAnchorFooter">
                                 <ui:msg description="Products">Products</ui:msg>
                             </a>
                         </li>

@@ -69,6 +69,8 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     AnchorElement homeAnchor;
     @UiField
+    AnchorElement homeAnchorFooter;
+    @UiField
     AnchorElement productsAnchor;
     @UiField
     AnchorElement productsAnchorFooter;
@@ -246,6 +248,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
                 .build();
 
         homeAnchor.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
+        homeAnchorFooter.setHref("#" + placeManager.buildHistoryToken(newPlaceRequest));
     }
 
     private void setProductsHref(Brand brand) {
