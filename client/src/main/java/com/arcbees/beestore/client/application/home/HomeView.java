@@ -18,12 +18,19 @@ package com.arcbees.beestore.client.application.home;
 
 import javax.inject.Inject;
 
+import com.arcbees.beestore.client.application.gin.TwitterCardProvider;
 import com.arcbees.beestore.client.application.widget.brandpicker.HomeBrandPicker;
+import com.arcbees.beestore.common.Seo;
+import com.arcbees.seo.Image;
+import com.arcbees.seo.SeoElements;
+import com.arcbees.seo.TagsInjector;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+
+import static com.arcbees.seo.widget.Image.MimeType.PNG;
 
 public class HomeView extends ViewImpl implements HomePresenter.MyView {
     interface Binder extends UiBinder<Widget, HomeView> {
@@ -36,16 +43,43 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     @UiField(provided = true)
     HomeBrandPicker brandPicker;
 
+    private final TagsInjector tagsInjector;
+    private final TwitterCardProvider twitterCardProvider;
+    private final Seo seoMessages;
+
     @Inject
     HomeView(
             Binder uiBinder,
-            HomeBrandPicker brandPicker) {
+            HomeBrandPicker brandPicker,
+            TagsInjector tagsInjector,
+            TwitterCardProvider twitterCardProvider,
+            Seo seoMessages) {
 
         this.brandPicker = brandPicker;
+        this.tagsInjector = tagsInjector;
+        this.twitterCardProvider = twitterCardProvider;
+        this.seoMessages = seoMessages;
 
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(HomePresenter.SLOT_MAIN_PRODUCTS, mainProducts);
         bindSlot(HomePresenter.SLOT_SECONDARY_PRODUCTS, secondaryProducts);
+    }
+
+    @Override
+    public void updateSeo() {
+        int imageHeight = Integer.parseInt(seoMessages.imageHeight());
+        int imageWidth = Integer.parseInt(seoMessages.imageWidth());
+        Image seoImage = new Image(seoMessages.image(), imageHeight, imageWidth, PNG);
+
+        SeoElements seoElements = new SeoElements.Builder()
+                .withTitle(seoMessages.title())
+                .withImage(seoImage)
+                .withKeywords(seoMessages.keywords())
+                .withDescription(seoMessages.description())
+                .withTwitterCard(twitterCardProvider.get())
+                .build();
+
+        tagsInjector.inject(seoElements);
     }
 }

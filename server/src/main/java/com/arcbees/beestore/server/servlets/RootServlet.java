@@ -48,7 +48,7 @@ public class RootServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String locale = new LocaleExtractor(request, response).extractLocale();
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("com.arcbees.beestore.server.seo", Locale.forLanguageTag(locale));
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("com.arcbees.beestore.common.Seo", Locale.forLanguageTag(locale));
 
         VelocityContext context = new VelocityContext();
         context.put("locale", locale);
