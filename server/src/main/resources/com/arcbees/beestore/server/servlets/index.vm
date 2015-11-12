@@ -3,6 +3,8 @@
 #set($description = ${seo.getString("description")})
 #set($keywords = ${seo.getString("keywords")})
 #set($image = ${seo.getString("image")})
+#set($image = ${seo.getString("imageWidth")})
+#set($image = ${seo.getString("imageHeight")})
 <!doctype html>
 <html lang="$locale">
 <head>
@@ -15,8 +17,8 @@
     <meta property="description" content="$description">
     <meta property="og:title" content="$title">
     <meta property="og:description" content="$description">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="$imageWidth">
+    <meta property="og:image:height" content="$imageHeight">
     <meta property="og:image" content="$image">
     <meta property="og:type" content="website">
     <meta property="keywords" content="$keywords">

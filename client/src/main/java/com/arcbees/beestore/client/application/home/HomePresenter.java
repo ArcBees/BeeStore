@@ -35,9 +35,11 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
     interface MyView extends View {
+        void updateSeo();
     }
 
     @ProxyStandard
@@ -62,6 +64,11 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
         this.productFactory = productFactory;
         this.currentBrand = currentBrand;
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        getView().updateSeo();
     }
 
     @Override
