@@ -18,6 +18,7 @@ package com.arcbees.beestore.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.beestore.client.application.gin.TwitterCardProvider;
 import com.arcbees.beestore.client.application.widget.brandpicker.BrandPicker;
 import com.arcbees.beestore.client.resources.AppMessages;
 import com.arcbees.beestore.client.resources.AppResources;
@@ -31,7 +32,6 @@ import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
-import com.arcbees.seo.OpenGraph;
 import com.arcbees.seo.SeoElements;
 import com.arcbees.seo.TagsInjector;
 import com.arcbees.ui.ReplacePanel;
@@ -105,6 +105,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private final ProductMessages productMessages;
     private final TagsInjector tagsInjector;
     private final SeoImages seoImages;
+    private final TwitterCardProvider twitterCardProvider;
 
     @Inject
     ProductView(
@@ -115,7 +116,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             AppMessages appMessages,
             ProductMessages productMessages,
             TagsInjector tagsInjector,
-            SeoImages seoImages) {
+            SeoImages seoImages,
+            TwitterCardProvider twitterCardProvider) {
         this.productBrandUtil = productBrandUtil;
         this.placeManager = placeManager;
         this.brandPicker = brandPicker;
@@ -123,6 +125,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         this.productMessages = productMessages;
         this.tagsInjector = tagsInjector;
         this.seoImages = seoImages;
+        this.twitterCardProvider = twitterCardProvider;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -212,14 +215,11 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         String title = "BeeStore - " + appMessages.productName(productType);
         String description = appMessages.itemColor(productType, brand);
 
-        OpenGraph openGraph = new OpenGraph.Builder()
-                .build();
-
         SeoElements seoElements = new SeoElements.Builder()
                 .withTitle(title)
+                .withTwitterCard(twitterCardProvider.get())
                 .withDescription(description)
                 .withImage(seoImages.getImage(productType, brand))
-                .withOpenGraph(openGraph)
                 .build();
 
         tagsInjector.inject(seoElements);

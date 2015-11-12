@@ -20,6 +20,7 @@ import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.client.application.ApplicationModule;
 import com.arcbees.beestore.client.resources.ResourceLoader;
 import com.arcbees.beestore.common.api.ApiPaths;
+import com.arcbees.seo.TwitterCard;
 import com.arcbees.stripe.client.StripeModule;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.gwtplatform.mvp.client.Bootstrapper;
@@ -37,11 +38,13 @@ public class ClientModule extends AbstractGinModule {
                 .unauthorizedPlace(NameTokens.HOME)
                 .errorPlace(NameTokens.NOT_FOUND)
                 .build());
+
         install(new ApplicationModule());
         install(new StripeModule());
 
         bind(ResourceLoader.class).asEagerSingleton();
         bind(Bootstrapper.class).to(BootstrapperImpl.class).asEagerSingleton();
+        bind(TwitterCard.class).toProvider(TwitterCardProvider.class);
 
         install(new RestDispatchAsyncModule.Builder().build());
         bindConstant().annotatedWith(RestApplicationPath.class).to(ApiPaths.ROOT);
