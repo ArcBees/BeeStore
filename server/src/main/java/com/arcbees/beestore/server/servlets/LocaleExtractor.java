@@ -71,7 +71,7 @@ public class LocaleExtractor {
         return locale;
     }
 
-    private String getLocaleFromPath() {
+    public String getLocaleFromPath() {
         String path = Strings.nullToEmpty(request.getRequestURI());
         Matcher matcher = EXTRACT_LOCALE_PATTERN.matcher(path);
 

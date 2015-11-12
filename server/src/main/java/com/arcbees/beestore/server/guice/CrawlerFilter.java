@@ -29,6 +29,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.arcbees.beestore.server.servlets.LocaleExtractor;
 import com.gwtplatform.crawlerservice.server.CrawlServiceServlet;
 
 @Singleton
@@ -54,7 +55,7 @@ public class CrawlerFilter implements Filter {
 
         String queryString = req.getQueryString();
         if (queryString != null && queryString.contains(ESCAPED_FRAGMENT)) {
-            crawlServlet.service(new CrawlerRequest(req), resp);
+            crawlServlet.service(new CrawlerRequest(req, new LocaleExtractor(req, resp)), resp);
         } else {
             filterChain.doFilter(req, resp);
         }

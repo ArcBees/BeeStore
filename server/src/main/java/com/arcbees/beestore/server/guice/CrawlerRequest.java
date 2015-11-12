@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+import com.arcbees.beestore.server.servlets.LocaleExtractor;
 import com.gwtplatform.crawler.server.ServiceKey;
 
 public class CrawlerRequest extends HttpServletRequestWrapper {
@@ -27,15 +28,25 @@ public class CrawlerRequest extends HttpServletRequestWrapper {
     @ServiceKey
     private static String serviceKey;
 
-    public CrawlerRequest(HttpServletRequest request) {
+    private final LocaleExtractor localeExtractor;
+
+    public CrawlerRequest(HttpServletRequest request, LocaleExtractor localeExtractor) {
         super(request);
+        this.localeExtractor = localeExtractor;
     }
 
     @Override
     public String getParameter(String name) {
         if ("url".equals(name.toLowerCase())) {
+            String locale = localeExtractor.getLocaleFromPath();
+            if (locale == null) {
+                locale = "";
+            } else {
+                locale = "/" + locale;
+            }
+
             int port = getRequest().getServerPort();
-            return getScheme() + "://" + getHeader("Host") + (port == 0 ? "" : ":" + port + "/#!"
+            return getScheme() + "://" + getHeader("Host") + (port == 0 ? "" : ":" + port + locale + "/#!"
                     + getParameter(CrawlerFilter.ESCAPED_FRAGMENT));
         } else if ("key".equals(name.toLowerCase())) {
             return serviceKey;
