@@ -213,12 +213,12 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         String description = appMessages.itemColor(productType, brand);
 
         OpenGraph openGraph = new OpenGraph.Builder()
-                .withImage(seoImages.getImage(productType, brand))
                 .build();
 
         SeoElements seoElements = new SeoElements.Builder()
                 .withTitle(title)
                 .withDescription(description)
+                .withImage(seoImages.getImage(productType, brand))
                 .withOpenGraph(openGraph)
                 .build();
 
