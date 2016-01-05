@@ -1,5 +1,5 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:arcbees="urn:import:com.arcbees.ui"
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
         xmlns:slider="urn:import:com.arcbees.beestore.client.application.widget.slider">
 
     <ui:with field="slider" type="com.arcbees.beestore.client.resources.SliderResources"/>
