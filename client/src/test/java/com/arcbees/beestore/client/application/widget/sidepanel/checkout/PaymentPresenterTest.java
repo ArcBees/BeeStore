@@ -97,13 +97,10 @@ public class PaymentPresenterTest {
     }
 
     private void givenStripeInjectWillCallOnSuccess() {
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Callback callback = (Callback) invocation.getArguments()[0];
-                callback.onSuccess(null);
-                return null;
-            }
+        doAnswer(invocation -> {
+            Callback callback = (Callback) invocation.getArguments()[0];
+            callback.onSuccess(null);
+            return null;
         }).when(stripe).inject(any(Callback.class));
     }
 
@@ -118,13 +115,10 @@ public class PaymentPresenterTest {
     }
 
     private void givenStripeInjectWillCallOnFailure() {
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                Callback callback = (Callback) invocation.getArguments()[0];
-                callback.onFailure(null);
-                return null;
-            }
+        doAnswer(invocation -> {
+            Callback callback = (Callback) invocation.getArguments()[0];
+            callback.onFailure(null);
+            return null;
         }).when(stripe).inject(any(Callback.class));
     }
 
@@ -158,13 +152,10 @@ public class PaymentPresenterTest {
     // TODO Test StatusOK.
 
     private void givenGetCreditCardTokenReturnsStatus(final Status status) {
-        doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocation) throws Throwable {
-                CreditCardResponseHandler callback = (CreditCardResponseHandler) invocation.getArguments()[1];
-                callback.onCreditCardReceived(status.getStatusCode(), creditCardResponse);
-                return null;
-            }
+        doAnswer(invocation -> {
+            CreditCardResponseHandler callback = (CreditCardResponseHandler) invocation.getArguments()[1];
+            callback.onCreditCardReceived(status.getStatusCode(), creditCardResponse);
+            return null;
         }).when(stripe).getCreditCardToken(any(CreditCard.class), any(CreditCardResponseHandler.class));
     }
 }

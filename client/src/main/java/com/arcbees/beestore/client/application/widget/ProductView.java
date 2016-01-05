@@ -85,11 +85,6 @@ public class ProductView extends ViewImpl implements ProductPresenter.MyView, Lo
     public void onLoad(LoadEvent event) {
         $(image).css("display", "none");
 
-        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-            @Override
-            public void execute() {
-                $(image).css("display", "block");
-            }
-        });
+        Scheduler.get().scheduleDeferred(() -> $(image).css("display", "block"));
     }
 }

@@ -60,12 +60,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     private ShoppingCartItem getItemFromCart(final ShoppingCartItem item) {
-        return Iterables.tryFind(items, new Predicate<ShoppingCartItem>() {
-            @Override
-            public boolean apply(ShoppingCartItem shoppingCartItem) {
-                return shoppingCartItem.equals(item);
-            }
-        }).orNull();
+        return Iterables.tryFind(items, shoppingCartItem -> shoppingCartItem.equals(item)).orNull();
     }
 
     @Override

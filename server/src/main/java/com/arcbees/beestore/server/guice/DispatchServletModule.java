@@ -60,11 +60,7 @@ public class DispatchServletModule extends ServletModule {
     WebClient getWebClient() {
         WebClient webClient = new WebClient(BrowserVersion.FIREFOX_24);
 
-        webClient.setIncorrectnessListener(new IncorrectnessListener() {
-            @Override
-            public void notify(String message, Object origin) {
-            }
-        });
+        webClient.setIncorrectnessListener((message, origin) -> {});
 
         return webClient;
     }

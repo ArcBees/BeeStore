@@ -110,12 +110,7 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
             activeItem = $(contents.getWidget(3));
             $(activeItem).addClass(sliderResources.style().activeProduct());
 
-            Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
-                @Override
-                public void execute() {
-                    updateFromCurrentBrand();
-                }
-            });
+            Scheduler.get().scheduleDeferred(this::updateFromCurrentBrand);
         } else {
             handlerRegistration.removeHandler();
 

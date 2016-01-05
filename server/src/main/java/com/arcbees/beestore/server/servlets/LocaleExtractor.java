@@ -86,19 +86,9 @@ public class LocaleExtractor {
     private String getLocaleFromCookie() {
         Cookie[] cookies = request.getCookies();
         return cookies == null ? null : FluentIterable.of(cookies)
-                .firstMatch(new Predicate<Cookie>() {
-                    @Override
-                    public boolean apply(Cookie cookie) {
-                        return LOCALE_COOKIE_NAME.equals(cookie.getName())
-                                && SUPPORTED_LOCALES.contains(cookie.getValue());
-                    }
-                })
-                .transform(new Function<Cookie, String>() {
-                    @Override
-                    public String apply(Cookie cookie) {
-                        return cookie.getValue().toLowerCase();
-                    }
-                })
+                .firstMatch(cookie -> LOCALE_COOKIE_NAME.equals(cookie.getName())
+                        && SUPPORTED_LOCALES.contains(cookie.getValue()))
+                .transform(cookie -> cookie.getValue().toLowerCase())
                 .orNull();
     }
 
@@ -112,17 +102,9 @@ public class LocaleExtractor {
         if (header != null) {
             String[] headerParts = header.split(",");
             List<LocalePreference> localePreferences = FluentIterable.of(headerParts)
-                    .transform(new Function<String, LocalePreference>() {
-                        @Override
-                        public LocalePreference apply(String locale) {
-                            return new LocalePreference(locale);
-                        }
-                    })
-                    .filter(new Predicate<LocalePreference>() {
-                        @Override
-                        public boolean apply(LocalePreference preference) {
-                            return SUPPORTED_LOCALES.contains(preference.getLocale());
-                        }
+                    .transform(locale -> new LocalePreference(locale))
+                    .filter(preference -> {
+                        return SUPPORTED_LOCALES.contains(preference.getLocale());
                     })
                     .toSortedList(LocalePreference.COMPARATOR);
 

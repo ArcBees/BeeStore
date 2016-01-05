@@ -100,17 +100,14 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> i
                 .expirationYear(expYear)
                 .build();
 
-        stripe.getCreditCardToken(creditCard, new CreditCardResponseHandler() {
-            @Override
-            public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
-                if (status == SC_PAYMENT_REQUIRED) {
-                    getView().showErrorMessage("An error occurred. Please verify your credit card details.");
-                } else if (status != SC_OK) {
-                    getView().showErrorMessage("An error occurred.");
-                } else {
-                    PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
-                    pay(paymentInfo);
-                }
+        stripe.getCreditCardToken(creditCard, (status, creditCardResponse) -> {
+            if (status == SC_PAYMENT_REQUIRED) {
+                getView().showErrorMessage("An error occurred. Please verify your credit card details.");
+            } else if (status != SC_OK) {
+                getView().showErrorMessage("An error occurred.");
+            } else {
+                PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
+                pay(paymentInfo);
             }
         });
     }
