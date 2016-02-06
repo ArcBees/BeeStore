@@ -38,7 +38,6 @@ import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -54,6 +53,7 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
 
     private static final String TRANSITION_END = "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd";
     private static final int ANIMATION_DURATION = 550;
+    private static final int ACTIVE_BRAND_INDEX = 3;
 
     @Inject
     private static CurrentBrand currentBrand;
@@ -100,14 +100,13 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
             handlerRegistration = eventBus.addHandler(BrandChangedEvent.TYPE, this);
 
             $(contents).find("li")
-                    .one(Event.ONCLICK, null, createProductClickHandler())
                     .removeClass(sliderResources.style().activeProduct());
 
             for (final IsWidget child : children) {
                 setOrder($(child), String.valueOf(children.indexOf(child)));
             }
 
-            activeItem = $(contents.getWidget(3));
+            activeItem = $(contents.getWidget(ACTIVE_BRAND_INDEX));
             $(activeItem).addClass(sliderResources.style().activeProduct());
 
             Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
@@ -129,11 +128,11 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
 
     public void updateFromCurrentBrand() {
         Brand newBrand = currentBrand.get();
-        if (newBrand == brand || activeAnimation) {
+        if (newBrand == brand) {
             return;
         }
 
-        brand =  newBrand;
+        brand = newBrand;
 
         $(contents).find("a").each(new Function() {
             @Override
@@ -173,10 +172,9 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
                         activeItem.removeClass(sliderResources.style().activeProduct());
                         w.addClass(sliderResources.style().activeProduct());
 
-                        $(elements).attr("style", "transform: scale(1);")
-                                .one(Event.ONCLICK, null, createProductClickHandler());
+                        $(elements).attr("style", "transform: scale(1);");
 
-                        setOrder(w, String.valueOf(3));
+                        setOrder(w, String.valueOf(ACTIVE_BRAND_INDEX));
                         setOrder(activeItem, indexOfSelected);
 
                         activeItem = $(w.get(0));
@@ -213,11 +211,19 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
 
     private void handleClick(final GQuery w) {
         Function function = createAnimation(w);
-        if (activeAnimation) {
-            calls.add(function);
-        } else {
-            function.f();
+        String indexOfSelected = w.css("order");
+
+        if (!isActiveBrand(indexOfSelected)) {
+            if (activeAnimation) {
+                calls.add(function);
+            } else {
+                function.f();
+            }
         }
+    }
+
+    private boolean isActiveBrand(String indexOfSelected) {
+        return Integer.valueOf(indexOfSelected) == ACTIVE_BRAND_INDEX;
     }
 
     private void setOrder(GQuery child, String order) {
