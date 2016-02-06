@@ -38,6 +38,7 @@ import com.google.gwt.query.client.GQuery;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiChild;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -107,7 +108,8 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
             }
 
             activeItem = $(contents.getWidget(ACTIVE_BRAND_INDEX));
-            $(activeItem).addClass(sliderResources.style().activeProduct());
+            $(activeItem).addClass(sliderResources.style().activeProduct())
+                    .one(Event.ONCLICK, null, createProductClickHandler());
 
             Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
                 @Override
