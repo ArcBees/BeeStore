@@ -17,6 +17,7 @@
 package com.arcbees.beestore.client.application.notfound;
 
 import com.arcbees.beestore.client.application.ApplicationPresenter;
+import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.common.NameTokens;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -35,11 +36,24 @@ public class NotFoundPresenter extends Presenter<NotFoundPresenter.MyView, NotFo
     interface MyProxy extends ProxyPlace<NotFoundPresenter> {
     }
 
+    private static final boolean NOT_SCROLLABLE = false;
+    private static final boolean SCROLLABLE = true;
+
     @Inject
     NotFoundPresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+    }
+
+    @Override
+    protected void onReveal() {
+        PageScrollEvent.fire(this, NOT_SCROLLABLE);
+    }
+
+    @Override
+    protected void onHide() {
+        PageScrollEvent.fire(this, SCROLLABLE);
     }
 }

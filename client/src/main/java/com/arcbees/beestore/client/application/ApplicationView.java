@@ -285,6 +285,16 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     }
 
     @Override
+    public void hideBackTop() {
+        $(backTop).hide();
+    }
+
+    @Override
+    public void showBackTop() {
+        $(backTop).show();
+    }
+
+    @Override
     public void updateNumberOfItems(int number) {
         if (number == 0) {
             $(numberOfItemsTooltip).hide();

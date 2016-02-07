@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import com.arcbees.beestore.client.application.ApplicationPresenter;
 import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
+import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
@@ -51,6 +52,9 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     static final PermanentSlot<SharePanelPresenter> SLOT_SHARE_PANEL = new PermanentSlot<>();
+
+    private static final boolean NOT_SCROLLABLE = false;
+    private static final boolean SCROLLABLE = true;
 
     private final CurrentOrder currentOrder;
     private final CurrentProduct currentProduct;
@@ -100,6 +104,13 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     @Override
     protected void onReveal() {
         hideSharePanel();
+
+        PageScrollEvent.fire(this, NOT_SCROLLABLE);
+    }
+
+    @Override
+    protected void onHide() {
+        PageScrollEvent.fire(this, SCROLLABLE);
     }
 
     private void showSharePanel() {

@@ -19,6 +19,7 @@ package com.arcbees.beestore.client.application.notfound;
 import javax.inject.Inject;
 
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 
@@ -29,5 +30,15 @@ public class NotFoundView extends ViewImpl implements NotFoundPresenter.MyView {
     @Inject
     NotFoundView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    @Override
+    protected void onAttach() {
+        Window.enableScrolling(false);
+    }
+
+    @Override
+    protected void onDetach() {
+        Window.enableScrolling(true);
     }
 }

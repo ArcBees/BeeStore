@@ -25,6 +25,8 @@ import com.arcbees.beestore.client.events.BrandChangedEvent;
 import com.arcbees.beestore.client.events.BrandChangedEventHandler;
 import com.arcbees.beestore.client.events.CloseShoppingCartEvent;
 import com.arcbees.beestore.client.events.CloseShoppingCartEventHandler;
+import com.arcbees.beestore.client.events.PageScrollEvent;
+import com.arcbees.beestore.client.events.PageScrollEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
@@ -45,7 +47,7 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>
         implements BrandChangedEventHandler, NavigationHandler, ShoppingCartChangedEventHandler,
-        CloseShoppingCartEventHandler, ShoppingCartQuantityUpdatedEventHandler {
+        CloseShoppingCartEventHandler, ShoppingCartQuantityUpdatedEventHandler, PageScrollEventHandler {
     @ProxyStandard
     @NoGatekeeper
     interface MyProxy extends Proxy<ApplicationPresenter> {
@@ -63,6 +65,10 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         void setProductAnchorActive();
 
         void setHomeAnchorActive();
+
+        void hideBackTop();
+
+        void showBackTop();
     }
 
     public static final NestedSlot SLOT_MAIN = new NestedSlot();
@@ -99,6 +105,16 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     }
 
     @Override
+    public void onPageScrollEnabled(PageScrollEvent event) {
+        getView().showBackTop();
+    }
+
+    @Override
+    public void onPageScrollDisabled(PageScrollEvent event) {
+        getView().hideBackTop();
+    }
+
+    @Override
     protected void onBind() {
         setInSlot(SLOT_SIDE_PANEL, sidePanelPresenter);
 
@@ -108,6 +124,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         addVisibleHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         addRegisteredHandler(NavigationEvent.getType(), this);
+        addRegisteredHandler(PageScrollEvent.TYPE, this);
     }
 
     @Override
