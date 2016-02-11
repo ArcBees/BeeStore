@@ -89,13 +89,13 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> i
     }
 
     @Override
-    public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
+    public void onSubmit(String name, String number, String cvc, int expMonth, int expYear) {
         getView().disablePaymentSubmit();
 
         final CreditCard creditCard = new CreditCard.Builder()
                 .name(name)
                 .creditCardNumber(number)
-                .cvc(cvs)
+                .cvc(cvc)
                 .expirationMonth(expMonth)
                 .expirationYear(expYear)
                 .build();
