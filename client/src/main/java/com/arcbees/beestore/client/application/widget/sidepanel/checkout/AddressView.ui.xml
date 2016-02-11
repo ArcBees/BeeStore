@@ -14,28 +14,30 @@
         </div>
 
         <h3>Shipping address</h3>
-        <fieldset>
-            <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*"
-                    required="" ui:field="firstName"/>
-            <input class="{comp.style.field}" type="text" placeholder="Last name*" required="" ui:field="lastName"/>
-            <input class="{comp.style.field}" type="text" placeholder="Company*" required="" ui:field="company"/>
-        </fieldset>
+        <form action="javascript:;" ui:field="form">
+            <fieldset>
+                <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*"
+                        required="required" ui:field="firstName"/>
+                <input class="{comp.style.field}" type="text" placeholder="Last name*" required="required" ui:field="lastName"/>
+                <input class="{comp.style.field}" type="text" placeholder="Company" required="" ui:field="company"/>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="text" placeholder="Address*" required="" ui:field="address"/>
-            <input class="{comp.style.field}" type="text" placeholder="Town city*" required="" ui:field="townCity"/>
-            <input class="{comp.style.field}" type="text" placeholder="States" required="" ui:field="state"/>
-            <input class="{comp.style.field}" type="text" placeholder="Country" required="" ui:field="country"/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Address*" required="required" ui:field="address"/>
+                <input class="{comp.style.field}" type="text" placeholder="Town city*" required="required" ui:field="townCity"/>
+                <input class="{comp.style.field}" type="text" placeholder="States" required="" ui:field="state"/>
+                <input class="{comp.style.field}" type="text" placeholder="Country" required="" ui:field="country"/>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="email" placeholder="Email*" required="" ui:field="email"/>
-            <input class="{comp.style.field}" type="tel" placeholder="Phone*" required="" ui:field="phone"/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="email" placeholder="Email*" required="required" ui:field="email"/>
+                <input class="{comp.style.field}" type="tel" placeholder="Phone*" required="required" ui:field="phone"/>
+            </fieldset>
 
-        <button ui:field="continueButton"
-                class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Continue
-        </button>
+            <button ui:field="continueButton" type="submit"
+                    class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Continue
+            </button>
+        </form>
     </g:HTMLPanel>
 </ui:UiBinder>
 
