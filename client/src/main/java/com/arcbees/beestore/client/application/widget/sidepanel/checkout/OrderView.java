@@ -55,4 +55,9 @@ public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements Or
             }
         });
     }
+
+    @Override
+    public void hideCheckoutButton() {
+        $(continueButton).hide();
+    }
 }

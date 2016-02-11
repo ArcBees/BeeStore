@@ -14,12 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
+package com.arcbees.beestore.client.events;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-public interface AddressUiHandlers extends UiHandlers {
-    void onContinueClicked();
+public interface PaymentDetailsUpdatedEventHandler extends EventHandler {
+    void onValidUpdate();
 
-    void onPaymentDetailsUpdated();
+    void onInvalidUpdate();
 }

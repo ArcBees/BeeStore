@@ -17,6 +17,7 @@
 package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
+import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
@@ -26,8 +27,13 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> implements AddressUiHandlers {
+    private static final boolean VALID_UPDATE = true;
+    private static final boolean INVALID_UPDATE = false;
+
     interface MyView extends View, HasUiHandlers<AddressUiHandlers> {
         ContactInfoDto getContactInfo();
+
+        void hideContinueButton();
     }
 
     @Inject
@@ -43,6 +49,17 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
     public void onContinueClicked() {
         if (validateContactInfo()) {
             CheckoutContinueEvent.fire(this);
+
+            getView().hideContinueButton();
+        }
+    }
+
+    @Override
+    public void onPaymentDetailsUpdated() {
+        if (validateContactInfo()) {
+            PaymentDetailsUpdatedEvent.fire(this, VALID_UPDATE);
+        } else {
+            PaymentDetailsUpdatedEvent.fire(this, INVALID_UPDATE);
         }
     }
 

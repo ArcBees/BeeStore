@@ -77,11 +77,23 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
         return contactInfo;
     }
 
+    @Override
+    public void hideContinueButton() {
+        $(continueButton).hide();
+    }
+
     private void bind() {
         $(continueButton).click(new Function() {
             @Override
             public void f() {
                 getUiHandlers().onContinueClicked();
+            }
+        });
+
+        $(firstName, lastName, company, address, townCity, state, country, email, phone).change(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onPaymentDetailsUpdated();
             }
         });
     }
