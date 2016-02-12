@@ -8,7 +8,6 @@
     <ui:with field="comp" type="com.arcbees.beestore.client.resources.ComponentsResources"/>
     <ui:with field="font" type="com.arcbees.beestore.client.resources.FontResources"/>
 
-
     <g:HTMLPanel styleName="{res.style.rightPanel_address}">
         <div class="{res.style.rightPanel_title}">
             <div class="{res.style.rightPanel_step}">
