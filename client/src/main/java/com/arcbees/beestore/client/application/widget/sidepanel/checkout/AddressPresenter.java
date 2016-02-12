@@ -17,7 +17,9 @@
 package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
+import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -25,8 +27,13 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> implements AddressUiHandlers {
+    private static final boolean VALID_UPDATE = true;
+    private static final boolean INVALID_UPDATE = false;
+
     interface MyView extends View, HasUiHandlers<AddressUiHandlers> {
         ContactInfoDto getContactInfo();
+
+        void hideContinueButton();
     }
 
     @Inject
@@ -40,7 +47,31 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
 
     @Override
     public void onContinueClicked() {
-        CheckoutContinueEvent.fire(this);
+        if (validateContactInfo()) {
+            CheckoutContinueEvent.fire(this);
+
+            getView().hideContinueButton();
+        }
+    }
+
+    @Override
+    public void onPaymentDetailsUpdated() {
+        if (validateContactInfo()) {
+            PaymentDetailsUpdatedEvent.fire(this, VALID_UPDATE);
+        } else {
+            PaymentDetailsUpdatedEvent.fire(this, INVALID_UPDATE);
+        }
+    }
+
+    private boolean validateContactInfo() {
+        ContactInfoDto contactInfo = getContactInfo();
+
+        return !Strings.isNullOrEmpty(contactInfo.getFirstName()) &&
+                !Strings.isNullOrEmpty(contactInfo.getLastName()) &&
+                !Strings.isNullOrEmpty(contactInfo.getEmail()) &&
+                !Strings.isNullOrEmpty(contactInfo.getPhone()) &&
+                !Strings.isNullOrEmpty(contactInfo.getAddress()) &&
+                !Strings.isNullOrEmpty(contactInfo.getTownCity());
     }
 
     public ContactInfoDto getContactInfo() {

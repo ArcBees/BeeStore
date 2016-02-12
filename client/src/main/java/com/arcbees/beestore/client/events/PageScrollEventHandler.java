@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 ArcBees Inc.
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,10 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beestore.client;
+package com.arcbees.beestore.client.events;
 
-import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.event.shared.EventHandler;
 
-public interface Config extends Constants {
-    String stripePublicKey();
+public interface PageScrollEventHandler extends EventHandler {
+    void onPageScrollEnabled(PageScrollEvent event);
+
+    void onPageScrollDisabled(PageScrollEvent event);
 }

@@ -29,6 +29,7 @@ import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
 public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         implements OrderUiHandlers {
     interface MyView extends View, HasUiHandlers<OrderUiHandlers> {
+        void hideCheckoutButton();
     }
 
     public static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEMS = new PermanentSlot<>();
@@ -54,5 +55,7 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
     @Override
     public void onContinueClicked() {
         CheckoutContinueEvent.fire(this);
+
+        getView().hideCheckoutButton();
     }
 }

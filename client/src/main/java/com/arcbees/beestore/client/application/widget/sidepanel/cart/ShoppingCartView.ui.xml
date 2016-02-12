@@ -21,8 +21,7 @@
         <arcbees:ReplacePanel ui:field="cartItems"/>
 
         <div ui:field="checkoutContainer">
-            <button ui:field="checkoutButton" class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}"
-                    disabled="disabled">
+            <button ui:field="checkoutButton" class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">
                 <ui:msg description="Proceed to checkout">Proceed to checkout</ui:msg>
             </button>
             <p>
