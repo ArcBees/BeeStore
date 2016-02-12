@@ -14,10 +14,12 @@
  * the License.
  */
 
-package com.arcbees.beestore.client;
+package com.arcbees.beestore.client.events;
 
-import com.google.gwt.i18n.client.Constants;
+import com.google.gwt.event.shared.EventHandler;
 
-public interface Config extends Constants {
-    String stripePublicKey();
+public interface PaymentDetailsUpdatedEventHandler extends EventHandler {
+    void onValidUpdate();
+
+    void onInvalidUpdate();
 }
