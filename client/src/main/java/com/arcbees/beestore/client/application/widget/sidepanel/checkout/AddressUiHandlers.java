@@ -20,4 +20,6 @@ import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface AddressUiHandlers extends UiHandlers {
     void onContinueClicked();
+
+    void onPaymentDetailsUpdated();
 }
