@@ -1,5 +1,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beestore.client.resources.ComponentsResources"/>
@@ -10,10 +13,14 @@
             <div class="{res.style.rightPanel_step}">
                 <span>3</span>
             </div>
-            <h2>Payment</h2>
+            <h2>
+                <ui:msg description="Payment - Payment">Payment</ui:msg>
+            </h2>
         </div>
 
-        <h3>Payment method</h3>
+        <h3>
+            <ui:msg description="Payment - Payment method">Payment method</ui:msg>
+        </h3>
 
         <div class="{res.style.paiementMethod}">
             <div class="{comp.style.inputRadio}">
@@ -23,33 +30,53 @@
 
             <div class="{comp.style.inputRadio}">
                 <input type="radio" name="paeiment method" id="credit card"/>
-                <label for="credit card">credit card</label>
+                <label for="credit card">
+                    <ui:msg description="Payment - Credit card">credit card</ui:msg>
+                </label>
             </div>
         </div>
 
-        <h3>credit card</h3>
+        <h3>
+            <ui:msg description="Payment - Credit card">credit card</ui:msg>
+        </h3>
 
         <form action="javascript:;" ui:field="form">
             <fieldset>
-                <input class="{comp.style.field}" type="text" placeholder="Name on the card" required="required" ui:field="name"/>
+                <input class="{comp.style.field}" type="text" placeholder="Name on the card" required="required"
+                        ui:field="name">
+                    <ui:attribute name="placeholder" description="Payment - Name on the card"/>
+                </input>
             </fieldset>
 
             <fieldset>
-                <input class="{comp.style.field}" type="number" placeholder="Card number" required="required" ui:field="number"/>
+                <input class="{comp.style.field}" type="number" placeholder="Card number" required="required"
+                        ui:field="number">
+                    <ui:attribute name="placeholder" description="Payment - Card Number"/>
+                </input>
                 <input class="{comp.style.field}" type="number" placeholder="CVC" required="required" ui:field="cvs"/>
             </fieldset>
 
             <fieldset>
-                <input class="{comp.style.field}" type="number" placeholder="MM" required="required" min="1" step="1" max="12" ui:field="expMonth"/>
-                <input class="{comp.style.field}" type="number" placeholder="YYYY" required="required" min="2016" step="1" max="2100" ui:field="expYear"/>
+                <input class="{comp.style.field}" type="number" placeholder="MM" required="required" min="1" step="1"
+                        max="12" ui:field="expMonth"/>
+                <input class="{comp.style.field}" type="number" placeholder="YYYY" required="required" min="2016"
+                        step="1" max="2100" ui:field="expYear">
+                    <ui:attribute name="placeholder" description="Payment - Credit card expiration YYYY"/>
+                </input>
             </fieldset>
 
-            <p>We don't store any credit information on our server.
-                <a href="https://stripe.com/about">Learn more</a>
+            <p>
+                <ui:msg description="Payment - We don't store credit info">We don't store any credit information on our
+                    server.
+                </ui:msg>
+                <a href="https://stripe.com/about">
+                    <ui:msg description="Payment - Learn more">Learn more</ui:msg>
+                </a>
             </p>
 
-            <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}" type="submit" ui:field="submit">
-                Place order
+            <button class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}" type="submit"
+                    ui:field="submit">
+                <ui:msg description="Payment - Place order">Place order</ui:msg>
             </button>
         </form>
     </g:HTMLPanel>
