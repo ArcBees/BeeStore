@@ -20,20 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.github.nmorel.gwtjackson.client.ObjectMapper;
-import com.google.gwt.query.client.GQuery;
-import com.google.gwt.user.client.rpc.SerializationException;
+import com.google.gwt.storage.client.Storage;
 import com.google.inject.Inject;
-import com.seanchenxi.gwt.storage.client.StorageExt;
-import com.seanchenxi.gwt.storage.client.StorageKey;
-import com.seanchenxi.gwt.storage.client.StorageKeyFactory;
 
 public class ShoppingCartLocalStorageImpl implements ShoppingCartLocalStorage {
     interface CartMapper extends ObjectMapper<List<ShoppingCartItem>> {
     }
 
-    private static final StorageKey<String> STORAGE_KEY = StorageKeyFactory.stringKey("shopping-cart");
+    private static final String STORAGE_KEY = "shopping-cart";
 
-    private final StorageExt localStorage = StorageExt.getLocalStorage();
+    private final Storage localStorage = Storage.getLocalStorageIfSupported();
     private final CartMapper mapper;
 
     @Inject
@@ -44,23 +40,16 @@ public class ShoppingCartLocalStorageImpl implements ShoppingCartLocalStorage {
 
     public List<ShoppingCartItem> getItems() {
         List<ShoppingCartItem> items = new ArrayList<>();
-        try {
-            String shoppingCartItems = localStorage.get(STORAGE_KEY);
-            if (shoppingCartItems != null) {
-                items = mapper.read(shoppingCartItems);
-            }
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
+        String shoppingCartItems = localStorage.getItem(STORAGE_KEY);
+
+        if (shoppingCartItems != null) {
+            items = mapper.read(shoppingCartItems);
         }
 
         return items;
     }
 
     public void update(List<ShoppingCartItem> cartItems) {
-        try {
-            localStorage.put(STORAGE_KEY, mapper.write(cartItems));
-        } catch (SerializationException e) {
-            GQuery.console.error(e);
-        }
+        localStorage.setItem(STORAGE_KEY, mapper.write(cartItems));
     }
 }

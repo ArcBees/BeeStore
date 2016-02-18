@@ -26,10 +26,10 @@ public interface FontResources extends ClientBundle {
     String MIME_TYPE_WOFF = "application/font-woff";
     String MIME_TYPE_SVG = "image/svg+xml";
 
-    public interface Font extends CssResource {
+    interface Font extends CssResource {
     }
 
-    public interface Icons extends CssResource {
+    interface Icons extends CssResource {
         String iconArcbees();
 
         String iconGitHub();

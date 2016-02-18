@@ -97,10 +97,6 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava-gwt</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.seanchenxi.gwt</groupId>
-            <artifactId>gwt-storage</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

@@ -92,14 +92,12 @@ public class LocaleExtractor {
                         return LOCALE_COOKIE_NAME.equals(cookie.getName())
                                 && SUPPORTED_LOCALES.contains(cookie.getValue());
                     }
-                })
-                .transform(new Function<Cookie, String>() {
+                }).transform(new Function<Cookie, String>() {
                     @Override
                     public String apply(Cookie cookie) {
                         return cookie.getValue().toLowerCase();
                     }
-                })
-                .orNull();
+                }).orNull();
     }
 
     /**
@@ -121,7 +119,7 @@ public class LocaleExtractor {
                     .filter(new Predicate<LocalePreference>() {
                         @Override
                         public boolean apply(LocalePreference preference) {
-                            return SUPPORTED_LOCALES.contains(preference.getLocale());
+                            return SUPPORTED_LOCALES.contains(preference);
                         }
                     })
                     .toSortedList(LocalePreference.COMPARATOR);

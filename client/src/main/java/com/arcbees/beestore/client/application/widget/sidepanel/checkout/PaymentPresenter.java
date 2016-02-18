@@ -18,6 +18,8 @@ package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beestore.client.Config;
 import com.arcbees.beestore.client.RestCallbackImpl;
+import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
+import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEventHandler;
 import com.arcbees.beestore.common.api.PaymentResource;
 import com.arcbees.beestore.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
@@ -36,7 +38,8 @@ import com.gwtplatform.mvp.client.View;
 import static com.google.gwt.http.client.Response.SC_OK;
 import static com.google.gwt.http.client.Response.SC_PAYMENT_REQUIRED;
 
-public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> implements PaymentUiHandlers {
+public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
+        implements PaymentUiHandlers, PaymentDetailsUpdatedEventHandler {
     interface MyView extends View, HasUiHandlers<PaymentUiHandlers> {
         void showErrorMessage(String message);
 
@@ -69,6 +72,8 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> i
 
     @Override
     protected void onBind() {
+        addRegisteredHandler(PaymentDetailsUpdatedEvent.TYPE, this);
+
         stripe.inject(new Callback<Void, Exception>() {
             @Override
             public void onFailure(Exception e) {
@@ -89,28 +94,25 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> i
     }
 
     @Override
-    public void onSubmit(String name, String number, String cvs, int expMonth, int expYear) {
+    public void onSubmit(String name, String number, String cvc, int expMonth, int expYear) {
         getView().disablePaymentSubmit();
 
         final CreditCard creditCard = new CreditCard.Builder()
                 .name(name)
                 .creditCardNumber(number)
-                .cvc(cvs)
+                .cvc(cvc)
                 .expirationMonth(expMonth)
                 .expirationYear(expYear)
                 .build();
 
-        stripe.getCreditCardToken(creditCard, new CreditCardResponseHandler() {
-            @Override
-            public void onCreditCardReceived(int status, CreditCardResponse creditCardResponse) {
-                if (status == SC_PAYMENT_REQUIRED) {
-                    getView().showErrorMessage("An error occurred. Please verify your credit card details.");
-                } else if (status != SC_OK) {
-                    getView().showErrorMessage("An error occurred.");
-                } else {
-                    PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
-                    pay(paymentInfo);
-                }
+        stripe.getCreditCardToken(creditCard, (status, creditCardResponse) -> {
+            if (status == SC_PAYMENT_REQUIRED) {
+                getView().showErrorMessage("An error occurred. Please verify your credit card details.");
+            } else if (status != SC_OK) {
+                getView().showErrorMessage("An error occurred.");
+            } else {
+                PaymentInfoDto paymentInfo = new PaymentInfoDto(creditCardResponse.getId());
+                pay(paymentInfo);
             }
         });
     }
@@ -127,5 +129,15 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView> i
                 getView().showErrorMessage(response.getText());
             }
         }).pay(paymentInfo);
+    }
+
+    @Override
+    public void onValidUpdate() {
+        getView().enablePaymentSubmit();
+    }
+
+    @Override
+    public void onInvalidUpdate() {
+        getView().disablePaymentSubmit();
     }
 }

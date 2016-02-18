@@ -1,5 +1,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'
+        ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+        ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+        ui:generateLocales="default">
 
     <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beestore.client.resources.ComponentsResources"/>
@@ -10,32 +13,52 @@
             <div class="{res.style.rightPanel_step}">
                 <span>1</span>
             </div>
-            <h2>Address</h2>
+            <h2><ui:msg description="Address - Title">Address</ui:msg></h2>
         </div>
 
-        <h3>Shipping address</h3>
-        <fieldset>
-            <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*"
-                    required="" ui:field="firstName"/>
-            <input class="{comp.style.field}" type="text" placeholder="Last name*" required="" ui:field="lastName"/>
-            <input class="{comp.style.field}" type="text" placeholder="Company*" required="" ui:field="company"/>
-        </fieldset>
+        <h3><ui:msg description="Address - Shipping">Shipping address</ui:msg></h3>
+        <form action="javascript:;" ui:field="form">
+            <fieldset>
+                <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*" required="" ui:field="firstName">
+                    <ui:attribute name="placeholder" description="Address - FirstName"/>
+                </input>
+                <input class="{comp.style.field}" type="text" placeholder="Last name*" required="" ui:field="lastName">
+                    <ui:attribute name="placeholder" description="Address - LastName"/>
+                </input>
+                <input class="{comp.style.field}" type="text" placeholder="Company" ui:field="company">
+                    <ui:attribute name="placeholder" description="Address - Company"/>
+                </input>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="text" placeholder="Address*" required="" ui:field="address"/>
-            <input class="{comp.style.field}" type="text" placeholder="Town city*" required="" ui:field="townCity"/>
-            <input class="{comp.style.field}" type="text" placeholder="States" required="" ui:field="state"/>
-            <input class="{comp.style.field}" type="text" placeholder="Country" required="" ui:field="country"/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="text" placeholder="Address*" required="" ui:field="address">
+                    <ui:attribute name="placeholder" description="Address - Address"/>
+                </input>
+                <input class="{comp.style.field}" type="text" placeholder="Town city*" required="" ui:field="townCity">
+                    <ui:attribute name="placeholder" description="Address - City"/>
+                </input>
+                <input class="{comp.style.field}" type="text" placeholder="States" ui:field="state">
+                    <ui:attribute name="placeholder" description="Address - State"/>
+                </input>
+                <input class="{comp.style.field}" type="text" placeholder="Country" ui:field="country">
+                    <ui:attribute name="placeholder" description="Address - Country"/>
+                </input>
+            </fieldset>
 
-        <fieldset>
-            <input class="{comp.style.field}" type="email" placeholder="Email*" required="" ui:field="email"/>
-            <input class="{comp.style.field}" type="tel" placeholder="Phone*" required="" ui:field="phone"/>
-        </fieldset>
+            <fieldset>
+                <input class="{comp.style.field}" type="email" placeholder="Email*" required="" ui:field="email">
+                    <ui:attribute name="placeholder" description="Address - Email"/>
+                </input>
+                <input class="{comp.style.field}" type="tel" placeholder="Phone*" required="" ui:field="phone">
+                    <ui:attribute name="placeholder" description="Address - Phone"/>
+                </input>
+            </fieldset>
 
-        <button ui:field="continueButton"
-                class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">Continue
-        </button>
+            <button ui:field="continueButton" type="submit"
+                    class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">
+                <ui:msg description="Address - Continue">Continue</ui:msg>
+            </button>
+        </form>
     </g:HTMLPanel>
 </ui:UiBinder>
 

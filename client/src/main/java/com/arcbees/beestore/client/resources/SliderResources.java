@@ -20,7 +20,7 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 
 public interface SliderResources extends ClientBundle {
-    public interface Style extends CssResource {
+    interface Style extends CssResource {
         String productIcon();
 
         String devProducts_list_chosen();
@@ -53,5 +53,5 @@ public interface SliderResources extends ClientBundle {
     }
 
     @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "css/colors.gss", "css/slider.gss"})
-    public Style style();
+    Style style();
 }
