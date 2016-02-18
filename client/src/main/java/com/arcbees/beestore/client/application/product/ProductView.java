@@ -155,6 +155,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
                 }
             }
         });
+
+        $(productImage).css("margin-right", "-1000px");
     }
 
     private int getQuantity() {
@@ -205,10 +207,22 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             $(sizeDiv).hide();
         }
 
+        int productDivWidth = productImageDiv.getAbsoluteRight() - productImageDiv.getAbsoluteLeft();
+        int productWidth = productImage.getWidth();
+
+        $(productImage).css("margin-right", "-1000px");
+        $(productImage).animate("margin-right: -1000px")
+                .animate("margin-right: " + getProductImageCenter(productDivWidth, productWidth))
+                .delay(250);
+
         setTargetToNavigationAnchor(previous, productType.getPreviousProduct());
         setTargetToNavigationAnchor(next, productType.getNextProduct());
 
         brandPicker.updateAnchors();
+    }
+
+    private int getProductImageCenter(int containerWidth, int imageWidth) {
+        return (containerWidth / 2) - (imageWidth / 2);
     }
 
     @Override
@@ -247,7 +261,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
         $("li", sizes).removeClass(page.style().active());
 
-        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active());
+        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active
+                ());
     }
 
     private void setTargetToNavigationAnchor(AnchorElement anchor, ProductType productType) {
