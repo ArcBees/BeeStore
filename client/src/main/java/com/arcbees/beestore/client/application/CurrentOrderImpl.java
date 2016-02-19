@@ -22,7 +22,6 @@ import java.util.List;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -30,6 +29,8 @@ import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
+    private static final float TAX = 0.14975f;
+
     private final EventBus eventBus;
     private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
@@ -106,6 +107,16 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
         }
 
         return sum;
+    }
+
+    @Override
+    public float calculateTaxes() {
+        return calculateSubTotal() * TAX;
+    }
+
+    @Override
+    public float calculateGrandTotal() {
+        return calculateSubTotal() + calculateTaxes();
     }
 
     @Override

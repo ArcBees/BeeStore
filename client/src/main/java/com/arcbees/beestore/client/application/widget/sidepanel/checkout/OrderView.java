@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import com.arcbees.ui.ReplacePanel;
 import com.google.gwt.dom.client.ButtonElement;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -36,6 +37,10 @@ public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements Or
     ReplacePanel cartItems;
     @UiField
     ButtonElement continueButton;
+    @UiField
+    SpanElement tax;
+    @UiField
+    SpanElement orderTotal;
 
     @Inject
     OrderView(
@@ -59,5 +64,15 @@ public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements Or
     @Override
     public void hideCheckoutButton() {
         $(continueButton).hide();
+    }
+
+    @Override
+    public void setTaxes(String taxes) {
+        tax.setInnerText(String.valueOf(taxes));
+    }
+
+    @Override
+    public void setOrderTotal(String grandTotal) {
+        orderTotal.setInnerText(String.valueOf(grandTotal));
     }
 }

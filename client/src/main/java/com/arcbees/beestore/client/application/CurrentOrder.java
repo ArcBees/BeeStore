@@ -32,4 +32,8 @@ public interface CurrentOrder {
     void setContactInfo(ContactInfoDto contactInfo);
 
     float calculateSubTotal();
+
+    float calculateGrandTotal();
+
+    float calculateTaxes();
 }

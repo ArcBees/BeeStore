@@ -23,6 +23,7 @@ import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -32,15 +33,18 @@ import com.gwtplatform.mvp.client.presenter.slots.Slot;
 public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
         implements ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler {
     interface MyView extends View {
-        void showAndSetSubTotal(float subTotal);
+        void showAndSetSubTotal(String subTotal);
 
         void showEmpty();
     }
-
     static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
+
+    private static final String CURRENCY_FORMAT = "#.## $";
 
     private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
+
+    private NumberFormat numberFormat;
 
     @Inject
     CartItemsPresenter(
@@ -52,6 +56,7 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
         this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
+        this.numberFormat = NumberFormat.getFormat(CURRENCY_FORMAT);
     }
 
     @Override
@@ -69,12 +74,19 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
         if (currentOrder.isEmpty()) {
             getView().showEmpty();
         } else {
-            getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+            float subtotal = currentOrder.calculateSubTotal();
+            getView().showAndSetSubTotal(formatCurrency(subtotal));
         }
     }
 
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+        String formattedTotal = formatCurrency(currentOrder.calculateSubTotal());
+
+        getView().showAndSetSubTotal(formattedTotal);
+    }
+
+    private String formatCurrency(float total) {
+        return numberFormat.format(total);
     }
 }
