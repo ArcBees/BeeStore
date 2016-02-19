@@ -20,6 +20,7 @@ import javax.inject.Inject;
 
 import com.arcbees.beestore.client.application.gin.TwitterCardProvider;
 import com.arcbees.beestore.client.application.widget.brandpicker.BrandPicker;
+import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.client.resources.AppMessages;
 import com.arcbees.beestore.client.resources.AppResources;
 import com.arcbees.beestore.client.resources.Colors;
@@ -58,6 +59,8 @@ import static com.arcbees.beestore.client.application.product.ProductPresenter.S
 import static com.google.gwt.query.client.GQuery.$;
 
 public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> implements ProductPresenter.MyView {
+    public static final int DELAY_MILLISECONDS = 250;
+
     interface Binder extends UiBinder<Widget, ProductView> {
     }
 
@@ -155,8 +158,6 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
                 }
             }
         });
-
-        $(productImage).css("margin-right", "-1000px");
     }
 
     private int getQuantity() {
@@ -207,13 +208,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             $(sizeDiv).hide();
         }
 
-        int productDivWidth = productImageDiv.getAbsoluteRight() - productImageDiv.getAbsoluteLeft();
-        int productWidth = productImage.getWidth();
-
-        $(productImage).css("margin-right", "-1000px");
-        $(productImage).animate("margin-right: -1000px")
-                .animate("margin-right: " + getProductImageCenter(productDivWidth, productWidth))
-                .delay(250);
+        animateProductImage();
 
         setTargetToNavigationAnchor(previous, productType.getPreviousProduct());
         setTargetToNavigationAnchor(next, productType.getNextProduct());
@@ -221,7 +216,17 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
         brandPicker.updateAnchors();
     }
 
-    private int getProductImageCenter(int containerWidth, int imageWidth) {
+    private void animateProductImage() {
+        $(productImage).css("margin-right", "-1000px");
+        $(productImage).animate("margin-right: -1000px")
+                .animate("margin-right: " + getProductImageCenter())
+                .delay(DELAY_MILLISECONDS);
+    }
+
+    private int getProductImageCenter() {
+        int containerWidth = productImageDiv.getAbsoluteRight() - productImageDiv.getAbsoluteLeft();
+        int imageWidth = productImage.getWidth();
+
         return (containerWidth / 2) - (imageWidth / 2);
     }
 
