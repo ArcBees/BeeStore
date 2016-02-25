@@ -24,7 +24,7 @@
 
         <div class="{res.style.paiementMethod}">
             <div class="{comp.style.inputRadio}">
-                <input type="radio" name="paeiment method" id="paypal"/>
+                <input type="radio" name="paeiment method" id="paypal" checked=""/>
                 <label for="paypal">paypal</label>
             </div>
 
