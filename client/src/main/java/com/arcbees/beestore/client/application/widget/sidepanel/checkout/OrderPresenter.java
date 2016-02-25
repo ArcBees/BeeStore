@@ -18,14 +18,15 @@ package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import javax.inject.Inject;
 
+import com.arcbees.beestore.client.application.CurrencyFormat;
 import com.arcbees.beestore.client.application.CurrentOrder;
+import com.arcbees.beestore.client.application.ShippingMethod;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitems.CartItemsPresenter;
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -40,15 +41,18 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         void setTaxes(String taxes);
 
         void setOrderTotal(String grandTotal);
+
+        void setStandardPrice(String price);
+
+        void setInternationalPrice(String price);
     }
 
     public static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEMS = new PermanentSlot<>();
 
-    private static final String CURRENCY_FORMAT = "#.## $";
     private final CartItemsPresenter cartItemsPresenter;
 
     private CurrentOrder currentOrder;
-    private NumberFormat numberFormat;
+    private CurrencyFormat currencyFormat;
 
     @Inject
     OrderPresenter(
@@ -60,7 +64,7 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
 
         this.currentOrder = currentOrder;
         this.cartItemsPresenter = cartItemsPresenter;
-        this.numberFormat = NumberFormat.getFormat(CURRENCY_FORMAT);
+        this.currencyFormat = new CurrencyFormat();
 
         getView().setUiHandlers(this);
     }
@@ -71,11 +75,17 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
 
         setInSlot(SLOT_CART_ITEMS, cartItemsPresenter);
+
+        setPrices();
+        setOrderTotal();
     }
 
-    @Override
-    protected void onReveal() {
-        setOrderTotal();
+    private void setPrices() {
+        float standardPrice = ShippingMethod.STANDARD.getPrice();
+        float internationalPrice = ShippingMethod.INTERNATIONAL.getPrice();
+
+        getView().setStandardPrice(currencyFormat.format(standardPrice));
+        getView().setInternationalPrice(currencyFormat.format(internationalPrice));
     }
 
     @Override
@@ -83,6 +93,13 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         CheckoutContinueEvent.fire(this);
 
         getView().hideCheckoutButton();
+    }
+
+    @Override
+    public void setShippingMethod(ShippingMethod shippingMethod) {
+        currentOrder.setShippingMethod(shippingMethod);
+
+        setOrderTotal();
     }
 
     @Override
@@ -99,12 +116,11 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         float grandTotal = currentOrder.calculateGrandTotal();
         float taxes = currentOrder.calculateTaxes();
 
-
         getView().setOrderTotal(formatCurrency(grandTotal));
         getView().setTaxes(formatCurrency(taxes));
     }
 
     private String formatCurrency(float total) {
-        return numberFormat.format(total);
+        return currencyFormat.format(total);
     }
 }

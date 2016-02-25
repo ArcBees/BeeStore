@@ -16,6 +16,7 @@
 
 package com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitems;
 
+import com.arcbees.beestore.client.application.CurrencyFormat;
 import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemFactory;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemPresenter;
@@ -23,7 +24,6 @@ import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityUpdatedEventHandler;
-import com.google.gwt.i18n.client.NumberFormat;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -37,14 +37,13 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
         void showEmpty();
     }
-    static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
 
-    private static final String CURRENCY_FORMAT = "#.## $";
+    static final Slot<CartItemPresenter> SLOT_ITEMS = new Slot<>();
 
     private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
 
-    private NumberFormat numberFormat;
+    private CurrencyFormat currencyFormat;
 
     @Inject
     CartItemsPresenter(
@@ -56,7 +55,7 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
         this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
-        this.numberFormat = NumberFormat.getFormat(CURRENCY_FORMAT);
+        this.currencyFormat = new CurrencyFormat();
     }
 
     @Override
@@ -75,18 +74,14 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
             getView().showEmpty();
         } else {
             float subtotal = currentOrder.calculateSubTotal();
-            getView().showAndSetSubTotal(formatCurrency(subtotal));
+            getView().showAndSetSubTotal(currencyFormat.format(subtotal));
         }
     }
 
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        String formattedTotal = formatCurrency(currentOrder.calculateSubTotal());
+        float subTotal = currentOrder.calculateSubTotal();
 
-        getView().showAndSetSubTotal(formattedTotal);
-    }
-
-    private String formatCurrency(float total) {
-        return numberFormat.format(total);
+        getView().showAndSetSubTotal(currencyFormat.format(subTotal));
     }
 }

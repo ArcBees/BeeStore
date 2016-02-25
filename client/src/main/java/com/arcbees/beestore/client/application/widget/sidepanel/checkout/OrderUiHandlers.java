@@ -16,8 +16,11 @@
 
 package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
+import com.arcbees.beestore.client.application.ShippingMethod;
 import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface OrderUiHandlers extends UiHandlers {
     void onContinueClicked();
+
+    void setShippingMethod(ShippingMethod shippingMethod);
 }

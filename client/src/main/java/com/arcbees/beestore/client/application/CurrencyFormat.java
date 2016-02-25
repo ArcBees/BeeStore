@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 ArcBees Inc.
+ * Copyright 2016 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,26 +16,14 @@
 
 package com.arcbees.beestore.client.application;
 
-import com.arcbees.beestore.common.dto.ContactInfoDto;
+import com.google.gwt.i18n.client.NumberFormat;
 
-public interface CurrentOrder {
-    void addItem(ShoppingCartItem item);
+public class CurrencyFormat {
+    private static final String CURRENCY_FORMAT = "$#.##";
 
-    int getSize();
+    public String format(float number) {
+        NumberFormat numberFormat = NumberFormat.getFormat(CURRENCY_FORMAT);
 
-    boolean isEmpty();
-
-    void removeItem(ShoppingCartItem item);
-
-    ContactInfoDto getContactInfo();
-
-    void setContactInfo(ContactInfoDto contactInfo);
-
-    float calculateSubTotal();
-
-    float calculateGrandTotal();
-
-    float calculateTaxes();
-
-    void setShippingMethod(ShippingMethod shippingMethod);
+        return numberFormat.format(number);
+    }
 }

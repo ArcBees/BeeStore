@@ -36,6 +36,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     private List<ShoppingCartItem> items = new ArrayList<>();
     private ContactInfoDto contactInfo;
+    private ShippingMethod shippingMethod;
 
     @Inject
     CurrentOrderImpl(
@@ -43,6 +44,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
             ShoppingCartLocalStorage shoppingCartLocalStorage) {
         this.eventBus = eventBus;
         this.shoppingCartLocalStorage = shoppingCartLocalStorage;
+        this.shippingMethod = ShippingMethod.STANDARD;
     }
 
     @Override
@@ -115,8 +117,13 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
+    public void setShippingMethod(ShippingMethod shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    @Override
     public float calculateGrandTotal() {
-        return calculateSubTotal() + calculateTaxes();
+        return calculateSubTotal() + calculateTaxes() + shippingMethod.getPrice();
     }
 
     @Override

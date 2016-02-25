@@ -23,7 +23,6 @@
                 <span class="{res.style.orderBox_productTimes}">+</span>
                 <span class="{res.style.orderBox_productPrice}">
                     <span ui:field="price"/>
-                    $
                 </span>
             </div>
         </div>
