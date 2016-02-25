@@ -66,19 +66,19 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final CartItemColorUtil cartItemColorUtil;
-
-    private CurrencyFormat currencyFormat;
+    private final CurrencyFormat currencyFormat;
 
     @Inject
     CartItemView(
             Binder binder,
             AppMessages appMessages,
             ProductBrandUtil productBrandUtil,
-            CartItemColorUtil cartItemColorUtil) {
+            CartItemColorUtil cartItemColorUtil,
+            CurrencyFormat currencyFormat) {
         this.appMessages = appMessages;
         this.productBrandUtil = productBrandUtil;
         this.cartItemColorUtil = cartItemColorUtil;
-        this.currencyFormat = new CurrencyFormat();
+        this.currencyFormat = currencyFormat;
 
         initWidget(binder.createAndBindUi(this));
 

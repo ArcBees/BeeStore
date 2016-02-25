@@ -42,20 +42,20 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
     private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
-
-    private CurrencyFormat currencyFormat;
+    private final CurrencyFormat currencyFormat;
 
     @Inject
     CartItemsPresenter(
             EventBus eventBus,
             MyView view,
             CartItemFactory cartItemFactory,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            CurrencyFormat currencyFormat) {
         super(eventBus, view);
 
         this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
-        this.currencyFormat = new CurrencyFormat();
+        this.currencyFormat = currencyFormat;
     }
 
     @Override

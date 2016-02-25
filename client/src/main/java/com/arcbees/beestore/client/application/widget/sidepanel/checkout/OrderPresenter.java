@@ -50,21 +50,22 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
     public static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEMS = new PermanentSlot<>();
 
     private final CartItemsPresenter cartItemsPresenter;
+    private final CurrencyFormat currencyFormat;
 
     private CurrentOrder currentOrder;
-    private CurrencyFormat currencyFormat;
 
     @Inject
     OrderPresenter(
             EventBus eventBus,
             MyView view,
             CartItemsPresenter cartItemsPresenter,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            CurrencyFormat currencyFormat) {
         super(eventBus, view);
 
         this.currentOrder = currentOrder;
         this.cartItemsPresenter = cartItemsPresenter;
-        this.currencyFormat = new CurrencyFormat();
+        this.currencyFormat = currencyFormat;
 
         getView().setUiHandlers(this);
     }
