@@ -76,11 +76,11 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
 
         setInSlot(SLOT_CART_ITEMS, cartItemsPresenter);
 
-        setPrices();
+        setShippingPrices();
         setOrderTotal();
     }
 
-    private void setPrices() {
+    private void setShippingPrices() {
         float standardPrice = ShippingMethod.STANDARD.getPrice();
         float internationalPrice = ShippingMethod.INTERNATIONAL.getPrice();
 
