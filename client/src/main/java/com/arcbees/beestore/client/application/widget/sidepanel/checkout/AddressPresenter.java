@@ -19,6 +19,7 @@ package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
 import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
+import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
@@ -65,13 +66,12 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
     private boolean validateContactInfo() {
         ContactInfoDto contactInfo = getContactInfo();
 
-/*        return !Strings.isNullOrEmpty(contactInfo.getFirstName()) &&
+        return !Strings.isNullOrEmpty(contactInfo.getFirstName()) &&
                 !Strings.isNullOrEmpty(contactInfo.getLastName()) &&
                 !Strings.isNullOrEmpty(contactInfo.getEmail()) &&
                 !Strings.isNullOrEmpty(contactInfo.getPhone()) &&
                 !Strings.isNullOrEmpty(contactInfo.getAddress()) &&
-                !Strings.isNullOrEmpty(contactInfo.getTownCity());*/
-        return true;
+                !Strings.isNullOrEmpty(contactInfo.getTownCity());
     }
 
     public ContactInfoDto getContactInfo() {
