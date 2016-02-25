@@ -48,8 +48,8 @@ public class CartItemsView extends ViewImpl implements CartItemsPresenter.MyView
     }
 
     @Override
-    public void showAndSetSubTotal(float subTotal) {
-        this.subTotal.setInnerText(subTotal + " $");
+    public void showAndSetSubTotal(String subTotal) {
+        this.subTotal.setInnerText(subTotal);
 
         $(subTotalContainer).show();
         $(noItems).hide();

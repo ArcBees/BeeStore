@@ -22,7 +22,6 @@ import java.util.List;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -30,11 +29,15 @@ import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
+    private static final float TPS = 0.09975f;
+    private static final float TVQ = 0.05f;
+
     private final EventBus eventBus;
     private final ShoppingCartLocalStorage shoppingCartLocalStorage;
 
     private List<ShoppingCartItem> items = new ArrayList<>();
     private ContactInfoDto contactInfo;
+    private ShippingMethod shippingMethod;
 
     @Inject
     CurrentOrderImpl(
@@ -42,6 +45,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
             ShoppingCartLocalStorage shoppingCartLocalStorage) {
         this.eventBus = eventBus;
         this.shoppingCartLocalStorage = shoppingCartLocalStorage;
+        this.shippingMethod = ShippingMethod.STANDARD;
     }
 
     @Override
@@ -106,6 +110,21 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
         }
 
         return sum;
+    }
+
+    @Override
+    public float calculateTaxes() {
+        return calculateSubTotal() * (TPS + TVQ);
+    }
+
+    @Override
+    public void setShippingMethod(ShippingMethod shippingMethod) {
+        this.shippingMethod = shippingMethod;
+    }
+
+    @Override
+    public float calculateGrandTotal() {
+        return calculateSubTotal() + calculateTaxes() + shippingMethod.getPrice();
     }
 
     @Override

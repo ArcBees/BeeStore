@@ -16,6 +16,7 @@
 
 package com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem;
 
+import com.arcbees.beestore.client.application.CurrencyFormat;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.client.resources.AppMessages;
 import com.arcbees.beestore.client.resources.AppResources;
@@ -65,16 +66,20 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
     private final AppMessages appMessages;
     private final ProductBrandUtil productBrandUtil;
     private final CartItemColorUtil cartItemColorUtil;
+    private final CurrencyFormat currencyFormat;
 
     @Inject
     CartItemView(
             Binder binder,
             AppMessages appMessages,
             ProductBrandUtil productBrandUtil,
-            CartItemColorUtil cartItemColorUtil) {
+            CartItemColorUtil cartItemColorUtil,
+            CurrencyFormat currencyFormat) {
         this.appMessages = appMessages;
         this.productBrandUtil = productBrandUtil;
         this.cartItemColorUtil = cartItemColorUtil;
+        this.currencyFormat = currencyFormat;
+
         initWidget(binder.createAndBindUi(this));
 
         init();
@@ -125,6 +130,7 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
         ProductDto productDto = item.getProductDto();
         Product product = productDto.getProduct();
         ProductType productType = product.getProductType();
+        int productPrice = productType.getPrice();
 
         String translatedBrandName = appMessages.brandName(productDto.getBrand());
         String translatedProductType = appMessages.productName(productType);
@@ -136,7 +142,7 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
         itemColor.setInnerText(translatedItemColor);
         logoColor.setInnerText(translatedLogoColor);
         size.setInnerText(translatedSize);
-        price.setInnerText(String.valueOf(productType.getPrice()));
+        price.setInnerText(currencyFormat.format(productPrice));
         quantity.setValue(String.valueOf(item.getQuantity()));
         productThumbnail.setResource(productBrandUtil.getThumbnail(productType, productDto.getBrand()));
 

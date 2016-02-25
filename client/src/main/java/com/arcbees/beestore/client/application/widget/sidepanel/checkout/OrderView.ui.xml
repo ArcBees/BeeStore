@@ -8,6 +8,8 @@
     <ui:with field="res" type="com.arcbees.beestore.client.resources.AppResources"/>
     <ui:with field="comp" type="com.arcbees.beestore.client.resources.ComponentsResources"/>
     <ui:with field="font" type="com.arcbees.beestore.client.resources.FontResources"/>
+    <ui:with field="standardId" type="java.lang.String"/>
+    <ui:with field="internationalId" type="java.lang.String"/>
 
     <g:HTMLPanel styleName="{res.style.rightPanel_order}">
         <div class="{res.style.rightPanel_title}">
@@ -30,24 +32,24 @@
             </h3>
 
             <div class="{comp.style.inputRadio}">
-                <input type="radio" name="shipping" id="standard"/>
-                <label for="standard">Standard
+                <input ui:field="standard" type="radio" name="shipping" checked=""/>
+                <label for="{standardId}">Standard
                     <span>
                         <ui:msg description="Order - Shipping standard">4-5 Business days</ui:msg>
                     </span>
                 </label>
-                <span class="{res.style.shippingPrice}">10.00$</span>
+                <span ui:field="standardPrice" class="{res.style.shippingPrice}"/>
             </div>
 
             <div class="{comp.style.inputRadio}">
-                <input type="radio" name="shipping" id="international"/>
-                <label for="international">
+                <input ui:field="international" type="radio" name="shipping"/>
+                <label for="{internationalId}">
                     <ui:msg description="Order - Shipping internationnal delivery">International delivery</ui:msg>
                     <span>
                         <ui:msg description="Order - Shipping inter. delivery - days">10-12 Business days</ui:msg>
                     </span>
                 </label>
-                <span class="{res.style.shippingPrice}">40.00$</span>
+                <span ui:field="internationalPrice" class="{res.style.shippingPrice}"/>
             </div>
         </div>
 
@@ -55,13 +57,13 @@
             <h4>
                 <ui:msg description="Order - Tax">Tax</ui:msg>
             </h4>
-            <span class="{res.style.orderAmount_price}">12.50$</span>
+            <span ui:field="tax" class="{res.style.orderAmount_price}"/>
         </div>
         <div class="{res.style.orderAmount} {res.style.clearfix}">
             <h4 class="">
                 <ui:msg description="Order - Order Total">Order Total</ui:msg>
             </h4>
-            <span class="{res.style.orderAmount_price}">47.50$</span>
+            <span ui:field="orderTotal" class="{res.style.orderAmount_price}"/>
         </div>
         <button ui:field="continueButton"
                 class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">

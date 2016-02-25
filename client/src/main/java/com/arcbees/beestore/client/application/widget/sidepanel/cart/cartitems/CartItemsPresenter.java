@@ -16,6 +16,7 @@
 
 package com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitems;
 
+import com.arcbees.beestore.client.application.CurrencyFormat;
 import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemFactory;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitem.CartItemPresenter;
@@ -32,7 +33,7 @@ import com.gwtplatform.mvp.client.presenter.slots.Slot;
 public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyView>
         implements ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler {
     interface MyView extends View {
-        void showAndSetSubTotal(float subTotal);
+        void showAndSetSubTotal(String subTotal);
 
         void showEmpty();
     }
@@ -41,17 +42,20 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
     private final CartItemFactory cartItemFactory;
     private final CurrentOrder currentOrder;
+    private final CurrencyFormat currencyFormat;
 
     @Inject
     CartItemsPresenter(
             EventBus eventBus,
             MyView view,
             CartItemFactory cartItemFactory,
-            CurrentOrder currentOrder) {
+            CurrentOrder currentOrder,
+            CurrencyFormat currencyFormat) {
         super(eventBus, view);
 
         this.cartItemFactory = cartItemFactory;
         this.currentOrder = currentOrder;
+        this.currencyFormat = currencyFormat;
     }
 
     @Override
@@ -69,12 +73,15 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
         if (currentOrder.isEmpty()) {
             getView().showEmpty();
         } else {
-            getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+            float subtotal = currentOrder.calculateSubTotal();
+            getView().showAndSetSubTotal(currencyFormat.format(subtotal));
         }
     }
 
     @Override
     public void onShoppingCartQuantityChanged(ShoppingCartQuantityChangeEvent event) {
-        getView().showAndSetSubTotal(currentOrder.calculateSubTotal());
+        float subTotal = currentOrder.calculateSubTotal();
+
+        getView().showAndSetSubTotal(currencyFormat.format(subTotal));
     }
 }

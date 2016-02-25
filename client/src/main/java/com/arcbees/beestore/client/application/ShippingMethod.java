@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 ArcBees Inc.
+ * Copyright 2016 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,26 +16,17 @@
 
 package com.arcbees.beestore.client.application;
 
-import com.arcbees.beestore.common.dto.ContactInfoDto;
+public enum ShippingMethod {
+    STANDARD(10),
+    INTERNATIONAL(40);
 
-public interface CurrentOrder {
-    void addItem(ShoppingCartItem item);
+    private float price;
 
-    int getSize();
+    ShippingMethod(float price) {
+        this.price = price;
+    }
 
-    boolean isEmpty();
-
-    void removeItem(ShoppingCartItem item);
-
-    ContactInfoDto getContactInfo();
-
-    void setContactInfo(ContactInfoDto contactInfo);
-
-    float calculateSubTotal();
-
-    float calculateGrandTotal();
-
-    float calculateTaxes();
-
-    void setShippingMethod(ShippingMethod shippingMethod);
+    public float getPrice() {
+        return price;
+    }
 }

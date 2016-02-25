@@ -27,14 +27,14 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> implements AddressUiHandlers {
-    private static final boolean VALID_UPDATE = true;
-    private static final boolean INVALID_UPDATE = false;
-
     interface MyView extends View, HasUiHandlers<AddressUiHandlers> {
         ContactInfoDto getContactInfo();
 
         void hideContinueButton();
     }
+
+    private static final boolean VALID_UPDATE = true;
+    private static final boolean INVALID_UPDATE = false;
 
     @Inject
     AddressPresenter(
