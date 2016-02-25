@@ -29,7 +29,8 @@ import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
 
 public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
-    private static final float TAX = 0.14975f;
+    private static final float TPS = 0.09975f;
+    private static final float TVQ = 0.05f;
 
     private final EventBus eventBus;
     private final ShoppingCartLocalStorage shoppingCartLocalStorage;
@@ -113,7 +114,7 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
 
     @Override
     public float calculateTaxes() {
-        return calculateSubTotal() * TAX;
+        return calculateSubTotal() * (TPS + TVQ);
     }
 
     @Override
