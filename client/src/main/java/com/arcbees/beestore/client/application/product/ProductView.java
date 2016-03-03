@@ -20,7 +20,6 @@ import javax.inject.Inject;
 
 import com.arcbees.beestore.client.application.gin.TwitterCardProvider;
 import com.arcbees.beestore.client.application.widget.brandpicker.BrandPicker;
-import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.client.resources.AppMessages;
 import com.arcbees.beestore.client.resources.AppResources;
 import com.arcbees.beestore.client.resources.Colors;
@@ -61,8 +60,6 @@ import static com.arcbees.beestore.client.application.product.ProductPresenter.S
 import static com.google.gwt.query.client.GQuery.$;
 
 public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> implements ProductPresenter.MyView {
-    public static final int DELAY_MILLISECONDS = 250;
-
     interface Binder extends UiBinder<Widget, ProductView> {
     }
 
