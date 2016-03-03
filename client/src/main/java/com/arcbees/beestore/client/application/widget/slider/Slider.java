@@ -55,6 +55,7 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
     private static final String TRANSITION_END = "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd";
     private static final int ANIMATION_DURATION = 550;
     private static final int ACTIVE_BRAND_INDEX = 3;
+    private static final int NUMBER_OF_SUCCESSIVE_ANIMATIONS = 2;
 
     @Inject
     private static CurrentBrand currentBrand;
@@ -212,10 +213,18 @@ public class Slider implements IsWidget, AttachEvent.Handler, BrandChangedEventH
 
         if (!isActiveBrand(indexOfSelected)) {
             if (activeAnimation) {
+                enforceNumberOfSuccessiveAnimations();
                 calls.add(function);
             } else {
                 function.f();
             }
+        }
+    }
+
+    private void enforceNumberOfSuccessiveAnimations() {
+        int size = calls.size();
+        for (int i = 0; i < size - NUMBER_OF_SUCCESSIVE_ANIMATIONS; i++) {
+            calls.remove(i);
         }
     }
 
