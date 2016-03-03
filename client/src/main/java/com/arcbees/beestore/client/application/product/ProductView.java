@@ -38,6 +38,8 @@ import com.arcbees.seo.SeoElements;
 import com.arcbees.seo.TagsInjector;
 import com.arcbees.ui.ReplacePanel;
 import com.google.common.base.Strings;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
@@ -208,7 +210,12 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             $(sizeDiv).hide();
         }
 
-        animateProductImage();
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            @Override
+            public void execute() {
+                animateProductImage();
+            }
+        });
 
         setTargetToNavigationAnchor(previous, productType.getPreviousProduct());
         setTargetToNavigationAnchor(next, productType.getNextProduct());
@@ -219,8 +226,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private void animateProductImage() {
         $(productImage).css("margin-right", "-1000px");
         $(productImage).animate("margin-right: -1000px")
-                .animate("margin-right: " + getProductImageCenter())
-                .delay(DELAY_MILLISECONDS);
+                .animate("margin-right: " + getProductImageCenter());
     }
 
     private int getProductImageCenter() {
