@@ -37,6 +37,8 @@ import com.arcbees.seo.SeoElements;
 import com.arcbees.seo.TagsInjector;
 import com.arcbees.ui.ReplacePanel;
 import com.google.common.base.Strings;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.DivElement;
@@ -205,10 +207,30 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
             $(sizeDiv).hide();
         }
 
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            @Override
+            public void execute() {
+                animateProductImage();
+            }
+        });
+
         setTargetToNavigationAnchor(previous, productType.getPreviousProduct());
         setTargetToNavigationAnchor(next, productType.getNextProduct());
 
         brandPicker.updateAnchors();
+    }
+
+    private void animateProductImage() {
+        $(productImage).css("margin-right", "-1000px");
+        $(productImage).animate("margin-right: -1000px")
+                .animate("margin-right: " + getProductImageCenter());
+    }
+
+    private int getProductImageCenter() {
+        int containerWidth = productImageDiv.getAbsoluteRight() - productImageDiv.getAbsoluteLeft();
+        int imageWidth = productImage.getWidth();
+
+        return (containerWidth / 2) - (imageWidth / 2);
     }
 
     @Override
@@ -247,7 +269,8 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
         $("li", sizes).removeClass(page.style().active());
 
-        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active());
+        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active
+                ());
     }
 
     private void setTargetToNavigationAnchor(AnchorElement anchor, ProductType productType) {

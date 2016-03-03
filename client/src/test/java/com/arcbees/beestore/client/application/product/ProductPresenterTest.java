@@ -98,12 +98,11 @@ public class ProductPresenterTest {
     }
 
     @Test
-    public void prepareFromRequest_setsProduct() {
-        PlaceRequest request = new PlaceRequest();
+    public void onReset_setsProduct() {
         ProductDto productDto = new ProductDto();
         given(currentProduct.get()).willReturn(productDto);
 
-        presenter.prepareFromRequest(request);
+        presenter.onReset();
 
         verify(view).setProduct(productDto);
     }
