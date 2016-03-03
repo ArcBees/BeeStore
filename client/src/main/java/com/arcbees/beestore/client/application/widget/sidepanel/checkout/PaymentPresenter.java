@@ -18,8 +18,11 @@ package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beestore.client.Config;
 import com.arcbees.beestore.client.RestCallbackImpl;
+import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
 import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEventHandler;
+import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
+import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.common.api.PaymentResource;
 import com.arcbees.beestore.common.dto.PaymentInfoDto;
 import com.arcbees.stripe.client.CreditCard;
@@ -39,7 +42,7 @@ import static com.google.gwt.http.client.Response.SC_OK;
 import static com.google.gwt.http.client.Response.SC_PAYMENT_REQUIRED;
 
 public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
-        implements PaymentUiHandlers, PaymentDetailsUpdatedEventHandler {
+        implements PaymentUiHandlers, PaymentDetailsUpdatedEventHandler, ShoppingCartChangedEventHandler {
     interface MyView extends View, HasUiHandlers<PaymentUiHandlers> {
         void showErrorMessage(String message);
 
@@ -54,18 +57,22 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
     private final Stripe stripe;
     private final ResourceDelegate<PaymentResource> paymentResource;
 
+    private CurrentOrder currentOrder;
+
     @Inject
     PaymentPresenter(
             EventBus eventBus,
             MyView view,
             Config config,
             Stripe stripe,
-            ResourceDelegate<PaymentResource> paymentResource) {
+            ResourceDelegate<PaymentResource> paymentResource,
+            CurrentOrder currentOrder) {
         super(eventBus, view);
 
         this.config = config;
         this.stripe = stripe;
         this.paymentResource = paymentResource;
+        this.currentOrder = currentOrder;
 
         getView().setUiHandlers(this);
     }
@@ -73,6 +80,7 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
     @Override
     protected void onBind() {
         addRegisteredHandler(PaymentDetailsUpdatedEvent.TYPE, this);
+        addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
 
         stripe.inject(new Callback<Void, Exception>() {
             @Override
@@ -91,6 +99,15 @@ public class PaymentPresenter extends PresenterWidget<PaymentPresenter.MyView>
         stripe.setPublishableKey(config.stripePublicKey());
 
         getView().enablePaymentSubmit();
+    }
+
+    @Override
+    public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
+        if (currentOrder.isEmpty()) {
+            getView().disablePaymentSubmit();
+        } else {
+            getView().enablePaymentSubmit();
+        }
     }
 
     @Override
