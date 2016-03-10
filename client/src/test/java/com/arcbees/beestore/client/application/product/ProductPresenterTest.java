@@ -25,7 +25,12 @@ import org.mockito.ArgumentCaptor;
 
 import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
+import com.arcbees.beestore.common.api.ProductResource;
+import com.arcbees.beestore.common.dto.Brand;
+import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.arcbees.beestore.common.dto.ProductType;
+import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,6 +38,8 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
+
+import static com.gwtplatform.dispatch.rest.delegates.test.DelegateTestUtils.givenDelegate;
 
 @RunWith(JukitoRunner.class)
 public class ProductPresenterTest {
@@ -44,6 +51,8 @@ public class ProductPresenterTest {
     private CurrentProduct currentProduct;
     @Inject
     private CurrentOrder currentOrder;
+    @Inject
+    private ResourceDelegate<ProductResource> productDelegate;
 
     @Test
     public void onReveal_hidesSharePanel() {
@@ -98,11 +107,24 @@ public class ProductPresenterTest {
     }
 
     @Test
-    public void onReset_setsProduct() {
-        ProductDto productDto = new ProductDto();
-        given(currentProduct.get()).willReturn(productDto);
+    public void onPrepareRequest_setsProduct() {
+        Product expectedProduct = Product.createProduct(ProductType.BAG);
+        ProductDto productDto = new ProductDto(expectedProduct, Brand.JUKITO);
 
-        presenter.onReset();
+        String brandValue = productDto.getBrand().getValue();
+        String productId = String.valueOf(productDto.getProduct().getProductType().getId());
+
+        PlaceRequest request = new PlaceRequest.Builder()
+                .with("brand", brandValue)
+                .with("id", productId)
+                .build();
+
+        given(currentProduct.get()).willReturn(productDto);
+        givenDelegate(productDelegate).useResource(ProductResource.class)
+                .and().succeed().withResult(productDto)
+                .when().getProduct(Integer.parseInt(productId), brandValue);
+
+        presenter.prepareFromRequest(request);
 
         verify(view).setProduct(productDto);
     }
