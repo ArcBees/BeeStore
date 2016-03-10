@@ -34,7 +34,6 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -64,7 +63,6 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     private final CurrentProduct currentProduct;
 
     private ResourceDelegate<ProductResource> productDelegate;
-    private PlaceManager placeManager;
     private boolean isSharePanelShown;
 
     @Inject
@@ -75,17 +73,27 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             SharePanelPresenter sharePanel,
             CurrentOrder currentOrder,
             CurrentProduct currentProduct,
-            ResourceDelegate<ProductResource> productDelegate,
-            PlaceManager placeManager) {
+            ResourceDelegate<ProductResource> productDelegate) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         this.currentOrder = currentOrder;
         this.currentProduct = currentProduct;
         this.productDelegate = productDelegate;
-        this.placeManager = placeManager;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
+    }
+
+    @Override
+    protected void onReveal() {
+        hideSharePanel();
+
+        PageScrollEvent.fire(this, NOT_SCROLLABLE);
+    }
+
+    @Override
+    protected void onHide() {
+        PageScrollEvent.fire(this, SCROLLABLE);
     }
 
     @Override
@@ -110,8 +118,9 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
             @Override
             public void onSuccess(ProductDto result) {
-                getView().setProduct(result);
-                getView().setSeoElements(result);
+                currentProduct.set(result);
+
+                setProduct(currentProduct.get());
             }
         }).getProduct(Integer.parseInt(productId), brandValue);
     }
@@ -122,16 +131,9 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
         currentOrder.addItem(shoppingCartItem);
     }
 
-    @Override
-    protected void onReveal() {
-        hideSharePanel();
-
-        PageScrollEvent.fire(this, NOT_SCROLLABLE);
-    }
-
-    @Override
-    protected void onHide() {
-        PageScrollEvent.fire(this, SCROLLABLE);
+    private void setProduct(ProductDto productDto) {
+        getView().setProduct(productDto);
+        getView().setSeoElements(productDto);
     }
 
     private void showSharePanel() {
