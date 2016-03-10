@@ -25,6 +25,7 @@ import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.common.NameTokens;
 import com.arcbees.beestore.common.api.ProductResource;
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.arcbees.beestore.common.dto.ProductType;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
@@ -109,7 +110,20 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     public void prepareFromRequest(PlaceRequest request) {
         String brandValue = request.getParameter(NameTokens.PARAM_BRAND, "");
         String productId = request.getParameter(NameTokens.PARAM_ID, "-1");
+        String size = request.getParameter(NameTokens.PARAM_SIZE, "");
 
+        if (isProductTypeShirt(productId)) {
+            getProductCallback(brandValue, productId, size);
+        } else {
+            getProductCallback(brandValue, productId);
+        }
+    }
+
+    private boolean isProductTypeShirt(String productId) {
+        return ProductType.createFromId(Integer.parseInt(productId)).equals(ProductType.SHIRT);
+    }
+
+    private void getProductCallback(String brandValue, String productId) {
         productDelegate.withCallback(new AsyncCallback<ProductDto>() {
             @Override
             public void onFailure(Throwable caught) {
@@ -118,11 +132,29 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
 
             @Override
             public void onSuccess(ProductDto result) {
-                currentProduct.set(result);
-
-                setProduct(currentProduct.get());
+                onGetProductSuccess(result);
             }
         }).getProduct(Integer.parseInt(productId), brandValue);
+    }
+
+    private void getProductCallback(String brandValue, String productId, String size) {
+        productDelegate.withCallback(new AsyncCallback<ProductDto>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                // TODO: Handle request failure with notification.
+            }
+
+            @Override
+            public void onSuccess(ProductDto result) {
+                onGetProductSuccess(result);
+            }
+        }).getProduct(Integer.parseInt(productId), brandValue, size);
+    }
+
+    private void onGetProductSuccess(ProductDto result) {
+        currentProduct.set(result);
+
+        setProduct(currentProduct.get());
     }
 
     @Override

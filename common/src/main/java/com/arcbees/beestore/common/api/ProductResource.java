@@ -15,5 +15,13 @@ public interface ProductResource {
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    ProductDto getProduct(@PathParam("id") int productId, @QueryParam("brand") String brandValue);
+    ProductDto getProduct(@PathParam("id") int productId,
+                          @QueryParam("brand") String brandValue);
+
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    ProductDto getProduct(@PathParam("id") int productId,
+                          @QueryParam("brand") String brandValue,
+                          @QueryParam("size") String size);
 }

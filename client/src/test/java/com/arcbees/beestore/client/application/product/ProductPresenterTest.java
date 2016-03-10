@@ -30,6 +30,7 @@ import com.arcbees.beestore.common.dto.Brand;
 import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
+import com.arcbees.beestore.common.dto.Size;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
