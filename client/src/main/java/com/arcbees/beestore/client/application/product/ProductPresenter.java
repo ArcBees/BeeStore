@@ -23,14 +23,18 @@ import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.common.NameTokens;
+import com.arcbees.beestore.common.api.ProductResource;
 import com.arcbees.beestore.common.dto.ProductDto;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -59,6 +63,8 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     private final CurrentOrder currentOrder;
     private final CurrentProduct currentProduct;
 
+    private ResourceDelegate<ProductResource> productDelegate;
+    private PlaceManager placeManager;
     private boolean isSharePanelShown;
 
     @Inject
@@ -68,11 +74,15 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             MyProxy proxy,
             SharePanelPresenter sharePanel,
             CurrentOrder currentOrder,
-            CurrentProduct currentProduct) {
+            CurrentProduct currentProduct,
+            ResourceDelegate<ProductResource> productDelegate,
+            PlaceManager placeManager) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         this.currentOrder = currentOrder;
         this.currentProduct = currentProduct;
+        this.productDelegate = productDelegate;
+        this.placeManager = placeManager;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
@@ -88,11 +98,22 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     }
 
     @Override
-    public void onReset() {
-        ProductDto productDto = currentProduct.get();
-        getView().setProduct(productDto);
+    public void prepareFromRequest(PlaceRequest request) {
+        String brandValue = request.getParameter(NameTokens.PARAM_BRAND, "");
+        String productId = request.getParameter(NameTokens.PARAM_ID, "-1");
 
-        getView().setSeoElements(productDto);
+        productDelegate.withCallback(new AsyncCallback<ProductDto>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                // TODO: Handle request failure with notification.
+            }
+
+            @Override
+            public void onSuccess(ProductDto result) {
+                getView().setProduct(result);
+                getView().setSeoElements(result);
+            }
+        }).getProduct(Integer.parseInt(productId), brandValue);
     }
 
     @Override

@@ -21,4 +21,5 @@ public class ApiPaths {
 
     public static final String PAYMENT = "/payment";
     public static final String STRIPE = "/stripe";
+    public static final String PRODUCT = "/product";
 }

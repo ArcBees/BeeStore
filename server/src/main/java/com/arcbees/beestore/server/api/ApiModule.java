@@ -17,11 +17,13 @@
 package com.arcbees.beestore.server.api;
 
 import com.arcbees.beestore.common.api.PaymentResource;
+import com.arcbees.beestore.common.api.ProductResource;
 import com.google.inject.AbstractModule;
 
 public class ApiModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(PaymentResource.class).to(PaymentResourceImpl.class);
+        bind(ProductResource.class).to(ProductResourceImpl.class);
     }
 }
