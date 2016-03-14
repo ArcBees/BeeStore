@@ -107,6 +107,12 @@ public class ProductDto {
             return this;
         }
 
+        public Builder withShirtSize(Size size) {
+            this.size = size;
+
+            return this;
+        }
+
         public Builder withProductType(ProductType productType) {
             this.productType = productType;
 
@@ -130,7 +136,7 @@ public class ProductDto {
 
             if (!productType.equals(ProductType.SHIRT)) {
                 size = Size.getDefaultValue();
-            } else if (size == null) {
+            } else if (size == null || size == Size.UNIQUE) {
                 size = Size.getDefaultShirtValue();
             }
 
