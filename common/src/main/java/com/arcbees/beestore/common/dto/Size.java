@@ -29,10 +29,6 @@ public enum Size {
         this.value = value;
     }
 
-    public static Size getDefaultValue() {
-        return MEDIUM;
-    }
-
     public String getValue() {
         return value;
     }
@@ -44,6 +40,14 @@ public enum Size {
             }
         }
 
-        return getDefaultValue();
+        return getDefaultShirtValue();
+    }
+
+    public static Size getDefaultShirtValue() {
+        return Size.MEDIUM;
+    }
+
+    public static Size getDefaultValue() {
+        return Size.UNIQUE;
     }
 }

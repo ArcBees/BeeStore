@@ -27,10 +27,8 @@ import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.common.api.ProductResource;
 import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
-import com.arcbees.beestore.common.dto.Size;
 import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
@@ -109,21 +107,25 @@ public class ProductPresenterTest {
 
     @Test
     public void onPrepareRequest_setsProduct() {
-        Product expectedProduct = Product.createProduct(ProductType.BAG);
-        ProductDto productDto = new ProductDto(expectedProduct, Brand.JUKITO);
+        ProductDto productDto = new ProductDto.Builder()
+                .withProductType(ProductType.BAG)
+                .withBrand(Brand.JUKITO)
+                .build();
 
+        String idValue = String.valueOf(productDto.getProductType().getId());
         String brandValue = productDto.getBrand().getValue();
-        String productId = String.valueOf(productDto.getProduct().getProductType().getId());
+        String sizeValue = productDto.getSize().getValue();
 
         PlaceRequest request = new PlaceRequest.Builder()
                 .with("brand", brandValue)
-                .with("id", productId)
+                .with("id", idValue)
+                .with("size", sizeValue)
                 .build();
 
         given(currentProduct.get()).willReturn(productDto);
         givenDelegate(productDelegate).useResource(ProductResource.class)
                 .and().succeed().withResult(productDto)
-                .when().getProduct(Integer.parseInt(productId), brandValue);
+                .when().getProduct(Integer.parseInt(idValue), brandValue, sizeValue);
 
         presenter.prepareFromRequest(request);
 
@@ -133,7 +135,7 @@ public class ProductPresenterTest {
     @Test
     public void onAddToCartButtonClicked_addItemToCurrentOrder() {
         int itemQuantity = 32;
-        ProductDto productToAdd = new ProductDto();
+        ProductDto productToAdd = new ProductDto.Builder().build();
         given(currentProduct.get()).willReturn(productToAdd);
 
         presenter.onAddToCartButtonClicked(itemQuantity);

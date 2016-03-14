@@ -269,7 +269,7 @@ public class ProductView extends ViewWithUiHandlers<ProductPresenterUiHandlers> 
     private void toggleActiveShirtSizeIcon(ProductDto productDto) {
         $("li", sizes).removeClass(page.style().active());
 
-        $("li[data-size='" + productDto.getProduct().getSize().getValue() + "']", sizes).addClass(page.style().active
+        $("li[data-size='" + productDto.getSize().getValue() + "']", sizes).addClass(page.style().active
                 ());
     }
 

@@ -16,28 +16,28 @@
 
 package com.arcbees.beestore.common.api;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 
 import com.arcbees.beestore.common.dto.ProductDto;
 
 import static com.arcbees.beestore.common.api.ApiPaths.PRODUCT;
 
 @Path(PRODUCT)
+@Produces(MediaType.APPLICATION_JSON)
 public interface ProductResource {
     @GET
-    @Path("/{id}")
-    @Produces("application/json")
-    ProductDto getProduct(@PathParam("id") int productId,
-                          @QueryParam("brand") String brandValue);
+    @Path(ApiPaths.ID)
+    ProductDto getProduct(@PathParam(ApiParameters.ID) int productId,
+                          @QueryParam(ApiParameters.BRAND) String brandValue,
+                          @QueryParam(ApiParameters.SIZE) String size);
 
     @GET
-    @Path("/{id}")
-    @Produces("application/json")
-    ProductDto getProduct(@PathParam("id") int productId,
-                          @QueryParam("brand") String brandValue,
-                          @QueryParam("size") String size);
+    List<ProductDto> getProductsByBrand(@QueryParam(ApiParameters.BRAND) String brand);
 }

@@ -16,33 +16,36 @@
 
 package com.arcbees.beestore.server.api;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.arcbees.beestore.common.api.ProductResource;
-import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
-import com.arcbees.beestore.common.dto.Size;
 
 public class ProductResourceImpl implements ProductResource {
     @Override
-    public ProductDto getProduct(int productId, String brandValue) {
-        Product product = Product.createProduct(ProductType.createFromId(productId));
-        Brand brand = Brand.createFromValue(brandValue);
-        product.setSize(Size.UNIQUE);
-
-        return new ProductDto(product, brand);
+    public ProductDto getProduct(int productId, String brandValue, String size) {
+        return new ProductDto.Builder()
+                .withProductTypeId(productId)
+                .withBrandValue(brandValue)
+                .withShirtSizeValue(size)
+                .build();
     }
 
     @Override
-    public ProductDto getProduct(int productId, String brandValue, String sizeValue) {
-        Product product = Product.createProduct(ProductType.createFromId(productId));
-        Brand brand = Brand.createFromValue(brandValue);
-        Size size = Size.createFromValue(sizeValue);
+    public List<ProductDto> getProductsByBrand(String brand) {
+        List<ProductDto> productDtos = new ArrayList<>();
 
-        if (product.getProductType() == ProductType.SHIRT) {
-            product.setSize(size);
+        for (ProductType productType : ProductType.values()) {
+            ProductDto productDto = new ProductDto.Builder()
+                    .withProductType(productType)
+                    .withBrandValue(brand)
+                    .build();
+
+            productDtos.add(productDto);
         }
 
-        return new ProductDto(product, brand);
+        return productDtos;
     }
 }

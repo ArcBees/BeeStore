@@ -18,6 +18,6 @@ package com.arcbees.beestore.client.application.widget;
 
 import com.arcbees.beestore.common.dto.ProductDto;
 
-public interface ProductFactory {
+public interface ProductWidgetFactory {
     ProductPresenter create(ProductWidgetType productWidgetType, ProductDto productDto);
 }

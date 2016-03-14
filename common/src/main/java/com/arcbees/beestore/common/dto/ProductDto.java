@@ -22,39 +22,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductDto {
     private Brand brand;
-    private Product product;
+    private ProductType productType;
+    private Size size;
 
-    public ProductDto() {
+    private ProductDto() {
     }
 
     @JsonCreator
     public ProductDto(
-            @JsonProperty("product") Product product,
-            @JsonProperty("brand") Brand brand) {
-        this.product = product;
+            @JsonProperty("productType") ProductType productType,
+            @JsonProperty("brand") Brand brand,
+            @JsonProperty("size") Size size) {
+
+        this.productType = productType;
         this.brand = brand;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ProductDto that = (ProductDto) o;
-
-        if (brand != that.brand) return false;
-        return !(product != null ? !product.equals(that.product) : that.product != null);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = brand != null ? brand.hashCode() : 0;
-        result = 31 * result + (product != null ? product.hashCode() : 0);
-        return result;
-    }
-
-    public Product getProduct() {
-        return product;
+        this.size = size;
     }
 
     public Brand getBrand() {
@@ -65,13 +47,94 @@ public class ProductDto {
         this.brand = brand;
     }
 
-    @JsonIgnore
+    public Size getSize() {
+        return size;
+    }
+
     public ProductType getProductType() {
-        return product.getProductType();
+        return productType;
     }
 
     @JsonIgnore
     public int getPrice() {
-        return product.getPrice();
+        return productType.getPrice();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductDto that = (ProductDto) o;
+
+        if (brand != that.brand) return false;
+        if (productType != that.productType) return false;
+        return size == that.size;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = brand.hashCode();
+        result = 31 * result + productType.hashCode();
+        result = 31 * result + size.hashCode();
+        return result;
+    }
+
+    public static class Builder {
+        private ProductType productType;
+        private Brand brand;
+        private Size size;
+
+        public Builder() {
+        }
+
+        public Builder withProductTypeId(int id) {
+            productType = ProductType.createFromId(id);
+
+            return this;
+        }
+
+        public Builder withBrandValue(String value) {
+            brand = Brand.createFromValue(value);
+
+            return this;
+        }
+
+        public Builder withShirtSizeValue(String value) {
+            size = Size.createFromValue(value);
+
+            return this;
+        }
+
+        public Builder withProductType(ProductType productType) {
+            this.productType = productType;
+
+            return this;
+        }
+
+        public Builder withBrand(Brand brand) {
+            this.brand = brand;
+
+            return this;
+        }
+
+        public ProductDto build() {
+            if (productType == null) {
+                productType = ProductType.getDefaultValue();
+            }
+
+            if (brand == null) {
+                brand = Brand.getDefaultValue();
+            }
+
+            if (!productType.equals(ProductType.SHIRT)) {
+                size = Size.getDefaultValue();
+            } else if (size == null) {
+                size = Size.getDefaultShirtValue();
+            }
+
+            return new ProductDto(productType, brand, size);
+        }
     }
 }

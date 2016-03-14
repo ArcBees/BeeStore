@@ -60,7 +60,7 @@ public class CartItemPresenterTest {
 
     @Before
     public void setUp() {
-        currentShoppingCartItem = new ShoppingCartItem(new ProductDto(), SOME_QUANTITY);
+        currentShoppingCartItem = new ShoppingCartItem(new ProductDto.Builder().build(), SOME_QUANTITY);
 
         presenter = cartItemFactory.create(currentShoppingCartItem);
     }

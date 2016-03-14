@@ -42,7 +42,7 @@ public enum ProductType {
         return getDefaultValue();
     }
 
-    private static ProductType getDefaultValue() {
+    public static ProductType getDefaultValue() {
         return SHIRT;
     }
 
