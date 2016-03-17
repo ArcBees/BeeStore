@@ -16,43 +16,18 @@
 
 package com.arcbees.beestore.client.application.product;
 
-import javax.inject.Inject;
-
-import com.arcbees.beestore.common.NameTokens;
-import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.Product;
-import com.arcbees.beestore.common.dto.ProductType;
 import com.arcbees.beestore.common.dto.ProductDto;
-import com.arcbees.beestore.common.dto.Size;
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 
 public class CurrentProductImpl implements CurrentProduct {
-    private final PlaceManager placeManager;
-
-    @Inject
-    CurrentProductImpl(
-            PlaceManager placeManager) {
-        this.placeManager = placeManager;
-    }
+    private ProductDto productDto;
 
     @Override
     public ProductDto get() {
-        PlaceRequest currentPlaceRequest = placeManager.getCurrentPlaceRequest();
+        return productDto;
+    }
 
-        String paramBrand = currentPlaceRequest.getParameter(NameTokens.PARAM_BRAND, "");
-        Brand brand = Brand.createFromValue(paramBrand);
-
-        String paramProductId = currentPlaceRequest.getParameter(NameTokens.PARAM_ID, "-1");
-        ProductType productType = ProductType.createFromId(Integer.parseInt(paramProductId));
-
-        if (productType == ProductType.SHIRT) {
-            String paramSize = currentPlaceRequest.getParameter(NameTokens.PARAM_SIZE, "");
-            Size size = Size.createFromValue(paramSize);
-
-            return new ProductDto(Product.createShirt(size), brand);
-        }
-
-        return new ProductDto(Product.createProduct(productType), brand);
+    @Override
+    public void set(ProductDto productDto) {
+        this.productDto = productDto;
     }
 }

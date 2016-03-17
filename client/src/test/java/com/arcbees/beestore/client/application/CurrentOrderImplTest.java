@@ -27,8 +27,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
-import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
 import com.google.web.bindery.event.shared.EventBus;
@@ -83,7 +81,9 @@ public class CurrentOrderImplTest {
     }
 
     private ShoppingCartItem createItem(ProductType productType, int quantity) {
-        ProductDto productDto = new ProductDto(Product.createProduct(productType), Brand.getDefaultValue());
+        ProductDto productDto = new ProductDto.Builder()
+                .withProductType(productType)
+                .build();
         return new ShoppingCartItem(productDto, quantity);
     }
 

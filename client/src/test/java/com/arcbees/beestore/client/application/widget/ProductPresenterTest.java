@@ -41,7 +41,7 @@ public class ProductPresenterTest {
     public static class Module extends JukitoModule {
         @Override
         protected void configureTest() {
-            install(new FactoryModuleBuilder().build(ProductFactory.class));
+            install(new FactoryModuleBuilder().build(ProductWidgetFactory.class));
 
             bind(AutobindDisable.class).toInstance(new AutobindDisable(true));
         }
@@ -50,7 +50,7 @@ public class ProductPresenterTest {
     public static final Brand BRAND = Brand.CHOSEN;
 
     @Inject
-    private ProductFactory productFactory;
+    private ProductWidgetFactory productWidgetFactory;
     @Inject
     private ProductPresenter.MyView view;
     @Inject
@@ -60,10 +60,10 @@ public class ProductPresenterTest {
 
     @Before
     public void setUp() {
-        ProductDto dto = new ProductDto();
+        ProductDto dto = new ProductDto.Builder().build();
         productWidgetType = ProductWidgetType.MAIN_LEFT;
 
-        presenter = productFactory.create(productWidgetType, dto);
+        presenter = productWidgetFactory.create(productWidgetType, dto);
     }
 
     @Test

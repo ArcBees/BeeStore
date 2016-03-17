@@ -21,7 +21,6 @@ import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.client.resources.AppMessages;
 import com.arcbees.beestore.client.resources.AppResources;
 import com.arcbees.beestore.client.resources.ProductBrandUtil;
-import com.arcbees.beestore.common.dto.Product;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
 import com.google.common.base.Strings;
@@ -128,15 +127,14 @@ public class CartItemView extends ViewWithUiHandlers<CartItemUiHandlers> impleme
     @Override
     public void setShoppingCartItem(ShoppingCartItem item) {
         ProductDto productDto = item.getProductDto();
-        Product product = productDto.getProduct();
-        ProductType productType = product.getProductType();
+        ProductType productType = productDto.getProductType();
         int productPrice = productType.getPrice();
 
         String translatedBrandName = appMessages.brandName(productDto.getBrand());
         String translatedProductType = appMessages.productName(productType);
         String translatedItemColor = appMessages.itemColor(productType, productDto.getBrand());
         String translatedLogoColor = appMessages.logoColor(productType, productDto.getBrand());
-        String translatedSize = appMessages.size(product.getSize());
+        String translatedSize = appMessages.size(productDto.getSize());
 
         name.setInnerText(translatedBrandName + " " + translatedProductType);
         itemColor.setInnerText(translatedItemColor);

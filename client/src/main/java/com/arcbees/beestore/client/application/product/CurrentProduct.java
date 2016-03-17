@@ -20,4 +20,6 @@ import com.arcbees.beestore.common.dto.ProductDto;
 
 public interface CurrentProduct {
     ProductDto get();
+
+    void set(ProductDto productDto);
 }

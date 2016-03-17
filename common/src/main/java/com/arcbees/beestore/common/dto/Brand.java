@@ -31,6 +31,14 @@ public enum Brand {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
+    public static Brand getDefaultValue() {
+        return ARCBEES;
+    }
+
     public static Brand createFromValue(String value) {
         for (Brand brand : values()) {
             if (brand.value.equals(value)) {
@@ -38,14 +46,6 @@ public enum Brand {
             }
         }
 
-        return getDefaultValue();
-    }
-
-    public static Brand getDefaultValue() {
         return Brand.ARCBEES;
-    }
-
-    public String getValue() {
-        return value;
     }
 }

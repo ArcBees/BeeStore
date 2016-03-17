@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 ArcBees Inc.
+ * Copyright 2016 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,12 +16,8 @@
 
 package com.arcbees.beestore.common.api;
 
-public class ApiPaths {
-    public static final String ROOT = "/api";
-    public static final String PAYMENT = "/payment";
-    public static final String STRIPE = "/stripe";
-    public static final String PRODUCT = "/product";
-
-    public static final String ID = "/{" + ApiParameters.ID + "}";
-    public static final String BRAND = "/{" + ApiParameters.BRAND + "}";
+public class ApiParameters {
+    public static final String ID = "id";
+    public static final String BRAND = "brand";
+    public static final String SIZE = "size";
 }

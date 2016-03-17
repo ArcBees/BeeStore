@@ -18,13 +18,16 @@ package com.arcbees.beestore.client.application.product;
 
 import javax.inject.Inject;
 
+import com.arcbees.beestore.client.RestCallbackImpl;
 import com.arcbees.beestore.client.application.ApplicationPresenter;
 import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShoppingCartItem;
 import com.arcbees.beestore.client.events.PageScrollEvent;
 import com.arcbees.beestore.common.NameTokens;
+import com.arcbees.beestore.common.api.ProductResource;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -59,6 +62,7 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     private final CurrentOrder currentOrder;
     private final CurrentProduct currentProduct;
 
+    private ResourceDelegate<ProductResource> productDelegate;
     private boolean isSharePanelShown;
 
     @Inject
@@ -68,37 +72,16 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
             MyProxy proxy,
             SharePanelPresenter sharePanel,
             CurrentOrder currentOrder,
-            CurrentProduct currentProduct) {
+            CurrentProduct currentProduct,
+            ResourceDelegate<ProductResource> productDelegate) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
         this.currentOrder = currentOrder;
         this.currentProduct = currentProduct;
+        this.productDelegate = productDelegate;
 
         setInSlot(SLOT_SHARE_PANEL, sharePanel);
         getView().setUiHandlers(this);
-    }
-
-    @Override
-    public void onShareButtonClicked() {
-        if (isSharePanelShown) {
-            hideSharePanel();
-        } else {
-            showSharePanel();
-        }
-    }
-
-    @Override
-    public void onReset() {
-        ProductDto productDto = currentProduct.get();
-        getView().setProduct(productDto);
-
-        getView().setSeoElements(productDto);
-    }
-
-    @Override
-    public void onAddToCartButtonClicked(int quantity) {
-        ShoppingCartItem shoppingCartItem = new ShoppingCartItem(currentProduct.get(), quantity);
-        currentOrder.addItem(shoppingCartItem);
     }
 
     @Override
@@ -111,6 +94,50 @@ public class ProductPresenter extends Presenter<ProductPresenter.MyView, Product
     @Override
     protected void onHide() {
         PageScrollEvent.fire(this, SCROLLABLE);
+    }
+
+    @Override
+    public void onShareButtonClicked() {
+        if (isSharePanelShown) {
+            hideSharePanel();
+        } else {
+            showSharePanel();
+        }
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        String brandValue = request.getParameter(NameTokens.PARAM_BRAND, "");
+        String productTypeId = request.getParameter(NameTokens.PARAM_ID, "-1");
+        String size = request.getParameter(NameTokens.PARAM_SIZE, "");
+
+        getProduct(brandValue, productTypeId, size);
+    }
+
+    private void getProduct(String brandValue, String productId, String size) {
+        productDelegate.withCallback(new RestCallbackImpl<ProductDto>() {
+            @Override
+            public void onSuccess(ProductDto result) {
+                onGetProductSuccess(result);
+            }
+        }).getProduct(Integer.parseInt(productId), brandValue, size);
+    }
+
+    private void onGetProductSuccess(ProductDto result) {
+        currentProduct.set(result);
+
+        setProduct(currentProduct.get());
+    }
+
+    @Override
+    public void onAddToCartButtonClicked(int quantity) {
+        ShoppingCartItem shoppingCartItem = new ShoppingCartItem(currentProduct.get(), quantity);
+        currentOrder.addItem(shoppingCartItem);
+    }
+
+    private void setProduct(ProductDto productDto) {
+        getView().setProduct(productDto);
+        getView().setSeoElements(productDto);
     }
 
     private void showSharePanel() {

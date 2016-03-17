@@ -16,19 +16,22 @@
 
 package com.arcbees.beestore.client.application.home;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
+import com.arcbees.beestore.client.RestCallbackImpl;
 import com.arcbees.beestore.client.application.ApplicationPresenter;
 import com.arcbees.beestore.client.application.CurrentBrand;
-import com.arcbees.beestore.client.application.widget.ProductFactory;
 import com.arcbees.beestore.client.application.widget.ProductPresenter;
+import com.arcbees.beestore.client.application.widget.ProductWidgetFactory;
 import com.arcbees.beestore.client.application.widget.ProductWidgetType;
 import com.arcbees.beestore.common.NameTokens;
-import com.arcbees.beestore.common.dto.Brand;
-import com.arcbees.beestore.common.dto.Product;
+import com.arcbees.beestore.common.api.ProductResource;
 import com.arcbees.beestore.common.dto.ProductDto;
 import com.arcbees.beestore.common.dto.ProductType;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rest.delegates.client.ResourceDelegate;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -50,20 +53,24 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     static Slot<ProductPresenter> SLOT_MAIN_PRODUCTS = new Slot<>();
     static Slot<ProductPresenter> SLOT_SECONDARY_PRODUCTS = new Slot<>();
 
-    private final ProductFactory productFactory;
+    private final ProductWidgetFactory productWidgetFactory;
     private final CurrentBrand currentBrand;
+
+    private ResourceDelegate<ProductResource> productDelegate;
 
     @Inject
     HomePresenter(
             EventBus eventBus,
             MyView view,
             MyProxy proxy,
-            ProductFactory productFactory,
-            CurrentBrand currentBrand) {
+            ProductWidgetFactory productWidgetFactory,
+            CurrentBrand currentBrand,
+            ResourceDelegate<ProductResource> productDelegate) {
         super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
 
-        this.productFactory = productFactory;
+        this.productWidgetFactory = productWidgetFactory;
         this.currentBrand = currentBrand;
+        this.productDelegate = productDelegate;
     }
 
     @Override
@@ -72,28 +79,33 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     @Override
-    protected void onBind() {
-        Brand brand = currentBrand.get();
+    protected void onReveal() {
+        productDelegate.withCallback(new RestCallbackImpl<List<ProductDto>>() {
+            @Override
+            public void onSuccess(List<ProductDto> result) {
+                setProductsInSlots(result);
+            }
+        }).getProductsByBrand(currentBrand.get().getValue());
+    }
 
-        ProductDto shirt = new ProductDto(Product.createShirtWithDefaultSize(), brand);
-        ProductDto bag = new ProductDto(Product.createProduct(ProductType.BAG), brand);
+    private void setProductsInSlots(List<ProductDto> result) {
+        for (ProductDto productDto : result) {
+            if (isFeaturedLeftProductType(productDto)) {
+                addToSlot(SLOT_MAIN_PRODUCTS, productWidgetFactory.create(ProductWidgetType.MAIN_LEFT, productDto));
+            } else if (isFeaturedRightProductType(productDto)) {
+                addToSlot(SLOT_MAIN_PRODUCTS, productWidgetFactory.create(ProductWidgetType.MAIN_RIGHT, productDto));
+            } else {
+                addToSlot(SLOT_SECONDARY_PRODUCTS, productWidgetFactory.create(ProductWidgetType.SECONDARY,
+                        productDto));
+            }
+        }
+    }
 
-        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_LEFT, shirt));
-        addToSlot(SLOT_MAIN_PRODUCTS, productFactory.create(ProductWidgetType.MAIN_RIGHT, bag));
+    private boolean isFeaturedRightProductType(ProductDto productDto) {
+        return productDto.getProductType().equals(ProductType.BAG);
+    }
 
-        ProductDto cup = new ProductDto(Product.createProduct(ProductType.THERMOS), brand);
-        ProductDto phoneCase = new ProductDto(Product.createProduct(ProductType.PHONE_CASE), brand);
-        ProductDto key = new ProductDto(Product.createProduct(ProductType.USB_KEY), brand);
-        ProductDto mug = new ProductDto(Product.createProduct(ProductType.MUG), brand);
-
-        ProductPresenter cupPresenter = productFactory.create(ProductWidgetType.SECONDARY, cup);
-        ProductPresenter keyPresenter = productFactory.create(ProductWidgetType.SECONDARY, key);
-        ProductPresenter mugPresenter = productFactory.create(ProductWidgetType.SECONDARY, mug);
-        ProductPresenter phoneCasePresenter = productFactory.create(ProductWidgetType.SECONDARY, phoneCase);
-
-        addToSlot(SLOT_SECONDARY_PRODUCTS, cupPresenter);
-        addToSlot(SLOT_SECONDARY_PRODUCTS, phoneCasePresenter);
-        addToSlot(SLOT_SECONDARY_PRODUCTS, keyPresenter);
-        addToSlot(SLOT_SECONDARY_PRODUCTS, mugPresenter);
+    private boolean isFeaturedLeftProductType(ProductDto productDto) {
+        return productDto.getProductType().equals(ProductType.SHIRT);
     }
 }
