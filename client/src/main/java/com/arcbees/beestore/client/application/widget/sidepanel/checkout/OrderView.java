@@ -27,6 +27,7 @@ import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -37,7 +38,7 @@ public class OrderView extends ViewWithUiHandlers<OrderUiHandlers> implements Or
     }
 
     @UiField
-    ReplacePanel cartItems;
+    SimplePanel cartItems;
     @UiField
     ButtonElement continueButton;
     @UiField

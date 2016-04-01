@@ -19,6 +19,7 @@ package com.arcbees.beestore.client.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.arcbees.beestore.client.events.EmptyCartEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
@@ -74,6 +75,10 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
         shoppingCartLocalStorage.update(items);
 
         ShoppingCartChangedEvent.fire(item, true, this);
+
+        if (isEmpty()) {
+            EmptyCartEvent.fire(this);
+        }
     }
 
     @Override
@@ -123,6 +128,11 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
     }
 
     @Override
+    public ShippingMethod getShippingMethod() {
+        return shippingMethod;
+    }
+
+    @Override
     public float calculateGrandTotal() {
         return calculateSubTotal() + calculateTaxes() + shippingMethod.getPrice();
     }
@@ -132,7 +142,8 @@ public class CurrentOrderImpl implements CurrentOrder, HasHandlers {
         eventBus.fireEventFromSource(gwtEvent, this);
     }
 
-    protected List<ShoppingCartItem> getItems() {
+    @Override
+    public List<ShoppingCartItem> getItems() {
         return items;
     }
 }

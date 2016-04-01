@@ -22,4 +22,6 @@ public interface AddressUiHandlers extends UiHandlers {
     void onContinueClicked();
 
     void onPaymentDetailsUpdated();
+
+    void onBackToCart();
 }

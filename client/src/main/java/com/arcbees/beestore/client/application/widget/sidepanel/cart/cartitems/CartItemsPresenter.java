@@ -66,7 +66,7 @@ public class CartItemsPresenter extends PresenterWidget<CartItemsPresenter.MyVie
 
     @Override
     public void onShoppingCartChanged(ShoppingCartChangedEvent event) {
-        if (!event.isRemoved()) {
+        if (!event.isItemRemoved()) {
             addToSlot(SLOT_ITEMS, cartItemFactory.create(event.getItem()));
         }
 

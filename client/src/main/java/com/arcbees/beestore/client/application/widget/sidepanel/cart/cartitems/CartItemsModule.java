@@ -21,7 +21,7 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 public class CartItemsModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
-        bindPresenterWidget(CartItemsPresenter.class, CartItemsPresenter.MyView.class,
+        bindSingletonPresenterWidget(CartItemsPresenter.class, CartItemsPresenter.MyView.class,
                 CartItemsView.class);
     }
 }

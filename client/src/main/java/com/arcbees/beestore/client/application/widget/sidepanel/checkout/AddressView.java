@@ -19,6 +19,7 @@ package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 import com.google.gwt.dom.client.ButtonElement;
 import com.google.gwt.dom.client.InputElement;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -52,6 +53,8 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
     InputElement email;
     @UiField
     InputElement phone;
+    @UiField
+    SpanElement backToCart;
 
     @Inject
     AddressView(
@@ -94,6 +97,13 @@ public class AddressView extends ViewWithUiHandlers<AddressUiHandlers> implement
             @Override
             public void f() {
                 getUiHandlers().onPaymentDetailsUpdated();
+            }
+        });
+
+        $(backToCart).click(new Function() {
+            @Override
+            public void f() {
+                getUiHandlers().onBackToCart();
             }
         });
     }

@@ -23,6 +23,10 @@ import com.arcbees.beestore.client.application.CurrentOrder;
 import com.arcbees.beestore.client.application.ShippingMethod;
 import com.arcbees.beestore.client.application.widget.sidepanel.cart.cartitems.CartItemsPresenter;
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
+import com.arcbees.beestore.client.events.CheckoutEvent;
+import com.arcbees.beestore.client.events.CheckoutEventHandler;
+import com.arcbees.beestore.client.events.EmptyCartEvent;
+import com.arcbees.beestore.client.events.EmptyCartEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEvent;
 import com.arcbees.beestore.client.events.ShoppingCartChangedEventHandler;
 import com.arcbees.beestore.client.events.ShoppingCartQuantityChangeEvent;
@@ -31,10 +35,11 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.presenter.slots.PermanentSlot;
+import com.gwtplatform.mvp.client.presenter.slots.SingleSlot;
 
 public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
-        implements OrderUiHandlers, ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler {
+        implements OrderUiHandlers, ShoppingCartChangedEventHandler, ShoppingCartQuantityUpdatedEventHandler,
+        CheckoutEventHandler, EmptyCartEventHandler {
     interface MyView extends View, HasUiHandlers<OrderUiHandlers> {
         void hideCheckoutButton();
 
@@ -47,7 +52,7 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
         void setInternationalPrice(String price);
     }
 
-    public static final PermanentSlot<CartItemsPresenter> SLOT_CART_ITEMS = new PermanentSlot<>();
+    public static final SingleSlot<CartItemsPresenter> SLOT_CART_ITEMS = new SingleSlot<>();
 
     private final CartItemsPresenter cartItemsPresenter;
     private final CurrencyFormat currencyFormat;
@@ -74,8 +79,8 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
     protected void onBind() {
         addRegisteredHandler(ShoppingCartChangedEvent.TYPE, this);
         addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
-
-        setInSlot(SLOT_CART_ITEMS, cartItemsPresenter);
+        addRegisteredHandler(CheckoutEvent.TYPE, this);
+        addRegisteredHandler(EmptyCartEvent.TYPE, this);
 
         setShippingPrices();
         setOrderTotal();
@@ -90,10 +95,20 @@ public class OrderPresenter extends PresenterWidget<OrderPresenter.MyView>
     }
 
     @Override
+    public void onEmptyCart(EmptyCartEvent event) {
+        removeFromSlot(SLOT_CART_ITEMS, cartItemsPresenter);
+    }
+
+    @Override
+    public void onCheckout(CheckoutEvent event) {
+        if (event.isCheckoutOpen()) {
+            setInSlot(SLOT_CART_ITEMS, cartItemsPresenter);
+        }
+    }
+
+    @Override
     public void onContinueClicked() {
         CheckoutContinueEvent.fire(this);
-
-        getView().hideCheckoutButton();
     }
 
     @Override

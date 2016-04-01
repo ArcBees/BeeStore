@@ -31,6 +31,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.AutobindDisable;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Matchers.same;
 import static org.mockito.Mockito.mock;
@@ -76,7 +77,7 @@ public class ShoppingCartPresenterTest {
 
     @Test
     public void onClose_fireCloseShoppingCartEvent() {
-        presenter.onClose();
+        presenter.onCloseClicked();
 
         verify(eventBus).fireEventFromSource(isA(CloseShoppingCartEvent.class), same(presenter));
     }

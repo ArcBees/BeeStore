@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 ArcBees Inc.
+ * Copyright 2016 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,12 +14,10 @@
  * the License.
  */
 
-package com.arcbees.beestore.client.application.widget.sidepanel.cart;
+package com.arcbees.beestore.client.events;
 
-import com.gwtplatform.mvp.client.UiHandlers;
+import com.google.gwt.event.shared.EventHandler;
 
-interface ShoppingCartUiHandlers extends UiHandlers {
-    void onCheckoutClicked();
-
-    void onCloseClicked();
+public interface CheckoutEventHandler extends EventHandler {
+    void onCheckout(CheckoutEvent event);
 }

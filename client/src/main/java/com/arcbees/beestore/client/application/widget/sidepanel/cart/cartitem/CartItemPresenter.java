@@ -53,10 +53,20 @@ public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
     }
 
     @Override
-    public void delete() {
-        currentOrder.removeItem(item);
+    protected void onBind() {
+        addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
+    }
 
-        this.removeFromParentSlot();
+    @Override
+    protected void onReveal() {
+        getView().setShoppingCartItem(item);
+    }
+
+    @Override
+    public void delete() {
+        removeFromParentSlot();
+
+        currentOrder.removeItem(item);
     }
 
     @Override
@@ -74,15 +84,5 @@ public class CartItemPresenter extends PresenterWidget<CartItemPresenter.MyView>
         if (item == event.getExistingItem()) {
             getView().updateQuantity(event.getNewQuantity());
         }
-    }
-
-    @Override
-    protected void onBind() {
-        addRegisteredHandler(ShoppingCartQuantityChangeEvent.TYPE, this);
-    }
-
-    @Override
-    protected void onReveal() {
-        getView().setShoppingCartItem(item);
     }
 }

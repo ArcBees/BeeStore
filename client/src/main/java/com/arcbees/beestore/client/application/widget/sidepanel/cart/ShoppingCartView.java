@@ -24,6 +24,7 @@ import com.google.gwt.query.client.Function;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
@@ -41,7 +42,7 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
     @UiField
     ButtonElement checkoutButton;
     @UiField
-    ReplacePanel cartItems;
+    SimplePanel cartItems;
     @UiField
     ButtonElement closeCart;
 
@@ -62,14 +63,14 @@ public class ShoppingCartView extends ViewWithUiHandlers<ShoppingCartUiHandlers>
         $(checkoutButton).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().onCheckout();
+                getUiHandlers().onCheckoutClicked();
             }
         });
 
         $(closeCart).click(new Function() {
             @Override
             public void f() {
-                getUiHandlers().onClose();
+                getUiHandlers().onCloseClicked();
             }
         });
     }

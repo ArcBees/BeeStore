@@ -13,13 +13,18 @@
             <div class="{res.style.rightPanel_step}">
                 <span>1</span>
             </div>
-            <h2><ui:msg description="Address - Title">Address</ui:msg></h2>
+            <h2>
+                <ui:msg description="Address - Title">Address</ui:msg>
+            </h2>
         </div>
 
-        <h3><ui:msg description="Address - Shipping">Shipping address</ui:msg></h3>
+        <h3>
+            <ui:msg description="Address - Shipping">Shipping address</ui:msg>
+        </h3>
         <form action="javascript:;" ui:field="form">
             <fieldset>
-                <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*" required="" ui:field="firstName">
+                <input class="{comp.style.field} {comp.style.required}" type="text" placeholder="First name*"
+                        required="" ui:field="firstName">
                     <ui:attribute name="placeholder" description="Address - FirstName"/>
                 </input>
                 <input class="{comp.style.field}" type="text" placeholder="Last name*" required="" ui:field="lastName">
@@ -53,6 +58,12 @@
                     <ui:attribute name="placeholder" description="Address - Phone"/>
                 </input>
             </fieldset>
+
+            <a href="javascript:;">
+                <span class="{comp.style.field}" ui:field="backToCart">
+                    <ui:msg description="Address - BackToCart">Back to cart</ui:msg>
+                </span>
+            </a>
 
             <button ui:field="continueButton" type="submit"
                     class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">
