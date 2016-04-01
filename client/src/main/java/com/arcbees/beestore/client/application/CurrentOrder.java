@@ -16,6 +16,8 @@
 
 package com.arcbees.beestore.client.application;
 
+import java.util.List;
+
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 
 public interface CurrentOrder {
@@ -38,4 +40,8 @@ public interface CurrentOrder {
     float calculateTaxes();
 
     void setShippingMethod(ShippingMethod shippingMethod);
+
+    ShippingMethod getShippingMethod();
+
+    List<ShoppingCartItem> getItems();
 }

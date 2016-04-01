@@ -24,7 +24,7 @@
             <ui:msg description="Order - Your order">Your order</ui:msg>
         </h3>
 
-        <arcbees:ReplacePanel ui:field="cartItems"/>
+        <g:SimplePanel ui:field="cartItems"/>
 
         <div class="{res.style.orderBox}">
             <h3>

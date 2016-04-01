@@ -22,6 +22,7 @@ import com.google.gwt.event.shared.HasHandlers;
 
 public class ShoppingCartChangedEvent extends GwtEvent<ShoppingCartChangedEventHandler> {
     public static final Type<ShoppingCartChangedEventHandler> TYPE = new Type<>();
+
     private final ShoppingCartItem item;
     private boolean removed;
 
@@ -42,7 +43,7 @@ public class ShoppingCartChangedEvent extends GwtEvent<ShoppingCartChangedEventH
         return item;
     }
 
-    public boolean isRemoved() {
+    public boolean isItemRemoved() {
         return removed;
     }
 

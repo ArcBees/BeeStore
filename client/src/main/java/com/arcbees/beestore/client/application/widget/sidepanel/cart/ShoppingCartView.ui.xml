@@ -18,7 +18,7 @@
             </h2>
         </div>
 
-        <arcbees:ReplacePanel ui:field="cartItems"/>
+        <g:SimplePanel ui:field="cartItems"/>
 
         <div ui:field="checkoutContainer">
             <button ui:field="checkoutButton" class="{comp.style.btn} {comp.style.btn_outline} {comp.style.btn__center}">

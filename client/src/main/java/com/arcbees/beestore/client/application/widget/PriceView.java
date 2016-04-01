@@ -100,7 +100,7 @@ public class PriceView extends ViewWithUiHandlers<PriceUiHandlers>
                 .nameToken(nameTokensConstants.PRODUCT())
                 .with(NameTokens.PARAM_ID, productId)
                 .build();
-
+        
         String token = tokenFormatter.toPlaceToken(request);
         shopView.setHref("#" + token);
     }

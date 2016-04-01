@@ -17,6 +17,8 @@
 package com.arcbees.beestore.client.application.widget.sidepanel.checkout;
 
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
+import com.arcbees.beestore.client.events.CheckoutEvent;
+import com.arcbees.beestore.client.events.CheckoutEvent.Status;
 import com.arcbees.beestore.client.events.PaymentDetailsUpdatedEvent;
 import com.arcbees.beestore.common.dto.ContactInfoDto;
 import com.google.common.base.Strings;
@@ -49,8 +51,6 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
     public void onContinueClicked() {
         if (validateContactInfo()) {
             CheckoutContinueEvent.fire(this);
-
-            getView().hideContinueButton();
         }
     }
 
@@ -63,15 +63,22 @@ public class AddressPresenter extends PresenterWidget<AddressPresenter.MyView> i
         }
     }
 
+    @Override
+    public void onBackToCart() {
+        CheckoutEvent.fire(this, Status.CLOSE);
+    }
+
     private boolean validateContactInfo() {
         ContactInfoDto contactInfo = getContactInfo();
 
-        return !Strings.isNullOrEmpty(contactInfo.getFirstName()) &&
-                !Strings.isNullOrEmpty(contactInfo.getLastName()) &&
-                !Strings.isNullOrEmpty(contactInfo.getEmail()) &&
-                !Strings.isNullOrEmpty(contactInfo.getPhone()) &&
-                !Strings.isNullOrEmpty(contactInfo.getAddress()) &&
-                !Strings.isNullOrEmpty(contactInfo.getTownCity());
+        // TODO: Remove this validation once form fill is implemented.
+//        return !Strings.isNullOrEmpty(contactInfo.getFirstName()) &&
+//                !Strings.isNullOrEmpty(contactInfo.getLastName()) &&
+//                !Strings.isNullOrEmpty(contactInfo.getEmail()) &&
+//                !Strings.isNullOrEmpty(contactInfo.getPhone()) &&
+//                !Strings.isNullOrEmpty(contactInfo.getAddress()) &&
+//                !Strings.isNullOrEmpty(contactInfo.getTownCity());
+        return true;
     }
 
     public ContactInfoDto getContactInfo() {

@@ -24,13 +24,18 @@ import com.arcbees.beestore.client.application.widget.sidepanel.checkout.OrderPr
 import com.arcbees.beestore.client.application.widget.sidepanel.checkout.PaymentPresenter;
 import com.arcbees.beestore.client.events.CheckoutContinueEvent;
 import com.arcbees.beestore.client.events.CheckoutContinueEventHandler;
+import com.arcbees.beestore.client.events.CheckoutEvent;
+import com.arcbees.beestore.client.events.CheckoutEvent.Status;
+import com.arcbees.beestore.client.events.CheckoutEventHandler;
+import com.arcbees.beestore.client.events.EmptyCartEvent;
+import com.arcbees.beestore.client.events.EmptyCartEventHandler;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.presenter.slots.Slot;
 
 public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyView>
-        implements CheckoutContinueEventHandler {
+        implements CheckoutContinueEventHandler, EmptyCartEventHandler, CheckoutEventHandler {
     interface MyView extends View {
     }
 
@@ -59,19 +64,38 @@ public class SidePanelPresenter extends PresenterWidget<SidePanelPresenter.MyVie
 
     @Override
     protected void onBind() {
-        setInSlot(SLOT_MAIN, shoppingCartPresenter);
+        setCartInSlot();
 
         addRegisteredHandler(CheckoutContinueEvent.TYPE, this);
+        addRegisteredHandler(EmptyCartEvent.TYPE, this);
+        addRegisteredHandler(CheckoutEvent.TYPE, this);
     }
 
     @Override
     public void onCheckoutContinue(CheckoutContinueEvent event) {
         if (getChildren(SLOT_MAIN).contains(shoppingCartPresenter)) {
+            CheckoutEvent.fire(this, Status.OPEN);
             setInSlot(SLOT_MAIN, addressPresenter);
         } else if (event.getSource() == addressPresenter) {
             addToSlot(SLOT_MAIN, orderPresenter);
         } else if (event.getSource() == orderPresenter) {
             addToSlot(SLOT_MAIN, paymentPresenter);
         }
+    }
+
+    @Override
+    public void onEmptyCart(EmptyCartEvent event) {
+        setCartInSlot();
+    }
+
+    @Override
+    public void onCheckout(CheckoutEvent event) {
+        if (!event.isCheckoutOpen()) {
+            setCartInSlot();
+        }
+    }
+
+    private void setCartInSlot() {
+        setInSlot(SLOT_MAIN, shoppingCartPresenter);
     }
 }
